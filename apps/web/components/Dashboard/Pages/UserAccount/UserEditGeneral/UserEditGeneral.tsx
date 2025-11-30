@@ -43,6 +43,7 @@ import { toast } from 'react-hot-toast'
 import { signOut } from 'next-auth/react'
 import { getUriWithoutOrg } from '@services/config/config';
 import { useDebounce } from '@/hooks/useDebounce';
+import LanguageSelector from '@components/Objects/LanguageSelector/LanguageSelector';
 
 const SUPPORTED_FILES = constructAcceptValue(['jpg', 'png', 'webp', 'gif'])
 
@@ -385,6 +386,11 @@ const UserEditForm = ({
               {touched.bio && errors.bio && (
                 <p className="text-red-500 text-sm mt-1">{errors.bio}</p>
               )}
+            </div>
+
+            {/* Language Preference */}
+            <div>
+              <LanguageSelector />
             </div>
 
             <div className="space-y-4">

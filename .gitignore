@@ -46,3 +46,7 @@ __pycache__/
 # Flyio
 .flyio/
 fly.toml
+
+# Development logs
+logs/
+*.log

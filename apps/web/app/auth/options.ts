@@ -19,7 +19,7 @@ declare global {
   };
 }
 
-export const isDevEnv = getLEARNHOUSE_TOP_DOMAIN_VAL() == 'localhost' ? true : false
+export const isDevEnv = getLEARNHOUSE_TOP_DOMAIN_VAL().includes('localhost') ? true : false
 
 export const nextAuthOptions = {
   debug: true,
@@ -68,7 +68,7 @@ export const nextAuthOptions = {
         sameSite: 'lax',
         path: '/',
         // When working on localhost, the cookie domain must be omitted entirely (https://stackoverflow.com/a/1188145)
-        domain: `.${getLEARNHOUSE_TOP_DOMAIN_VAL()}`,
+        domain: isDevEnv ? undefined : `.${getLEARNHOUSE_TOP_DOMAIN_VAL()}`,
         secure: !isDevEnv,
       },
     },

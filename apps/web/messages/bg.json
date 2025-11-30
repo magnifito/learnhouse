@@ -1,0 +1,95 @@
+{
+  "common": {
+    "save": "Запази",
+    "cancel": "Отказ",
+    "delete": "Изтрий",
+    "edit": "Редактирай",
+    "create": "Създай",
+    "update": "Актуализирай",
+    "confirm": "Потвърди",
+    "back": "Назад",
+    "next": "Напред",
+    "previous": "Предишен",
+    "submit": "Изпрати",
+    "loading": "Зареждане...",
+    "error": "Грешка",
+    "success": "Успех"
+  },
+  "navigation": {
+    "home": "Начало",
+    "courses": "Курсове",
+    "dashboard": "Табло",
+    "settings": "Настройки",
+    "profile": "Профил",
+    "logout": "Изход"
+  },
+  "auth": {
+    "signIn": "Вход",
+    "signUp": "Регистрация",
+    "email": "Имейл",
+    "password": "Парола",
+    "username": "Потребителско име",
+    "forgotPassword": "Забравена парола?",
+    "rememberMe": "Запомни ме",
+    "welcomeBack": "Добре дошли отново!",
+    "createAccount": "Създай акаунт",
+    "alreadyHaveAccount": "Вече имате акаунт?",
+    "dontHaveAccount": "Нямате акаунт?",
+    "signInWithGoogle": "Вход с Google",
+    "emailPlaceholder": "Въведете имейл",
+    "passwordPlaceholder": "Въведете парола",
+    "usernamePlaceholder": "Изберете потребителско име"
+  },
+  "courses": {
+    "title": "Курсове",
+    "allCourses": "Всички курсове",
+    "myCourses": "Моите курсове",
+    "createCourse": "Създай курс",
+    "editCourse": "Редактирай курс",
+    "deleteCourse": "Изтрий курс",
+    "courseName": "Име на курс",
+    "courseDescription": "Описание на курс",
+    "noCourses": "Няма налични курсове",
+    "enrolledCount": "{count, plural, =0 {Няма студенти} =1 {1 студент} other {# студенти}}",
+    "enroll": "Запиши се",
+    "unenroll": "Отпиши се",
+    "start": "Започни курс",
+    "continue": "Продължи курс",
+    "completed": "Завършен"
+  },
+  "dashboard": {
+    "welcome": "Добре дошли, {name}!",
+    "overview": "Общ преглед",
+    "statistics": "Статистики",
+    "recentActivity": "Скорошна активност",
+    "notifications": "Известия"
+  },
+  "settings": {
+    "title": "Настройки",
+    "general": "Общи",
+    "account": "Акаунт",
+    "preferences": "Предпочитания",
+    "language": "Език",
+    "selectLanguage": "Изберете предпочитан език",
+    "timezone": "Часова зона",
+    "notifications": "Известия",
+    "privacy": "Поверителност",
+    "security": "Сигурност"
+  },
+  "errors": {
+    "generic": "Нещо се обърка",
+    "notFound": "Страницата не е намерена",
+    "unauthorized": "Неоторизиран достъп",
+    "forbidden": "Достъпът е забранен",
+    "serverError": "Грешка в сървъра",
+    "networkError": "Мрежова грешка",
+    "validationError": "Грешка при валидация"
+  },
+  "validation": {
+    "required": "Това поле е задължително",
+    "emailInvalid": "Невалиден имейл адрес",
+    "passwordTooShort": "Паролата е твърде кратка",
+    "passwordsNoMatch": "Паролите не съвпадат",
+    "usernameInvalid": "Невалидно потребителско име"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "update": "Mettre à jour",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "courses": "Cours",
+    "dashboard": "Tableau de bord",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "logout": "Déconnexion"
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "email": "Email",
+    "password": "Mot de passe",
+    "username": "Nom d'utilisateur",
+    "forgotPassword": "Mot de passe oublié?",
+    "rememberMe": "Se souvenir de moi",
+    "welcomeBack": "Bon retour!",
+    "createAccount": "Créer un compte",
+    "alreadyHaveAccount": "Vous avez déjà un compte?",
+    "dontHaveAccount": "Vous n'avez pas de compte?",
+    "signInWithGoogle": "Se connecter avec Google",
+    "emailPlaceholder": "Entrez votre email",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "usernamePlaceholder": "Choisissez un nom d'utilisateur"
+  },
+  "courses": {
+    "title": "Cours",
+    "allCourses": "Tous les cours",
+    "myCourses": "Mes cours",
+    "createCourse": "Créer un cours",
+    "editCourse": "Modifier le cours",
+    "deleteCourse": "Supprimer le cours",
+    "courseName": "Nom du cours",
+    "courseDescription": "Description du cours",
+    "noCourses": "Aucun cours disponible",
+    "enrolledCount": "{count, plural, =0 {Aucun étudiant} =1 {1 étudiant} other {# étudiants}}",
+    "enroll": "S'inscrire",
+    "unenroll": "Se désinscrire",
+    "start": "Commencer le cours",
+    "continue": "Continuer le cours",
+    "completed": "Terminé"
+  },
+  "dashboard": {
+    "welcome": "Bienvenue, {name}!",
+    "overview": "Aperçu",
+    "statistics": "Statistiques",
+    "recentActivity": "Activité récente",
+    "notifications": "Notifications"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "general": "Général",
+    "account": "Compte",
+    "preferences": "Préférences",
+    "language": "Langue",
+    "selectLanguage": "Sélectionnez votre langue préférée",
+    "timezone": "Fuseau horaire",
+    "notifications": "Notifications",
+    "privacy": "Confidentialité",
+    "security": "Sécurité"
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite",
+    "notFound": "Page non trouvée",
+    "unauthorized": "Accès non autorisé",
+    "forbidden": "Accès interdit",
+    "serverError": "Erreur du serveur",
+    "networkError": "Erreur réseau",
+    "validationError": "Erreur de validation"
+  },
+  "validation": {
+    "required": "Ce champ est requis",
+    "emailInvalid": "Adresse email invalide",
+    "passwordTooShort": "Le mot de passe est trop court",
+    "passwordsNoMatch": "Les mots de passe ne correspondent pas",
+    "usernameInvalid": "Nom d'utilisateur invalide"
+  }
+}

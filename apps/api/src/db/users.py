@@ -13,6 +13,7 @@ class UserBase(SQLModel):
     email: EmailStr
     avatar_image: Optional[str] = ""
     bio: Optional[str] = ""
+    preferred_locale: Optional[str] = Field(default="en", max_length=5)
     details: Optional[dict] = Field(default={}, sa_column=Column(JSON))
     profile: Optional[dict] = Field(default={}, sa_column=Column(JSON))
 
@@ -29,6 +30,7 @@ class UserUpdate(UserBase):
     email: str
     avatar_image: Optional[str] = ""
     bio: Optional[str] = ""
+    preferred_locale: Optional[str] = Field(default="en", max_length=5)
     details: Optional[dict] = {}
     profile: Optional[dict] = {}
 

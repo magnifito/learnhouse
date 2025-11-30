@@ -1,0 +1,95 @@
+{
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "update": "Actualizar",
+    "confirm": "Confirmar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "courses": "Cursos",
+    "dashboard": "Panel",
+    "settings": "Configuración",
+    "profile": "Perfil",
+    "logout": "Cerrar sesión"
+  },
+  "auth": {
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "username": "Nombre de usuario",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "rememberMe": "Recuérdame",
+    "welcomeBack": "¡Bienvenido de nuevo!",
+    "createAccount": "Crear una cuenta",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "signInWithGoogle": "Iniciar sesión con Google",
+    "emailPlaceholder": "Ingresa tu correo electrónico",
+    "passwordPlaceholder": "Ingresa tu contraseña",
+    "usernamePlaceholder": "Elige un nombre de usuario"
+  },
+  "courses": {
+    "title": "Cursos",
+    "allCourses": "Todos los cursos",
+    "myCourses": "Mis cursos",
+    "createCourse": "Crear curso",
+    "editCourse": "Editar curso",
+    "deleteCourse": "Eliminar curso",
+    "courseName": "Nombre del curso",
+    "courseDescription": "Descripción del curso",
+    "noCourses": "No hay cursos disponibles",
+    "enrolledCount": "{count, plural, =0 {Sin estudiantes} =1 {1 estudiante} other {# estudiantes}}",
+    "enroll": "Inscribirse",
+    "unenroll": "Desinscribirse",
+    "start": "Comenzar curso",
+    "continue": "Continuar curso",
+    "completed": "Completado"
+  },
+  "dashboard": {
+    "welcome": "¡Bienvenido, {name}!",
+    "overview": "Resumen",
+    "statistics": "Estadísticas",
+    "recentActivity": "Actividad reciente",
+    "notifications": "Notificaciones"
+  },
+  "settings": {
+    "title": "Configuración",
+    "general": "General",
+    "account": "Cuenta",
+    "preferences": "Preferencias",
+    "language": "Idioma",
+    "selectLanguage": "Selecciona tu idioma preferido",
+    "timezone": "Zona horaria",
+    "notifications": "Notificaciones",
+    "privacy": "Privacidad",
+    "security": "Seguridad"
+  },
+  "errors": {
+    "generic": "Algo salió mal",
+    "notFound": "Página no encontrada",
+    "unauthorized": "Acceso no autorizado",
+    "forbidden": "Acceso prohibido",
+    "serverError": "Error del servidor",
+    "networkError": "Error de red",
+    "validationError": "Error de validación"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "emailInvalid": "Dirección de correo electrónico inválida",
+    "passwordTooShort": "La contraseña es demasiado corta",
+    "passwordsNoMatch": "Las contraseñas no coinciden",
+    "usernameInvalid": "Nombre de usuario inválido"
+  }
+}

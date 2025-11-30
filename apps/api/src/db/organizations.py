@@ -21,6 +21,8 @@ class OrganizationBase(SQLModel):
     label: Optional[str]
     slug: str
     email: str
+    default_locale: Optional[str] = Field(default="en", max_length=5)
+    supported_locales: Optional[list] = Field(default=["en"], sa_column=Column(JSON))
 
 
 class Organization(OrganizationBase, table=True):
@@ -48,6 +50,8 @@ class OrganizationUpdate(SQLModel):
     slug: Optional[str] = None
     email: Optional[str] = None
     explore: Optional[bool] = None
+    default_locale: Optional[str] = None
+    supported_locales: Optional[list] = None
 
 class OrganizationCreate(OrganizationBase):
     pass

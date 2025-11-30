@@ -225,7 +225,7 @@ async def get_courses_orgslug(
         )
 
     # Apply pagination
-    query = query.offset(offset).limit(limit).distinct()
+    query = query.offset(offset).limit(limit).distinct(Course.id)
 
     courses = db_session.exec(query).all()
     
@@ -339,7 +339,7 @@ async def search_courses(
         )
 
     # Apply pagination
-    query = query.offset(offset).limit(limit).distinct()
+    query = query.offset(offset).limit(limit).distinct(Course.id)
 
     courses = db_session.exec(query).all()
 

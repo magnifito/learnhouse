@@ -1,7 +1,22 @@
 import { getUriWithOrg } from '@services/config/config'
+import { getLocaleFromCookie } from '@/i18n/request'
+
+/**
+ * Get current locale for API requests
+ */
+function getCurrentLocale(): string {
+  if (typeof window !== 'undefined') {
+    return getLocaleFromCookie()
+  }
+  return 'en'
+}
 
 export const RequestBody = (method: string, data: any, next: any) => {
-  let HeadersConfig = new Headers({ 'Content-Type': 'application/json' })
+  const locale = getCurrentLocale()
+  let HeadersConfig = new Headers({
+    'Content-Type': 'application/json',
+    'X-Locale': locale
+  })
   let options: any = {
     method: method,
     headers: HeadersConfig,
@@ -22,10 +37,11 @@ export const RequestBodyWithAuthHeader = (
   next: any,
   token?: string
 ) => {
+  const locale = getCurrentLocale()
   let HeadersConfig = new Headers(
     token
-      ? { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
-      : { 'Content-Type': 'application/json' }
+      ? { 'Content-Type': 'application/json', Authorization: `Bearer ${token}`, 'X-Locale': locale }
+      : { 'Content-Type': 'application/json', 'X-Locale': locale }
   )
   let options: any = {
     method: method,
@@ -40,7 +56,10 @@ export const RequestBodyWithAuthHeader = (
 }
 
 export const RequestBodyForm = (method: string, data: any, next: any) => {
-  let HeadersConfig = new Headers({})
+  const locale = getCurrentLocale()
+  let HeadersConfig = new Headers({
+    'X-Locale': locale
+  })
   let options: any = {
     method: method,
     headers: HeadersConfig,
@@ -59,8 +78,10 @@ export const RequestBodyFormWithAuthHeader = (
   next: any,
   access_token: string
 ) => {
+  const locale = getCurrentLocale()
   let HeadersConfig = new Headers({
     Authorization: `Bearer ${access_token}`,
+    'X-Locale': locale,
   })
   let options: any = {
     method: method,
@@ -75,11 +96,12 @@ export const RequestBodyFormWithAuthHeader = (
 }
 
 export const swrFetcher = async (url: string, token?: string) => {
+  const locale = getCurrentLocale()
   // Create the request options
   let HeadersConfig = new Headers(
     token
-      ? { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
-      : { 'Content-Type': 'application/json' }
+      ? { 'Content-Type': 'application/json', Authorization: `Bearer ${token}`, 'X-Locale': locale }
+      : { 'Content-Type': 'application/json', 'X-Locale': locale }
   )
   let options: any = {
     method: 'GET',

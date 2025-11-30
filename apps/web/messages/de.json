@@ -1,0 +1,95 @@
+{
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "create": "Erstellen",
+    "update": "Aktualisieren",
+    "confirm": "Bestätigen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "submit": "Absenden",
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "success": "Erfolg"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "courses": "Kurse",
+    "dashboard": "Dashboard",
+    "settings": "Einstellungen",
+    "profile": "Profil",
+    "logout": "Abmelden"
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "username": "Benutzername",
+    "forgotPassword": "Passwort vergessen?",
+    "rememberMe": "Angemeldet bleiben",
+    "welcomeBack": "Willkommen zurück!",
+    "createAccount": "Konto erstellen",
+    "alreadyHaveAccount": "Sie haben bereits ein Konto?",
+    "dontHaveAccount": "Sie haben noch kein Konto?",
+    "signInWithGoogle": "Mit Google anmelden",
+    "emailPlaceholder": "E-Mail eingeben",
+    "passwordPlaceholder": "Passwort eingeben",
+    "usernamePlaceholder": "Benutzernamen wählen"
+  },
+  "courses": {
+    "title": "Kurse",
+    "allCourses": "Alle Kurse",
+    "myCourses": "Meine Kurse",
+    "createCourse": "Kurs erstellen",
+    "editCourse": "Kurs bearbeiten",
+    "deleteCourse": "Kurs löschen",
+    "courseName": "Kursname",
+    "courseDescription": "Kursbeschreibung",
+    "noCourses": "Keine Kurse verfügbar",
+    "enrolledCount": "{count, plural, =0 {Keine Studenten} =1 {1 Student} other {# Studenten}}",
+    "enroll": "Einschreiben",
+    "unenroll": "Abmelden",
+    "start": "Kurs starten",
+    "continue": "Kurs fortsetzen",
+    "completed": "Abgeschlossen"
+  },
+  "dashboard": {
+    "welcome": "Willkommen, {name}!",
+    "overview": "Übersicht",
+    "statistics": "Statistiken",
+    "recentActivity": "Letzte Aktivitäten",
+    "notifications": "Benachrichtigungen"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "general": "Allgemein",
+    "account": "Konto",
+    "preferences": "Präferenzen",
+    "language": "Sprache",
+    "selectLanguage": "Wählen Sie Ihre bevorzugte Sprache",
+    "timezone": "Zeitzone",
+    "notifications": "Benachrichtigungen",
+    "privacy": "Datenschutz",
+    "security": "Sicherheit"
+  },
+  "errors": {
+    "generic": "Etwas ist schiefgelaufen",
+    "notFound": "Seite nicht gefunden",
+    "unauthorized": "Unbefugter Zugriff",
+    "forbidden": "Zugriff verboten",
+    "serverError": "Serverfehler",
+    "networkError": "Netzwerkfehler",
+    "validationError": "Validierungsfehler"
+  },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich",
+    "emailInvalid": "Ungültige E-Mail-Adresse",
+    "passwordTooShort": "Passwort ist zu kurz",
+    "passwordsNoMatch": "Passwörter stimmen nicht überein",
+    "usernameInvalid": "Ungültiger Benutzername"
+  }
+}

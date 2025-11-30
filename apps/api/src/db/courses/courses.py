@@ -1,5 +1,5 @@
 from typing import List, Optional
-from sqlalchemy import Column, ForeignKey, Integer
+from sqlalchemy import Column, ForeignKey, Integer, JSON
 from sqlmodel import Field, SQLModel
 from enum import Enum
 from src.db.users import UserRead
@@ -33,6 +33,7 @@ class CourseBase(SQLModel):
     thumbnail_video: Optional[str] = Field(default="")
     public: bool
     open_to_contributors: bool
+    translations: Optional[dict] = Field(default={}, sa_column=Column(JSON))
 
 
 class Course(CourseBase, table=True):

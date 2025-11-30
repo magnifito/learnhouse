@@ -90,6 +90,11 @@ function ActivityChatMessageBox(props: ActivityChatMessageBoxProps) {
     } else {
       document.body.style.overflow = 'unset'
     }
+
+    // Cleanup function to restore overflow when component unmounts
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
   }, [aiChatBotState.isModalOpen])
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
