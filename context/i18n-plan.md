@@ -1,798 +1,461 @@
-# i18n Implementation Plan for LearnHouse
+# Frontend i18n Implementation Plan for LearnHouse
 
-This document outlines the comprehensive strategy for implementing internationalization (i18n) across both frontend and backend with minimal code disruption.
+This document outlines the strategy for implementing internationalization (i18n) in the LearnHouse frontend.
 
 ## 🎯 Goals
 
-1. **Minimal Code Changes**: Leverage existing infrastructure and patterns
+1. **Minimal Code Changes**: Leverage existing next-intl infrastructure
 2. **Incremental Rollout**: Translate high-impact areas first
-3. **Developer Experience**: Make it easy for developers to add translations
-4. **User Experience**: Seamless language switching without page reloads where possible
+3. **Developer Experience**: Simple, consistent translation patterns
+4. **User Experience**: Instant language switching with persistence
 5. **Maintainability**: Clear patterns that scale as the app grows
 
-## 📊 Current State Assessment
+## ⚠️ Scope
 
-### ✅ Already Done
+**Frontend Only** - Backend translations are not needed as API responses return data (IDs, numbers, database values) rather than user-facing text. All user-visible strings are rendered and translated in the frontend.
 
-- **Frontend Infrastructure**: next-intl configured and working
-- **Translation Files**: Partial translations exist (en, fr, es)
-- **Language Selector**: UI component built and functional
-- **Cookie-based Persistence**: User language preference saved
-- **Layout Integration**: Root layout handles locale detection
+## 📊 Current State
 
-### ❌ Not Yet Done
+### ✅ Already Implemented
 
-- **Component Translation Coverage**: ~99% of components use hardcoded text
-- **Backend i18n**: No translation infrastructure
-- **API Response Translation**: API returns only English
-- **Database Content**: Course content not translatable
-- **Email Templates**: System emails only in English
+- **next-intl Integration**: Configured and working
+- **5 Languages Supported**: 🇬🇧 en, 🇫🇷 fr, 🇪🇸 es, 🇩🇪 de, 🇧🇬 bg
+- **Translation Files**: Base structure with common translations
+- **Language Selector**: UI component in user settings
+- **Cookie Persistence**: User preference saved across sessions
+- **Layout Integration**: Auto-loads correct locale on mount
 
-## 🏗️ Architecture Overview
+### ❌ To Be Done
 
-### Frontend Strategy: **Progressive Enhancement**
+- **Component Coverage**: ~99% of components still use hardcoded English
+- **User-Generated Content**: Course titles/descriptions not translatable
+- **Translation Completeness**: Need native speaker review
 
-Use the existing next-intl setup without major refactoring:
+## 🏗️ Architecture
+
+### Translation Pattern
 
 ```tsx
-// BEFORE (hardcoded)
+// BEFORE (hardcoded English)
 <Button>Save Changes</Button>
+<h1>Account Settings</h1>
 
-// AFTER (translated - one line change)
-<Button>{t('common.save')}</Button>
-```
-
-### Backend Strategy: **Accept-Language Header + Response Translation**
-
-Use standard HTTP headers without changing API structure:
-
-```python
-# Client sends:
-Accept-Language: fr-FR,fr;q=0.9,en;q=0.8
-
-# Backend responds with translated strings
-# No API changes needed - just translate response values
-```
-
-## 📋 Implementation Roadmap
-
-### Phase 1: Frontend Foundation (Week 1)
-
-**Goal**: Establish patterns and translate critical user flows
-
-#### 1.1 Update Translation Files
-
-Expand existing translation files with comprehensive coverage:
-
-```bash
-apps/web/messages/
-├── en.json  # Complete all keys
-├── fr.json  # Translate all keys
-└── es.json  # Translate all keys
-```
-
-**Action Items:**
-- [ ] Audit all hardcoded strings in components
-- [ ] Create comprehensive translation keys in `en.json`
-- [ ] Organize by namespace (common, navigation, auth, etc.)
-- [ ] Get professional translations for fr/es
-
-#### 1.2 Create Translation Utilities
-
-**File**: `apps/web/lib/i18n-utils.ts`
-
-```typescript
-// Helper to get translations without hooks (for non-components)
-export async function getTranslations(locale: Locale, namespace: string) {
-  const messages = await import(`@/messages/${locale}.json`);
-  return messages[namespace];
-}
-
-// Helper for server components
-export async function getServerTranslations(namespace: string) {
-  const locale = getServerLocale(); // From cookies
-  return getTranslations(locale, namespace);
-}
-
-// Type-safe translation keys
-export type TranslationKey = keyof typeof import('@/messages/en.json');
-```
-
-**Action Items:**
-- [ ] Create utility helpers
-- [ ] Add TypeScript support for autocomplete
-- [ ] Document usage patterns
-
-#### 1.3 Translate Critical Components (Priority Order)
-
-**High Priority** (User-facing, frequently used):
-1. Authentication pages (`/auth/*`)
-2. Navigation menus
-3. Dashboard home
-4. User settings
-5. Course listings
-
-**Medium Priority**:
-6. Course editor
-7. Assignment pages
-8. Organization settings
-9. User profiles
-
-**Low Priority**:
-10. Admin pages
-11. Advanced settings
-12. Error pages
-
-**Action Items per Component:**
-- [ ] Add `useTranslations` hook
-- [ ] Replace hardcoded strings
-- [ ] Update translation files
-- [ ] Test in all languages
-- [ ] Mark as ✅ complete
-
-### Phase 2: Frontend Completion (Week 2-3)
-
-#### 2.1 Component-by-Component Translation
-
-Use a systematic approach:
-
-**Template for each component:**
-
-```tsx
-// 1. Import hook
-import { useTranslations } from 'next-intl';
-
-// 2. Get translations
+// AFTER (translated)
 const t = useTranslations('ComponentName');
 const c = useTranslations('common');
 
-// 3. Replace strings
-<Button>{c('save')}</Button>  // Instead of: Save Changes
-<h1>{t('title')}</h1>        // Instead of: Component Title
+<Button>{c('save')}</Button>
+<h1>{t('title')}</h1>
 ```
 
-**Action Items:**
-- [ ] Create script to find hardcoded strings
-- [ ] Prioritize components by usage analytics
-- [ ] Create PR template for translation updates
-- [ ] Review and test each component
+**Key Principle**: Minimal one-line changes to components
 
-#### 2.2 Dynamic Content Translation
+## 📋 Implementation Plan
 
-For user-generated content (course titles, descriptions, etc.):
+### Phase 1: High-Priority Components
 
-**Strategy**: Store translations in database
+**Critical User Flows** (translate first for maximum impact):
 
-```typescript
-// Course model (example)
-interface Course {
-  id: string;
-  title: string;              // Default language
-  title_translations?: {      // Optional translations
-    fr?: string;
-    es?: string;
-  };
-  description: string;
-  description_translations?: {
-    fr?: string;
-    es?: string;
-  };
-}
+1. **Authentication** (`/auth/*`)
+   - Login page
+   - Signup page
+   - Password reset
+   - OAuth flows
 
-// Helper to get translated field
-function getTranslatedField(
-  object: any,
-  field: string,
-  locale: Locale
-): string {
-  const translationField = `${field}_translations`;
-  return object[translationField]?.[locale] || object[field];
-}
+2. **Navigation & Menus**
+   - Header navigation
+   - Sidebar menus
+   - Mobile menu
+   - Breadcrumbs
 
-// Usage
-const courseTitle = getTranslatedField(course, 'title', currentLocale);
-```
+3. **Dashboard Home**
+   - Welcome messages
+   - Quick stats
+   - Recent activity
 
-**Action Items:**
-- [ ] Design translation schema for database
-- [ ] Create migration for translation fields
-- [ ] Build translation UI for content creators
-- [ ] Implement fallback logic
+4. **User Settings**
+   - All settings tabs
+   - Form labels
+   - Help text
+   - Success/error messages
 
-### Phase 3: Backend i18n (Week 3-4)
+5. **Course Discovery**
+   - Course listings
+   - Search interface
+   - Filters
+   - Enrollment flows
 
-#### 3.1 Backend Translation Infrastructure
+### Phase 2: User-Facing Features
 
-**Recommended Library**: `Babel` (already in Python ecosystem)
+**Medium Priority**:
 
-**Setup:**
+6. Course Player
+7. Assignment Submission
+8. Certificates
+9. User Profiles
+10. Notifications
 
-```bash
-# Install
-cd apps/api
-uv add babel
+### Phase 3: Creator Tools
 
-# Initialize
-pybabel init -i messages.pot -d locales -l fr
-pybabel init -i messages.pot -d locales -l es
-```
+**Lower Priority** (used by fewer users):
 
-**File Structure:**
-```
-apps/api/
-├── locales/
-│   ├── en/
-│   │   └── LC_MESSAGES/
-│   │       └── messages.po
-│   ├── fr/
-│   │   └── LC_MESSAGES/
-│   │       └── messages.po
-│   └── es/
-│       └── LC_MESSAGES/
-│           └── messages.po
-├── babel.cfg
-└── src/
-    └── i18n/
-        └── translator.py
-```
+11. Course Editor
+12. Chapter/Activity Editor
+13. Organization Settings
+14. Analytics Dashboard
+15. User Management
 
-**Action Items:**
-- [ ] Install and configure Babel
-- [ ] Create locale directories
-- [ ] Set up extraction workflow
+### Phase 4: System Pages
 
-#### 3.2 Translation Middleware
+**Lowest Priority**:
 
-**File**: `apps/api/src/middleware/i18n.py`
-
-```python
-from fastapi import Request
-from babel import Locale, negotiate_locale
-from typing import Optional
-
-SUPPORTED_LOCALES = ['en', 'fr', 'es']
-DEFAULT_LOCALE = 'en'
-
-def get_locale_from_request(request: Request) -> str:
-    """Extract locale from Accept-Language header"""
-    accept_language = request.headers.get('Accept-Language', '')
-
-    # Parse Accept-Language header
-    # Example: "fr-FR,fr;q=0.9,en;q=0.8,es;q=0.7"
-    locale = negotiate_locale(
-        accept_language.split(','),
-        SUPPORTED_LOCALES
-    )
-
-    return locale or DEFAULT_LOCALE
-
-# Dependency for routes
-async def get_translator(request: Request):
-    locale = get_locale_from_request(request)
-    return Translator(locale)
-```
-
-**Action Items:**
-- [ ] Create middleware
-- [ ] Add to FastAPI app
-- [ ] Test with different Accept-Language headers
-
-#### 3.3 Translation Helper
-
-**File**: `apps/api/src/i18n/translator.py`
-
-```python
-from babel.support import Translations
-import os
-
-class Translator:
-    def __init__(self, locale: str = 'en'):
-        self.locale = locale
-        locale_path = os.path.join(
-            os.path.dirname(__file__),
-            '../../locales'
-        )
-        try:
-            self.translations = Translations.load(
-                locale_path,
-                [locale]
-            )
-        except:
-            # Fallback to English
-            self.translations = Translations.load(
-                locale_path,
-                ['en']
-            )
-
-    def gettext(self, message: str) -> str:
-        """Translate a message"""
-        return self.translations.gettext(message)
-
-    def ngettext(self, singular: str, plural: str, n: int) -> str:
-        """Translate with pluralization"""
-        return self.translations.ngettext(singular, plural, n)
-
-    # Shorthand
-    def t(self, message: str) -> str:
-        return self.gettext(message)
-
-# Global translator instance
-_translator = None
-
-def get_translator(locale: str = 'en') -> Translator:
-    return Translator(locale)
-```
-
-**Action Items:**
-- [ ] Implement translator class
-- [ ] Add caching for loaded translations
-- [ ] Create helper functions
-
-#### 3.4 Update API Responses
-
-**Before:**
-```python
-@router.post("/courses")
-async def create_course(course: CourseCreate):
-    return {
-        "message": "Course created successfully",
-        "course": course
-    }
-```
-
-**After:**
-```python
-@router.post("/courses")
-async def create_course(
-    course: CourseCreate,
-    t: Translator = Depends(get_translator)
-):
-    return {
-        "message": t.t("Course created successfully"),
-        "course": course
-    }
-```
-
-**Action Items:**
-- [ ] Update all API responses
-- [ ] Extract strings to .po files
-- [ ] Translate messages
-- [ ] Test API with different locales
-
-#### 3.5 Email Template Translation
-
-**Structure:**
-```
-apps/api/
-├── templates/
-│   └── emails/
-│       ├── en/
-│       │   ├── welcome.html
-│       │   └── password-reset.html
-│       ├── fr/
-│       │   ├── welcome.html
-│       │   └── password-reset.html
-│       └── es/
-│           ├── welcome.html
-│           └── password-reset.html
-```
-
-**Email Service:**
-```python
-class EmailService:
-    def __init__(self, locale: str = 'en'):
-        self.locale = locale
-
-    def send_welcome_email(self, user: User):
-        template_path = f"templates/emails/{self.locale}/welcome.html"
-        template = self.load_template(template_path)
-        # Render and send...
-```
-
-**Action Items:**
-- [ ] Create template directory structure
-- [ ] Translate all email templates
-- [ ] Update email service to use locale
-- [ ] Test email sending in all languages
-
-### Phase 4: Database Content Translation (Week 4-5)
-
-#### 4.1 Schema Design
-
-**Option A: JSON Column (Recommended)**
-
-```python
-from sqlmodel import SQLModel, Field
-from typing import Optional
-
-class Course(SQLModel, table=True):
-    id: int
-    title: str  # Default language (English)
-    translations: Optional[dict] = Field(default=None, sa_column=Column(JSON))
-    # translations structure:
-    # {
-    #   "fr": {"title": "...", "description": "..."},
-    #   "es": {"title": "...", "description": "..."}
-    # }
-```
-
-**Option B: Separate Translation Table**
-
-```python
-class Course(SQLModel, table=True):
-    id: int
-    title: str  # Default language
-
-class CourseTranslation(SQLModel, table=True):
-    id: int
-    course_id: int
-    locale: str  # 'fr', 'es', etc.
-    title: str
-    description: str
-```
-
-**Recommendation**: Use Option A (JSON) for simplicity and fewer joins.
-
-**Action Items:**
-- [ ] Design schema
-- [ ] Create migration
-- [ ] Update models
-- [ ] Create helper methods
-
-#### 4.2 Translation UI for Content Creators
-
-**Component**: `ContentTranslationEditor.tsx`
-
-```tsx
-interface TranslationEditorProps {
-  content: any;
-  field: string;
-  onSave: (translations: Record<Locale, string>) => void;
-}
-
-function ContentTranslationEditor({ content, field }: TranslationEditorProps) {
-  return (
-    <div>
-      <h3>Translate: {field}</h3>
-
-      {/* Default language (read-only) */}
-      <div>
-        <Label>English (Default)</Label>
-        <Input value={content[field]} disabled />
-      </div>
-
-      {/* Translation inputs */}
-      {['fr', 'es'].map(locale => (
-        <div key={locale}>
-          <Label>{localeNames[locale]}</Label>
-          <Input
-            value={content.translations?.[locale]?.[field] || ''}
-            onChange={(e) => handleTranslationChange(locale, field, e.target.value)}
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
-```
-
-**Action Items:**
-- [ ] Build translation UI
-- [ ] Add to course editor
-- [ ] Add to organization settings
-- [ ] Add to chapter/activity editors
+16. Error pages (404, 500, etc.)
+17. Admin tools
+18. Advanced settings
+19. Developer tools
 
 ## 🛠️ Development Workflow
 
-### For Frontend Developers
+### For Each Component
 
-**Adding translations to a component:**
+**Step 1**: Import translation hook
 
-1. **Import the hook:**
-   ```tsx
-   import { useTranslations } from 'next-intl';
-   ```
+```tsx
+import { useTranslations } from 'next-intl';
+```
 
-2. **Get translations:**
-   ```tsx
-   const t = useTranslations('ComponentName');
-   const c = useTranslations('common');
-   ```
+**Step 2**: Get translations
 
-3. **Replace hardcoded strings:**
-   ```tsx
-   // Before
-   <Button>Save Changes</Button>
+```tsx
+// Component-specific translations
+const t = useTranslations('UserEditGeneral');
 
-   // After
-   <Button>{c('save')}</Button>
-   ```
+// Common/shared translations
+const c = useTranslations('common');
+```
 
-4. **Update translation files:**
-   ```json
-   {
-     "ComponentName": {
-       "title": "Component Title"
-     },
-     "common": {
-       "save": "Save"
-     }
-   }
-   ```
+**Step 3**: Replace hardcoded strings
 
-5. **Test all languages:**
-   - Switch language in settings
-   - Verify translations appear correctly
+```tsx
+// Labels
+<Label>{t('labels.email')}</Label>
 
-### For Backend Developers
+// Buttons (use common)
+<Button>{c('save')}</Button>
+<Button>{c('cancel')}</Button>
 
-**Adding translations to API endpoints:**
+// Messages
+{error && <p>{t('errors.emailInvalid')}</p>}
 
-1. **Add translator dependency:**
-   ```python
-   from src.i18n.translator import get_translator, Translator
+// Plurals
+{t('messages.studentsEnrolled', { count: 5 })}
+```
 
-   @router.post("/endpoint")
-   async def endpoint(t: Translator = Depends(get_translator)):
-   ```
+**Step 4**: Update translation files
 
-2. **Wrap user-facing strings:**
-   ```python
-   return {"message": t.t("Operation successful")}
-   ```
+Add keys to `apps/web/messages/[locale].json`:
 
-3. **Extract strings:**
-   ```bash
-   pybabel extract -F babel.cfg -o messages.pot .
-   ```
+```json
+{
+  "UserEditGeneral": {
+    "title": "Account Settings",
+    "labels": {
+      "email": "Email",
+      "username": "Username"
+    },
+    "errors": {
+      "emailInvalid": "Invalid email address"
+    }
+  }
+}
+```
 
-4. **Update translations:**
-   ```bash
-   pybabel update -i messages.pot -d locales
-   ```
+**Step 5**: Translate to all languages
 
-5. **Compile:**
-   ```bash
-   pybabel compile -d locales
-   ```
+Copy keys to fr.json, es.json, de.json, bg.json and translate
 
-## 📊 Progress Tracking
+**Step 6**: Test
 
-### Frontend Components
+- Switch language in settings
+- Verify all text translates
+- Check pluralization works
+- Ensure no console warnings
 
-**Critical Path (Must Do First):**
-- [ ] Authentication pages (login, signup, forgot password)
-- [ ] Navigation (header, sidebar, mobile menu)
-- [ ] Dashboard home page
-- [ ] User settings (all tabs)
-- [ ] Course listing page
+## 📁 Translation File Organization
 
-**User-Facing (High Priority):**
-- [ ] Course detail page
-- [ ] Course player/activity viewer
-- [ ] Assignment submission
-- [ ] Certificate pages
-- [ ] Profile pages
+```
+apps/web/messages/
+├── en.json  # English (source of truth)
+├── fr.json  # French
+├── es.json  # Spanish
+├── de.json  # German
+└── bg.json  # Bulgarian
+```
 
-**Admin/Creator Tools (Medium Priority):**
-- [ ] Course editor
-- [ ] Chapter editor
-- [ ] Activity editor
-- [ ] Organization settings
-- [ ] User management
+### File Structure
 
-**System/Admin (Lower Priority):**
-- [ ] Admin dashboard
-- [ ] Payments/billing
-- [ ] Advanced settings
-- [ ] Error pages
-- [ ] Developer tools
+```json
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit"
+  },
+  "navigation": {
+    "home": "Home",
+    "courses": "Courses",
+    "dashboard": "Dashboard"
+  },
+  "ComponentName": {
+    "title": "...",
+    "subtitle": "...",
+    "labels": { ... },
+    "buttons": { ... },
+    "messages": { ... },
+    "errors": { ... }
+  }
+}
+```
 
-### Backend Endpoints
+## 📝 Translation Checklist
 
-**User-Facing APIs:**
-- [ ] Auth endpoints
-- [ ] Course endpoints
-- [ ] Assignment endpoints
-- [ ] Profile endpoints
-- [ ] Enrollment endpoints
+For each component you translate:
 
-**Content Management:**
-- [ ] Course creation/update
-- [ ] Chapter management
-- [ ] Activity management
-- [ ] Media upload responses
+- [ ] Import `useTranslations` hook
+- [ ] Create component namespace in translation files
+- [ ] Replace all hardcoded strings with translation keys
+- [ ] Use `common` namespace for reusable strings
+- [ ] Add translations for all 5 languages
+- [ ] Test language switching
+- [ ] Check for missing translation warnings in console
+- [ ] Mark component as ✅ translated
 
-**System:**
-- [ ] Error messages
-- [ ] Validation messages
-- [ ] Email content
-- [ ] Notifications
+## 🎨 Best Practices
 
-## 🧪 Testing Strategy
+### ✅ DO
+
+- Use descriptive, readable keys: `emailLabel`, `saveButton`, `welcomeMessage`
+- Group related translations: `labels.email`, `errors.emailInvalid`
+- Reuse common translations: `common.save`, `common.cancel`
+- Keep translations in sync across languages
+- Use variables for dynamic content: `Welcome, {name}!`
+
+### ❌ DON'T
+
+- Use generic keys: `label1`, `text2`, `btn`
+- Hardcode strings: `<Button>Save</Button>`
+- Duplicate translations across namespaces
+- Concatenate translated strings
+- Skip languages (must translate all 5)
+
+## 🗄️ User-Generated Content
+
+### Problem
+
+Course titles, descriptions, chapter names are in the database - single language only.
+
+### Solution Options
+
+**Option A: JSON Column** (Recommended)
+
+```typescript
+interface Course {
+  id: string;
+  title: string;  // English (default)
+  translations?: {
+    fr?: { title: string; description: string; };
+    es?: { title: string; description: string; };
+    de?: { title: string; description: string; };
+    bg?: { title: string; description: string; };
+  };
+}
+```
+
+**Option B: Separate Table**
+
+```typescript
+interface CourseTranslation {
+  id: string;
+  course_id: string;
+  locale: string;
+  title: string;
+  description: string;
+}
+```
+
+**Recommendation**: Option A (simpler, fewer joins)
+
+### Implementation Later
+
+This requires:
+- Database schema changes
+- API updates
+- Translation UI for course creators
+- Not critical for Phase 1-3
+
+## 🧪 Testing
+
+### Manual Testing
+
+For each translated page:
+
+1. Switch to French → verify translations
+2. Switch to Spanish → verify translations
+3. Switch to German → verify translations
+4. Switch to Bulgarian → verify translations
+5. Check pluralization (0, 1, many items)
+6. Verify variables interpolate correctly
+7. Test language persistence after reload
+8. Check console for missing translation warnings
 
 ### Automated Testing
 
-**Frontend:**
 ```tsx
-// Test component in all languages
+import { NextIntlProvider } from 'next-intl';
+import messages from '@/messages/en.json';
+
 describe('UserSettings', () => {
-  ['en', 'fr', 'es'].forEach(locale => {
-    it(`renders correctly in ${locale}`, () => {
-      const { getByText } = render(
-        <NextIntlProvider locale={locale} messages={messages[locale]}>
-          <UserSettings />
-        </NextIntlProvider>
-      );
-      // Assertions...
-    });
+  it('renders in French', () => {
+    const frMessages = require('@/messages/fr.json');
+
+    render(
+      <NextIntlProvider locale="fr" messages={frMessages}>
+        <UserSettings />
+      </NextIntlProvider>
+    );
+
+    expect(screen.getByText('Paramètres')).toBeInTheDocument();
   });
 });
 ```
 
-**Backend:**
-```python
-def test_endpoint_with_locale():
-    headers = {"Accept-Language": "fr"}
-    response = client.post("/api/v1/courses", headers=headers)
-    assert response.json()["message"] == "Cours créé avec succès"
-```
+## 📊 Progress Tracking
 
-### Manual Testing Checklist
+### By Priority
 
-For each translated page/feature:
-- [ ] Switch to French - verify all text translated
-- [ ] Switch to Spanish - verify all text translated
-- [ ] Check pluralization (0, 1, many items)
-- [ ] Verify variables are correctly interpolated
-- [ ] Test RTL layout (if supported)
-- [ ] Verify language persistence after reload
-- [ ] Check console for missing translation warnings
+**Phase 1 - Critical (Must Do):**
+- [ ] Authentication pages
+- [ ] Navigation/menus
+- [ ] Dashboard home
+- [ ] User settings
+- [ ] Course listings
 
-## 🔧 Tools & Scripts
+**Phase 2 - User-Facing:**
+- [ ] Course player
+- [ ] Assignments
+- [ ] Certificates
+- [ ] Profiles
+- [ ] Notifications
 
-### Translation Coverage Script
+**Phase 3 - Creator Tools:**
+- [ ] Course editor
+- [ ] Chapter/activity editor
+- [ ] Org settings
+- [ ] Analytics
+- [ ] User management
 
-**File**: `scripts/check-translation-coverage.js`
+**Phase 4 - System:**
+- [ ] Error pages
+- [ ] Admin tools
+- [ ] Advanced settings
 
-```javascript
-// Find hardcoded English strings in components
-const fs = require('fs');
-const path = require('path');
+### Coverage Metrics
 
-function findHardcodedStrings(dir) {
-  // Regex to find potential hardcoded strings
-  const stringRegex = /['"]([A-Z][a-z\s]{3,})['"]/g;
+Target: **100% of user-facing components**
 
-  // Scan files for strings not using t() or c()
-  // Report files needing translation
-}
+- Current: ~1% (LanguageSelector only)
+- Phase 1 Goal: 20%
+- Phase 2 Goal: 60%
+- Phase 3 Goal: 90%
+- Phase 4 Goal: 100%
 
-findHardcodedStrings('apps/web/components');
-```
+## 🚀 Rollout Strategy
 
-### Auto-generate Translation Keys
-
-**File**: `scripts/generate-translation-keys.js`
-
-```javascript
-// Extract strings and suggest translation keys
-// Update translation files with missing keys
-```
-
-### Translation Status Dashboard
-
-Create a simple HTML page showing:
-- % of components translated
-- Missing translations per language
-- Recently added strings needing translation
-
-## 🚀 Deployment Strategy
-
-### Progressive Rollout
-
-**Phase 1: Beta Testing**
-- Enable for internal users only
+### Stage 1: Internal Testing
+- Enable for team members
 - Collect feedback
 - Fix issues
+- Refine translations
 
-**Phase 2: Opt-in**
-- Language selector visible to all
-- Default to English
-- Let users opt-in
+### Stage 2: Beta
+- Enable for early adopters
+- Monitor for missing translations
+- Get native speaker feedback
+- Iterate
 
-**Phase 3: Full Release**
+### Stage 3: General Availability
 - Auto-detect browser language
-- Set as default for new users
 - Announce feature
+- Full rollout
 
-### Feature Flags
+## 🔧 Tools
 
-```typescript
-// Control rollout via config
-const I18N_CONFIG = {
-  enabled: true,
-  availableLanguages: ['en', 'fr', 'es'],
-  autoDetect: true,  // Auto-detect browser language
-  fallback: 'en'
-};
+### Find Hardcoded Strings
+
+```bash
+# Grep for potential hardcoded strings in components
+grep -r ">[A-Z][a-z]\+<" apps/web/components
 ```
 
-## 📚 Resources & References
+### Check Translation Coverage
 
-### Documentation
-- [next-intl docs](https://next-intl-docs.vercel.app/)
-- [Babel (Python) docs](http://babel.pocoo.org/)
-- [Translation best practices](./translations.md)
+```typescript
+// Script to check which components are translated
+// List files with useTranslations vs total files
+```
 
-### Translation Files
-- `apps/web/messages/*.json` - Frontend translations
-- `apps/api/locales/*/LC_MESSAGES/*.po` - Backend translations
+### Validate Translation Files
 
-### Key Components
-- `LanguageSelector.tsx` - Language switcher UI
-- `apps/web/i18n/` - i18n configuration
-- `apps/api/src/i18n/` - Backend i18n utilities
+```bash
+# Check all translation files have same keys
+node scripts/validate-translations.js
+```
 
-## 🎯 Success Metrics
+## 📚 Documentation
 
-**Coverage:**
-- [ ] 100% of user-facing components translated
-- [ ] 100% of API responses translated
-- [ ] All email templates translated
+- **Translation Best Practices**: `/context/translations.md`
+- **Complete i18n Plan**: This file
+- **next-intl docs**: https://next-intl-docs.vercel.app
 
-**Quality:**
-- [ ] Professional translations reviewed by native speakers
-- [ ] No hardcoded strings in critical paths
-- [ ] Consistent terminology across languages
+## 🎯 Success Criteria
 
-**Performance:**
-- [ ] No performance degradation from i18n
-- [ ] Translation files lazy-loaded
-- [ ] Translations cached appropriately
+- ✅ All user-facing text translated to 5 languages
+- ✅ No hardcoded strings in critical paths
+- ✅ Language selection persists across sessions
+- ✅ Instant language switching
+- ✅ Native speaker approval of translations
+- ✅ No console warnings for missing translations
+- ✅ Consistent terminology across app
 
-**User Experience:**
-- [ ] Language persists across sessions
-- [ ] Language switch is instant (no reload where possible)
-- [ ] Fallback to English graceful
+## 💡 Quick Reference
 
-## 💡 Best Practices Summary
+```tsx
+// Import
+import { useTranslations } from 'next-intl';
 
-### Frontend
-1. ✅ Use `useTranslations('namespace')` in components
-2. ✅ Group common strings in `common` namespace
-3. ✅ Use descriptive, readable translation keys
-4. ✅ Always provide fallback to English
-5. ✅ Test in all supported languages
+// Use
+const t = useTranslations('ComponentName');
+const c = useTranslations('common');
 
-### Backend
-1. ✅ Use Accept-Language header for locale detection
-2. ✅ Translate all user-facing strings
-3. ✅ Extract and compile translations regularly
-4. ✅ Cache translations in production
-5. ✅ Log missing translations for monitoring
+// Basic
+{t('title')}
+{c('save')}
 
-### Content
-1. ✅ Store translations in database for user-generated content
-2. ✅ Provide easy UI for content creators to add translations
-3. ✅ Always have English as fallback
-4. ✅ Show which languages are complete/incomplete
-5. ✅ Allow partial translations (fallback to default)
+// With variables
+{t('welcome', { name: user.name })}
 
-## 🤝 Getting Help
+// Pluralization
+{t('studentsCount', { count: n })}
 
-**Questions?**
-- Check `/context/translations.md` for implementation guide
-- Review existing translated components for examples
-- Ask in development chat
-
-**Found an issue?**
-- Report missing translations
-- Suggest better translations
-- Report bugs in language switching
+// Rich text
+{t.rich('terms', {
+  link: (chunks) => <Link>{chunks}</Link>
+})}
+```
 
 ---
 
+**Status**: Phase 1 in progress
 **Last Updated**: 2025-01-29
-**Status**: Planning Phase
 **Next Review**: After Phase 1 completion

@@ -9,6 +9,7 @@ import { Info, Lock, LucideIcon, User } from 'lucide-react'
 import BreadCrumbs from '@components/Dashboard/Misc/BreadCrumbs'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
 import UserProfile from '@components/Dashboard/Pages/UserAccount/UserProfile/UserProfile';
+import { useTranslations } from 'next-intl'
 
 interface User {
   username: string;
@@ -32,26 +33,30 @@ type NavigationItem = {
   component: React.ComponentType
 }
 
-const navigationItems: NavigationItem[] = [
-  {
-    id: 'general',
-    label: 'General',
-    icon: Info,
-    component: UserEditGeneral
-  },
-  {
-    id: 'profile',
-    label: 'Profile',
-    icon: User,
-    component: UserProfile
-  },
-  {
-    id: 'security',
-    label: 'Password',
-    icon: Lock,
-    component: UserEditPassword
-  },
-]
+const useNavigationItems = () => {
+  const t = useTranslations('settings')
+
+  return [
+    {
+      id: 'general',
+      label: t('general'),
+      icon: Info,
+      component: UserEditGeneral
+    },
+    {
+      id: 'profile',
+      label: t('profile'),
+      icon: User,
+      component: UserProfile
+    },
+    {
+      id: 'security',
+      label: t('password'),
+      icon: Lock,
+      component: UserEditPassword
+    },
+  ]
+}
 
 const SettingsNavigation = ({ 
   items, 
@@ -84,8 +89,10 @@ const SettingsNavigation = ({
 )
 
 function SettingsPage({ params }: { params: Promise<SettingsParams> }) {
+  const t = useTranslations('settings')
   const { subpage, orgslug } = use(params);
   const session = useLHSession() as Session;
+  const navigationItems = useNavigationItems()
 
   useEffect(() => {}, [session])
 
@@ -100,7 +107,7 @@ function SettingsPage({ params }: { params: Promise<SettingsParams> }) {
         />
         <div className="my-2 tracking-tighter">
           <div className="w-100 flex justify-between">
-            <div className="pt-3 flex font-bold text-4xl">Account Settings</div>
+            <div className="pt-3 flex font-bold text-4xl">{t('accountSettings')}</div>
           </div>
         </div>
         <SettingsNavigation 

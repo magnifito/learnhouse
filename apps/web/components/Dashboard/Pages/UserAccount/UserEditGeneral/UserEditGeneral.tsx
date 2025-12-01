@@ -4,6 +4,7 @@ import { getUser } from '@services/users/users'
 import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import { Formik, Form } from 'formik'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
+import { useTranslations } from 'next-intl'
 import {
   ArrowBigUpDash,
   Check,
@@ -109,28 +110,30 @@ const DETAIL_TEMPLATES = {
   ]
 } as const;
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Email is required'),
-  username: Yup.string().required('Username is required'),
-  first_name: Yup.string().required('First name is required'),
-  last_name: Yup.string().required('Last name is required'),
-  bio: Yup.string().max(400, 'Bio must be 400 characters or less'),
+const createValidationSchema = (t: any) => Yup.object().shape({
+  email: Yup.string().email(t('emailInvalid')).required(t('emailRequired')),
+  username: Yup.string().required(t('usernameRequired')),
+  first_name: Yup.string().required(t('firstNameRequired')),
+  last_name: Yup.string().required(t('lastNameRequired')),
+  bio: Yup.string().max(400, t('bioMaxLength')),
   details: Yup.object().shape({})
 });
 
 // Memoized detail card component for better performance
-const DetailCard = React.memo(({ 
+const DetailCard = React.memo(({
   id,
-  detail, 
-  onUpdate, 
+  detail,
+  onUpdate,
   onRemove,
-  onLabelChange 
-}: { 
+  onLabelChange,
+  t
+}: {
   id: string;
   detail: DetailItem;
   onUpdate: (id: string, field: keyof DetailItem, value: string) => void;
   onRemove: (id: string) => void;
   onLabelChange: (id: string, newLabel: string) => void;
+  t: any;
 }) => {
   // Add local state for label input
   const [localLabel, setLocalLabel] = useState(detail.label);
@@ -172,7 +175,7 @@ const DetailCard = React.memo(({
         <Input
           value={localLabel}
           onChange={handleLabelChange}
-          placeholder="Enter label (e.g., Title, Location)"
+          placeholder={t('enterLabel')}
           className="max-w-[200px]"
         />
         <Button
@@ -182,19 +185,19 @@ const DetailCard = React.memo(({
           className="text-red-500 hover:text-red-700"
           onClick={handleRemove}
         >
-          Remove
+          {t('remove')}
         </Button>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <Label>Icon</Label>
+          <Label>{t('icon')}</Label>
           <Select
             value={detail.icon}
             onValueChange={handleIconChange}
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select icon">
+              <SelectValue placeholder={t('selectIcon')}>
                 {detail.icon && (
                   <div className="flex items-center gap-2">
                     <IconComponent iconName={detail.icon} />
@@ -218,11 +221,11 @@ const DetailCard = React.memo(({
           </Select>
         </div>
         <div>
-          <Label>Text</Label>
+          <Label>{t('text')}</Label>
           <Input
             value={detail.text}
             onChange={handleTextChange}
-            placeholder="Enter detail text"
+            placeholder={t('enterDetailText')}
           />
         </div>
       </div>
@@ -240,7 +243,8 @@ const UserEditForm = ({
   errors,
   touched,
   isSubmitting,
-  profilePicture
+  profilePicture,
+  t
 }: {
   values: FormValues;
   setFieldValue: (field: string, value: any) => void;
@@ -255,6 +259,7 @@ const UserEditForm = ({
     localAvatar: File | null;
     handleFileChange: (event: any) => Promise<void>;
   };
+  t: any;
 }) => {
   // Memoize template handlers
   const templateHandlers = useMemo(() => 
@@ -294,10 +299,10 @@ const UserEditForm = ({
       <div className="flex flex-col gap-0">
         <div className="flex flex-col bg-gray-50 -space-y-1 px-5 py-3 mx-3 my-3 rounded-md">
           <h1 className="font-bold text-xl text-gray-800">
-            Account Settings
+            {t('accountSettings')}
           </h1>
           <h2 className="text-gray-500 text-md">
-            Manage your personal information and preferences
+            {t('managePersonalInfo')}
           </h2>
         </div>
 
@@ -305,14 +310,14 @@ const UserEditForm = ({
           {/* Profile Information Section */}
           <div className="flex-1 min-w-0 space-y-4">
             <div>
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('email')}</Label>
               <Input
                 id="email"
                 name="email"
                 type="email"
                 value={values.email}
                 onChange={handleChange}
-                placeholder="Your email address"
+                placeholder={t('emailPlaceholder')}
               />
               {touched.email && errors.email && (
                 <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -320,19 +325,19 @@ const UserEditForm = ({
               {values.email !== values.email && (
                 <div className="flex items-center space-x-2 mt-2 text-amber-600 bg-amber-50 p-2 rounded-md">
                   <AlertTriangle size={16} />
-                  <span className="text-sm">You will be logged out after changing your email</span>
+                  <span className="text-sm">{t('loggedOutAfterEmailChange')}</span>
                 </div>
               )}
             </div>
 
             <div>
-              <Label htmlFor="username">Username</Label>
+              <Label htmlFor="username">{t('username')}</Label>
               <Input
                 id="username"
                 name="username"
                 value={values.username}
                 onChange={handleChange}
-                placeholder="Your username"
+                placeholder={t('usernamePlaceholder')}
               />
               {touched.username && errors.username && (
                 <p className="text-red-500 text-sm mt-1">{errors.username}</p>
@@ -340,13 +345,13 @@ const UserEditForm = ({
             </div>
 
             <div>
-              <Label htmlFor="first_name">First Name</Label>
+              <Label htmlFor="first_name">{t('firstName')}</Label>
               <Input
                 id="first_name"
                 name="first_name"
                 value={values.first_name}
                 onChange={handleChange}
-                placeholder="Your first name"
+                placeholder={t('firstNamePlaceholder')}
               />
               {touched.first_name && errors.first_name && (
                 <p className="text-red-500 text-sm mt-1">{errors.first_name}</p>
@@ -354,13 +359,13 @@ const UserEditForm = ({
             </div>
 
             <div>
-              <Label htmlFor="last_name">Last Name</Label>
+              <Label htmlFor="last_name">{t('lastName')}</Label>
               <Input
                 id="last_name"
                 name="last_name"
                 value={values.last_name}
                 onChange={handleChange}
-                placeholder="Your last name"
+                placeholder={t('lastNamePlaceholder')}
               />
               {touched.last_name && errors.last_name && (
                 <p className="text-red-500 text-sm mt-1">{errors.last_name}</p>
@@ -369,9 +374,9 @@ const UserEditForm = ({
 
             <div>
               <Label htmlFor="bio">
-                Bio
+                {t('bio')}
                 <span className="text-gray-500 text-sm ml-2">
-                  ({400 - (values.bio?.length || 0)} characters left)
+                  ({t('charactersLeft', { count: 400 - (values.bio?.length || 0) })})
                 </span>
               </Label>
               <Textarea
@@ -379,7 +384,7 @@ const UserEditForm = ({
                 name="bio"
                 value={values.bio}
                 onChange={handleChange}
-                placeholder="Tell us about yourself"
+                placeholder={t('bioPlaceholder')}
                 className="min-h-[150px]"
                 maxLength={400}
               />
@@ -396,7 +401,7 @@ const UserEditForm = ({
             <div className="space-y-4">
               <div className="flex flex-col gap-3">
                 <div className="flex justify-between items-center">
-                  <Label>Additional Details</Label>
+                  <Label>{t('additionalDetails')}</Label>
                   <div className="flex gap-2">
                     <Button
                       type="button"
@@ -407,7 +412,7 @@ const UserEditForm = ({
                         setFieldValue('details', {});
                       }}
                     >
-                      Clear All
+                      {t('clearAll')}
                     </Button>
                     <Button
                       type="button"
@@ -416,16 +421,16 @@ const UserEditForm = ({
                       onClick={() => {
                         const newDetails = { ...values.details };
                         const id = `detail-${Date.now()}`;
-                        newDetails[id] = { 
+                        newDetails[id] = {
                           id,
-                          label: 'New Detail',
+                          label: t('newDetail'),
                           icon: '',
-                          text: '' 
+                          text: ''
                         };
                         setFieldValue('details', newDetails);
                       }}
                     >
-                      Add Detail
+                      {t('addDetail')}
                     </Button>
                   </div>
                 </div>
@@ -454,7 +459,9 @@ const UserEditForm = ({
                       {key === 'general' && <Briefcase className="w-4 h-4" />}
                       {key === 'academic' && <GraduationCap className="w-4 h-4" />}
                       {key === 'professional' && <Building2 className="w-4 h-4" />}
-                      Add {key.charAt(0).toUpperCase() + key.slice(1)}
+                      {key === 'general' && t('addGeneral')}
+                      {key === 'academic' && t('addAcademic')}
+                      {key === 'professional' && t('addProfessional')}
                     </Button>
                   ))}
                 </div>
@@ -466,6 +473,7 @@ const UserEditForm = ({
                     key={id}
                     id={id}
                     detail={detail}
+                    t={t}
                     onUpdate={(id, field, value) => {
                       const newDetails = { ...values.details };
                       newDetails[id] = { ...newDetails[id], [field]: value };
@@ -491,7 +499,7 @@ const UserEditForm = ({
           <div className="lg:w-80 w-full">
             <div className="bg-gray-50/50 p-6 rounded-lg nice-shadow h-full">
               <div className="flex flex-col items-center space-y-6">
-                <Label className="font-bold">Profile Picture</Label>
+                <Label className="font-bold">{t('profilePicture')}</Label>
                 {profilePicture.error && (
                   <div className="flex items-center bg-red-200 rounded-md text-red-950 px-4 py-2 text-sm">
                     <FileWarning size={16} className="mr-2" />
@@ -516,7 +524,7 @@ const UserEditForm = ({
                 {profilePicture.isLoading ? (
                   <div className="font-bold animate-pulse antialiased bg-green-200 text-gray text-sm rounded-md px-4 py-2 flex items-center">
                     <ArrowBigUpDash size={16} className="mr-2" />
-                    <span>Uploading</span>
+                    <span>{t('uploading')}</span>
                   </div>
                 ) : (
                   <>
@@ -534,13 +542,13 @@ const UserEditForm = ({
                       className="w-full"
                     >
                       <UploadCloud size={16} className="mr-2" />
-                      Change Avatar
+                      {t('changeAvatar')}
                     </Button>
                   </>
                 )}
                 <div className="flex items-center text-xs text-gray-500">
                   <Info size={13} className="mr-2" />
-                  <p>Recommended size 100x100</p>
+                  <p>{t('recommendedSize')}</p>
                 </div>
               </div>
             </div>
@@ -548,12 +556,12 @@ const UserEditForm = ({
         </div>
 
         <div className="flex flex-row-reverse mt-0 mx-5 mb-5">
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             disabled={isSubmitting}
             className="bg-black text-white hover:bg-black/90"
           >
-            {isSubmitting ? 'Saving...' : 'Save Changes'}
+            {isSubmitting ? t('saving') : t('saveChanges')}
           </Button>
         </div>
       </div>
@@ -562,8 +570,10 @@ const UserEditForm = ({
 };
 
 function UserEditGeneral() {
+  const t = useTranslations('settings')
   const session = useLHSession() as any;
   const access_token = session?.data?.tokens?.access_token;
+  const validationSchema = createValidationSchema(t)
   const [localAvatar, setLocalAvatar] = React.useState(null) as any
   const [isLoading, setIsLoading] = React.useState(false) as any
   const [error, setError] = React.useState() as any
@@ -603,14 +613,14 @@ function UserEditGeneral() {
   }
 
   const handleEmailChange = async (newEmail: string) => {
-    toast.success('Profile Updated Successfully', { duration: 4000 })
-    
+    toast.success(t('profileUpdatedSuccess'), { duration: 4000 })
+
     // Show message about logging in with new email
-    toast((t: any) => (
+    toast((toastInstance: any) => (
       <div className="flex items-center gap-2">
-        <span>Please login again with your new email: {newEmail}</span>
+        <span>{t('pleaseLoginWithNewEmail', { email: newEmail })}</span>
       </div>
-    ), { 
+    ), {
       duration: 4000,
       icon: '📧'
     })
@@ -645,8 +655,8 @@ function UserEditGeneral() {
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
           const isEmailChanged = values.email !== userData.email
-          const loadingToast = toast.loading('Updating profile...')
-          
+          const loadingToast = toast.loading(t('updatingProfile'))
+
           setTimeout(() => {
             setSubmitting(false)
             updateProfile(values, userData.id, access_token)
@@ -655,13 +665,13 @@ function UserEditGeneral() {
                 if (isEmailChanged) {
                   handleEmailChange(values.email)
                 } else {
-                  toast.success('Profile Updated Successfully')
+                  toast.success(t('profileUpdatedSuccess'))
                 }
                 // Refresh user data after successful update
                 getUser(userData.id, access_token).then(setUserData);
               })
               .catch(() => {
-                toast.error('Failed to update profile', { id: loadingToast })
+                toast.error(t('failedToUpdateProfile'), { id: loadingToast })
               })
           }, 400)
         }}
@@ -669,6 +679,7 @@ function UserEditGeneral() {
         {(formikProps) => (
           <UserEditForm
             {...formikProps}
+            t={t}
             profilePicture={{
               error,
               success,

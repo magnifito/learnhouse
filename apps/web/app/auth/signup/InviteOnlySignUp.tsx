@@ -14,32 +14,33 @@ import Link from 'next/link'
 import { signUpWithInviteCode } from '@services/auth/auth'
 import { useOrg } from '@components/Contexts/OrgContext'
 import { signIn } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 
-const validate = (values: any) => {
+const validate = (values: any, tv: any) => {
   const errors: any = {}
 
   if (!values.email) {
-    errors.email = 'Required'
+    errors.email = tv('emailRequired')
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
+    errors.email = tv('emailInvalid')
   }
 
   if (!values.password) {
-    errors.password = 'Required'
+    errors.password = tv('passwordRequired')
   } else if (values.password.length < 8) {
-    errors.password = 'Password must be at least 8 characters'
+    errors.password = tv('passwordTooShort')
   }
 
   if (!values.username) {
-    errors.username = 'Required'
+    errors.username = tv('usernameRequired')
   }
 
   if (!values.username || values.username.length < 4) {
-    errors.username = 'Username must be at least 4 characters'
+    errors.username = tv('usernameTooShort')
   }
 
   if (!values.bio) {
-    errors.bio = 'Required'
+    errors.bio = tv('bioRequired')
   }
 
   return errors
@@ -50,6 +51,10 @@ interface InviteOnlySignUpProps {
 }
 
 function InviteOnlySignUpComponent(props: InviteOnlySignUpProps) {
+  const t = useTranslations('auth')
+  const tv = useTranslations('authValidation')
+  const c = useTranslations('common')
+
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const org = useOrg() as any
   const router = useRouter()
@@ -66,7 +71,7 @@ function InviteOnlySignUpComponent(props: InviteOnlySignUpProps) {
       first_name: '',
       last_name: '',
     },
-    validate,
+    validate: (values) => validate(values, tv),
     enableReinitialize: true,
     onSubmit: async (values) => {
       setError('')
@@ -76,7 +81,7 @@ function InviteOnlySignUpComponent(props: InviteOnlySignUpProps) {
       let message = await res.json()
       if (res.status == 200) {
         //router.push(`/login`);
-        setMessage('Your account was successfully created')
+        setMessage(t('accountCreatedSuccessfully'))
         setIsSubmitting(false)
       } else if (
         res.status == 401 ||
@@ -87,7 +92,7 @@ function InviteOnlySignUpComponent(props: InviteOnlySignUpProps) {
         setError(message.detail)
         setIsSubmitting(false)
       } else {
-        setError('Something went wrong')
+        setError(tv('somethingWentWrong'))
         setIsSubmitting(false)
       }
     },
@@ -113,13 +118,13 @@ function InviteOnlySignUpComponent(props: InviteOnlySignUpProps) {
           <Link className="flex space-x-2 items-center" href={
             `/login?orgslug=${org?.slug}`
           } >
-            <User size={14} /> <div>Login to your account</div>
+            <User size={14} /> <div>{t('loginToYourAccount')}</div>
           </Link>
         </div>
       )}
       <FormLayout onSubmit={formik.handleSubmit}>
         <FormField name="email">
-          <FormLabelAndMessage label="Email" message={formik.errors.email} />
+          <FormLabelAndMessage label={t('email')} message={formik.errors.email} />
           <Form.Control asChild>
             <Input
               onChange={formik.handleChange}
@@ -132,7 +137,7 @@ function InviteOnlySignUpComponent(props: InviteOnlySignUpProps) {
         {/* for password  */}
         <FormField name="password">
           <FormLabelAndMessage
-            label="Password"
+            label={t('password')}
             message={formik.errors.password}
           />
 
@@ -148,7 +153,7 @@ function InviteOnlySignUpComponent(props: InviteOnlySignUpProps) {
         {/* for username  */}
         <FormField name="username">
           <FormLabelAndMessage
-            label="Username"
+            label={t('username')}
             message={formik.errors.username}
           />
 
@@ -164,7 +169,7 @@ function InviteOnlySignUpComponent(props: InviteOnlySignUpProps) {
 
         {/* for bio  */}
         <FormField name="bio">
-          <FormLabelAndMessage label="Bio" message={formik.errors.bio} />
+          <FormLabelAndMessage label={t('bio')} message={formik.errors.bio} />
 
           <Form.Control asChild>
             <Textarea
@@ -178,7 +183,7 @@ function InviteOnlySignUpComponent(props: InviteOnlySignUpProps) {
         <div className="flex  py-4">
           <Form.Submit asChild>
             <button className="w-full bg-black text-white font-bold text-center p-2 rounded-md shadow-md hover:cursor-pointer">
-              {isSubmitting ? 'Loading...' : 'Create an account & Join'}
+              {isSubmitting ? c('loading') : t('createAccountAndJoin')}
             </button>
           </Form.Submit>
         </div>
@@ -187,7 +192,7 @@ function InviteOnlySignUpComponent(props: InviteOnlySignUpProps) {
         <div className='flex h-0.5 rounded-2xl bg-slate-100 mt-5 mb-5 mx-10'></div>
         <button onClick={() => signIn('google')} className="flex justify-center py-3 text-md w-full bg-white text-slate-600 space-x-3 font-semibold text-center p-2 rounded-md shadow-sm hover:cursor-pointer">
           <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="" />
-          <span>Sign in with Google</span>
+          <span>{t('signInWithGoogle')}</span>
         </button>
       </div>
     </div>

@@ -10,6 +10,7 @@ import OrgEditImages from '@components/Dashboard/Pages/Org/OrgEditImages/OrgEdit
 import OrgEditSocials from '@components/Dashboard/Pages/Org/OrgEditSocials/OrgEditSocials'
 import OrgEditLanding from '@components/Dashboard/Pages/Org/OrgEditLanding/OrgEditLanding'
 import OrgEditOther from '@components/Dashboard/Pages/Org/OrgEditOther/OrgEditOther'
+import { useTranslations } from 'next-intl'
 
 export type OrgParams = {
   subpage: string
@@ -18,22 +19,23 @@ export type OrgParams = {
 
 interface TabItem {
   id: string
-  label: string
+  labelKey: string
   icon: LucideIcon
 }
 
 const SETTING_TABS: TabItem[] = [
-  { id: 'general', label: 'General', icon: TextIcon },
-  { id: 'landing', label: 'Landing Page', icon: LayoutDashboardIcon },
-  { id: 'previews', label: 'Images & Previews', icon: ImageIcon },
-  { id: 'socials', label: 'Socials', icon: Share2Icon },
-  { id: 'other', label: 'Other', icon: CodeIcon },
+  { id: 'general', labelKey: 'generalTitle', icon: TextIcon },
+  { id: 'landing', labelKey: 'landingPageTitle', icon: LayoutDashboardIcon },
+  { id: 'previews', labelKey: 'imagesAndPreviews', icon: ImageIcon },
+  { id: 'socials', labelKey: 'socialsTitle', icon: Share2Icon },
+  { id: 'other', labelKey: 'otherTitle', icon: CodeIcon },
 ]
 
-function TabLink({ tab, isActive, orgslug }: { 
-  tab: TabItem, 
-  isActive: boolean, 
-  orgslug: string 
+function TabLink({ tab, isActive, orgslug, t }: {
+  tab: TabItem,
+  isActive: boolean,
+  orgslug: string,
+  t: any
 }) {
   return (
     <Link href={getUriWithOrg(orgslug, '') + `/dash/org/settings/${tab.id}`}>
@@ -44,7 +46,7 @@ function TabLink({ tab, isActive, orgslug }: {
       >
         <div className="flex items-center space-x-2.5 mx-2.5">
           <tab.icon size={16} />
-          <div>{tab.label}</div>
+          <div>{t(tab.labelKey)}</div>
         </div>
       </div>
     </Link>
@@ -53,31 +55,32 @@ function TabLink({ tab, isActive, orgslug }: {
 
 function OrgPage(props: { params: Promise<OrgParams> }) {
   const params = use(props.params);
+  const t = useTranslations('organization')
   const [H1Label, setH1Label] = React.useState('')
   const [H2Label, setH2Label] = React.useState('')
 
   function handleLabels() {
     if (params.subpage == 'general') {
-      setH1Label('General')
-      setH2Label('Manage your organization settings')
+      setH1Label(t('generalTitle'))
+      setH2Label(t('generalDescription'))
     } else if (params.subpage == 'previews') {
-      setH1Label('Previews')
-      setH2Label('Manage your organization previews')
+      setH1Label(t('previewsTitle'))
+      setH2Label(t('previewsDescription'))
     } else if (params.subpage == 'socials') {
-      setH1Label('Socials')
-      setH2Label('Manage your organization social media links')
+      setH1Label(t('socialsTitle'))
+      setH2Label(t('socialsDescription'))
     } else if (params.subpage == 'landing') {
-      setH1Label('Landing Page')
-      setH2Label('Customize your organization landing page')
+      setH1Label(t('landingPageTitle'))
+      setH2Label(t('landingPageDescription'))
     } else if (params.subpage == 'other') {
-      setH1Label('Other')
-      setH2Label('Manage additional organization settings')
+      setH1Label(t('otherTitle'))
+      setH2Label(t('otherDescription'))
     }
   }
 
   useEffect(() => {
     handleLabels()
-  }, [params.subpage, params])
+  }, [params.subpage, params, t])
 
   return (
     <div className="h-full w-full bg-[#f8f8f8] flex flex-col">
@@ -100,6 +103,7 @@ function OrgPage(props: { params: Promise<OrgParams> }) {
               tab={tab}
               isActive={params.subpage === tab.id}
               orgslug={params.orgslug}
+              t={t}
             />
           ))}
         </div>

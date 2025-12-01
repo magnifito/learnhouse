@@ -13,6 +13,7 @@ import OrgAccess from '@components/Dashboard/Pages/Users/OrgAccess/OrgAccess'
 import OrgUsersAdd from '@components/Dashboard/Pages/Users/OrgUsersAdd/OrgUsersAdd'
 import OrgUserGroups from '@components/Dashboard/Pages/Users/OrgUserGroups/OrgUserGroups'
 import OrgRoles from '@components/Dashboard/Pages/Users/OrgRoles/OrgRoles'
+import { useTranslations } from 'next-intl'
 
 export type SettingsParams = {
   subpage: string
@@ -23,46 +24,47 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
   const params = use(props.params);
   const session = useLHSession() as any
   const org = useOrg() as any
+  const t = useTranslations('users')
   const [H1Label, setH1Label] = React.useState('')
   const [H2Label, setH2Label] = React.useState('')
   const isMobile = useMediaQuery('(max-width: 767px)')
 
   function handleLabels() {
     if (params.subpage == 'users') {
-      setH1Label('Users')
-      setH2Label('Manage your organization users, assign roles and permissions')
+      setH1Label(t('usersTitle'))
+      setH2Label(t('usersDescription'))
     }
     if (params.subpage == 'signups') {
-      setH1Label('Signups & Invite Codes')
-      setH2Label('Choose from where users can join your organization')
+      setH1Label(t('signupsTitle'))
+      setH2Label(t('signupsDescription'))
     }
     if (params.subpage == 'add') {
-      setH1Label('Invite Members')
-      setH2Label('Invite members to join your organization')
+      setH1Label(t('inviteMembersTitle'))
+      setH2Label(t('inviteMembersDescription'))
     }
     if (params.subpage == 'usergroups') {
-      setH1Label('UserGroups')
-      setH2Label('Create and manage user groups')
+      setH1Label(t('userGroupsTitle'))
+      setH2Label(t('userGroupsDescription'))
     }
     if (params.subpage == 'roles') {
-      setH1Label('Roles')
-      setH2Label('Create and manage roles with specific permissions')
+      setH1Label(t('rolesTitle'))
+      setH2Label(t('rolesDescription'))
     }
   }
 
   useEffect(() => {
     handleLabels()
-  }, [session, org, params.subpage, params])
+  }, [session, org, params.subpage, params, t])
 
   if (isMobile) {
     // TODO: Work on a better mobile experience
     return (
       <div className="h-screen w-full bg-[#f8f8f8] flex items-center justify-center p-4">
         <div className="bg-white p-6 rounded-lg shadow-md text-center">
-          <h2 className="text-xl font-bold mb-4">Desktop Only</h2>
+          <h2 className="text-xl font-bold mb-4">{t('desktopOnly')}</h2>
           <Monitor className='mx-auto my-5' size={60} />
-          <p>This page is only accessible from a desktop device.</p>
-          <p>Please switch to a desktop to view and manage user settings.</p>
+          <p>{t('desktopOnlyMessage')}</p>
+          <p>{t('switchToDesktop')}</p>
         </div>
       </div>
     )
@@ -96,7 +98,7 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
             >
               <div className="flex items-center space-x-2.5 mx-2">
                 <Users size={16} />
-                <div>Users</div>
+                <div>{t('usersTitle')}</div>
               </div>
             </div>
           </Link>
@@ -113,7 +115,7 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
             >
               <div className="flex items-center space-x-2.5 mx-2">
                 <SquareUserRound size={16} />
-                <div>UserGroups</div>
+                <div>{t('userGroupsTitle')}</div>
               </div>
             </div>
           </Link>
@@ -130,7 +132,7 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
             >
               <div className="flex items-center space-x-2.5 mx-2">
                 <Shield size={16} />
-                <div>Roles</div>
+                <div>{t('rolesTitle')}</div>
               </div>
             </div>
           </Link>
@@ -147,7 +149,7 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
             >
               <div className="flex items-center space-x-2.5 mx-2">
                 <ScanEye size={16} />
-                <div>Signups & Invite Codes</div>
+                <div>{t('signupsTitle')}</div>
               </div>
             </div>
           </Link>
@@ -164,7 +166,7 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
             >
               <div className="flex items-center space-x-2.5 mx-2">
                 <UserPlus size={16} />
-                <div>Invite Members</div>
+                <div>{t('inviteMembersTitle')}</div>
               </div>
             </div>
           </Link>

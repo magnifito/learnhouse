@@ -16,30 +16,35 @@ import Link from 'next/link'
 import { signIn } from "next-auth/react"
 import { getUriWithOrg, getUriWithoutOrg } from '@services/config/config'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
+import { useTranslations } from 'next-intl'
 
 interface LoginClientProps {
   org: any
 }
 
-const validate = (values: any) => {
+const validate = (values: any, t: any) => {
   const errors: any = {}
 
   if (!values.email) {
-    errors.email = 'Required'
+    errors.email = t('emailRequired')
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
+    errors.email = t('emailInvalid')
   }
 
   if (!values.password) {
-    errors.password = 'Required'
+    errors.password = t('passwordRequired')
   } else if (values.password.length < 8) {
-    errors.password = 'Password must be at least 8 characters'
+    errors.password = t('passwordTooShort')
   }
 
   return errors
 }
 
 const LoginClient = (props: LoginClientProps) => {
+  const t = useTranslations('auth')
+  const tv = useTranslations('authValidation')
+  const c = useTranslations('common')
+
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const router = useRouter();
   const session = useLHSession() as any;
@@ -50,7 +55,7 @@ const LoginClient = (props: LoginClientProps) => {
       email: '',
       password: '',
     },
-    validate,
+    validate: (values) => validate(values, tv),
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values, {validateForm, setErrors, setSubmitting}) => {
@@ -61,7 +66,7 @@ const LoginClient = (props: LoginClientProps) => {
         setSubmitting(false);
         return;
       }
-      
+
       const res = await signIn('credentials', {
         redirect: false,
         email: values.email,
@@ -69,7 +74,7 @@ const LoginClient = (props: LoginClientProps) => {
         callbackUrl: '/redirect_from_auth'
       });
       if (res && res.error) {
-        setError("Wrong Email or password");
+        setError(t('wrongEmailOrPassword'));
         setIsSubmitting(false);
       } else {
         await signIn('credentials', {
@@ -103,7 +108,7 @@ const LoginClient = (props: LoginClientProps) => {
         </div>
         <div className="ml-10 h-4/6 flex flex-row text-white">
           <div className="m-auto flex space-x-4 items-center flex-wrap">
-            <div>Login to </div>
+            <div>{t('loginTo')} </div>
             <div className="shadow-[0px_4px_16px_rgba(0,0,0,0.02)]">
               {props.org?.logo_image ? (
                 <img
@@ -140,7 +145,7 @@ const LoginClient = (props: LoginClientProps) => {
           <FormLayout onSubmit={formik.handleSubmit}>
             <FormField name="email">
               <FormLabelAndMessage
-                label="Email"
+                label={t('email')}
                 message={formik.errors.email}
               />
               <Form.Control asChild>
@@ -148,14 +153,14 @@ const LoginClient = (props: LoginClientProps) => {
                   onChange={formik.handleChange}
                   value={formik.values.email}
                   type="email"
-                  
+
                 />
               </Form.Control>
             </FormField>
             {/* for password  */}
             <FormField name="password">
               <FormLabelAndMessage
-                label="Password"
+                label={t('password')}
                 message={formik.errors.password}
               />
 
@@ -164,7 +169,7 @@ const LoginClient = (props: LoginClientProps) => {
                   onChange={formik.handleChange}
                   value={formik.values.password}
                   type="password"
-                  
+
                 />
               </Form.Control>
             </FormField>
@@ -174,27 +179,27 @@ const LoginClient = (props: LoginClientProps) => {
                 passHref
                 className="text-xs text-gray-500 hover:underline"
               >
-                Forgot password?
+                {t('forgotPassword')}
               </Link>
             </div>
             <div className="flex  py-4">
               <Form.Submit asChild>
                 <button  className="w-full bg-black text-white font-bold text-center p-2 rounded-md shadow-md hover:cursor-pointer">
-                  {isSubmitting ? 'Loading...' : 'Login'}
+                  {isSubmitting ? c('loading') : t('login')}
                 </button>
               </Form.Submit>
             </div>
           </FormLayout>
           <div className='flex h-0.5 rounded-2xl bg-slate-100 mt-5  mx-10'></div>
-          <div className='flex justify-center py-5 mx-auto'>OR </div>
+          <div className='flex justify-center py-5 mx-auto'>{t('or')} </div>
           <div className='flex flex-col space-y-4'>
             <Link href={{ pathname: getUriWithoutOrg('/signup'), query: props.org.slug ? { orgslug: props.org.slug } : null }}  className="flex justify-center items-center py-3 text-md w-full bg-gray-800 text-gray-300 space-x-3 font-semibold text-center p-2 rounded-md shadow-sm hover:cursor-pointer">
               <UserRoundPlus size={17} />
-              <span>Sign up</span>
+              <span>{t('signUp')}</span>
             </Link>
             <button onClick={() => signIn('google', { callbackUrl: '/redirect_from_auth' })} className="flex justify-center py-3 text-md w-full bg-white text-slate-600 space-x-3 font-semibold text-center p-2 rounded-md shadow-sm hover:cursor-pointer">
               <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="" />
-              <span>Sign in with Google</span>
+              <span>{t('signInWithGoogle')}</span>
             </button>
           </div>
         </div>
