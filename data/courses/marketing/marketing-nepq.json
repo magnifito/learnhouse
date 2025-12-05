@@ -1,0 +1,1053 @@
+{
+  "name": "High-ROI Ad Psychology & NEPQ-Based Messaging - Complete Platform Demo",
+  "description": "*A Complete Online Course Demonstrating All Platform Features: Videos, Documents, Dynamic Content, Assignments & All Block Types*",
+  "about": "# About This Course\n\nThis comprehensive course demonstrates **all available features** of the learning platform, including:\n\n- Multiple activity types (Video, Document, Dynamic, Assignment)\n- All block types (Text, Quiz, Images, Code, Callouts, Tables, Buttons, Badges, Flipcards, Scenarios, Math Equations, PDFs, Embedded Videos, Web Previews)\n- Various video formats (YouTube, Hosted)\n- Document types (PDF, DOC)\n- Interactive assignments\n\nPerfect for understanding the full capabilities of the platform!",
+  "learnings": "Understand emotional messaging frameworks\nMaster high-converting ad scripts\nLearn product story extraction\nApply NEPQ questions for marketing\nExplore all platform features and capabilities",
+  "tags": "imported, example, demo, platform-features, marketing, psychology",
+  "thumbnail_query": "education technology learning platform",
+  "chapters": [
+    {
+      "name": "MODULE 1 — Emotional Messaging Frameworks",
+      "description": "Learn the fundamentals of emotional messaging and the 4 buying emotions.",
+      "activities": [
+        {
+          "name": "Video Placeholder - YouTube",
+          "description": "Introduction video hosted on YouTube",
+          "type": "video",
+          "video_subtype": "youtube",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "```\n[VIDEO: Module 1 – Emotional Messaging Frameworks (Duration: 12:41)]\n```\n\n------"
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&auto=format&fit=crop",
+                "alt": "Psychology and emotions",
+                "caption": "Understanding emotional triggers in marketing",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "text",
+              "content": "### Transcript\n\n### **The Mind Responds to Emotion, Not Logic**\n\nPeople buy emotionally and justify logically afterwards.\n Your job as a marketer is to speak directly to the **emotion active in the buyer's mind at that moment**.\n\n### **The 4 Buying Emotions**\n\n1. **Desire** – wanting transformation\n2. **Relief** – wanting a pain to end\n3. **Fear** – avoiding mistakes or loss\n4. **Belonging** – wanting to be part of something\n\nThese four emotions drive most purchases online.\n\n------"
+            }
+          ],
+          "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+          "name": "The Emotional Messaging Formula",
+          "description": "Learn the core messaging formula",
+          "type": "dynamic",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "# The Emotional Messaging Formula\n\n```\nEmotion → Proof → Payoff\n```"
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop",
+                "alt": "Marketing analytics dashboard",
+                "caption": "Data-driven marketing insights",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "callout_info",
+              "content": "This formula works for all types of marketing messages, from ads to emails to landing pages."
+            },
+            {
+              "type": "text",
+              "content": "### Example\n\n- **Emotion:** \"Frustrated with ads that don't convert?\"\n- **Proof:** \"Brands using this framework increase ROAS by 30–40%.\"\n- **Payoff:** \"Spend less, earn more.\""
+            },
+            {
+              "type": "table",
+              "content": {
+                "headers": ["Stage", "Purpose", "Example"],
+                "rows": [
+                  ["Emotion", "Create connection", "\"Frustrated with low conversions?\""],
+                  ["Proof", "Build credibility", "\"30-40% ROAS increase\""],
+                  ["Payoff", "Show benefit", "\"Spend less, earn more\""]
+                ]
+              }
+            },
+            {
+              "type": "callout_info",
+              "content": "Remember: The emotion must match the audience's current state of mind."
+            },
+            {
+              "type": "text",
+              "content": "### **The 4 Buying Emotions Quick Guide**"
+            },
+            {
+              "type": "flipcard",
+              "content": {
+                "front": "Desire",
+                "back": "Wanting transformation or a better future state."
+              }
+            },
+            {
+              "type": "flipcard",
+              "content": {
+                "front": "Relief",
+                "back": "Wanting a specific pain or problem to end immediately."
+              }
+            },
+            {
+              "type": "flipcard",
+              "content": {
+                "front": "Fear",
+                "back": "Avoiding mistakes, loss, or negative consequences."
+              }
+            },
+            {
+              "type": "flipcard",
+              "content": {
+                "front": "Belonging",
+                "back": "Wanting to be part of a group or movement."
+              }
+            }
+          ]
+        },
+        {
+          "name": "Hook Library by Emotion",
+          "description": "Comprehensive hook library organized by emotion",
+          "type": "dynamic",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "# Hook Library by Emotion"
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&auto=format&fit=crop",
+                "alt": "Emotional connection in marketing",
+                "caption": "Understanding emotions in marketing",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "table",
+              "content": {
+                "headers": ["Emotion", "Hooks"],
+                "rows": [
+                  ["**Desire**", "\"If you want 3x more sales without doubling budget…\""],
+                  ["**Relief**", "\"Finally, a way to fix dead ads without rebuilding everything…\""],
+                  ["**Fear**", "\"Your competitors will use this before you do…\""],
+                  ["**Belonging**", "\"Join thousands of marketers using this framework…\""]
+                ]
+              }
+            },
+            {
+              "type": "badge",
+              "content": {
+                "text": "Pro Tip",
+                "color": "blue"
+              }
+            },
+            {
+              "type": "text",
+              "content": "Mix and match hooks based on your audience's primary emotion."
+            },
+            {
+              "type": "quiz",
+              "questions": [
+                {
+                  "question": "Which emotion is connected to avoiding pain?",
+                  "answers": [
+                    {
+                      "answer": "Fear",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Belonging",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Desire",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Relief",
+                      "correct": true
+                    }
+                  ]
+                },
+                {
+                  "question": "What is the correct messaging formula?",
+                  "answers": [
+                    {
+                      "answer": "Payoff → Hook → Logic",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Emotion → Proof → Payoff",
+                      "correct": true
+                    },
+                    {
+                      "answer": "Emotion → CTA → Fear",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Hook → Story → CTA",
+                      "correct": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MODULE 2 — High-Converting Ad Scripts",
+      "description": "Master the art of writing scripts that convert.",
+      "activities": [
+        {
+          "name": "Video Placeholder - Hosted",
+          "description": "Hosted video example",
+          "type": "video",
+          "video_subtype": "hosted",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "```\n[VIDEO: Module 2 – High-Converting Ad Scripts (Duration: 14:09)]\n```\n\n------"
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1553484771-371a605b060b?w=1200&auto=format&fit=crop",
+                "alt": "Marketing and advertising concepts",
+                "caption": "High-converting ad strategies",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "text",
+              "content": "### Transcript\n\n### **The 3-Part Conversion Script**\n\nAll high-performing ads follow this structure:\n\n1. **Pattern interrupt**\n2. **Emotional tension**\n3. **Solution demonstration**\n\n### Why it works\n\nThe brain is optimized to ignore 99% of what it sees.\n A pattern interrupt forces attention.\n Emotional tension creates interest.\n The solution creates desire.\n\n------"
+            }
+          ],
+          "video_url": "https://example.com/video.mp4"
+        },
+        {
+          "name": "Cold Traffic Script Template",
+          "description": "Template for cold traffic ad scripts",
+          "type": "dynamic",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "# Cold Traffic Script Template\n\n```\n1. Hook (Pattern interrupt)  \n2. Problem + emotional tension  \n3. Show the solution  \n4. Add social proof  \n5. CTA  \n```"
+            },
+            {
+              "type": "callout_warning",
+              "content": "**Common Mistake:** Don't skip the emotional tension. If you jump straight to the solution, cold audiences won't care."
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&auto=format&fit=crop",
+                "alt": "Creative writing and copywriting",
+                "caption": "Master the art of persuasive copywriting",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "code_block",
+              "content": {
+                "code": "function createAdScript(hook, problem, solution, proof, cta) {\n  return `${hook}\\n\\n${problem}\\n\\n${solution}\\n\\n${proof}\\n\\n${cta}`;\n}\n\n// Example usage\nconst script = createAdScript(\n  'Your ads are failing for one reason...',\n  'People scroll because they feel nothing.',\n  'Here's a framework that maps emotion to buying stages.',\n  'Used by 4800+ marketers this year alone.',\n  'Download the script blueprint.'\n);",
+                "language": "javascript"
+              }
+            },
+            {
+              "type": "text",
+              "content": "### Example Script\n\n**Hook:** \"Your ads are failing for one reason nobody talks about.\"\n **Tension:** \"People scroll not because your product is bad… but because they feel nothing.\"\n **Solution:** \"Here's a framework that maps emotion to buying stages…\"\n **Social Proof:** \"Used by 4800+ marketers this year alone.\"\n **CTA:** \"Download the script blueprint.\""
+            },
+            {
+              "type": "scenarios",
+              "content": {
+                "title": "Script Writing Practice",
+                "scenarios": [
+                  {
+                    "id": "1",
+                    "text": "You are writing a cold traffic ad. How should you start?",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt1",
+                        "text": "Introduce yourself and your credentials",
+                        "nextScenarioId": "2"
+                      },
+                      {
+                        "id": "opt2",
+                        "text": "Use a pattern interrupt hook",
+                        "nextScenarioId": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "2",
+                    "text": "Cold traffic doesn't know you yet, so they likely won't care about your credentials immediately. Try again.",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt3",
+                        "text": "Restart",
+                        "nextScenarioId": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "3",
+                    "text": "Correct! A pattern interrupt stops the scroll. Now, what comes next?",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt4",
+                        "text": "Pitch your product immediately",
+                        "nextScenarioId": "4"
+                      },
+                      {
+                        "id": "opt5",
+                        "text": "Build emotional tension",
+                        "nextScenarioId": "5"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "4",
+                    "text": "Too soon! You haven't established why they need it yet.",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt6",
+                        "text": "Go back",
+                        "nextScenarioId": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "5",
+                    "text": "Perfect! Tension creates the desire for a solution.",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt7",
+                        "text": "Finish",
+                        "nextScenarioId": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "content": {
+                "text": "Download Script Template",
+                "url": "https://example.com/template",
+                "style": "primary"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Warm Traffic Script Template",
+          "description": "Template optimized for warm traffic",
+          "type": "dynamic",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "# Warm Traffic Script Template\n\n```\n1. What they already believe  \n2. New insight  \n3. Easy win  \n4. CTA  \n```\n\n------"
+            },
+            {
+              "type": "callout_warning",
+              "content": "Warm traffic already knows you. Focus on deepening the relationship rather than introducing yourself."
+            },
+            {
+              "type": "quiz",
+              "questions": [
+                {
+                  "question": "What is the primary purpose of a pattern interrupt?",
+                  "answers": [
+                    {
+                      "answer": "Build trust",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Entertain",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Stop the scroll",
+                      "correct": true
+                    },
+                    {
+                      "answer": "Deliver value",
+                      "correct": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Reference Document - PDF",
+          "description": "PDF reference document",
+          "type": "document",
+          "document_subtype": "pdf",
+          "document_url": "https://example.com/reference.pdf"
+        }
+      ]
+    },
+    {
+      "name": "MODULE 3 — Product Story Extraction",
+      "description": "Learn how to extract compelling stories from products.",
+      "activities": [
+        {
+          "name": "Video Placeholder",
+          "description": "Product story extraction video",
+          "type": "video",
+          "video_subtype": "youtube",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "```\n[VIDEO: Module 3 – Product Story Extraction (Duration: 11:47)]\n```\n\n------"
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&auto=format&fit=crop",
+                "alt": "Storytelling and narrative",
+                "caption": "The power of storytelling in marketing",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "text",
+              "content": "### Transcript\n\n### **Why Stories Beat Features**\n\nPeople remember stories because stories activate emotion and imagination.\n Features activate logic — but logic comes later in the buying cycle.\n\n------"
+            }
+          ],
+          "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+          "name": "The \"Moment of Change\" Story Formula",
+          "description": "The four-part story structure",
+          "type": "dynamic",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "# The \"Moment of Change\" Story Formula\n\nEvery great story has four simple parts:\n\n1. **Before State** – the struggle\n2. **Trigger Moment** – the shift\n3. **New Possibility** – the idea\n4. **After State** – the transformation"
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop",
+                "alt": "Story structure diagram",
+                "caption": "The four-part story structure",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "text",
+              "content": "### Example\n\n- **Before:** \"Your ads are dead.\"\n- **Trigger:** \"You realize the problem isn't the targeting—it's the story.\"\n- **New Possibility:** \"You try an emotional messaging system.\"\n- **After:** \"ROAS rises and becomes predictable.\""
+            },
+            {
+              "type": "table",
+              "content": {
+                "headers": ["Aspect", "Feature", "Story"],
+                "rows": [
+                  ["Focus", "What the product *is*", "What the product *does* for the user"],
+                  ["Brain Activation", "Logic center (Broca's area)", "Emotion & Sensory centers"],
+                  ["Retention", "Low", "High"],
+                  ["Connection", "Transactional", "Relational"]
+                ]
+              }
+            },
+            {
+              "type": "flipcard",
+              "content": {
+                "front": "Before State",
+                "back": "The struggle your audience faces before finding your solution."
+              }
+            }
+          ]
+        },
+        {
+          "name": "Story Extraction Prompts",
+          "description": "Prompts to help extract stories",
+          "type": "dynamic",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "# Story Extraction Prompts\n\nUse these to uncover powerful narratives:\n\n- \"What problem made you build this product?\"\n- \"What was the turning point?\"\n- \"What did early users say after trying it?\"\n- \"What belief changed?\""
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1200&auto=format&fit=crop",
+                "alt": "Creative storytelling process",
+                "caption": "Every product has a story waiting to be told",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "scenarios",
+              "content": {
+                "title": "Story Extraction Practice",
+                "scenarios": [
+                  {
+                    "id": "1",
+                    "text": "You're interviewing a product founder. What's the first question you ask?",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt1",
+                        "text": "What problem made you build this?",
+                        "nextScenarioId": "2"
+                      },
+                      {
+                        "id": "opt2",
+                        "text": "How much revenue do you make?",
+                        "nextScenarioId": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "2",
+                    "text": "Great choice! This question reveals the 'Before State' of the story. What's next?",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt3",
+                        "text": "Ask about the turning point",
+                        "nextScenarioId": "4"
+                      },
+                      {
+                        "id": "opt4",
+                        "text": "Ask about features",
+                        "nextScenarioId": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "3",
+                    "text": "That's not the best approach for story extraction. Try focusing on emotions and transformation instead.",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt5",
+                        "text": "Start over",
+                        "nextScenarioId": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "4",
+                    "text": "Perfect! You've uncovered the Trigger Moment. This is the key to a compelling story.",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt6",
+                        "text": "Finish",
+                        "nextScenarioId": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "questions": [
+                {
+                  "question": "Which part of the story represents the transformation?",
+                  "answers": [
+                    {
+                      "answer": "Trigger",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Before state",
+                      "correct": false
+                    },
+                    {
+                      "answer": "New possibility",
+                      "correct": false
+                    },
+                    {
+                      "answer": "After state",
+                      "correct": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Reference Document - DOC",
+          "description": "Word document reference",
+          "type": "document",
+          "document_subtype": "doc",
+          "document_url": "https://example.com/reference.doc"
+        }
+      ]
+    },
+    {
+      "name": "MODULE 4 — NEPQ Questions for Marketing Creators",
+      "description": "Master NEPQ questions to uncover emotional drivers.",
+      "activities": [
+        {
+          "name": "Video Placeholder",
+          "description": "NEPQ questions introduction",
+          "type": "video",
+          "video_subtype": "youtube",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "```\n[VIDEO: Module 4 – NEPQ Questions for Marketing (Duration: 15:22)]\n```\n\n------"
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop",
+                "alt": "Question-based research methodology",
+                "caption": "Uncovering insights through strategic questioning",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "text",
+              "content": "### Transcript\n\n### **Why NEPQ Works for Marketing**\n\nNEPQ uncovers emotional drivers behind buying behavior.\n Marketing becomes powerful when your ads reflect the exact emotional triggers customers reveal through NEPQ questions.\n\n------"
+            }
+          ],
+          "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+          "name": "NEPQ Question Types & Examples",
+          "description": "Comprehensive guide to NEPQ question types",
+          "type": "dynamic",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "# NEPQ Question Types & Examples\n\n### **1. Problem Awareness**\n\n- \"What part of ad creation do you struggle with most?\"\n- \"What always makes your ads perform poorly?\""
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop",
+                "alt": "Brain thinking and problem solving",
+                "caption": "Understanding customer psychology through questions",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "text",
+              "content": "### **2. Consequence Questions**\n\n- \"What happens if this problem continues?\"\n- \"How much budget is being wasted each month?\""
+            },
+            {
+              "type": "math_equation",
+              "content": {
+                "equation": "ROAS = \\frac{Revenue}{Ad Spend}",
+                "display": "block"
+              }
+            },
+            {
+              "type": "text",
+              "content": "### **3. Solution Awareness**\n\n- \"What would the ideal ad creation system look like?\"\n- \"How would it change your business if ads finally worked?\""
+            },
+            {
+              "type": "text",
+              "content": "### **4. Commitment Questions**\n\n- \"If you found a system that fixed this, would you test it this week?\""
+            },
+            {
+              "type": "embedded_video",
+              "content": {
+                "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                "title": "NEPQ Question Examples"
+              }
+            },
+            {
+              "type": "pdf_block",
+              "content": {
+                "url": "https://example.com/nepq-guide.pdf",
+                "title": "Complete NEPQ Question Guide"
+              }
+            },
+            {
+              "type": "web_preview",
+              "content": {
+                "url": "https://www.psychologytoday.com/us",
+                "title": "Psychology Today - Learn more about behavior"
+              }
+            }
+          ]
+        },
+        {
+          "name": "NEPQ → Creative Angle Mapping",
+          "description": "Map NEPQ insights to creative angles",
+          "type": "dynamic",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "# NEPQ → Creative Angle Mapping\n\n1. Ask NEPQ questions\n2. Identify emotional patterns\n3. Turn patterns into hooks\n4. Turn hooks into ad scripts\n5. A/B test emotional angles\n6. Scale winners"
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop",
+                "alt": "Business strategy and planning",
+                "caption": "From insights to actionable marketing strategies",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "web_preview",
+              "content": {
+                "url": "https://example.com/creative-angles",
+                "title": "Creative Angle Examples"
+              }
+            },
+            {
+              "type": "quiz",
+              "questions": [
+                {
+                  "question": "Which NEPQ question type reveals the long-term cost of not fixing the problem?",
+                  "answers": [
+                    {
+                      "answer": "Solution awareness",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Problem awareness",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Consequences",
+                      "correct": true
+                    },
+                    {
+                      "answer": "Commitment",
+                      "correct": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MODULE 5 — Platform Features Demo",
+      "description": "Comprehensive demonstration of all platform features and block types.",
+      "activities": [
+        {
+          "name": "All Block Types Showcase",
+          "description": "See every available block type in action",
+          "type": "dynamic",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "# Complete Platform Features Demo\n\nThis module demonstrates **every available feature** in the platform."
+            },
+            {
+              "type": "callout_info",
+              "content": "This is an info callout. Use it to highlight important information or tips."
+            },
+            {
+              "type": "callout_warning",
+              "content": "This is a warning callout. Use it to alert users about potential issues or important considerations."
+            },
+            {
+              "type": "text",
+              "content": "## Text Formatting\n\nYou can use **bold**, *italic*, and `code` formatting. Lists work too:\n\n- Bullet point 1\n- Bullet point 2\n- Bullet point 3\n\n1. Numbered item 1\n2. Numbered item 2\n3. Numbered item 3"
+            },
+            {
+              "type": "image",
+              "content": {
+                "url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&auto=format&fit=crop",
+                "alt": "Team collaboration",
+                "caption": "Collaborative learning experience",
+                "alignment": "center"
+              }
+            },
+            {
+              "type": "code_block",
+              "content": {
+                "code": "def calculate_roas(revenue, ad_spend):\n    \"\"\"Calculate Return on Ad Spend\"\"\"\n    if ad_spend == 0:\n        return 0\n    return revenue / ad_spend\n\n# Example usage\nroas = calculate_roas(10000, 2000)\nprint(f\"ROAS: {roas}x\")  # Output: ROAS: 5.0x",
+                "language": "python"
+              }
+            },
+            {
+              "type": "table",
+              "content": {
+                "headers": ["Feature", "Type", "Status"],
+                "rows": [
+                  ["Video Activities", "Activity", "✓ Available"],
+                  ["Document Activities", "Activity", "✓ Available"],
+                  ["Dynamic Activities", "Activity", "✓ Available"],
+                  ["Assignments", "Activity", "✓ Available"],
+                  ["Quiz Blocks", "Block", "✓ Available"],
+                  ["Image Blocks", "Block", "✓ Available"],
+                  ["Code Blocks", "Block", "✓ Available"]
+                ]
+              }
+            },
+            {
+              "type": "badge",
+              "content": {
+                "text": "New Feature",
+                "color": "green"
+              }
+            },
+            {
+              "type": "badge",
+              "content": {
+                "text": "Popular",
+                "color": "blue"
+              }
+            },
+            {
+              "type": "button",
+              "content": {
+                "text": "Get Started",
+                "url": "https://example.com/start",
+                "style": "primary"
+              }
+            },
+            {
+              "type": "button",
+              "content": {
+                "text": "Learn More",
+                "url": "https://example.com/learn",
+                "style": "secondary"
+              }
+            },
+            {
+              "type": "flipcard",
+              "content": {
+                "front": "Click to reveal",
+                "back": "This is the back of a flipcard! Great for interactive learning."
+              }
+            },
+            {
+              "type": "math_equation",
+              "content": {
+                "equation": "E = mc^2",
+                "display": "block"
+              }
+            },
+            {
+              "type": "math_equation",
+              "content": {
+                "equation": "\\sum_{i=1}^{n} x_i = \\frac{n(n+1)}{2}",
+                "display": "block"
+              }
+            },
+            {
+              "type": "embedded_video",
+              "content": {
+                "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                "title": "Embedded YouTube Video"
+              }
+            },
+            {
+              "type": "pdf_block",
+              "content": {
+                "url": "https://example.com/sample.pdf",
+                "title": "Sample PDF Document"
+              }
+            },
+            {
+              "type": "web_preview",
+              "content": {
+                "url": "https://example.com",
+                "title": "Web Preview Example"
+              }
+            },
+            {
+              "type": "scenarios",
+              "content": {
+                "title": "Interactive Scenario Example",
+                "scenarios": [
+                  {
+                    "id": "1",
+                    "text": "You're creating a new marketing campaign. What's your first step?",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt1",
+                        "text": "Define the target audience",
+                        "nextScenarioId": "2"
+                      },
+                      {
+                        "id": "opt2",
+                        "text": "Write the ad copy",
+                        "nextScenarioId": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "2",
+                    "text": "Excellent! Understanding your audience is crucial. Now, what emotion should you target?",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt3",
+                        "text": "Desire for transformation",
+                        "nextScenarioId": "4"
+                      },
+                      {
+                        "id": "opt4",
+                        "text": "Fear of missing out",
+                        "nextScenarioId": "5"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "3",
+                    "text": "Not quite. You should first understand your audience before writing copy.",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt5",
+                        "text": "Try again",
+                        "nextScenarioId": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "4",
+                    "text": "Perfect! You've chosen the right approach. Your campaign is set up for success!",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt6",
+                        "text": "Finish",
+                        "nextScenarioId": null
+                      }
+                    ]
+                  },
+                  {
+                    "id": "5",
+                    "text": "Good choice! Fear can be powerful, but make sure it's used ethically.",
+                    "imageUrl": "",
+                    "options": [
+                      {
+                        "id": "opt7",
+                        "text": "Finish",
+                        "nextScenarioId": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "questions": [
+                {
+                  "question": "Which activity type supports the most interactive content?",
+                  "answers": [
+                    {
+                      "answer": "Video",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Document",
+                      "correct": false
+                    },
+                    {
+                      "answer": "Dynamic",
+                      "correct": true
+                    },
+                    {
+                      "answer": "Assignment",
+                      "correct": false
+                    }
+                  ]
+                },
+                {
+                  "question": "How many block types are demonstrated in this module?",
+                  "answers": [
+                    {
+                      "answer": "5",
+                      "correct": false
+                    },
+                    {
+                      "answer": "10",
+                      "correct": false
+                    },
+                    {
+                      "answer": "15+",
+                      "correct": true
+                    },
+                    {
+                      "answer": "20+",
+                      "correct": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Assignment: Create Your Own Ad Script",
+          "description": "Practice assignment to create an ad script using the frameworks learned",
+          "type": "assignment",
+          "assignment": {
+            "title": "Create Your Own Ad Script",
+            "description": "Using the frameworks and templates from this course, create a complete ad script for a product or service of your choice.",
+            "due_date": "2024-12-31T23:59:59Z",
+            "grading_type": "PERCENTAGE",
+            "tasks": [
+              {
+                "title": "Script Submission",
+                "description": "Submit your completed ad script following the Emotion → Proof → Payoff formula.",
+                "hint": "Remember to include a pattern interrupt, emotional tension, and clear CTA.",
+                "assignment_type": "FILE_SUBMISSION",
+                "max_grade_value": 50,
+                "contents": {
+                  "allowed_file_types": [".doc", ".docx", ".pdf", ".txt"],
+                  "max_file_size_mb": 10
+                }
+              },
+              {
+                "title": "Script Analysis Quiz",
+                "description": "Answer questions about your script choices.",
+                "hint": "Be specific about which emotions you targeted and why.",
+                "assignment_type": "QUIZ",
+                "max_grade_value": 50,
+                "contents": {
+                  "questions": [
+                    {
+                      "question": "Which primary emotion did you target in your script?",
+                      "type": "multiple_choice",
+                      "answers": [
+                        {"answer": "Desire", "correct": false},
+                        {"answer": "Relief", "correct": false},
+                        {"answer": "Fear", "correct": false},
+                        {"answer": "Belonging", "correct": false}
+                      ]
+                    },
+                    {
+                      "question": "What proof element did you include?",
+                      "type": "text"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

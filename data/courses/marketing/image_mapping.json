@@ -1,0 +1,96 @@
+{
+  "url_to_file": {
+    "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&auto=format&fit=crop": "marketing/images/1551836022-d_psychology_and_emotions",
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop": "marketing/images/146092589591_marketing_analytics_dashboard",
+    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&auto=format&fit=crop": "marketing/images/145416580460_emotional_connection_in_market",
+    "https://images.unsplash.com/photo-1553484771-371a605b060b?w=1200&auto=format&fit=crop": "marketing/images/1553484771-3_marketing_and_advertising_conc",
+    "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&auto=format&fit=crop": "marketing/images/161122492385_creative_writing_and_copywriti",
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&auto=format&fit=crop": "marketing/images/150700321116_storytelling_and_narrative",
+    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop": "marketing/images/145118758045_story_structure_diagram",
+    "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1200&auto=format&fit=crop": "marketing/images/150922846851_creative_storytelling_process",
+    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop": "marketing/images/1551288049-b_question-based_research_method",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop": "marketing/images/1552664730-d_business_strategy_and_planning",
+    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&auto=format&fit=crop": "marketing/images/152220217698_team_collaboration"
+  },
+  "images": [
+    {
+      "url": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&auto=format&fit=crop",
+      "alt": "Psychology and emotions",
+      "caption": "Understanding emotional triggers in marketing",
+      "alignment": "center",
+      "context": "MODULE 1 \u2014 Emotional Messaging Frameworks > Video Placeholder - YouTube"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop",
+      "alt": "Marketing analytics dashboard",
+      "caption": "Data-driven marketing insights",
+      "alignment": "center",
+      "context": "MODULE 1 \u2014 Emotional Messaging Frameworks > The Emotional Messaging Formula"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&auto=format&fit=crop",
+      "alt": "Emotional connection in marketing",
+      "caption": "Understanding emotions in marketing",
+      "alignment": "center",
+      "context": "MODULE 1 \u2014 Emotional Messaging Frameworks > Hook Library by Emotion"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1553484771-371a605b060b?w=1200&auto=format&fit=crop",
+      "alt": "Marketing and advertising concepts",
+      "caption": "High-converting ad strategies",
+      "alignment": "center",
+      "context": "MODULE 2 \u2014 High-Converting Ad Scripts > Video Placeholder - Hosted"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&auto=format&fit=crop",
+      "alt": "Creative writing and copywriting",
+      "caption": "Master the art of persuasive copywriting",
+      "alignment": "center",
+      "context": "MODULE 2 \u2014 High-Converting Ad Scripts > Cold Traffic Script Template"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&auto=format&fit=crop",
+      "alt": "Storytelling and narrative",
+      "caption": "The power of storytelling in marketing",
+      "alignment": "center",
+      "context": "MODULE 3 \u2014 Product Story Extraction > Video Placeholder"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop",
+      "alt": "Story structure diagram",
+      "caption": "The four-part story structure",
+      "alignment": "center",
+      "context": "MODULE 3 \u2014 Product Story Extraction > The \"Moment of Change\" Story Formula"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1200&auto=format&fit=crop",
+      "alt": "Creative storytelling process",
+      "caption": "Every product has a story waiting to be told",
+      "alignment": "center",
+      "context": "MODULE 3 \u2014 Product Story Extraction > Story Extraction Prompts"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop",
+      "alt": "Question-based research methodology",
+      "caption": "Uncovering insights through strategic questioning",
+      "alignment": "center",
+      "context": "MODULE 4 \u2014 NEPQ Questions for Marketing Creators > Video Placeholder"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop",
+      "alt": "Business strategy and planning",
+      "caption": "From insights to actionable marketing strategies",
+      "alignment": "center",
+      "context": "MODULE 4 \u2014 NEPQ Questions for Marketing Creators > NEPQ \u2192 Creative Angle Mapping"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&auto=format&fit=crop",
+      "alt": "Team collaboration",
+      "caption": "Collaborative learning experience",
+      "alignment": "center",
+      "context": "MODULE 5 \u2014 Platform Features Demo > All Block Types Showcase"
+    }
+  ],
+  "course_file": "marketing/marketing-nepq.json",
+  "download_date": "2025-12-02 05:59:07.336961"
+}

@@ -1,0 +1,367 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LearnHouse Organization Data Schema",
+  "description": "Schema for validating organization data before import into LearnHouse platform",
+  "type": "object",
+  "required": ["name", "slug", "email"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Organization name",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "description": "Short organization description",
+      "maxLength": 500
+    },
+    "about": {
+      "type": "string",
+      "description": "Detailed organization overview (markdown supported)",
+      "default": ""
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly organization identifier",
+      "pattern": "^[a-z0-9-]+$",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "email": {
+      "type": "string",
+      "description": "Primary contact email",
+      "format": "email",
+      "maxLength": 255
+    },
+    "label": {
+      "type": "string",
+      "description": "Organization label or tagline",
+      "maxLength": 100
+    },
+    "default_locale": {
+      "type": "string",
+      "description": "Default language/locale code (ISO 639-1)",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+      "default": "en",
+      "maxLength": 5
+    },
+    "supported_locales": {
+      "type": "array",
+      "description": "List of supported language codes",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+      },
+      "default": ["en"],
+      "minItems": 1
+    },
+    "explore": {
+      "type": "boolean",
+      "description": "Whether organization is discoverable in public explore",
+      "default": false
+    },
+    "logo_image": {
+      "type": "string",
+      "description": "URL to organization logo image",
+      "format": "uri",
+      "maxLength": 500
+    },
+    "thumbnail_image": {
+      "type": "string",
+      "description": "URL to organization thumbnail image",
+      "format": "uri",
+      "maxLength": 500
+    },
+    "socials": {
+      "type": "object",
+      "description": "Social media profile URLs",
+      "properties": {
+        "twitter": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "linkedin": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "facebook": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "youtube": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "instagram": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "github": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        }
+      },
+      "additionalProperties": false
+    },
+    "links": {
+      "type": "object",
+      "description": "Important organization links",
+      "properties": {
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "blog": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "support": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "privacy": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "terms": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        }
+      },
+      "additionalProperties": false
+    },
+    "scripts": {
+      "type": "object",
+      "description": "Custom JavaScript code to inject",
+      "properties": {
+        "head": {
+          "type": "string",
+          "description": "Scripts for <head> section",
+          "maxLength": 10000
+        },
+        "body": {
+          "type": "string",
+          "description": "Scripts for <body> section",
+          "maxLength": 10000
+        }
+      },
+      "additionalProperties": false
+    },
+    "previews": {
+      "type": "object",
+      "description": "Additional preview images",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "secondary": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        }
+      },
+      "additionalProperties": false
+    },
+    "config": {
+      "type": "object",
+      "description": "Organization feature configuration",
+      "properties": {
+        "config_version": {
+          "type": "string",
+          "description": "Configuration schema version",
+          "default": "1.3",
+          "pattern": "^\\d+\\.\\d+$"
+        },
+        "general": {
+          "type": "object",
+          "description": "General organization settings",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "color": {
+              "type": "string",
+              "enum": ["normal", "blue", "green", "red", "purple", "orange", "yellow", "pink"],
+              "default": "normal"
+            },
+            "watermark": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "required": ["enabled", "color", "watermark"],
+          "additionalProperties": false
+        },
+        "features": {
+          "type": "object",
+          "description": "Feature toggles and limits",
+          "properties": {
+            "courses": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "limit": {"type": "integer", "minimum": 0, "default": 10}
+              },
+              "required": ["enabled", "limit"],
+              "additionalProperties": false
+            },
+            "members": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "signup_mode": {
+                  "type": "string",
+                  "enum": ["open", "inviteOnly"],
+                  "default": "open"
+                },
+                "admin_limit": {"type": "integer", "minimum": 0, "default": 1},
+                "limit": {"type": "integer", "minimum": 0, "default": 10}
+              },
+              "required": ["enabled", "signup_mode", "admin_limit", "limit"],
+              "additionalProperties": false
+            },
+            "usergroups": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "limit": {"type": "integer", "minimum": 0, "default": 10}
+              },
+              "required": ["enabled", "limit"],
+              "additionalProperties": false
+            },
+            "storage": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "limit": {"type": "integer", "minimum": 0, "default": 10}
+              },
+              "required": ["enabled", "limit"],
+              "additionalProperties": false
+            },
+            "ai": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "limit": {"type": "integer", "minimum": 0, "default": 10},
+                "model": {
+                  "type": "string",
+                  "default": "gpt-4o-mini",
+                  "maxLength": 100
+                }
+              },
+              "required": ["enabled", "limit", "model"],
+              "additionalProperties": false
+            },
+            "assignments": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": false},
+                "limit": {"type": "integer", "minimum": 0, "default": 10}
+              },
+              "required": ["enabled", "limit"],
+              "additionalProperties": false
+            },
+            "payments": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true}
+              },
+              "required": ["enabled"],
+              "additionalProperties": false
+            },
+            "discussions": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "limit": {"type": "integer", "minimum": 0, "default": 10}
+              },
+              "required": ["enabled", "limit"],
+              "additionalProperties": false
+            },
+            "analytics": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "limit": {"type": "integer", "minimum": 0, "default": 10}
+              },
+              "required": ["enabled", "limit"],
+              "additionalProperties": false
+            },
+            "collaboration": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "limit": {"type": "integer", "minimum": 0, "default": 10}
+              },
+              "required": ["enabled", "limit"],
+              "additionalProperties": false
+            },
+            "api": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "limit": {"type": "integer", "minimum": 0, "default": 10}
+              },
+              "required": ["enabled", "limit"],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "courses",
+            "members",
+            "usergroups",
+            "storage",
+            "ai",
+            "assignments",
+            "payments",
+            "discussions",
+            "analytics",
+            "collaboration",
+            "api"
+          ],
+          "additionalProperties": false
+        },
+        "cloud": {
+          "type": "object",
+          "description": "Cloud/plan settings",
+          "properties": {
+            "plan": {
+              "type": "string",
+              "enum": ["free", "standard", "pro"],
+              "default": "free"
+            },
+            "custom_domain": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": ["plan", "custom_domain"],
+          "additionalProperties": false
+        },
+        "landing": {
+          "type": "object",
+          "description": "Landing page customizations",
+          "default": {}
+        }
+      },
+      "required": ["config_version", "general", "features", "cloud", "landing"],
+      "additionalProperties": false
+    }
+  }
+}
+

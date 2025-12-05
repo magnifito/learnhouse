@@ -50,3 +50,6 @@ fly.toml
 # Development logs
 logs/
 *.log
+
+# Course data images
+data/images/

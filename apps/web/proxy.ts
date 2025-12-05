@@ -32,7 +32,7 @@ export default async function proxy(req: NextRequest) {
   const { pathname, search } = req.nextUrl
   const fullhost = req.headers ? req.headers.get('host') : ''
   const cookie_orgslug = req.cookies.get('learnhouse_current_orgslug')?.value
-  
+
 
   // Out of orgslug paths & rewrite
   const standard_paths = ['/home']
@@ -73,15 +73,15 @@ export default async function proxy(req: NextRequest) {
   if (req.nextUrl.pathname.startsWith('/payments/stripe/connect/oauth')) {
     const searchParams = req.nextUrl.searchParams
     const orgslug = searchParams.get('state')?.split('_')[0] // Assuming state parameter contains orgslug_randomstring
-    
+
     // Construct the new URL with the required parameters
     const redirectUrl = new URL('/payments/stripe/connect/oauth', req.url)
-    
+
     // Preserve all original search parameters
     searchParams.forEach((value, key) => {
       redirectUrl.searchParams.append(key, value)
     })
-    
+
     // Add orgslug if available
     if (orgslug) {
       redirectUrl.searchParams.set('orgslug', orgslug)
@@ -97,12 +97,18 @@ export default async function proxy(req: NextRequest) {
 
   // Auth Redirects
   if (pathname == '/redirect_from_auth') {
-    if (cookie_orgslug) {
+    let target_orgslug = cookie_orgslug
+
+    if (!target_orgslug && hosting_mode === 'single') {
+      target_orgslug = default_org
+    }
+
+    if (target_orgslug) {
       const searchParams = req.nextUrl.searchParams
       const queryString = searchParams.toString()
       const redirectPathname = '/'
       const redirectUrl = new URL(
-        getUriWithOrg(cookie_orgslug, redirectPathname),
+        getUriWithOrg(target_orgslug, redirectPathname),
         req.url
       )
 
@@ -111,13 +117,13 @@ export default async function proxy(req: NextRequest) {
       }
       return NextResponse.redirect(redirectUrl)
     } else {
-      return 'Did not find the orgslug in the cookie'
+      return new NextResponse('Did not find the orgslug in the cookie', { status: 400 })
     }
   }
 
   if (pathname.startsWith('/sitemap.xml')) {
     let orgslug: string;
-    
+
     const LEARNHOUSE_DOMAIN = getLEARNHOUSE_DOMAIN_VAL()
     if (hosting_mode === 'multi') {
       orgslug = fullhost

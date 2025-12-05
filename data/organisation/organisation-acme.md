@@ -1,0 +1,104 @@
+# ACME Learning Academy - Organization Definition
+
+**Organization Name:** ACME Learning Academy
+**Purpose:** Professional training for marketing and sales teams
+**Industry:** Education & Training
+**Language:** English
+
+---
+
+```json
+{
+  "name": "ACME Learning Academy",
+  "description": "Professional training for marketing and sales teams. Master the art of customer engagement and drive business growth.",
+  "about": "# Welcome to ACME Learning Academy\n\nACME Learning Academy is a premier educational platform specializing in marketing and sales training. We provide comprehensive courses designed to help professionals excel in their careers.\n\n## Our Mission\n\nTo empower marketing and sales professionals with the knowledge and skills needed to succeed in today's competitive business landscape.\n\n## What We Offer\n\n- **Marketing Courses**: Learn modern marketing strategies, digital marketing, content creation, and analytics\n- **Sales Training**: Master sales techniques, customer relationship management, and closing strategies\n- **Practical Skills**: Hands-on learning with real-world case studies and projects\n- **Expert Instructors**: Learn from industry veterans with years of experience\n\n## Why Choose ACME?\n\n- Industry-leading curriculum\n- Flexible learning schedules\n- Certificate programs\n- Community support and networking opportunities",
+  "slug": "acme-learning-academy",
+  "email": "contact@acme-learning.com",
+  "label": "Learn. Grow. Succeed.",
+  "default_locale": "en",
+  "supported_locales": ["en"],
+  "explore": true,
+  "logo_image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=400&fit=crop",
+  "thumbnail_image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&h=675&fit=crop",
+  "socials": {
+    "twitter": "https://twitter.com/acmelearning",
+    "linkedin": "https://linkedin.com/company/acme-learning-academy",
+    "youtube": "https://youtube.com/@acmelearning",
+    "facebook": "https://facebook.com/acmelearning"
+  },
+  "links": {
+    "website": "https://acme-learning.com",
+    "blog": "https://blog.acme-learning.com",
+    "support": "https://support.acme-learning.com",
+    "privacy": "https://acme-learning.com/privacy",
+    "terms": "https://acme-learning.com/terms"
+  },
+  "scripts": {},
+  "previews": {
+    "primary": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=1080&fit=crop",
+    "secondary": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&h=1080&fit=crop"
+  },
+  "config": {
+    "config_version": "1.3",
+    "general": {
+      "enabled": true,
+      "color": "normal",
+      "watermark": true
+    },
+    "features": {
+      "courses": {
+        "enabled": true,
+        "limit": 50
+      },
+      "members": {
+        "enabled": true,
+        "signup_mode": "open",
+        "admin_limit": 5,
+        "limit": 1000
+      },
+      "usergroups": {
+        "enabled": true,
+        "limit": 20
+      },
+      "storage": {
+        "enabled": true,
+        "limit": 100
+      },
+      "ai": {
+        "enabled": true,
+        "limit": 1000,
+        "model": "gpt-4o-mini"
+      },
+      "assignments": {
+        "enabled": true,
+        "limit": 100
+      },
+      "payments": {
+        "enabled": true
+      },
+      "discussions": {
+        "enabled": true,
+        "limit": 50
+      },
+      "analytics": {
+        "enabled": true,
+        "limit": 100
+      },
+      "collaboration": {
+        "enabled": true,
+        "limit": 50
+      },
+      "api": {
+        "enabled": true,
+        "limit": 100
+      }
+    },
+    "cloud": {
+      "plan": "standard",
+      "custom_domain": false
+    },
+    "landing": {}
+  }
+}
+```
+

@@ -1,5 +1,6 @@
 from datetime import datetime
 import json
+import logging
 from uuid import uuid4
 from fastapi import HTTPException
 from sqlmodel import Session, select
@@ -31,25 +32,17 @@ from src.security.security import security_hash_password
 # Install Default roles
 def install_default_elements(db_session: Session):
     """ """
-    # remove all default roles
-    statement = select(Role).where(Role.role_type == RoleTypeEnum.TYPE_GLOBAL)
-    roles = db_session.exec(statement).all()
-
-    for role in roles:
-        db_session.delete(role)
-
-    db_session.commit()
-
     # Check if default roles already exist
     statement = select(Role).where(Role.role_type == RoleTypeEnum.TYPE_GLOBAL)
     roles = db_session.exec(statement).all()
 
-    if roles and len(roles) == 4:
-        raise HTTPException(
-            status_code=409,
-            detail="Default roles already exist",
-        )
+    if roles and len(roles) >= 4:
+        logging.info("Default roles already exist, skipping installation")
+        return True
 
+    # Only delete if we can, but safer to just skip if they exist.
+    # If we need to force reset, we should use a dedicated script.
+    
     # Create default roles
     role_global_admin = Role(
         name="Admin",

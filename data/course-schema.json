@@ -1,0 +1,203 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LearnHouse Course Data Schema",
+  "description": "Schema for validating course data before import into LearnHouse platform",
+  "type": "object",
+  "required": ["name", "description", "chapters"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Course title",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "description": "Short course description",
+      "maxLength": 500
+    },
+    "about": {
+      "type": "string",
+      "description": "Detailed course overview (markdown supported)",
+      "default": ""
+    },
+    "learnings": {
+      "type": "string",
+      "description": "Key takeaways (bullet points or newline-separated)",
+      "default": ""
+    },
+    "tags": {
+      "type": "string",
+      "description": "Comma-separated tags",
+      "default": ""
+    },
+    "thumbnail_query": {
+      "type": "string",
+      "description": "Search query for thumbnail image",
+      "default": "education"
+    },
+    "chapters": {
+      "type": "array",
+      "description": "Array of course chapters",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "activities"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Chapter title",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "Chapter description",
+            "default": ""
+          },
+          "activities": {
+            "type": "array",
+            "description": "Array of activities in this chapter",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["name", "type"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Activity title",
+                  "minLength": 1
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Activity description",
+                  "default": ""
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Activity type",
+                  "enum": ["video", "document", "dynamic", "assignment"]
+                },
+                "video_subtype": {
+                  "type": "string",
+                  "description": "Video subtype (required if type is 'video')",
+                  "enum": ["youtube", "hosted"]
+                },
+                "video_url": {
+                  "type": "string",
+                  "description": "Video URL (required if type is 'video')",
+                  "format": "uri"
+                },
+                "document_subtype": {
+                  "type": "string",
+                  "description": "Document subtype (required if type is 'document')",
+                  "enum": ["pdf", "doc"]
+                },
+                "document_url": {
+                  "type": "string",
+                  "description": "Document URL (required if type is 'document')",
+                  "format": "uri"
+                },
+                "blocks": {
+                  "type": "array",
+                  "description": "Array of content blocks (required if type is 'dynamic')",
+                  "items": {
+                    "type": "object",
+                    "required": ["type"],
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "description": "Block type",
+                        "enum": [
+                          "text",
+                          "quiz",
+                          "callout_info",
+                          "callout_warning",
+                          "image",
+                          "code_block",
+                          "table",
+                          "badge",
+                          "button",
+                          "flipcard",
+                          "math_equation",
+                          "embedded_video",
+                          "pdf_block",
+                          "web_preview",
+                          "scenarios"
+                        ]
+                      },
+                      "content": {
+                        "description": "Block content (structure varies by block type)"
+                      }
+                    }
+                  }
+                },
+                "assignment": {
+                  "type": "object",
+                  "description": "Assignment details (required if type is 'assignment')",
+                  "required": ["title", "description", "due_date", "grading_type"],
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "due_date": {
+                      "type": "string",
+                      "description": "ISO 8601 date string",
+                      "format": "date-time"
+                    },
+                    "grading_type": {
+                      "type": "string",
+                      "enum": ["ALPHABET", "NUMERIC", "PERCENTAGE"]
+                    },
+                    "tasks": {
+                      "type": "array",
+                      "description": "Array of assignment tasks",
+                      "items": {
+                        "type": "object",
+                        "required": ["title", "description", "assignment_type", "max_grade_value"],
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "hint": {
+                            "type": "string",
+                            "default": ""
+                          },
+                          "reference_file": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "assignment_type": {
+                            "type": "string",
+                            "enum": ["FILE_SUBMISSION", "QUIZ", "FORM", "OTHER"]
+                          },
+                          "max_grade_value": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                          },
+                          "contents": {
+                            "type": "object",
+                            "description": "Task-specific content"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

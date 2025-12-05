@@ -36,6 +36,7 @@ from src.services.orgs.orgs import (
     get_orgs_by_user,
     get_orgs_by_user_admin,
     update_org,
+    update_org_config,
     update_org_logo,
     update_org_preview,
     update_org_signup_mechanism,
@@ -76,6 +77,19 @@ async def api_create_org_withconfig(
     return await create_org_with_config(
         request, org_object, current_user, db_session, config_object
     )
+
+
+@router.get("/slug/{org_slug}")
+async def api_get_org_by_slug(
+    request: Request,
+    org_slug: str,
+    current_user: PublicUser = Depends(get_current_user),
+    db_session: Session = Depends(get_db_session),
+) -> OrganizationRead:
+    """
+    Get single Org by Slug
+    """
+    return await get_organization_by_slug(request, org_slug, db_session, current_user)
 
 
 @router.get("/{org_id}")
@@ -151,6 +165,22 @@ async def api_remove_user_from_org(
 
 
 # Config related routes
+@router.put("/{org_id}/config")
+async def api_update_org_config(
+    request: Request,
+    org_id: int,
+    config_object: OrganizationConfigBase,
+    current_user: PublicUser = Depends(get_current_user),
+    db_session: Session = Depends(get_db_session),
+):
+    """
+    Update organization configuration
+    """
+    return await update_org_config(
+        request, config_object, org_id, current_user, db_session
+    )
+
+
 @router.put("/{org_id}/signup_mechanism")
 async def api_get_org_signup_mechanism(
     request: Request,
@@ -283,19 +313,6 @@ async def api_delete_org_users_invites(
     Delete org users invites
     """
     return await remove_invited_user(request, org_id, email, db_session, current_user)
-
-
-@router.get("/slug/{org_slug}")
-async def api_get_org_by_slug(
-    request: Request,
-    org_slug: str,
-    current_user: PublicUser = Depends(get_current_user),
-    db_session: Session = Depends(get_db_session),
-) -> OrganizationRead:
-    """
-    Get single Org by Slug
-    """
-    return await get_organization_by_slug(request, org_slug, db_session, current_user)
 
 
 @router.put("/{org_id}/logo")
