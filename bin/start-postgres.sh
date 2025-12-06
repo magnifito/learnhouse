@@ -26,7 +26,7 @@ if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
     fi
 else
     echo "🚀 Creating new PostgreSQL container..."
-    DOCKER_API_VERSION=1.43 docker run -d \
+    docker run -d \
         --name ${CONTAINER_NAME} \
         -p ${POSTGRES_PORT}:5432 \
         -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \

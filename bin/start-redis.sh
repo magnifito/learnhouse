@@ -23,7 +23,7 @@ if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
     fi
 else
     echo "🚀 Creating new Redis container..."
-    DOCKER_API_VERSION=1.43 docker run -d \
+    docker run -d \
         --name ${CONTAINER_NAME} \
         -p ${REDIS_PORT}:6379 \
         redis:7-alpine

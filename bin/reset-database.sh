@@ -25,7 +25,7 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
 fi
 
 # Drop and recreate schema
-DOCKER_API_VERSION=1.43 docker exec ${CONTAINER_NAME} \
+docker exec ${CONTAINER_NAME} \
     psql -U ${POSTGRES_USER} -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
 
 echo "✅ Database schema reset successfully"

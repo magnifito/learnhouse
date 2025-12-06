@@ -167,7 +167,7 @@ cd apps/api && alembic upgrade head
 
 ## Notes
 
-- Scripts use `DOCKER_API_VERSION=1.43` for compatibility
+
 - PostgreSQL uses version 15
 - Redis uses version 7 (Alpine)
 - All scripts include error handling (`set -e`)
