@@ -8,8 +8,8 @@ import { isDevEnv } from './auth/options'
 import Script from 'next/script'
 import { NextIntlClientProvider } from 'next-intl'
 import { useEffect, useState } from 'react'
-import { getLocaleFromCookie, type Locale } from '@/i18n/request'
-import { defaultLocale, rtlLocales } from '@/i18n/config'
+import { getLocaleFromCookie } from '@/i18n/utils'
+import { defaultLocale, rtlLocales, type Locale } from '@/i18n/config'
 
 export default function RootLayout({
   children,

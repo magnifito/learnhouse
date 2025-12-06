@@ -1,5 +1,5 @@
 import { getUriWithOrg } from '@services/config/config'
-import { getLocaleFromCookie } from '@/i18n/request'
+import { getLocaleFromCookie } from '@/i18n/utils'
 
 /**
  * Get current locale for API requests

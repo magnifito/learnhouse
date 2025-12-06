@@ -11,7 +11,7 @@ import {
 } from "@components/ui/select";
 import { Label } from "@components/ui/label";
 import { locales, localeNames, type Locale, defaultLocale } from '@/i18n/config';
-import { getLocaleFromCookie, setLocaleCookie } from '@/i18n/request';
+import { getLocaleFromCookie, setLocaleCookie } from '@/i18n/utils';
 import { toast } from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
 

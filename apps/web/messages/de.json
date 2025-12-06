@@ -31,6 +31,11 @@
     "ownedCourses": "Kurse von {username}",
     "userSettings": "Einstellungen von {username}"
   },
+  "orgMenu": {
+    "courses": "Kurse",
+    "collections": "Sammlungen",
+    "progress": "Mein Fortschritt"
+  },
   "auth": {
     "signIn": "Anmelden",
     "signUp": "Registrieren",
@@ -82,9 +87,29 @@
     "resetCode": "Zurücksetzungscode",
     "passwordResetSuccess": "Passwort erfolgreich zurückgesetzt! Weiterleitung zur Anmeldung...",
     "pleaseLoginAgain": "Bitte melden Sie sich erneut mit Ihrem neuen Passwort an",
-    "passwordsDoNotMatch": "Passwörter stimmen nicht überein"
+    "passwordsDoNotMatch": "Passwörter stimmen nicht überein",
+    "emailInvalid": "Ungültige E-Mail",
+    "emailRequired": "E-Mail ist erforderlich",
+    "passwordRequired": "Passwort ist erforderlich",
+    "passwordTooShort": "Passwort ist zu kurz"
   },
   "authValidation": {
+    "congratulations": "Herzlichen Glückwunsch! 🎉",
+    "completedMessage": "Sie haben erfolgreich abgeschlossen",
+    "masteredMessage": "Ihr Engagement und harte Arbeit haben sich ausgezahlt. Sie haben alle Inhalte dieses Kurses gemeistert.",
+    "loadingCertificate": "Lade Ihr Zertifikat...",
+    "yourCertificate": "Ihr Zertifikat",
+    "downloadCertificatePdf": "Zertifikat herunterladen (PDF)",
+    "verifyCertificate": "Zertifikat überprüfen",
+    "noCertificateAvailable": "Für diesen Kurs ist kein Zertifikat verfügbar. Kontaktieren Sie Ihren Kursleiter für weitere Informationen.",
+    "backToCourse": "Zurück zum Kurs",
+    "keepGoing": "Weiter so! 💪",
+    "makingProgress": "Sie machen große Fortschritte in",
+    "courseProgress": "Kursfortschritt",
+    "progressLabel": "Fortschritt",
+    "activitiesCompleted": "{completed} von {total} Aktivitäten abgeschlossen",
+    "encouragement": "Sie machen das großartig! Schließen Sie die verbleibenden Aktivitäten ab, um Ihr Kursabschlusszertifikat freizuschalten.",
+    "continueLearning": "Weiterlernen",
     "emailRequired": "Erforderlich",
     "emailInvalid": "Ungültige E-Mail-Adresse",
     "passwordRequired": "Erforderlich",
@@ -93,6 +118,76 @@
     "usernameTooShort": "Benutzername muss mindestens 4 Zeichen lang sein",
     "bioRequired": "Erforderlich",
     "somethingWentWrong": "Etwas ist schiefgelaufen"
+  },
+  "certificatePage": {
+    "authRequired": "Authentifizierung erforderlich, um Zertifikat anzuzeigen",
+    "notFound": "Zertifikat nicht gefunden",
+    "loadError": "Fehler beim Laden des Zertifikats",
+    "loading": "Lädt...",
+    "unavailableTitle": "Zertifikat nicht verfügbar",
+    "backToCourse": "Zurück zum Kurs",
+    "noCertificateTitle": "Noch kein Zertifikat",
+    "noCertificateMessage": "Sie haben noch kein Zertifikat für diesen Kurs erhalten.",
+    "downloadPdf": "PDF herunterladen",
+    "idLabel": "ID:",
+    "certificateLabel": "Zertifikat für",
+    "defaultDescription": "Für den erfolgreichen Abschluss der Kursanforderungen.",
+    "awardedLabel": "Verliehen am",
+    "instructorLabel": "Kursleiter",
+    "verifiedAt": "Überprüft am",
+    "downloadInstructions": "Sie können dieses Zertifikat als PDF herunterladen oder den Verifizierungslink teilen.",
+    "qrCodeInfo": "Scannen Sie den QR-Code, um die Echtheit dieses Zertifikats zu überprüfen.",
+    "certificateIdLabel": "Zertifikats-ID:",
+    "types": {
+      "completion": "Abschluss",
+      "achievement": "Leistung",
+      "assessment": "Bewertung",
+      "participation": "Teilnahme",
+      "mastery": "Meisterschaft",
+      "professional": "Professionell",
+      "continuing": "Weiterbildung",
+      "workshop": "Workshop",
+      "specialization": "Spezialisierung"
+    }
+  },
+  "courseEndView": {
+    "authRequired": "Bitte melden Sie sich an, um Ihr Zertifikat anzuzeigen",
+    "notFound": "Zertifikat nicht gefunden",
+    "loadError": "Fehler beim Laden des Zertifikats",
+    "congratulations": "Herzlichen Glückwunsch!",
+    "completedMessage": "Sie haben abgeschlossen",
+    "masteredMessage": "Sie haben den Inhalt dieses Kurses gemeistert!",
+    "loadingCertificate": "Lade Ihr Zertifikat...",
+    "yourCertificate": "Ihr Zertifikat",
+    "downloadCertificatePdf": "Zertifikat herunterladen (PDF)",
+    "verifyCertificate": "Überprüfen",
+    "noCertificateAvailable": "Zertifikat nicht verfügbar",
+    "backToCourse": "Zurück zum Kurs",
+    "keepGoing": "Weiter so!",
+    "makingProgress": "Sie machen Fortschritte bei",
+    "courseProgress": "Kursfortschritt",
+    "progressLabel": "Fortschritt",
+    "activitiesCompleted": "{completed} / {total} Aktivitäten",
+    "encouragement": "Machen Sie weiter so!",
+    "continueLearning": "Weiterlernen"
+  },
+  "searchBar": {
+    "placeholder": "Suche nach Kursen, Benutzern, Sammlungen...",
+    "discoverTitle": "Entdecken Sie Ihre nächste Lernreise",
+    "discoverSubtitle": "Beginnen Sie zu tippen, um durch verfügbare Inhalte zu suchen",
+    "suggestions": "Suchvorschläge",
+    "quickResults": "Schnelle Ergebnisse",
+    "sections": {
+      "courses": "Kurse",
+      "collections": "Sammlungen",
+      "users": "Benutzer"
+    },
+    "labels": {
+      "course": "Kurs",
+      "collection": "Sammlung",
+      "user": "Benutzer"
+    },
+    "viewAll": "Alle Ergebnisse anzeigen"
   },
   "courses": {
     "title": "Kurse",
@@ -138,13 +233,57 @@
     "usersDescription": "Benutzer und Rollen Ihrer Organisation verwalten",
     "learnhouseUniversity": "LearnHouse University",
     "accountSettings": "Kontoeinstellungen",
-    "accountSettingsDescription": "Persönliche Einstellungen, Passwörter, E-Mail konfigurieren"
+    "accountSettingsDescription": "Konfigurieren Sie Ihre persönlichen Einstellungen, Passwörter, E-Mail"
+  },
+  "collections": {
+    "title": "Sammlungen",
+    "noCollectionsYet": "Noch keine Sammlungen",
+    "createCollectionToAddContent": "Erstellen Sie Sammlungen, um Kurse zu gruppieren",
+    "newCollection": "Neue Sammlung",
+    "create": "Neue Sammlung erstellen",
+    "createDescription": "Gruppieren Sie Ihre Kurse in einer Sammlung, um sie einfacher zu finden und zu verwalten.",
+    "name": "Sammlungsname",
+    "namePlaceholder": "Sammlungsnamen eingeben",
+    "visibility": "Sichtbarkeit",
+    "public": "Öffentliche Sammlung - Für alle sichtbar",
+    "private": "Private Sammlung - Nur für Organisationsmitglieder sichtbar",
+    "description": "Beschreibung",
+    "descriptionPlaceholder": "Sammlungsbeschreibung eingeben",
+    "selectCourses": "Kurse auswählen",
+    "noCourses": "Keine Kurse verfügbar. Erstellen Sie zuerst einige Kurse.",
+    "selectedCourses": "Ausgewählte Kurse: {count}",
+    "creating": "Erstellen...",
+    "success": "Sammlung erfolgreich erstellt!",
+    "error": "Fehler beim Erstellen der Sammlung. Bitte versuchen Sie es erneut.",
+    "loadError": "Fehler beim Laden der Kurse. Bitte versuchen Sie es später erneut.",
+    "validation": {
+      "nameRequired": "Bitte geben Sie einen Sammlungsnamen ein",
+      "descRequired": "Bitte geben Sie eine Beschreibung ein",
+      "courseRequired": "Bitte wählen Sie mindestens einen Kurs aus"
+    },
+    "createButton": "Sammlung erstellen"
+  },
+  "trail": {
+    "title": "Pfad",
+    "myProgress": "Mein Fortschritt",
+    "noCoursesInProgress": "Keine Kurse in Bearbeitung",
+    "startCourseToSeeProgress": "Starten Sie einen Kurs, um Ihren Fortschritt hier zu sehen",
+    "myCertificates": "Meine Zertifikate",
+    "noCertificatesEarned": "Noch keine Zertifikate erhalten",
+    "completeCoursesToEarnCertificates": "Schließen Sie Kurse ab, um Zertifikate zu erhalten",
+    "download": "Herunterladen",
+    "quitAllCourses": "Alle Kurse verlassen",
+    "quittingCourses": "Kurse werden verlassen",
+    "quitConfirmationTitle": "Alle Kurse verlassen?",
+    "quitConfirmationMessage": "Sind Sie sicher, dass Sie alle Kurse verlassen möchten? Diese Aktion kann nicht rückgängig gemacht werden und Sie verlieren Ihren gesamten Fortschritt.",
+    "verify": "Überprüfen"
   },
   "settings": {
     "title": "Einstellungen",
     "general": "Allgemein",
     "account": "Konto",
     "accountSettings": "Kontoeinstellungen",
+    "managePersonalInfo": "Verwalten Sie Ihre persönlichen Informationen und Einstellungen",
     "preferences": "Präferenzen",
     "language": "Sprache",
     "selectLanguage": "Wählen Sie Ihre bevorzugte Sprache",
@@ -169,7 +308,6 @@
     "loggedOutAfterPasswordChange": "Sie werden nach dem Ändern Ihres Passworts abgemeldet",
     "updating": "Wird aktualisiert...",
     "updatePassword": "Passwort aktualisieren",
-    "managePersonalInfo": "Verwalten Sie Ihre persönlichen Informationen und Einstellungen",
     "email": "E-Mail",
     "emailPlaceholder": "Ihre E-Mail-Adresse",
     "emailRequired": "E-Mail ist erforderlich",
@@ -277,7 +415,181 @@
     "aboutMaxLength": "Der Über-Text muss 400 Zeichen oder weniger haben",
     "labelRequired": "Organisationsetikett ist erforderlich",
     "saving": "Wird gespeichert...",
-    "saveChanges": "Änderungen speichern"
+    "saveChanges": "Änderungen speichern",
+    "socials": {
+      "title": "Soziale Links",
+      "description": "Verwalten Sie die Social-Media-Präsenz Ihrer Organisation",
+      "subtitle": "Soziale Links",
+      "customLinks": "Benutzerdefinierte Links",
+      "labelPlaceholder": "Beschriftung",
+      "urlPlaceholder": "URL",
+      "addLink": "Link hinzufügen",
+      "limitMessage": "Fügen Sie bis zu 3 benutzerdefinierte Links hinzu, die im Profil Ihrer Organisation erscheinen",
+      "twitterPlaceholder": "Twitter-Profil-URL",
+      "facebookPlaceholder": "Facebook-Profil-URL",
+      "instagramPlaceholder": "Instagram-Profil-URL",
+      "youtubePlaceholder": "YouTube-Kanal-URL",
+      "linkDefaultLabel": "Link"
+    },
+    "other": {
+      "scriptsTitle": "Skripte",
+      "scriptsDescription": "Fügen Sie Ihrer Organisation benutzerdefinierte JavaScript-Skripte hinzu",
+      "scriptsTooltip": "Zur Sicherheit Ihrer Organisation stellen Sie bitte sicher, dass Sie jedem Skript vertrauen und es verstehen, bevor Sie es hinzufügen. Skripte können mit den Seiten Ihrer Organisation interagieren.",
+      "addScript": "Skript hinzufügen",
+      "noScripts": "Noch keine Skripte hinzugefügt",
+      "noScriptsDesc": "Fügen Sie Ihr erstes Skript hinzu, um zu beginnen",
+      "scriptName": "Skriptname",
+      "scriptNamePlaceholder": "Skriptnamen eingeben",
+      "scriptContent": "Skriptinhalt",
+      "scriptContentPlaceholder": "JavaScript-Code eingeben",
+      "saveScript": "Skript speichern",
+      "scriptSaved": "Skript erfolgreich gespeichert",
+      "scriptSaveError": "Fehler beim Speichern des Skripts",
+      "scriptDeleted": "Skript erfolgreich gelöscht",
+      "scriptDeleteError": "Fehler beim Löschen des Skripts",
+      "deletingScript": "Skript wird gelöscht...",
+      "nameRequired": "Skriptname ist erforderlich",
+      "contentRequired": "Skriptinhalt ist erforderlich"
+    }
+  },
+  "landing": {
+    "landingPage": "Startseite",
+    "beta": "BETA",
+    "customizeLanding": "Passen Sie die Startseite Ihrer Organisation an",
+    "savingChanges": "Speichern...",
+    "saveChanges": "Änderungen speichern",
+    "landingPageSaved": "Startseite erfolgreich gespeichert",
+    "errorSavingLanding": "Fehler beim Speichern der Startseite",
+    "orgIdNotFound": "Organisations-ID nicht gefunden",
+    "sections": "Abschnitte",
+    "addSection": "Abschnitt hinzufügen",
+    "selectToEdit": "Wählen Sie einen Bereich zum Bearbeiten aus oder fügen Sie einen neuen hinzu",
+    "heroSection": "Hero-Bereich",
+    "sectionTitle": "Bereichstitel",
+    "enterSectionTitle": "Geben Sie den Bereichstitel ein",
+    "tabs": {
+      "content": "Inhalt",
+      "background": "Hintergrund",
+      "buttons": "Buttons",
+      "illustration": "Illustration"
+    },
+    "heading": {
+      "label": "Überschrift",
+      "placeholder": "Geben Sie den Text der Überschrift ein",
+      "color": "Farbe der Überschrift"
+    },
+    "subheading": {
+      "label": "Unterüberschrift",
+      "placeholder": "Geben Sie den Text der Unterüberschrift ein",
+      "color": "Farbe der Unterüberschrift"
+    },
+    "background": {
+      "type": "Hintergrundtyp",
+      "selectType": "Wählen Sie den Hintergrundtyp",
+      "types": {
+        "solid": "Einfarbige Farbe",
+        "gradient": "Verlauf",
+        "image": "Bild"
+      },
+      "color": "Hintergrundfarbe",
+      "gradient": {
+        "type": "Verlaufstyp",
+        "selectType": "Wählen Sie den Verlaufstyp",
+        "preset": "Vordefinierte Verläufe",
+        "custom": "Benutzerdefinierter Verlauf",
+        "startColor": "Startfarbe",
+        "endColor": "Endfarbe",
+        "presetLabel": "Verlaufsvoreinstellung",
+        "selectPreset": "Wählen Sie die Verlaufsvoreinstellung",
+        "direction": "Verlaufsrichtung",
+        "selectDirection": "Wählen Sie die Verlaufsrichtung"
+      },
+      "image": {
+        "label": "Hintergrundbild",
+        "upload": "Bild hochladen",
+        "preview": "Hintergrundvorschau"
+      }
+    },
+    "buttons": {
+      "textAndColors": "Button-Text & Farben",
+      "text": "Button-Text",
+      "textColor": "Text",
+      "background": "Hintergrund",
+      "link": "Button-Link",
+      "placeholder": "Button-Link"
+    },
+    "addButton": "Button hinzufügen",
+    "newButton": "Neuer Button",
+    "illustration": {
+      "image": "Illustrationsbild",
+      "url": "Illustrations-URL",
+      "alt": "Alternativtext",
+      "upload": "Illustration hochladen",
+      "position": "Position",
+      "selectPosition": "Position auswählen",
+      "size": "Größe",
+      "selectSize": "Größe auswählen",
+      "remove": "Illustration entfernen"
+    },
+    "textAndImageSection": "Text & Bild Bereich",
+    "content": "Inhalt",
+    "enterSectionContent": "Geben Sie den Bereichsinhalt ein",
+    "imagePosition": "Bildposition",
+    "selectImagePosition": "Wählen Sie die Bildposition",
+    "uploadNewImage": "Neues Bild hochladen",
+    "uploading": "Wird hochgeladen...",
+    "successImageUpload": "Bild erfolgreich hochgeladen",
+    "errorImageUpload": "Fehler beim Hochladen des Bildes",
+    "logosSection": "Logos Abschnitt",
+    "logos": {
+      "label": "Logos",
+      "url": "Logo URL",
+      "upload": "Logo hochladen",
+      "add": "Logo hinzufügen"
+    },
+    "peopleSection": "Personen Abschnitt",
+    "people": {
+      "label": "Teammitglieder",
+      "name": "Name",
+      "enterName": "Name eingeben",
+      "role": "Rolle",
+      "enterRole": "Rolle eingeben",
+      "username": "Benutzername",
+      "description": "Beschreibung",
+      "descriptionPlaceholder": "Beschreibung oder Rolle",
+      "image": "Profilbild",
+      "upload": "Bild hochladen",
+      "add": "Mitglied hinzufügen"
+    },
+    "coursesSection": "Kurse Abschnitt",
+    "courses": {
+      "label": "Ausgewählte Kurse",
+      "search": "Kurse suchen...",
+      "select": "Kurse zur Anzeige auswählen",
+      "noResults": "Keine Kurse gefunden",
+      "loading": "Kurse laden...",
+      "selected": "Ausgewählt",
+      "selectButton": "Auswählen"
+    },
+    "maxCourses": "Maximale Anzahl an Kursen erreicht",
+    "common": {
+      "left": "Links",
+      "right": "Rechts",
+      "small": "Klein",
+      "medium": "Mittel",
+      "large": "Groß",
+      "altText": "Alternativtext"
+    },
+    "heroLabel": "Hero",
+    "heroDescription": "Fügen Sie einen Hero-Abschnitt mit Überschrift und Call-to-Action hinzu",
+    "textImageLabel": "Text & Bild",
+    "textImageDescription": "Fügen Sie einen Abschnitt mit Text und Bild hinzu",
+    "logosLabel": "Logos",
+    "logosDescription": "Fügen Sie einen Abschnitt hinzu, um Logos zu präsentieren",
+    "peopleLabel": "Personen",
+    "peopleDescription": "Fügen Sie einen Abschnitt hinzu, um Teammitglieder hervorzuheben",
+    "coursesLabel": "Kurse",
+    "coursesDescription": "Fügen Sie einen Abschnitt hinzu, um ausgewählte Kurse zu präsentieren"
   },
   "images": {
     "imagesAndPreviews": "Bilder & Vorschauen",
@@ -291,45 +603,432 @@
     "uploadingThumbnail": "Miniaturansicht wird hochgeladen...",
     "thumbnailUpdated": "Miniaturansicht aktualisiert",
     "failedToUploadThumbnail": "Fehler beim Hochladen der Miniaturansicht",
-    "previewImages": "Vorschaubilder",
-    "uploadPreviewImages": "Vorschaubilder hochladen",
-    "dragDropImages": "Ziehen Sie Bilder hierher oder klicken Sie zum Auswählen",
-    "maxPreviews": "Maximal {max} Vorschauen",
-    "onlyUploadsRemaining": "Sie können nur noch {count} Vorschau{plural} hochladen",
-    "uploadingPreviews": "{count} Vorschau{plural} wird hochgeladen...",
-    "previewsAdded": "{count} Vorschau{plural} hinzugefügt",
+    "uploading": "Hochladen...",
+    "uploadNewLogo": "Neues Logo hochladen",
+    "acceptsPngJpg": "Akzeptiert PNG, JPG (max 5MB)",
+    "recommendedSize": "Empfohlene Größe: 200x100 Pixel",
+    "uploadNewThumbnail": "Neue Miniaturansicht hochladen",
+    "uploadingPreviews": "{count} Vorschau(en) wird/werden hochgeladen...",
+    "canOnlyUpload": "Sie können nur noch {count} Vorschau(en) hochladen",
+    "previewsAdded": "{count} Vorschau(en) hinzugefügt",
     "failedToUploadPreviews": "Fehler beim Hochladen der Vorschauen",
-    "noPreviewsYet": "Noch keine Vorschauen",
-    "addPreviewsDescription": "Fügen Sie Bilder hinzu, um Ihre Organisation zu präsentieren",
-    "videoUrl": "Video-URL",
-    "addVideoPreview": "Video-Vorschau hinzufügen",
-    "addVideo": "Video hinzufügen",
+    "removingPreview": "Vorschau wird entfernt...",
+    "previewRemoved": "Vorschau entfernt",
+    "failedToRemovePreview": "Fehler beim Entfernen der Vorschau",
     "invalidVideoUrl": "Ungültige {type}-URL",
     "videoAlreadyAdded": "Dieses Video wurde bereits hinzugefügt",
     "addingVideoPreview": "Video-Vorschau wird hinzugefügt...",
     "videoPreviewAdded": "Video-Vorschau hinzugefügt",
     "failedToAddVideoPreview": "Fehler beim Hinzufügen der Video-Vorschau",
-    "pasteYouTubeOrLoom": "Fügen Sie eine YouTube- oder Loom-URL ein",
-    "removingPreview": "Vorschau wird entfernt...",
-    "previewRemoved": "Vorschau entfernt",
-    "failedToRemovePreview": "Fehler beim Entfernen der Vorschau",
-    "organizationCourses": "Organisationskurse",
-    "loadingCourses": "Kurse werden geladen...",
-    "noCourses": "Keine Kurse verfügbar",
-    "selectCourse": "Kurs auswählen",
-    "addCourse": "Kurs hinzufügen",
-    "addingCourse": "Kurs wird hinzugefügt...",
-    "courseAdded": "Kurs hinzugefügt",
-    "failedToAddCourse": "Fehler beim Hinzufügen des Kurses",
-    "removingCourse": "Kurs wird entfernt...",
-    "courseRemoved": "Kurs entfernt",
-    "failedToRemoveCourse": "Fehler beim Entfernen des Kurses",
-    "featuredCourses": "Vorgestellte Kurse",
-    "noFeaturedCourses": "Noch keine vorgestellten Kurse",
-    "addFeaturedCourses": "Fügen Sie Kurse hinzu, um sie auf Ihrer Startseite hervorzuheben",
-    "uploadNewLogo": "Neues Logo hochladen",
-    "uploadNewThumbnail": "Neue Miniaturansicht hochladen",
-    "acceptsPngJpg": "Akzeptiert PNG, JPG (max 5MB)",
-    "recommendedSize": "Empfohlene Größe: 200x100 Pixel"
+    "updatingPreviewOrder": "Vorschau-Reihenfolge wird aktualisiert...",
+    "previewOrderUpdated": "Vorschau-Reihenfolge aktualisiert",
+    "failedToUpdatePreviewOrder": "Fehler beim Aktualisieren der Vorschau-Reihenfolge",
+    "addPreview": "Vorschau hinzufügen",
+    "uploadImages": "Bilder hochladen",
+    "pngJpgMax": "PNG, JPG (max 5MB)",
+    "youtube": "YouTube",
+    "addYoutubeVideo": "YouTube-Video hinzufügen",
+    "loom": "Loom",
+    "addLoomVideo": "Loom-Video hinzufügen",
+    "addYoutubeVideoTitle": "YouTube-Video hinzufügen",
+    "pasteYoutubeUrl": "Fügen Sie Ihre YouTube-Video-URL ein",
+    "addLoomVideoTitle": "Loom-Video hinzufügen",
+    "pasteLoomUrl": "Fügen Sie Ihre Loom-Video-URL ein",
+    "youtubeUrlPlaceholder": "https://youtube.com/watch?v=...",
+    "loomUrlPlaceholder": "https://www.loom.com/share/..."
+  },
+  "dashboardHome": {
+    "hello": "Hallo,",
+    "yourOrganizations": "Ihre Organisationen",
+    "noOrganizations": "Es scheint, dass Sie noch keiner Organisation angehören. Treten Sie einer bei, um sie hier zu sehen",
+    "signOut": "Abmelden"
+  },
+  "courseEditor": {
+    "name": "Name",
+    "description": "Beschreibung",
+    "about": "Über",
+    "learnings": "Lernziele",
+    "tags": "Tags",
+    "thumbnailType": "Miniaturansicht-Typ",
+    "thumbnail": "Miniaturansicht",
+    "image": "Bild",
+    "video": "Video",
+    "both": "Beide",
+    "required": "Erforderlich",
+    "maxLength": "Muss {count} Zeichen oder weniger sein",
+    "invalidFormat": "Ungültiges Format",
+    "learningsRequired": "Mindestens ein Lernziel ist erforderlich",
+    "learningsEmptyText": "Alle Lernziele müssen Text enthalten",
+    "saveSuccess": "Kursstruktur gespeichert",
+    "saveError": "Fehler beim Speichern der Kursstruktur"
+  },
+  "courseListings": {
+    "title": "Kurse",
+    "rightsGuide": "Rechte-Leitfaden",
+    "noCoursesYet": "Noch keine Kurse",
+    "createCourseToAddContent": "Erstellen Sie einen Kurs, um Inhalte hinzuzufügen",
+    "noCoursesAvailable": "Noch keine Kurse verfügbar",
+    "createCourse": "Kurs erstellen",
+    "createNewCourse": "Einen neuen Kurs erstellen"
+  },
+  "courseStructure": {
+    "createChapter": "Kapitel erstellen",
+    "addChapter": "Kapitel hinzufügen",
+    "addChapterDescription": "Ein neues Kapitel zum Kurs hinzufügen"
+  },
+  "breadcrumbs": {
+    "courses": "Kurse",
+    "assignments": "Aufgaben",
+    "accountSettings": "Kontoeinstellungen",
+    "orgUsers": "Organisationsbenutzer",
+    "orgSettings": "Organisationseinstellungen",
+    "payments": "Zahlungen"
+  },
+  "errorUI": {
+    "defaultMessage": "Etwas ist schiefgelaufen",
+    "retry": "Wiederholen",
+    "home": "Startseite"
+  },
+  "userProfilePopup": {
+    "errorLoading": "Benutzerdaten konnten nicht geladen werden"
+  },
+  "createCourseModal": {
+    "courseName": "Kursname",
+    "description": "Beschreibung",
+    "thumbnail": "Kurs-Miniaturansicht",
+    "uploadImage": "Bild hochladen",
+    "chooseFromGallery": "Aus Galerie wählen",
+    "unsplashError": "Fehler beim Laden des Bildes von Unsplash",
+    "enterToAdd": "Enter zum Hinzufügen...",
+    "learnings": "Kurs-Lernziele (Was werden Sie lehren?)",
+    "tags": "Kurs-Tags",
+    "visibility": "Kurs-Sichtbarkeit",
+    "public": "Öffentlich (Im Internet sichtbar)",
+    "private": "Privat (Privat für Benutzer)",
+    "selectVisibility": "Sichtbarkeit auswählen",
+    "createCourse": "Kurs erstellen",
+    "creating": "Kurs wird erstellt...",
+    "success": "Kurs erfolgreich erstellt",
+    "error": "Fehler beim Erstellen des Kurses",
+    "validation": {
+      "nameRequired": "Kursname ist erforderlich",
+      "nameMax": "Muss 100 Zeichen oder weniger sein",
+      "descMax": "Muss 1000 Zeichen oder weniger sein"
+    }
+  },
+  "newChapterModal": {
+    "chapterName": "Kapitelname",
+    "chapterDesc": "Kapitelbeschreibung",
+    "namePlaceholder": "Bitte geben Sie einen Kapitelnamen an",
+    "descPlaceholder": "Bitte geben Sie eine Kapitelbeschreibung an",
+    "createChapter": "Kapitel erstellen"
+  },
+  "courseAccess": {
+    "title": "Zugang zum Kurs",
+    "description": "Wählen Sie, ob Ihr Kurs öffentlich im Internet verfügbar oder nur für angemeldete Benutzer zugänglich sein soll",
+    "publicTitle": "Auf Öffentlich ändern?",
+    "publicMessage": "Sind Sie sicher, dass dieser Kurs öffentlich im Internet verfügbar sein soll?",
+    "publicButton": "Auf Öffentlich ändern",
+    "publicCardTitle": "Öffentlich",
+    "publicCardDesc": "Der Kurs ist öffentlich im Internet verfügbar, wird von Suchmaschinen indiziert und kann von jedem aufgerufen werden",
+    "active": "Aktiv",
+    "usersOnlyTitle": "Auf Nur Benutzer ändern?",
+    "usersOnlyMessage": "Sind Sie sicher, dass dieser Kurs nur für angemeldete Benutzer zugänglich sein soll?",
+    "usersOnlyButton": "Auf Nur Benutzer ändern",
+    "usersOnlyCardTitle": "Nur Benutzer",
+    "usersOnlyCardDesc": "Der Kurs ist nur für angemeldete Benutzer zugänglich, zusätzlich können Sie wählen, welche Benutzergruppen auf diesen Kurs zugreifen können",
+    "userGroupsTitle": "Benutzergruppen",
+    "userGroupsDesc": "Sie können wählen, nur bestimmten Benutzergruppen Zugang zu diesem Kurs zu geben, indem Sie ihn mit einer Benutzergruppe verknüpfen",
+    "tableHeaderName": "Name",
+    "tableHeaderActions": "Aktionen",
+    "unlinkTitle": "Benutzergruppe entknüpfen?",
+    "unlinkMessage": "Benutzer aus dieser Benutzergruppe haben keinen Zugang mehr zu diesem Kurs",
+    "deleteLink": "Verknüpfung löschen",
+    "deleteLinkButton": "Verknüpfung löschen",
+    "linkToGroupTitle": "Kurs mit einer Benutzergruppe verknüpfen",
+    "linkToGroupDesc": "Wählen Sie eine Benutzergruppe, um diesen Kurs zu verknüpfen. Benutzer aus dieser Benutzergruppe haben Zugang zu diesem Kurs.",
+    "linkToGroupButton": "Mit einer Benutzergruppe verknüpfen",
+    "linkToGroupWarning": "Benutzer, die nicht Teil der Benutzergruppe sind, haben keinen Zugang mehr zu diesem Kurs",
+    "userGroupName": "Benutzergruppenname",
+    "noGroups": "Keine Benutzergruppen verfügbar",
+    "createGroup": "Eine Benutzergruppe erstellen",
+    "linkButton": "Verknüpfen",
+    "toasts": {
+      "unlinkSuccess": "Erfolgreich von Benutzergruppe entknüpft",
+      "unlinkError": "Ein Fehler ist beim Entknüpfen der Benutzergruppe aufgetreten.",
+      "linkSuccess": "Erfolgreich mit Benutzergruppe verknüpft"
+    }
+  },
+  "orgUsers": {
+    "title": "Aktive Benutzer",
+    "description": "Verwalten Sie Ihre Organisationsbenutzer, weisen Sie Rollen und Berechtigungen zu",
+    "tableHeaderUser": "Benutzer",
+    "tableHeaderRole": "Rolle",
+    "tableHeaderActions": "Aktionen",
+    "editRole": "Rolle bearbeiten",
+    "removeFromOrg": "Aus Organisation entfernen",
+    "updateRoleTitle": "Rolle aktualisieren",
+    "updateRoleDesc": "Rolle von @{username} aktualisieren",
+    "removeUserTitle": "{username} löschen?",
+    "removeUserMessage": "Sind Sie sicher, dass Sie diesen Benutzer aus der Organisation entfernen möchten?",
+    "removeUserButton": "Benutzer entfernen",
+    "toasts": {
+      "removing": "Entfernen...",
+      "removeSuccess": "Benutzer aus Organisation entfernt",
+      "removeError": "Fehler beim Entfernen des Benutzers"
+    }
+  },
+  "rolesUpdate": {
+    "label": "Rollen",
+    "placeholder": "Bitte wählen Sie eine Rolle für den Benutzer",
+    "loading": "Rollen werden geladen...",
+    "select": "Eine Rolle auswählen",
+    "submit": "Benutzerrolle aktualisieren",
+    "toasts": {
+      "updating": "Rolle wird aktualisiert...",
+      "success": "Rolle aktualisiert",
+      "error": "Fehler beim Aktualisieren der Rolle"
+    }
+  },
+  "addRoleModal": {
+    "roleName": "Rollenname",
+    "description": "Beschreibung",
+    "namePlaceholder": "z.B. Kursmanager",
+    "descPlaceholder": "Beschreiben Sie, was diese Rolle tun kann...",
+    "predefinedRights": "Vordefinierte Rechte",
+    "permissions": "Berechtigungen",
+    "selectAll": "Alle auswählen",
+    "deselectAll": "Alle abwählen",
+    "select": "Auswählen",
+    "deselect": "Abwählen",
+    "cancel": "Abbrechen",
+    "createRole": "Rolle erstellen",
+    "creating": "Erstellen...",
+    "validation": {
+      "required": "Erforderlich",
+      "nameMin": "Name muss mindestens 2 Zeichen lang sein",
+      "descMin": "Beschreibung muss mindestens 10 Zeichen lang sein"
+    },
+    "sections": {
+      "courses": "Kurse",
+      "users": "Benutzer",
+      "usergroups": "Benutzergruppen",
+      "collections": "Sammlungen",
+      "organizations": "Organisationen",
+      "coursechapters": "Kurskapitel",
+      "activities": "Aktivitäten",
+      "roles": "Rollen",
+      "dashboard": "Dashboard"
+    },
+    "predefined": {
+      "admin": {
+        "name": "Admin",
+        "desc": "Volle Plattformkontrolle mit allen Berechtigungen"
+      },
+      "courseManager": {
+        "name": "Kursmanager",
+        "desc": "Kann Kurse, Kapitel und Aktivitäten verwalten"
+      },
+      "instructor": {
+        "name": "Dozent",
+        "desc": "Kann eigene Kurse erstellen und verwalten"
+      },
+      "viewer": {
+        "name": "Betrachter",
+        "desc": "Lesezugriff auf Kurse und Inhalte"
+      },
+      "contentCreator": {
+        "name": "Content Creator",
+        "desc": "Kann Inhalte erstellen und bearbeiten, aber keine Benutzer verwalten"
+      },
+      "userManager": {
+        "name": "Benutzermanager",
+        "desc": "Kann Benutzer und Benutzergruppen verwalten"
+      },
+      "moderator": {
+        "name": "Moderator",
+        "desc": "Kann Inhalte moderieren und Aktivitäten verwalten"
+      },
+      "analyst": {
+        "name": "Analyst",
+        "desc": "Lesezugriff mit Analysefunktionen"
+      },
+      "guest": {
+        "name": "Gast",
+        "desc": "Eingeschränkter Zugriff für externe Benutzer"
+      }
+    },
+    "toasts": {
+      "creating": "Erstellen...",
+      "success": "Neue Rolle erstellt",
+      "error": "Neue Rolle konnte nicht erstellt werden"
+    }
+  },
+  "addUserGroupModal": {
+    "name": "Name",
+    "description": "Beschreibung",
+    "createGroup": "Benutzergruppe erstellen",
+    "loading": "Lädt...",
+    "validation": {
+      "nameRequired": "Name ist erforderlich"
+    },
+    "toasts": {
+      "creating": "Erstellen...",
+      "success": "Neue Benutzergruppe erstellt",
+      "error": "Neue Benutzergruppe konnte nicht erstellt werden"
+    }
+  },
+  "newActivityModal": {
+    "dynamicPage": "Dynamische Seite",
+    "video": "Video",
+    "document": "Dokument",
+    "assignments": "Aufgaben"
+  },
+  "assignmentStudentView": {
+    "assignment": "Aufgabe",
+    "dueDate": "Fälligkeitsdatum",
+    "description": "Aufgabenbeschreibung",
+    "taskPrefix": "Aufgabe",
+    "hint": "Hinweis",
+    "referenceDocument": "Referenzdokument"
+  },
+  "activityModals": {
+    "dynamic": {
+      "name": "Aktivitätsname",
+      "namePlaceholder": "Bitte geben Sie einen Namen für Ihre Aktivität an",
+      "description": "Aktivitätsbeschreibung",
+      "descriptionPlaceholder": "Bitte geben Sie eine Beschreibung für Ihre Aktivität an",
+      "create": "Aktivität erstellen"
+    },
+    "video": {
+      "settings": "Videoeinstellungen",
+      "startTime": "Startzeit",
+      "minutes": "Minuten",
+      "seconds": "Sekunden",
+      "endTime": "Endzeit",
+      "autoplay": "Video automatisch abspielen",
+      "muted": "Stumm starten",
+      "name": "Aktivitätsname",
+      "namePlaceholder": "Bitte geben Sie einen Namen für Ihre Aktivität an",
+      "uploadTab": "Video hochladen",
+      "youtubeTab": "YouTube-Video",
+      "fileLabel": "Videodatei",
+      "urlLabel": "YouTube-URL",
+      "urlPlaceholder": "YouTube-URL eingeben",
+      "create": "Aktivität erstellen"
+    },
+    "document": {
+      "name": "PDF-Dokumentname",
+      "namePlaceholder": "Dokumentnamen eingeben",
+      "fileLabel": "Dokumentdatei (PDF)",
+      "filePlaceholder": "Klicken, um PDF hochzuladen",
+      "fileError": "Dokumentdatei ist erforderlich",
+      "create": "Aktivität erstellen"
+    },
+    "assignment": {
+      "title": "Aufgabentitel",
+      "titlePlaceholder": "Aufgabentitel eingeben",
+      "description": "Beschreibung",
+      "descriptionPlaceholder": "Aufgabenanweisungen eingeben",
+      "dueDate": "Fälligkeitsdatum",
+      "gradingType": "Bewertungstyp",
+      "creating": "Aufgabe wird erstellt...",
+      "success": "Aufgabe erfolgreich erstellt"
+    },
+    "common": {
+      "create": "Aktivität erstellen"
+    }
+  },
+  "activityIndicators": {
+    "activityTypes": {
+      "video": "Video",
+      "document": "Dokument",
+      "dynamic": "Interaktiv",
+      "assignment": "Aufgabe",
+      "unknown": "Unbekannt"
+    },
+    "tooltips": {
+      "currentActivity": "Aktuelle Aktivität",
+      "completed": "Abgeschlossen",
+      "notStarted": "Nicht begonnen",
+      "chapter": "Kapitel {number}",
+      "chapterProgress": "{completed}/{total} abgeschlossen"
+    },
+    "certificate": {
+      "completed": "Kurs abgeschlossen!",
+      "completion": "Kursabschluss",
+      "viewCertificate": "Ihr Abschlusszertifikat anzeigen",
+      "unlockCertificate": "Schließen Sie alle Aktivitäten ab, um Ihr Zertifikat freizuschalten"
+    }
+  },
+  "courseActions": {
+    "startCourse": "Kurs starten",
+    "leaveCourse": "Kurs verlassen",
+    "starting": "Kurs wird gestartet...",
+    "leaving": "Kurs wird verlassen...",
+    "successStart": "Kurs erfolgreich gestartet",
+    "successLeave": "Kurs erfolgreich verlassen",
+    "failedStart": "Kurs konnte nicht gestartet werden. Bitte versuchen Sie es später erneut.",
+    "failedLeave": "Kurs konnte nicht verlassen werden. Bitte versuchen Sie es später erneut.",
+    "readyToBegin": "Bereit zu beginnen?",
+    "startJourney": "Beginnen Sie Ihre Lernreise mit {count} spannenden {count, plural, =1 {Aktivität} other {Aktivitäten}}",
+    "courseProgress": "Kursfortschritt",
+    "progressSummary": "{completed} von {total} abgeschlossen",
+    "youOwnThisCourse": "Sie besitzen diesen Kurs",
+    "ownCourseDesc": "Sie haben diesen Kurs gekauft und haben vollen Zugriff auf alle Inhalte.",
+    "paidCourse": "Kostenpflichtiger Kurs",
+    "paidCourseDesc": "Dieser Kurs erfordert einen Kauf, um auf seine Inhalte zugreifen zu können.",
+    "purchaseCourse": "Kurs kaufen",
+    "purchaseDesc": "Wählen Sie eine Zahlungsoption, um auf diesen Kurs zuzugreifen",
+    "authenticateToContribute": "Authentifizieren, um beizutragen",
+    "youAreContributor": "Sie sind ein Mitwirkender",
+    "applicationPending": "Mitwirkenden-Antrag ausstehend",
+    "applyToContribute": "Als Mitwirkender bewerben",
+    "submittingApplication": "Mitwirkenden-Antrag wird eingereicht...",
+    "applicationSuccess": "Ihr Antrag als Mitwirkender wurde erfolgreich eingereicht",
+    "applicationError": "Fehler beim Einreichen Ihres Antrags. Bitte versuchen Sie es später erneut.",
+    "contributeMessage": "Ich möchte zu diesem Kurs beitragen."
+  },
+  "coursePaidOptions": {
+    "subscription": "Abonnement",
+    "oneTime": "Einmalzahlung",
+    "perMonth": "(pro Monat)",
+    "benefits": "Vorteile:",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen",
+    "minimumPrice": "Mindestpreis:",
+    "price": "Preis:",
+    "choosePrice": "Wählen Sie Ihren Preis",
+    "processing": "Verarbeitung...",
+    "subscribeNow": "Jetzt abonnieren",
+    "purchaseNow": "Jetzt kaufen",
+    "failedToLoad": "Produktoptionen konnten nicht geladen werden",
+    "loading": "Lädt...",
+    "checkoutError": "Checkout-Prozess konnte nicht initiiert werden",
+    "genericError": "Ein Fehler ist bei der Verarbeitung Ihrer Anfrage aufgetreten"
+  },
+  "courseAuthors": {
+    "authorsAndUpdates": "Autoren & Updates",
+    "andMore": "& {count} weitere",
+    "courseUpdates": "Kurs-Updates",
+    "updateCount": "{count, plural, =1 {Update} other {Updates}}",
+    "newUpdate": "Neues Update",
+    "cancel": "Abbrechen",
+    "publishUpdate": "Update veröffentlichen",
+    "updateTitle": "Update-Titel",
+    "updateContent": "Update-Inhalt",
+    "titlePlaceholder": "Was gibt es Neues in diesem Update?",
+    "contentPlaceholder": "Teilen Sie die Details Ihres Updates...",
+    "titleRequired": "Titel ist erforderlich",
+    "contentRequired": "Inhalt ist erforderlich",
+    "updateAdded": "Update erfolgreich hinzugefügt",
+    "failedToAdd": "Update konnte nicht hinzugefügt werden",
+    "noUpdates": "Noch keine Updates",
+    "noUpdatesDesc": "Updates zu diesem Kurs erscheinen hier",
+    "deleteUpdate": "Update löschen",
+    "confirmDelete": "Sind Sie sicher, dass Sie dieses Update löschen möchten?",
+    "deleting": "Update wird gelöscht...",
+    "deleteSuccess": "Update erfolgreich gelöscht",
+    "deleteError": "Fehler beim Löschen des Updates"
   }
 }

@@ -9,11 +9,11 @@ import { toast } from 'react-hot-toast'
 import { Input } from "@components/ui/input"
 import { Button } from "@components/ui/button"
 import { Label } from "@components/ui/label"
-import { 
-  SiX, 
-  SiFacebook, 
-  SiInstagram, 
-  SiYoutube 
+import {
+  SiX,
+  SiFacebook,
+  SiInstagram,
+  SiYoutube
 } from '@icons-pack/react-simple-icons'
 import { Plus, X as XIcon } from "lucide-react"
 import { useRouter } from 'next/navigation'
@@ -33,7 +33,11 @@ interface OrganizationValues {
   }
 }
 
+import { useTranslations } from 'next-intl'
+
 export default function OrgEditSocials() {
+  const t = useTranslations('organization.socials')
+  const tCommon = useTranslations('organization')
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token
   const org = useOrg() as any
@@ -44,15 +48,15 @@ export default function OrgEditSocials() {
   }
 
   const updateOrg = async (values: OrganizationValues) => {
-    const loadingToast = toast.loading('Updating organization...')
+    const loadingToast = toast.loading(tCommon('updatingOrganization'))
     try {
       await updateOrganization(org.id, values, access_token)
       await revalidateTags(['organizations'], org.slug)
 
       mutate(`${getAPIUrl()}orgs/slug/${org.slug}`)
-      toast.success('Organization Updated', { id: loadingToast })
+      toast.success(tCommon('organizationUpdated'), { id: loadingToast })
     } catch (err) {
-      toast.error('Failed to update organization', { id: loadingToast })
+      toast.error(tCommon('failedToUpdateOrg'), { id: loadingToast })
     }
   }
 
@@ -73,71 +77,71 @@ export default function OrgEditSocials() {
             <div className="flex flex-col gap-0">
               <div className="flex flex-col bg-gray-50 -space-y-1 px-5 py-3 mx-3 my-3 rounded-md">
                 <h1 className="font-bold text-xl text-gray-800">
-                  Social Links
+                  {t('title')}
                 </h1>
                 <h2 className="text-gray-500 text-md">
-                  Manage your organization's social media presence
+                  {t('description')}
                 </h2>
               </div>
 
               <div className="flex flex-col lg:flex-row lg:space-x-8 mt-0 mx-5 my-5">
                 <div className="w-full space-y-6">
                   <div>
-                    <Label className="text-lg font-semibold">Social Links</Label>
+                    <Label className="text-lg font-semibold">{t('subtitle')}</Label>
                     <div className="space-y-3 bg-gray-50/50 p-4 rounded-lg nice-shadow mt-2">
                       <div className="grid gap-3">
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 flex items-center justify-center bg-[#1DA1F2]/10 rounded-md">
-                            <SiX size={16} color="#1DA1F2"/>
+                            <SiX size={16} color="#1DA1F2" />
                           </div>
                           <Input
                             id="socials.twitter"
                             name="socials.twitter"
                             value={values.socials.twitter || ''}
                             onChange={handleChange}
-                            placeholder="Twitter profile URL"
+                            placeholder={t('twitterPlaceholder')}
                             className="h-9 bg-white"
                           />
                         </div>
 
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 flex items-center justify-center bg-[#1877F2]/10 rounded-md">
-                            <SiFacebook size={16} color="#1877F2"/>
+                            <SiFacebook size={16} color="#1877F2" />
                           </div>
                           <Input
                             id="socials.facebook"
                             name="socials.facebook"
                             value={values.socials.facebook || ''}
                             onChange={handleChange}
-                            placeholder="Facebook profile URL"
+                            placeholder={t('facebookPlaceholder')}
                             className="h-9 bg-white"
                           />
                         </div>
 
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 flex items-center justify-center bg-[#E4405F]/10 rounded-md">
-                            <SiInstagram size={16} color="#E4405F"/>
+                            <SiInstagram size={16} color="#E4405F" />
                           </div>
                           <Input
                             id="socials.instagram"
                             name="socials.instagram"
                             value={values.socials.instagram || ''}
                             onChange={handleChange}
-                            placeholder="Instagram profile URL"
+                            placeholder={t('instagramPlaceholder')}
                             className="h-9 bg-white"
                           />
                         </div>
 
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 flex items-center justify-center bg-[#FF0000]/10 rounded-md">
-                            <SiYoutube size={16} color="#FF0000"/>
+                            <SiYoutube size={16} color="#FF0000" />
                           </div>
                           <Input
                             id="socials.youtube"
                             name="socials.youtube"
                             value={values.socials.youtube || ''}
                             onChange={handleChange}
-                            placeholder="YouTube channel URL"
+                            placeholder={t('youtubePlaceholder')}
                             className="h-9 bg-white"
                           />
                         </div>
@@ -148,7 +152,7 @@ export default function OrgEditSocials() {
 
                 <div className="w-full space-y-6">
                   <div>
-                    <Label className="text-lg font-semibold">Custom Links</Label>
+                    <Label className="text-lg font-semibold">{t('customLinks')}</Label>
                     <div className="space-y-3 bg-gray-50/50 p-4 rounded-lg nice-shadow mt-2">
                       {Object.entries(values.links).map(([linkKey, linkValue], index) => (
                         <div key={index} className="flex gap-3 items-center">
@@ -157,7 +161,7 @@ export default function OrgEditSocials() {
                           </div>
                           <div className="flex-1 flex gap-2">
                             <Input
-                              placeholder="Label"
+                              placeholder={t('labelPlaceholder')}
                               value={linkKey}
                               className="h-9 w-1/3 bg-white"
                               onChange={(e) => {
@@ -168,7 +172,7 @@ export default function OrgEditSocials() {
                               }}
                             />
                             <Input
-                              placeholder="URL"
+                              placeholder={t('urlPlaceholder')}
                               value={linkValue}
                               className="h-9 flex-1 bg-white"
                               onChange={(e) => {
@@ -192,7 +196,7 @@ export default function OrgEditSocials() {
                           </div>
                         </div>
                       ))}
-                      
+
                       {Object.keys(values.links).length < 3 && (
                         <Button
                           type="button"
@@ -201,17 +205,17 @@ export default function OrgEditSocials() {
                           className="mt-2"
                           onClick={() => {
                             const newLinks = { ...values.links };
-                            newLinks[`Link ${Object.keys(newLinks).length + 1}`] = '';
+                            newLinks[`${t('linkDefaultLabel')} ${Object.keys(newLinks).length + 1}`] = '';
                             setFieldValue('links', newLinks);
                           }}
                         >
                           <Plus className="h-4 w-4 mr-2" />
-                          Add Link
+                          {t('addLink')}
                         </Button>
                       )}
-                      
+
                       <p className="text-xs text-gray-500 mt-2">
-                        Add up to 3 custom links that will appear on your organization's profile
+                        {t('limitMessage')}
                       </p>
                     </div>
                   </div>
@@ -219,12 +223,12 @@ export default function OrgEditSocials() {
               </div>
 
               <div className="flex flex-row-reverse mt-3 mx-5 mb-5">
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={isSubmitting}
                   className="bg-black text-white hover:bg-black/90"
                 >
-                  {isSubmitting ? 'Saving...' : 'Save Changes'}
+                  {isSubmitting ? tCommon('saving') : tCommon('saveChanges')}
                 </Button>
               </div>
             </div>

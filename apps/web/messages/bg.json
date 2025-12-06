@@ -31,6 +31,11 @@
     "ownedCourses": "Курсове на {username}",
     "userSettings": "Настройки на {username}"
   },
+  "orgMenu": {
+    "courses": "Курсове",
+    "collections": "Колекции",
+    "progress": "Моят напредък"
+  },
   "auth": {
     "signIn": "Вход",
     "signUp": "Регистрация",
@@ -82,9 +87,29 @@
     "resetCode": "Код за нулиране",
     "passwordResetSuccess": "Паролата е нулирана успешно! Пренасочване към вход...",
     "pleaseLoginAgain": "Моля, влезте отново с вашата нова парола",
-    "passwordsDoNotMatch": "Паролите не съвпадат"
+    "passwordsDoNotMatch": "Паролите не съвпадат",
+    "emailInvalid": "Невалиден имейл",
+    "emailRequired": "Имейлът е задължителен",
+    "passwordRequired": "Паролата е задължителна",
+    "passwordTooShort": "Паролата е твърде кратка"
   },
   "authValidation": {
+    "congratulations": "Поздравления! 🎉",
+    "completedMessage": "Вие успешно завършихте",
+    "masteredMessage": "Вашата отдаденост и упорит труд се отплатиха. Вие усвоихте цялото съдържание в този курс.",
+    "loadingCertificate": "Зареждане на вашия сертификат...",
+    "yourCertificate": "Вашият сертификат",
+    "downloadCertificatePdf": "Изтегляне на сертификат (PDF)",
+    "verifyCertificate": "Проверка на сертификат",
+    "noCertificateAvailable": "Няма наличен сертификат за този курс. Свържете се с вашия инструктор за повече информация.",
+    "backToCourse": "Назад към курса",
+    "keepGoing": "Продължавайте в същия дух! 💪",
+    "makingProgress": "Правите страхотен напредък в",
+    "courseProgress": "Напредък в курса",
+    "progressLabel": "Напредък",
+    "activitiesCompleted": "{completed} от {total} дейности завършени",
+    "encouragement": "Справяте се чудесно! Завършете останалите дейности, за да откличите сертификата си за завършен курс.",
+    "continueLearning": "Продължи ученето",
     "emailRequired": "Задължително",
     "emailInvalid": "Невалиден имейл адрес",
     "passwordRequired": "Задължително",
@@ -93,6 +118,76 @@
     "usernameTooShort": "Потребителското име трябва да бъде поне 4 символа",
     "bioRequired": "Задължително",
     "somethingWentWrong": "Нещо се обърка"
+  },
+  "certificatePage": {
+    "authRequired": "Изисква се удостоверяване за преглед на сертификат",
+    "notFound": "Сертификатът не е намерен",
+    "loadError": "Грешка при зареждане на сертификат",
+    "loading": "Зареждане...",
+    "unavailableTitle": "Сертификатът не е наличен",
+    "backToCourse": "Назад към курса",
+    "noCertificateTitle": "Все още няма сертификат",
+    "noCertificateMessage": "Все още не сте спечелили сертификат за този курс.",
+    "downloadPdf": "Изтегляне на PDF",
+    "idLabel": "ID:",
+    "certificateLabel": "Сертификат за",
+    "defaultDescription": "За успешно завършване на изискванията на курса.",
+    "awardedLabel": "Награден на",
+    "instructorLabel": "Инструктор",
+    "verifiedAt": "Проверен на",
+    "downloadInstructions": "Можете да изтеглите този сертификат като PDF или да споделите връзката за проверка.",
+    "qrCodeInfo": "Сканирайте QR кода, за да проверите автентичността на този сертификат.",
+    "certificateIdLabel": "ID на сертификат:",
+    "types": {
+      "completion": "Завършване",
+      "achievement": "Постижение",
+      "assessment": "Оценка",
+      "participation": "Участие",
+      "mastery": "Майсторство",
+      "professional": "Професионален",
+      "continuing": "Продължаващо обучение",
+      "workshop": "Работилница",
+      "specialization": "Специализация"
+    }
+  },
+  "courseEndView": {
+    "authRequired": "Моля, влезте, за да видите вашия сертификат",
+    "notFound": "Сертификатът не е намерен",
+    "loadError": "Грешка при зареждане на сертификат",
+    "congratulations": "Поздравления!",
+    "completedMessage": "Вие завършихте",
+    "masteredMessage": "Вие усвоихте съдържанието на този курс!",
+    "loadingCertificate": "Зареждане на вашия сертификат...",
+    "yourCertificate": "Вашият сертификат",
+    "downloadCertificatePdf": "Изтегляне на сертификат (PDF)",
+    "verifyCertificate": "Проверка",
+    "noCertificateAvailable": "Сертификатът не е наличен",
+    "backToCourse": "Назад към курса",
+    "keepGoing": "Продължавайте!",
+    "makingProgress": "Напредвате в",
+    "courseProgress": "Напредък в курса",
+    "progressLabel": "Напредък",
+    "activitiesCompleted": "{completed} / {total} дейности",
+    "encouragement": "Продължавайте с добрата работа!",
+    "continueLearning": "Продължи ученето"
+  },
+  "searchBar": {
+    "placeholder": "Търсене на курсове, потребители, колекции...",
+    "discoverTitle": "Открийте следващото си учебно пътешествие",
+    "discoverSubtitle": "Започнете да пишете, за да търсите в наличното съдържание",
+    "suggestions": "Предложения за търсене",
+    "quickResults": "Бързи резултати",
+    "sections": {
+      "courses": "Курсове",
+      "collections": "Колекции",
+      "users": "Потребители"
+    },
+    "labels": {
+      "course": "Курс",
+      "collection": "Колекция",
+      "user": "Потребител"
+    },
+    "viewAll": "Вижте всички резултати"
   },
   "courses": {
     "title": "Курсове",
@@ -140,11 +235,55 @@
     "accountSettings": "Настройки на акаунта",
     "accountSettingsDescription": "Конфигурирайте личните си настройки, пароли, имейл"
   },
+  "collections": {
+    "title": "Колекции",
+    "noCollectionsYet": "Все още няма колекции",
+    "createCollectionToAddContent": "Създайте колекции, за да групирате курсове",
+    "newCollection": "Нова колекция",
+    "create": "Създаване на нова колекция",
+    "createDescription": "Групирайте курсовете си в колекция, за да ги намирате и управлявате по-лесно.",
+    "name": "Име на колекцията",
+    "namePlaceholder": "Въведете име на колекцията",
+    "visibility": "Видимост",
+    "public": "Публична колекция - Видима за всички",
+    "private": "Частна колекция - Видима само за членове на организацията",
+    "description": "Описание",
+    "descriptionPlaceholder": "Въведете описание на колекцията",
+    "selectCourses": "Изберете курсове",
+    "noCourses": "Няма налични курсове. Първо създайте курсове.",
+    "selectedCourses": "Избрани курсове: {count}",
+    "creating": "Създаване...",
+    "success": "Колекцията е създадена успешно!",
+    "error": "Неуспешно създаване на колекция. Моля, опитайте отново.",
+    "loadError": "Неуспешно зареждане на курсове. Моля, опитайте по-късно.",
+    "validation": {
+      "nameRequired": "Моля, въведете име на колекцията",
+      "descRequired": "Моля, въведете описание",
+      "courseRequired": "Моля, изберете поне един курс"
+    },
+    "createButton": "Създай колекция"
+  },
+  "trail": {
+    "title": "Моят напредък",
+    "myProgress": "Моят напредък",
+    "noCoursesInProgress": "Няма започнати курсове",
+    "startCourseToSeeProgress": "Започнете курс, за да видите напредъка си тук",
+    "myCertificates": "Моите сертификати",
+    "noCertificatesEarned": "Все още няма спечелени сертификати",
+    "completeCoursesToEarnCertificates": "Завършете курсове, за да спечелите сертификати",
+    "download": "Изтегляне",
+    "quitAllCourses": "Напусни всички курсове",
+    "quittingCourses": "Напускане на курсове",
+    "quitConfirmationTitle": "Напускане на всички курсове?",
+    "quitConfirmationMessage": "Сигурни ли сте, че искате да напуснете всички курсове? Това действие не може да бъде отменено и ще загубите целия си напредък.",
+    "verify": "Проверка"
+  },
   "settings": {
     "title": "Настройки",
     "general": "Общи",
     "account": "Акаунт",
     "accountSettings": "Настройки на акаунта",
+    "managePersonalInfo": "Управлявайте личната си информация и предпочитания",
     "preferences": "Предпочитания",
     "language": "Език",
     "selectLanguage": "Изберете предпочитан език",
@@ -169,7 +308,6 @@
     "loggedOutAfterPasswordChange": "Ще бъдете излязъл след промяна на паролата",
     "updating": "Актуализиране...",
     "updatePassword": "Актуализирай парола",
-    "managePersonalInfo": "Управлявайте личната си информация и предпочитания",
     "email": "Имейл",
     "emailPlaceholder": "Вашият имейл адрес",
     "emailRequired": "Имейлът е задължителен",
@@ -277,7 +415,181 @@
     "aboutMaxLength": "Текстът За трябва да бъде 400 символа или по-малко",
     "labelRequired": "Етикетът на организацията е задължителен",
     "saving": "Записване...",
-    "saveChanges": "Запази Промените"
+    "saveChanges": "Запази Промените",
+    "socials": {
+      "title": "Социални връзки",
+      "description": "Управлявайте присъствието на вашата организация в социалните медии",
+      "subtitle": "Социални връзки",
+      "customLinks": "Персонализирани връзки",
+      "labelPlaceholder": "Етикет",
+      "urlPlaceholder": "URL",
+      "addLink": "Добави връзка",
+      "limitMessage": "Добавете до 3 персонализирани връзки, които ще се появят в профила на вашата организация",
+      "twitterPlaceholder": "URL на Twitter профил",
+      "facebookPlaceholder": "URL на Facebook профил",
+      "instagramPlaceholder": "URL на Instagram профил",
+      "youtubePlaceholder": "URL на YouTube канал",
+      "linkDefaultLabel": "Връзка"
+    },
+    "other": {
+      "scriptsTitle": "Скриптове",
+      "scriptsDescription": "Добавете персонализирани JavaScript скриптове към вашата организация",
+      "scriptsTooltip": "За сигурността на вашата организация, моля, уверете се, че се доверявате и разбирате всеки скрипт, преди да го добавите. Скриптовете могат да взаимодействат със страниците на вашата организация.",
+      "addScript": "Добави скрипт",
+      "noScripts": "Все още няма добавени скриптове",
+      "noScriptsDesc": "Добавете първия си скрипт, за да започнете",
+      "scriptName": "Име на скрипта",
+      "scriptNamePlaceholder": "Въведете име на скрипта",
+      "scriptContent": "Съдържание на скрипта",
+      "scriptContentPlaceholder": "Въведете JavaScript код",
+      "saveScript": "Запази скрипт",
+      "scriptSaved": "Скриптът е запазен успешно",
+      "scriptSaveError": "Неуспешно запазване на скрипта",
+      "scriptDeleted": "Скриптът е изтрит успешно",
+      "scriptDeleteError": "Неуспешно изтриване на скрипта",
+      "deletingScript": "Изтриване на скрипт...",
+      "nameRequired": "Името на скрипта е задължително",
+      "contentRequired": "Script content is required"
+    }
+  },
+  "landing": {
+    "landingPage": "Начална страница",
+    "beta": "БЕТА",
+    "customizeLanding": "Персонализирайте началната страница на вашата организация",
+    "savingChanges": "Записване...",
+    "saveChanges": "Запази промените",
+    "landingPageSaved": "Началната страница е запазена успешно",
+    "errorSavingLanding": "Грешка при записване на началната страница",
+    "orgIdNotFound": "ID на организацията не е намерено",
+    "sections": "Секции",
+    "addSection": "Добави секция",
+    "selectToEdit": "Изберете секция за редактиране или добавете нова",
+    "heroSection": "Герой Секция",
+    "sectionTitle": "Заглавие на Секцията",
+    "enterSectionTitle": "Въведете заглавие на секцията",
+    "tabs": {
+      "content": "Съдържание",
+      "background": "Фон",
+      "buttons": "Бутони",
+      "illustration": "Илюстрация"
+    },
+    "heading": {
+      "label": "Заглавие",
+      "placeholder": "Въведете текст на заглавието",
+      "color": "Цвят на Заглавието"
+    },
+    "subheading": {
+      "label": "Подзаглавие",
+      "placeholder": "Въведете текст на подзаглавието",
+      "color": "Цвят на Подзаглавието"
+    },
+    "background": {
+      "type": "Тип Фон",
+      "selectType": "Изберете тип фон",
+      "types": {
+        "solid": "Плътен Цвят",
+        "gradient": "Градиент",
+        "image": "Изображение"
+      },
+      "color": "Цвят на Фона",
+      "gradient": {
+        "type": "Тип Градиент",
+        "selectType": "Изберете тип градиент",
+        "preset": "Предустановени Градиенти",
+        "custom": "Персонализиран Градиент",
+        "startColor": "Начален Цвят",
+        "endColor": "Краен Цвят",
+        "presetLabel": "Настройка на Градиент",
+        "selectPreset": "Изберете настройка на градиент",
+        "direction": "Посока на Градиента",
+        "selectDirection": "Изберете посока на градиента"
+      },
+      "image": {
+        "label": "Фоново Изображение",
+        "upload": "Качване на Изображение",
+        "preview": "Преглед на фона"
+      }
+    },
+    "buttons": {
+      "textAndColors": "Текст и Цветове на Бутона",
+      "text": "Текст на бутона",
+      "textColor": "Текст",
+      "background": "Фон",
+      "link": "Връзка на Бутона",
+      "placeholder": "Връзка на бутона"
+    },
+    "addButton": "Добавяне на Бутон",
+    "newButton": "Нов Бутон",
+    "illustration": {
+      "image": "Илюстрация",
+      "url": "URL на Илюстрацията",
+      "alt": "Алтернативен текст",
+      "upload": "Качване на Илюстрация",
+      "position": "Позиция",
+      "selectPosition": "Изберете позиция",
+      "size": "Размер",
+      "selectSize": "Изберете размер",
+      "remove": "Премахване на Илюстрация"
+    },
+    "textAndImageSection": "Секция Текст и Изображение",
+    "content": "Съдържание",
+    "enterSectionContent": "Въведете съдържание на секцията",
+    "imagePosition": "Позиция на Изображението",
+    "selectImagePosition": "Изберете позиция на изображението",
+    "uploadNewImage": "Качване на Ново Изображение",
+    "uploading": "Качва се...",
+    "successImageUpload": "Изображението е качено успешно",
+    "errorImageUpload": "Неуспешно качване на изображението",
+    "logosSection": "Секция Лога",
+    "logos": {
+      "label": "Лога",
+      "url": "URL на Лого",
+      "upload": "Качи Лого",
+      "add": "Добави Лого"
+    },
+    "peopleSection": "Секция Екип",
+    "people": {
+      "label": "Членове на екипа",
+      "name": "Име",
+      "enterName": "Въведете име",
+      "role": "Роля",
+      "enterRole": "Въведете роля",
+      "username": "Потребителско име",
+      "description": "Описание",
+      "descriptionPlaceholder": "Описание или роля",
+      "image": "Профилна снимка",
+      "upload": "Качи снимка",
+      "add": "Добави член"
+    },
+    "coursesSection": "Секция Курсове",
+    "courses": {
+      "label": "Избрани Курсове",
+      "search": "Търси курсове...",
+      "select": "Изберете курсове за показване",
+      "noResults": "Няма намерени курсове",
+      "loading": "Зареждане на курсове...",
+      "selected": "Избран",
+      "selectButton": "Избери"
+    },
+    "maxCourses": "Достигнат е максималният брой курсове",
+    "common": {
+      "left": "Ляво",
+      "right": "Дясно",
+      "small": "Малък",
+      "medium": "Среден",
+      "large": "Голям",
+      "altText": "Алтернативен текст"
+    },
+    "heroLabel": "Герой",
+    "heroDescription": "Добавете герой секция със заглавие и призив за действие",
+    "textImageLabel": "Текст и изображение",
+    "textImageDescription": "Добавете секция с текст и изображение",
+    "logosLabel": "Логота",
+    "logosDescription": "Добавете секция за показване на лога",
+    "peopleLabel": "Хора",
+    "peopleDescription": "Добавете секция за подчертаване на членовете на екипа",
+    "coursesLabel": "Курсове",
+    "coursesDescription": "Добавете секция за показване на избрани курсове"
   },
   "images": {
     "imagesAndPreviews": "Изображения и Прегледи",
@@ -291,45 +603,432 @@
     "uploadingThumbnail": "Качване на миниатюра...",
     "thumbnailUpdated": "Миниатюрата е актуализирана",
     "failedToUploadThumbnail": "Неуспешно качване на миниатюра",
-    "previewImages": "Изображения за преглед",
-    "uploadPreviewImages": "Качи изображения за преглед",
-    "dragDropImages": "Плъзнете и пуснете изображения тук или кликнете за избор",
-    "maxPreviews": "Максимум {max} прегледа",
-    "onlyUploadsRemaining": "Можете да качите само {count} преглед{plural} повече",
-    "uploadingPreviews": "Качване на {count} преглед{plural}...",
-    "previewsAdded": "{count} преглед{plural} добавен{plural}",
+    "uploading": "Качване...",
+    "uploadNewLogo": "Качи ново лого",
+    "acceptsPngJpg": "Приема PNG, JPG (макс 5MB)",
+    "recommendedSize": "Препоръчителен размер: 200x100 пиксела",
+    "uploadNewThumbnail": "Качи нова миниатюра",
+    "uploadingPreviews": "Качване на {count} преглед(а)...",
+    "canOnlyUpload": "Можете да качите само още {count} преглед(а)",
+    "previewsAdded": "{count} преглед(а) добавен(и)",
     "failedToUploadPreviews": "Неуспешно качване на прегледи",
-    "noPreviewsYet": "Все още няма прегледи",
-    "addPreviewsDescription": "Добавете изображения, за да покажете вашата организация",
-    "videoUrl": "URL на видео",
-    "addVideoPreview": "Добави видео преглед",
-    "addVideo": "Добави видео",
+    "removingPreview": "Премахване на преглед...",
+    "previewRemoved": "Прегледът е премахнат",
+    "failedToRemovePreview": "Неуспешно премахване на преглед",
     "invalidVideoUrl": "Невалиден {type} URL",
     "videoAlreadyAdded": "Това видео вече е добавено",
     "addingVideoPreview": "Добавяне на видео преглед...",
     "videoPreviewAdded": "Видео прегледът е добавен",
     "failedToAddVideoPreview": "Неуспешно добавяне на видео преглед",
-    "pasteYouTubeOrLoom": "Поставете YouTube или Loom URL",
-    "removingPreview": "Премахване на преглед...",
-    "previewRemoved": "Прегледът е премахнат",
-    "failedToRemovePreview": "Неуспешно премахване на преглед",
-    "organizationCourses": "Курсове на организацията",
-    "loadingCourses": "Зареждане на курсове...",
-    "noCourses": "Няма налични курсове",
-    "selectCourse": "Избери курс",
-    "addCourse": "Добави курс",
-    "addingCourse": "Добавяне на курс...",
-    "courseAdded": "Курсът е добавен",
-    "failedToAddCourse": "Неуспешно добавяне на курс",
-    "removingCourse": "Премахване на курс...",
-    "courseRemoved": "Курсът е премахнат",
-    "failedToRemoveCourse": "Неуспешно премахване на курс",
-    "featuredCourses": "Представени курсове",
-    "noFeaturedCourses": "Все още няма представени курсове",
-    "addFeaturedCourses": "Добавете курсове, за да ги представите на вашата начална страница",
-    "uploadNewLogo": "Качи ново лого",
-    "uploadNewThumbnail": "Качи нова миниатюра",
-    "acceptsPngJpg": "Приема PNG, JPG (макс 5MB)",
-    "recommendedSize": "Препоръчителен размер: 200x100 пиксела"
+    "updatingPreviewOrder": "Актуализиране на реда на прегледите...",
+    "previewOrderUpdated": "Редът на прегледите е актуализиран",
+    "failedToUpdatePreviewOrder": "Неуспешна актуализация на реда на прегледите",
+    "addPreview": "Добави преглед",
+    "uploadImages": "Качи изображения",
+    "pngJpgMax": "PNG, JPG (макс 5MB)",
+    "youtube": "YouTube",
+    "addYoutubeVideo": "Добави YouTube видео",
+    "loom": "Loom",
+    "addLoomVideo": "Добави Loom видео",
+    "addYoutubeVideoTitle": "Добави YouTube видео",
+    "pasteYoutubeUrl": "Поставете вашия YouTube видео URL",
+    "addLoomVideoTitle": "Добави Loom видео",
+    "pasteLoomUrl": "Поставете вашия Loom видео URL",
+    "youtubeUrlPlaceholder": "https://youtube.com/watch?v=...",
+    "loomUrlPlaceholder": "https://www.loom.com/share/..."
+  },
+  "dashboardHome": {
+    "hello": "Здравейте,",
+    "yourOrganizations": "Вашите организации",
+    "noOrganizations": "Изглежда все още не сте част от организация, присъединете се към такава, за да я видите тук",
+    "signOut": "Изход"
+  },
+  "courseEditor": {
+    "name": "Име",
+    "description": "Описание",
+    "about": "За курса",
+    "learnings": "Какво ще научите",
+    "tags": "Етикети",
+    "thumbnailType": "Тип миниатюра",
+    "thumbnail": "Миниатюра",
+    "image": "Изображение",
+    "video": "Видео",
+    "both": "И двете",
+    "required": "Задължително",
+    "maxLength": "Трябва да бъде {count} символа или по-малко",
+    "invalidFormat": "Невалиден формат",
+    "learningsRequired": "Изисква се поне един елемент за учене",
+    "learningsEmptyText": "Всички елементи за учене трябва да имат текст",
+    "saveSuccess": "Структурата на курса е запазена",
+    "saveError": "Неуспешно запазване на структурата на курса"
+  },
+  "courseListings": {
+    "title": "Курсове",
+    "rightsGuide": "Ръководство за права",
+    "noCoursesYet": "Все още няма курсове",
+    "createCourseToAddContent": "Създайте курс, за да добавите съдържание",
+    "noCoursesAvailable": "Все още няма налични курсове",
+    "createCourse": "Създай курс",
+    "createNewCourse": "Създайте нов курс"
+  },
+  "courseStructure": {
+    "createChapter": "Създай глава",
+    "addChapter": "Добави глава",
+    "addChapterDescription": "Добави нова глава към курса"
+  },
+  "breadcrumbs": {
+    "courses": "Курсове",
+    "assignments": "Задачи",
+    "accountSettings": "Настройки на акаунта",
+    "orgUsers": "Потребители на организацията",
+    "orgSettings": "Настройки на организацията",
+    "payments": "Плащания"
+  },
+  "errorUI": {
+    "defaultMessage": "Нещо се обърка",
+    "retry": "Опитай отново",
+    "home": "Начало"
+  },
+  "userProfilePopup": {
+    "errorLoading": "Неуспешно зареждане на потребителски данни"
+  },
+  "createCourseModal": {
+    "courseName": "Име на курса",
+    "description": "Описание",
+    "thumbnail": "Миниатюра на курса",
+    "uploadImage": "Качи изображение",
+    "chooseFromGallery": "Избери от галерия",
+    "unsplashError": "Неуспешно зареждане на изображение от Unsplash",
+    "enterToAdd": "Enter за добавяне...",
+    "learnings": "Какво ще научите (Какво ще преподавате?)",
+    "tags": "Етикети на курса",
+    "visibility": "Видимост на курса",
+    "public": "Публичен (Достъпен за преглед в интернет)",
+    "private": "Частен (Частен за потребители)",
+    "selectVisibility": "Избери видимост",
+    "createCourse": "Създай курс",
+    "creating": "Създаване на курс...",
+    "success": "Курсът е създаден успешно",
+    "error": "Неуспешно създаване на курс",
+    "validation": {
+      "nameRequired": "Името на курса е задължително",
+      "nameMax": "Трябва да бъде 100 символа или по-малко",
+      "descMax": "Трябва да бъде 1000 символа или по-малко"
+    }
+  },
+  "newChapterModal": {
+    "chapterName": "Име на главата",
+    "chapterDesc": "Описание на главата",
+    "namePlaceholder": "Моля, предоставете име на главата",
+    "descPlaceholder": "Моля, предоставете описание на главата",
+    "createChapter": "Създай глава"
+  },
+  "courseAccess": {
+    "title": "Достъп до курса",
+    "description": "Изберете дали искате вашият курс да бъде публично достъпен в интернет или достъпен само за влезли потребители",
+    "publicTitle": "Промяна към Публичен?",
+    "publicMessage": "Сигурни ли сте, че искате този курс да бъде публично достъпен в интернет?",
+    "publicButton": "Промяна към Публичен",
+    "publicCardTitle": "Публичен",
+    "publicCardDesc": "Курсът е публично достъпен в интернет, индексира се от търсачки и може да бъде достъпен от всеки",
+    "active": "Активен",
+    "usersOnlyTitle": "Промяна към Само за Потребители?",
+    "usersOnlyMessage": "Сигурни ли сте, че искате този курс да бъде достъпен само за влезли потребители?",
+    "usersOnlyButton": "Промяна към Само за Потребители",
+    "usersOnlyCardTitle": "Само за Потребители",
+    "usersOnlyCardDesc": "Курсът е достъпен само за влезли потребители, допълнително можете да изберете кои потребителски групи имат достъп до този курс",
+    "userGroupsTitle": "Потребителски Групи",
+    "userGroupsDesc": "Можете да изберете да дадете достъп до този курс само на конкретни групи потребители, като го свържете с потребителска група",
+    "tableHeaderName": "Име",
+    "tableHeaderActions": "Действия",
+    "unlinkTitle": "Премахване на връзка с Потребителска Група?",
+    "unlinkMessage": "Потребителите от тази потребителска група вече няма да имат достъп до този курс",
+    "deleteLink": "Изтрий връзка",
+    "deleteLinkButton": "Изтрий Връзка",
+    "linkToGroupTitle": "Свържи Курс с Потребителска Група",
+    "linkToGroupDesc": "Изберете потребителска група, с която да свържете този курс. Потребителите от тази група ще имат достъп до курса.",
+    "linkToGroupButton": "Свържи с Потребителска Група",
+    "linkToGroupWarning": "Потребителите, които не са част от потребителската група, вече няма да имат достъп до този курс",
+    "userGroupName": "Име на Потребителска Група",
+    "noGroups": "Няма налични потребителски групи",
+    "createGroup": "Създай потребителска група",
+    "linkButton": "Свържи",
+    "toasts": {
+      "unlinkSuccess": "Връзката с потребителската група е премахната успешно",
+      "unlinkError": "Възникна грешка при премахване на връзката с потребителската група.",
+      "linkSuccess": "Успешно свързване с потребителска група"
+    }
+  },
+  "orgUsers": {
+    "title": "Активни потребители",
+    "description": "Управлявайте потребителите на вашата организация, задавайте роли и разрешения",
+    "tableHeaderUser": "Потребител",
+    "tableHeaderRole": "Роля",
+    "tableHeaderActions": "Действия",
+    "editRole": "Редактирай роля",
+    "removeFromOrg": "Премахни от организацията",
+    "updateRoleTitle": "Актуализирай роля",
+    "updateRoleDesc": "Актуализиране на ролята на @{username}",
+    "removeUserTitle": "Изтриване на {username} ?",
+    "removeUserMessage": "Сигурни ли сте, че искате да премахнете този потребител от организацията?",
+    "removeUserButton": "Премахни потребител",
+    "toasts": {
+      "removing": "Премахване...",
+      "removeSuccess": "Потребителят е премахнат от организацията",
+      "removeError": "Грешка при премахване на потребител"
+    }
+  },
+  "rolesUpdate": {
+    "label": "Роли",
+    "placeholder": "Моля, изберете роля за потребителя",
+    "loading": "Зареждане на роли...",
+    "select": "Изберете роля",
+    "submit": "Актуализирай потребителска роля",
+    "toasts": {
+      "updating": "Актуализиране на роля...",
+      "success": "Ролята е актуализирана",
+      "error": "Грешка при актуализиране на роля"
+    }
+  },
+  "addRoleModal": {
+    "roleName": "Име на роля",
+    "description": "Описание",
+    "namePlaceholder": "напр., Мениджър на курсове",
+    "descPlaceholder": "Опишете какво може да прави тази роля...",
+    "predefinedRights": "Предварително определени права",
+    "permissions": "Разрешения",
+    "selectAll": "Избери всички",
+    "deselectAll": "Отмени избора на всички",
+    "select": "Избери",
+    "deselect": "Отмени избор",
+    "cancel": "Отказ",
+    "createRole": "Създай роля",
+    "creating": "Създаване...",
+    "validation": {
+      "required": "Задължително",
+      "nameMin": "Името трябва да бъде поне 2 символа",
+      "descMin": "Описанието трябва да бъде поне 10 символа"
+    },
+    "sections": {
+      "courses": "Курсове",
+      "users": "Потребители",
+      "usergroups": "Потребителски групи",
+      "collections": "Колекции",
+      "organizations": "Организации",
+      "coursechapters": "Глави на курсове",
+      "activities": "Дейности",
+      "roles": "Роли",
+      "dashboard": "Табло"
+    },
+    "predefined": {
+      "admin": {
+        "name": "Администратор",
+        "desc": "Пълен контрол над платформата с всички разрешения"
+      },
+      "courseManager": {
+        "name": "Мениджър на курсове",
+        "desc": "Може да управлява курсове, глави и дейности"
+      },
+      "instructor": {
+        "name": "Инструктор",
+        "desc": "Може да създава и управлява свои собствени курсове"
+      },
+      "viewer": {
+        "name": "Зрител",
+        "desc": "Достъп само за четене до курсове и съдържание"
+      },
+      "contentCreator": {
+        "name": "Създател на съдържание",
+        "desc": "Може да създава и редактира съдържание, но не и да управлява потребители"
+      },
+      "userManager": {
+        "name": "Мениджър на потребители",
+        "desc": "Може да управлява потребители и потребителски групи"
+      },
+      "moderator": {
+        "name": "Модератор",
+        "desc": "Може да модерира съдържание и да управлява дейности"
+      },
+      "analyst": {
+        "name": "Анализатор",
+        "desc": "Достъп само за четене с възможности за анализ"
+      },
+      "guest": {
+        "name": "Гост",
+        "desc": "Ограничен достъп за външни потребители"
+      }
+    },
+    "toasts": {
+      "creating": "Създаване...",
+      "success": "Новата роля е създадена",
+      "error": "Неуспешно създаване на нова роля"
+    }
+  },
+  "addUserGroupModal": {
+    "name": "Име",
+    "description": "Описание",
+    "createGroup": "Създай потребителска група",
+    "loading": "Зареждане...",
+    "validation": {
+      "nameRequired": "Името е задължително"
+    },
+    "toasts": {
+      "creating": "Създаване...",
+      "success": "Новата потребителска група е създадена",
+      "error": "Неуспешно създаване на нова потребителска група"
+    }
+  },
+  "newActivityModal": {
+    "dynamicPage": "Динамична страница",
+    "video": "Видео",
+    "document": "Документ",
+    "assignments": "Задачи"
+  },
+  "assignmentStudentView": {
+    "assignment": "Задача",
+    "dueDate": "Краен срок",
+    "description": "Описание на задачата",
+    "taskPrefix": "Задача",
+    "hint": "Подсказка",
+    "referenceDocument": "Референтен документ"
+  },
+  "activityModals": {
+    "dynamic": {
+      "name": "Име на дейност",
+      "namePlaceholder": "Моля, предоставете име за вашата дейност",
+      "description": "Описание на дейност",
+      "descriptionPlaceholder": "Моля, предоставете описание за вашата дейност",
+      "create": "Създай дейност"
+    },
+    "video": {
+      "settings": "Настройки на видео",
+      "startTime": "Начално време",
+      "minutes": "Минути",
+      "seconds": "Секунди",
+      "endTime": "Крайно време",
+      "autoplay": "Автоматично възпроизвеждане",
+      "muted": "Стартиране без звук",
+      "name": "Име на дейност",
+      "namePlaceholder": "Моля, предоставете име за вашата дейност",
+      "uploadTab": "Качване на видео",
+      "youtubeTab": "YouTube видео",
+      "fileLabel": "Видео файл",
+      "urlLabel": "YouTube URL",
+      "urlPlaceholder": "Въведете YouTube URL",
+      "create": "Създай дейност"
+    },
+    "document": {
+      "name": "Име на PDF документ",
+      "namePlaceholder": "Въведете име на документ",
+      "fileLabel": "Файл на документа (PDF)",
+      "filePlaceholder": "Кликнете, за да качите PDF",
+      "fileError": "Файлът на документа е задължителен",
+      "create": "Създай дейност"
+    },
+    "assignment": {
+      "title": "Заглавие на задачата",
+      "titlePlaceholder": "Въведете заглавие на задачата",
+      "description": "Описание",
+      "descriptionPlaceholder": "Въведете инструкции за задачата",
+      "dueDate": "Краен срок",
+      "gradingType": "Тип оценяване",
+      "creating": "Създаване на задача...",
+      "success": "Задачата е създадена успешно"
+    },
+    "common": {
+      "create": "Създай дейност"
+    }
+  },
+  "activityIndicators": {
+    "activityTypes": {
+      "video": "Видео",
+      "document": "Документ",
+      "dynamic": "Интерактивно",
+      "assignment": "Задача",
+      "unknown": "Неизвестно"
+    },
+    "tooltips": {
+      "currentActivity": "Текуща дейност",
+      "completed": "Завършена",
+      "notStarted": "Не е започната",
+      "chapter": "Глава {number}",
+      "chapterProgress": "{completed}/{total} завършени"
+    },
+    "certificate": {
+      "completed": "Курсът е завършен!",
+      "completion": "Завършване на курс",
+      "viewCertificate": "Вижте вашия сертификат за завършване",
+      "unlockCertificate": "Завършете всички дейности, за да отключите сертификата си"
+    }
+  },
+  "courseActions": {
+    "startCourse": "Започни курс",
+    "leaveCourse": "Напусни курс",
+    "starting": "Стартиране на курс...",
+    "leaving": "Напускане на курс...",
+    "successStart": "Успешно стартиране на курса",
+    "successLeave": "Успешно напускане на курса",
+    "failedStart": "Неуспешно стартиране на курса. Моля, опитайте отново по-късно.",
+    "failedLeave": "Неуспешно напускане на курса. Моля, опитайте отново по-късно.",
+    "readyToBegin": "Готови ли сте да започнете?",
+    "startJourney": "Започнете своето учебно пътешествие с {count} вълнуващ {count, plural, =1 {дейност} other {дейности}}",
+    "courseProgress": "Напредък в курса",
+    "progressSummary": "{completed} от {total} завършени",
+    "youOwnThisCourse": "Вие притежавате този курс",
+    "ownCourseDesc": "Вие сте закупили този курс и имате пълен достъп до цялото съдържание.",
+    "paidCourse": "Платен курс",
+    "paidCourseDesc": "Този курс изисква покупка за достъп до съдържанието му.",
+    "purchaseCourse": "Купи курс",
+    "purchaseDesc": "Изберете опция за плащане, за да получите достъп до този курс",
+    "authenticateToContribute": "Удостоверете се, за да допринесете",
+    "youAreContributor": "Вие сте сътрудник",
+    "applicationPending": "Заявлението за сътрудник е в очакване",
+    "applyToContribute": "Кандидатстване за сътрудник",
+    "submittingApplication": "Изпращане на заявление за сътрудник...",
+    "applicationSuccess": "Вашето заявление за сътрудник е изпратено успешно",
+    "applicationError": "Неуспешно изпращане на вашето заявление. Моля, опитайте отново по-късно.",
+    "contributeMessage": "Бих искал да допринеса за този курс."
+  },
+  "coursePaidOptions": {
+    "subscription": "Абонамент",
+    "oneTime": "Еднократно плащане",
+    "perMonth": "(на месец)",
+    "benefits": "Предимства:",
+    "showMore": "Покажи повече",
+    "showLess": "Покажи по-малко",
+    "minimumPrice": "Минимална цена:",
+    "price": "Цена:",
+    "choosePrice": "Изберете вашата цена",
+    "processing": "Обработка...",
+    "subscribeNow": "Абонирай се сега",
+    "purchaseNow": "Купи сега",
+    "failedToLoad": "Неуспешно зареждане на опции за продукт",
+    "loading": "Зареждане...",
+    "checkoutError": "Неуспешно иницииране на процес за плащане",
+    "genericError": "Възникна грешка при обработката на вашата заявка"
+  },
+  "courseAuthors": {
+    "authorsAndUpdates": "Автори и Актуализации",
+    "andMore": "и {count} още",
+    "courseUpdates": "Актуализации на курса",
+    "updateCount": "{count, plural, =1 {актуализация} other {актуализации}}",
+    "newUpdate": "Нова актуализация",
+    "cancel": "Отказ",
+    "publishUpdate": "Публикувай актуализация",
+    "updateTitle": "Заглавие на актуализация",
+    "updateContent": "Съдържание на актуализация",
+    "titlePlaceholder": "Какво ново в тази актуализация?",
+    "contentPlaceholder": "Споделете подробностите за вашата актуализация...",
+    "titleRequired": "Заглавието е задължително",
+    "contentRequired": "Съдържанието е задължително",
+    "updateAdded": "Актуализацията е добавена успешно",
+    "failedToAdd": "Неуспешно добавяне на актуализация",
+    "noUpdates": "Все още няма актуализации",
+    "noUpdatesDesc": "Актуализациите за този курс ще се появят тук",
+    "deleteUpdate": "Изтрий актуализация",
+    "confirmDelete": "Сигурни ли сте, че искате да изтриете тази актуализация?",
+    "deleting": "Изтриване на актуализация...",
+    "deleteSuccess": "Актуализацията е изтрита успешно",
+    "deleteError": "Неуспешно изтриване на актуализация"
   }
 }

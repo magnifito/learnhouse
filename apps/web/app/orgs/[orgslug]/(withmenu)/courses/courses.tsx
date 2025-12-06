@@ -87,7 +87,7 @@ function Courses(props: CourseProps) {
                     {isUserAdmin ? t('createCourseToAddContent') : t('noCoursesAvailable')}
                   </p>
                   {isUserAdmin && (
-                    <div className="mt-4">
+                    <div className="mt-4 flex justify-center">
                       <AuthenticatedClientElement
                         action="create"
                         ressourceType="courses"

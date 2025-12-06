@@ -16,7 +16,10 @@ import { useRouter } from 'next/navigation'
 import ConfirmationModal from '@components/Objects/StyledElements/ConfirmationModal/ConfirmationModal'
 import { BookOpen } from 'lucide-react'
 
+import { useTranslations } from 'next-intl'
+
 function Trail(params: any) {
+  const t = useTranslations('trail')
   let orgslug = params.orgslug
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token;
@@ -33,7 +36,7 @@ function Trail(params: any) {
 
   const handleQuitAllCourses = async () => {
     if (!trail?.runs?.length || isQuittingAll) return;
-    
+
     setIsQuittingAll(true)
     const totalCourses = trail.runs.length;
 
@@ -60,24 +63,24 @@ function Trail(params: any) {
   return (
     <GeneralWrapperStyled>
       <div className="flex justify-between items-center mb-6">
-        <TypeOfContentTitle title="Trail" type="tra" />
+        <TypeOfContentTitle title={t('title')} type="tra" />
         {trail?.runs?.length > 0 && (
           <ConfirmationModal
-            confirmationButtonText={isQuittingAll ? `Quitting Courses (${quittingProgress}%)` : "Quit All Courses"}
-            confirmationMessage="Are you sure you want to quit all courses? This action cannot be undone and you will lose all your progress."
-            dialogTitle="Quit All Courses?"
+            confirmationButtonText={isQuittingAll ? `${t('quittingCourses')} (${quittingProgress}%)` : t('quitAllCourses')}
+            confirmationMessage={t('quitConfirmationMessage')}
+            dialogTitle={t('quitConfirmationTitle')}
             dialogTrigger={
               <button
                 disabled={isQuittingAll}
                 className={`px-4 py-2 rounded-lg font-medium text-sm transition-all
-                  ${isQuittingAll 
-                    ? 'bg-gray-100 text-gray-500 cursor-not-allowed' 
+                  ${isQuittingAll
+                    ? 'bg-gray-100 text-gray-500 cursor-not-allowed'
                     : 'bg-red-100 text-red-700 hover:bg-red-200'
                   }`}
               >
-                {isQuittingAll 
-                  ? `Quitting Courses (${quittingProgress}%)`
-                  : 'Quit All Courses'
+                {isQuittingAll
+                  ? `${t('quittingCourses')} (${quittingProgress}%)`
+                  : t('quitAllCourses')
                 }
               </button>
             }
@@ -86,27 +89,27 @@ function Trail(params: any) {
           />
         )}
       </div>
-      
+
       <div className="space-y-8">
         {/* Progress Section */}
         <div className="bg-white rounded-xl shadow-sm p-6">
           <div className="flex items-center space-x-3 mb-6">
             <BookOpen className="w-6 h-6 text-blue-500" />
-            <h2 className="text-xl font-semibold text-gray-900">My Progress</h2>
+            <h2 className="text-xl font-semibold text-gray-900">{t('myProgress')}</h2>
             {trail?.runs && (
               <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
                 {trail.runs.length}
               </span>
             )}
           </div>
-          
+
           {!trail ? (
             <PageLoading></PageLoading>
           ) : trail.runs.length === 0 ? (
             <div className="text-center py-8">
               <BookOpen className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-              <p className="text-gray-500">No courses in progress</p>
-              <p className="text-sm text-gray-400 mt-1">Start a course to see your progress here</p>
+              <p className="text-gray-500">{t('noCoursesInProgress')}</p>
+              <p className="text-sm text-gray-400 mt-1">{t('startCourseToSeeProgress')}</p>
             </div>
           ) : (
             <div className="space-y-6">
@@ -121,7 +124,7 @@ function Trail(params: any) {
             </div>
           )}
         </div>
-        
+
         {/* Certificates Section */}
         <UserCertificates orgslug={orgslug} />
       </div>

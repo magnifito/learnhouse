@@ -12,6 +12,7 @@ import { getServerSession } from 'next-auth'
 import { getOrgCollections } from '@services/courses/collections'
 import { getOrgThumbnailMediaDirectory } from '@services/media/media'
 import ContentPlaceHolderIfUserIsNotAdmin from '@components/Objects/ContentPlaceHolder'
+import { getTranslations } from 'next-intl/server'
 
 type MetadataProps = {
   params: Promise<{ orgslug: string; courseid: string }>
@@ -70,12 +71,13 @@ const CollectionsPage = async (params: any) => {
     access_token ? access_token : null,
     { revalidate: 0, tags: ['collections'] }
   )
+  const t = await getTranslations('collections')
 
   return (
     <GeneralWrapperStyled>
       <div className="flex flex-col space-y-4 mb-8">
         <div className="flex items-center justify-between">
-          <TypeOfContentTitle title="Collections" type="col" />
+          <TypeOfContentTitle title={t('title')} type="col" />
           <AuthenticatedClientElement
             ressourceType="collections"
             action="create"
@@ -128,11 +130,11 @@ const CollectionsPage = async (params: any) => {
                   </svg>
                 </div>
                 <h1 className="text-xl font-bold text-gray-600 mb-2">
-                  No collections yet
+                  {t('noCollectionsYet')}
                 </h1>
                 <p className="text-md text-gray-400">
                   <ContentPlaceHolderIfUserIsNotAdmin
-                    text="Create a collection to add content"
+                    text={t('createCollectionToAddContent')}
                   />
                 </p>
                 <div className="mt-4 flex justify-center">
