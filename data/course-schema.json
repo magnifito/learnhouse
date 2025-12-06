@@ -3,7 +3,11 @@
   "title": "LearnHouse Course Data Schema",
   "description": "Schema for validating course data before import into LearnHouse platform",
   "type": "object",
-  "required": ["name", "description", "chapters"],
+  "required": [
+    "name",
+    "description",
+    "chapters"
+  ],
   "properties": {
     "name": {
       "type": "string",
@@ -42,7 +46,10 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["name", "activities"],
+        "required": [
+          "name",
+          "activities"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -60,7 +67,10 @@
             "minItems": 1,
             "items": {
               "type": "object",
-              "required": ["name", "type"],
+              "required": [
+                "name",
+                "type"
+              ],
               "properties": {
                 "name": {
                   "type": "string",
@@ -75,12 +85,20 @@
                 "type": {
                   "type": "string",
                   "description": "Activity type",
-                  "enum": ["video", "document", "dynamic", "assignment"]
+                  "enum": [
+                    "video",
+                    "document",
+                    "dynamic",
+                    "assignment"
+                  ]
                 },
                 "video_subtype": {
                   "type": "string",
                   "description": "Video subtype (required if type is 'video')",
-                  "enum": ["youtube", "hosted"]
+                  "enum": [
+                    "youtube",
+                    "hosted"
+                  ]
                 },
                 "video_url": {
                   "type": "string",
@@ -90,7 +108,10 @@
                 "document_subtype": {
                   "type": "string",
                   "description": "Document subtype (required if type is 'document')",
-                  "enum": ["pdf", "doc"]
+                  "enum": [
+                    "pdf",
+                    "doc"
+                  ]
                 },
                 "document_url": {
                   "type": "string",
@@ -99,22 +120,26 @@
                 },
                 "blocks": {
                   "type": "array",
-                  "description": "Array of content blocks (required if type is 'dynamic')",
+                  "description": "Array of content blocks (for dynamic activities)",
                   "items": {
                     "type": "object",
-                    "required": ["type"],
+                    "required": [
+                      "type"
+                    ],
                     "properties": {
                       "type": {
                         "type": "string",
                         "description": "Block type",
                         "enum": [
                           "text",
+                          "image",
+                          "video",
+                          "code_block",
+                          "table",
                           "quiz",
                           "callout_info",
                           "callout_warning",
-                          "image",
-                          "code_block",
-                          "table",
+                          "scenarios",
                           "badge",
                           "button",
                           "flipcard",
@@ -134,7 +159,12 @@
                 "assignment": {
                   "type": "object",
                   "description": "Assignment details (required if type is 'assignment')",
-                  "required": ["title", "description", "due_date", "grading_type"],
+                  "required": [
+                    "title",
+                    "description",
+                    "due_date",
+                    "grading_type"
+                  ],
                   "properties": {
                     "title": {
                       "type": "string",
@@ -150,14 +180,23 @@
                     },
                     "grading_type": {
                       "type": "string",
-                      "enum": ["ALPHABET", "NUMERIC", "PERCENTAGE"]
+                      "enum": [
+                        "ALPHABET",
+                        "NUMERIC",
+                        "PERCENTAGE"
+                      ]
                     },
                     "tasks": {
                       "type": "array",
                       "description": "Array of assignment tasks",
                       "items": {
                         "type": "object",
-                        "required": ["title", "description", "assignment_type", "max_grade_value"],
+                        "required": [
+                          "title",
+                          "description",
+                          "assignment_type",
+                          "max_grade_value"
+                        ],
                         "properties": {
                           "title": {
                             "type": "string",
@@ -176,7 +215,12 @@
                           },
                           "assignment_type": {
                             "type": "string",
-                            "enum": ["FILE_SUBMISSION", "QUIZ", "FORM", "OTHER"]
+                            "enum": [
+                              "FILE_SUBMISSION",
+                              "QUIZ",
+                              "FORM",
+                              "OTHER"
+                            ]
                           },
                           "max_grade_value": {
                             "type": "integer",
@@ -200,4 +244,3 @@
     }
   }
 }
-

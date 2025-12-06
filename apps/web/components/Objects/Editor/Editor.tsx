@@ -73,12 +73,10 @@ function Editor(props: Editor) {
   const is_ai_feature_enabled = useGetAIFeatures({ feature: 'editor' })
   const [isButtonAvailable, setIsButtonAvailable] = React.useState(false)
 
-
   React.useEffect(() => {
     if (is_ai_feature_enabled) {
       setIsButtonAvailable(true)
     }
-
   }, [is_ai_feature_enabled])
 
   // remove course_ from course_uuid
@@ -97,6 +95,8 @@ function Editor(props: Editor) {
 
   const editor: any = useEditor({
     editable: true,
+    immediatelyRender: true,
+    shouldRerenderOnTransaction: false,
     extensions: [
       StarterKit.configure({
         bulletList: {
@@ -318,22 +318,22 @@ function Editor(props: Editor) {
             </EditorUsersSection>
           </EditorTop>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.99 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            type: 'spring',
-            stiffness: 360,
-            damping: 70,
-            delay: 0.5,
-          }}
-          exit={{ opacity: 0 }}
-        >
-          <EditorContentWrapper>
+        <EditorContentWrapper>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.99 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              type: 'spring',
+              stiffness: 360,
+              damping: 70,
+              delay: 0.5,
+            }}
+            exit={{ opacity: 0 }}
+          >
             <AIEditorToolkit activity={props.activity} editor={editor} />
-            <EditorContent editor={editor} />
-          </EditorContentWrapper>
-        </motion.div>
+          </motion.div>
+          <EditorContent editor={editor} />
+        </EditorContentWrapper>
       </CourseProvider>
     </Page>
   )

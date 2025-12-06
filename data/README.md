@@ -1,129 +1,285 @@
-# LearnHouse Course Generator & Importer
+# LearnHouse Course & Organization Importer
 
-This directory contains tools for creating, validating, and importing course data into the LearnHouse platform.
+A powerful command-line tool for importing courses and organizations into LearnHouse with robust error handling, parallel processing, and comprehensive validation.
 
-## Overview
+## Features
 
-The generator tools provide a complete workflow for course creation:
+### Core Functionality
+- **Course Import** - Import complete courses with chapters and activities
+- **Organization Import** - Import/update organization settings
+- **Image Upload** - Automatic download and upload to server storage
+- **Parallel Processing** - 3x faster image uploads with concurrent processing
+- **Template Generation** - Quick-start templates for courses and organizations
 
-1. **Create** course data in JSON format (following the schema)
-2. **Validate** the JSON against the schema
-3. **Import** the validated course into LearnHouse
+### Robust & Reliable
+- **Retry Logic** - Automatic retry with exponential backoff (3 attempts)
+- **Error Handling** - Custom exceptions with actionable error messages
+- **Pre-flight Checks** - Validates API, auth, and org access before import
+- **URL Validation** - Checks that external resources are accessible
+- **Graceful Failures** - Continues on error with comprehensive summary
 
-## Files
-
-- `course-schema.json` - JSON schema definition for course data structure
-- `importer.py` - CLI tool with commands to validate, download images, and import course data
-- `example1/course_data_from_example.json` - Complete example demonstrating all platform features
+### User Experience
+- **Progress Tracking** - Visual progress bars for long operations
+- **Dry-Run Mode** - Preview changes without executing
+- **Verbose Logging** - Detailed operation logs for debugging
+- **Import Summary** - Complete statistics after import
+- **Helpful Tips** - Actionable suggestions for fixing errors
 
 ## Installation
 
-The scripts require Python 3 and the following packages:
-
+### Required Dependencies
 ```bash
 pip install jsonschema requests
 ```
 
+### Optional Dependencies (Recommended)
+```bash
+pip install tqdm tenacity
+```
+
+**Why optional dependencies?**
+- `tqdm` - Provides progress bars (falls back to simple output)
+- `tenacity` - Advanced retry logic (falls back to basic retry)
+
 ## Quick Start
 
-**Note:** All commands should be run from the `generator/` directory, or use the full path `generator/importer.py` when running from the project root.
-
-### 1. Download Images (Optional)
-
-If your course contains images from external URLs (like Unsplash), you can download them locally:
-
-From the `generator/` directory:
+### 1. Generate a Template
 ```bash
-cd generator
-python3 importer.py download-images example1/course_data_from_example.json
+# Create a course template
+python importer.py init-course --output my-course.json
+
+# Create an organization template
+python importer.py init-org --output my-org.json
 ```
 
-Or from the project root:
+### 2. Edit Your Template
+Open the generated JSON file and customize it with your content.
+
+### 3. Validate
 ```bash
-python3 generator/importer.py download-images generator/example1/course_data_from_example.json
+python importer.py validate my-course.json
 ```
 
-This will:
-- Extract all image URLs from the course data
-- Download them to an `images/` directory
-- Create an `image_mapping.json` file mapping URLs to local files
-
-Options:
+### 4. Import
 ```bash
-python3 importer.py download-images course.json --output-dir images --force
-python3 importer.py download-images course.json --mapping-file my_mapping.json
+python importer.py import my-course.json \
+  --url http://localhost:1338 \
+  --email admin@school.dev \
+  --password admin123
 ```
 
-### 2. Validate Your Course Data
+## Commands
 
-**Always validate your course data before importing.**
+### Template Generation
 
-From the `data/` directory:
+#### `init-course` - Generate Course Template
 ```bash
-python3 importer.py validate example1/course_data_from_example.json
+python importer.py init-course [--output FILE]
 ```
 
-With verbose output:
+Creates a starter course template with examples of all block types.
+
+**Options:**
+- `--output, -o` - Output file path (default: course-template.json)
+
+#### `init-org` - Generate Organization Template
 ```bash
-python3 importer.py validate example1/course_data_from_example.json --verbose
+python importer.py init-org [--output FILE]
 ```
 
-### 3. Import Course Data
+Creates a starter organization template with all configuration options.
 
-Import a validated course into LearnHouse:
+**Options:**
+- `--output, -o` - Output file path (default: organization-template.json)
 
-From the `generator/` directory:
+---
+
+### Validation
+
+#### `validate` - Validate Course Data
 ```bash
-python3 importer.py import example1/course_data_from_example.json \
+python importer.py validate FILE [OPTIONS]
+```
+
+Validates course JSON against schema.
+
+**Options:**
+- `--schema` - Path to custom schema file
+- `--verbose, -v` - Show detailed validation information
+
+#### `validate-org` - Validate Organization Data
+```bash
+python importer.py validate-org FILE [OPTIONS]
+```
+
+Validates organization JSON against schema.
+
+**Options:**
+- `--schema` - Path to custom schema file
+- `--verbose, -v` - Show detailed validation information
+
+---
+
+### Import
+
+#### `import` - Import Course
+```bash
+python importer.py import FILE [OPTIONS]
+```
+
+Imports course data into LearnHouse platform.
+
+**Required Options:**
+- `--email` - Admin email for authentication
+- `--password` - Admin password for authentication
+
+**Optional Options:**
+- `--url` - LearnHouse API URL (default: http://localhost:1338)
+- `--org-id` - Organization ID (default: 1)
+- `--verbose, -v` - Show detailed logging
+- `--dry-run` - Preview without making changes
+- `--skip-preflight` - Skip pre-flight checks
+
+**Example:**
+```bash
+python importer.py import course.json \
   --url http://localhost:1338 \
   --email admin@school.dev \
   --password admin123 \
-  --org-id 1
+  --verbose
 ```
 
-**Note:** The import command automatically validates your course data before importing. If validation fails, the import will be aborted. Use `--skip-validation` to bypass (not recommended).
+#### `import-org` - Import Organization
+```bash
+python importer.py import-org FILE [OPTIONS]
+```
 
-## JSON Schema
+Imports or updates organization data.
 
-The course data must follow the structure defined in `schema.json`. Here's a summary:
+**Required Options:**
+- `--email` - Admin email for authentication
+- `--password` - Admin password for authentication
 
-### Top-Level Structure
+**Optional Options:**
+- `--url` - LearnHouse API URL (default: http://localhost:1338)
+- `--verbose, -v` - Show detailed logging
 
+---
+
+### Utilities
+
+#### `download-images` - Download Images
+```bash
+python importer.py download-images FILE [OPTIONS]
+```
+
+Downloads all images from course data to local directory.
+
+**Options:**
+- `--output-dir, -o` - Output directory (default: images/)
+- `--force, -f` - Overwrite existing files
+
+#### `publish` - Complete Workflow
+```bash
+python importer.py publish FILE [OPTIONS]
+```
+
+Complete workflow: validate, download images, and import.
+
+**Required Options:**
+- `--email` - Admin email
+- `--password` - Admin password
+
+**Optional Options:**
+- `--url` - API URL
+- `--org-id` - Organization ID
+- `--images-dir` - Images directory
+- `--skip-images` - Skip image download
+- `--skip-validation` - Skip validation (not recommended)
+- `--verbose, -v` - Detailed logging
+
+---
+
+## Usage Examples
+
+### Basic Import
+```bash
+python importer.py import course.json \
+  --url http://localhost:1338 \
+  --email admin@school.dev \
+  --password admin123
+```
+
+### Import with Verbose Logging
+```bash
+python importer.py import course.json \
+  --url http://localhost:1338 \
+  --email admin@school.dev \
+  --password admin123 \
+  --verbose
+```
+
+### Dry-Run (Preview)
+```bash
+python importer.py import course.json \
+  --url http://localhost:1338 \
+  --email admin@school.dev \
+  --password admin123 \
+  --dry-run
+```
+
+### Complete Workflow
+```bash
+python importer.py publish course.json \
+  --url http://localhost:1338 \
+  --email admin@school.dev \
+  --password admin123 \
+  --verbose
+```
+
+---
+
+## Course JSON Structure
+
+### Minimal Example
 ```json
 {
-  "name": "Course Title",
-  "description": "Short description",
+  "name": "My Course",
+  "description": "Course description",
   "about": "Detailed markdown overview",
   "learnings": "Key takeaways",
   "tags": "comma, separated, tags",
   "thumbnail_query": "search term",
-  "chapters": [...]
+  "chapters": [
+    {
+      "name": "Chapter 1",
+      "description": "Chapter description",
+      "activities": [
+        {
+          "name": "Lesson 1",
+          "description": "Lesson description",
+          "type": "dynamic",
+          "blocks": [
+            {
+              "type": "text",
+              "content": "# Hello World\n\nThis is a lesson."
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
-### Chapters
-
-Each chapter contains:
-
-```json
-{
-  "name": "Chapter Title",
-  "description": "Chapter description",
-  "activities": [...]
-}
-```
-
-### Activities
-
-Activities can be one of four types:
+### Supported Activity Types
 
 #### 1. Video Activity
-
 ```json
 {
   "name": "Video Title",
   "type": "video",
-  "video_subtype": "youtube",  // or "hosted"
+  "video_subtype": "youtube",
   "video_url": "https://www.youtube.com/watch?v=...",
   "blocks": [
     {
@@ -135,20 +291,16 @@ Activities can be one of four types:
 ```
 
 #### 2. Document Activity
-
 ```json
 {
   "name": "Document Title",
   "type": "document",
-  "document_subtype": "pdf",  // or "doc"
+  "document_subtype": "pdf",
   "document_url": "https://example.com/document.pdf"
 }
 ```
 
 #### 3. Dynamic Activity
-
-Dynamic activities support rich content with multiple block types:
-
 ```json
 {
   "name": "Lesson Title",
@@ -175,7 +327,6 @@ Dynamic activities support rich content with multiple block types:
 ```
 
 #### 4. Assignment Activity
-
 ```json
 {
   "name": "Assignment Title",
@@ -184,13 +335,13 @@ Dynamic activities support rich content with multiple block types:
     "title": "Assignment Title",
     "description": "Assignment description",
     "due_date": "2024-12-31T23:59:59Z",
-    "grading_type": "PERCENTAGE",  // or "ALPHABET", "NUMERIC"
+    "grading_type": "PERCENTAGE",
     "tasks": [
       {
         "title": "Task Title",
         "description": "Task description",
         "hint": "Helpful hint",
-        "assignment_type": "FILE_SUBMISSION",  // or "QUIZ", "FORM", "OTHER"
+        "assignment_type": "FILE_SUBMISSION",
         "max_grade_value": 50,
         "contents": {}
       }
@@ -199,29 +350,21 @@ Dynamic activities support rich content with multiple block types:
 }
 ```
 
+---
+
 ## Supported Block Types
 
-Dynamic activities support the following block types:
-
 ### Text Blocks
-
 ```json
 {
   "type": "text",
-  "content": "# Heading\n\nParagraph text with **bold**, *italic*, and `code` formatting.\n\n- Bullet list\n- Items\n\n1. Numbered list\n2. Items"
+  "content": "# Heading\n\nParagraph text with **bold**, *italic*, and `code` formatting."
 }
 ```
 
-Supports:
-- Headings (`#`, `##`, `###`, `####`)
-- Bold (`**text**`)
-- Italic (`*text*`)
-- Code (`\`code\``)
-- Bullet lists (`-` or `*`)
-- Numbered lists (`1.`, `2.`, etc.)
+Supports: Headings, Bold, Italic, Code, Bullet lists, Numbered lists
 
 ### Quiz Blocks
-
 ```json
 {
   "type": "quiz",
@@ -230,8 +373,7 @@ Supports:
       "question": "What is the capital of France?",
       "answers": [
         {"answer": "Paris", "correct": true},
-        {"answer": "London", "correct": false},
-        {"answer": "Berlin", "correct": false}
+        {"answer": "London", "correct": false}
       ]
     }
   ]
@@ -239,7 +381,6 @@ Supports:
 ```
 
 ### Callout Blocks
-
 ```json
 {
   "type": "callout_info",
@@ -255,7 +396,6 @@ Supports:
 ```
 
 ### Image Blocks
-
 ```json
 {
   "type": "image",
@@ -263,65 +403,70 @@ Supports:
     "url": "https://example.com/image.jpg",
     "alt": "Alt text",
     "caption": "Image caption",
-    "alignment": "center"  // or "left", "right"
+    "alignment": "center"
   }
 }
 ```
 
 ### Code Blocks
-
 ```json
 {
   "type": "code_block",
   "content": {
     "code": "def hello():\n    print('Hello, World!')",
-    "language": "python"  // javascript, typescript, python, java, etc.
+    "language": "python"
+  }
+}
+```
+
+### Video Blocks
+```json
+{
+  "type": "video",
+  "content": {
+    "url": "path/to/video.mp4",
+    "title": "Video Title"
   }
 }
 ```
 
 ### Table Blocks
-
 ```json
 {
   "type": "table",
   "content": {
-    "headers": ["Column 1", "Column 2", "Column 3"],
+    "headers": ["Column 1", "Column 2"],
     "rows": [
-      ["Row 1 Col 1", "Row 1 Col 2", "Row 1 Col 3"],
-      ["Row 2 Col 1", "Row 2 Col 2", "Row 2 Col 3"]
+      ["Row 1 Col 1", "Row 1 Col 2"]
     ]
   }
 }
 ```
 
 ### Badge Blocks
-
 ```json
 {
   "type": "badge",
   "content": {
     "text": "New Feature",
-    "color": "blue"  // or "green", "red", etc.
+    "color": "blue"
   }
 }
 ```
 
 ### Button Blocks
-
 ```json
 {
   "type": "button",
   "content": {
     "text": "Click Here",
     "url": "https://example.com",
-    "style": "primary"  // or "secondary"
+    "style": "primary"
   }
 }
 ```
 
 ### Flipcard Blocks
-
 ```json
 {
   "type": "flipcard",
@@ -333,19 +478,17 @@ Supports:
 ```
 
 ### Math Equation Blocks
-
 ```json
 {
   "type": "math_equation",
   "content": {
     "equation": "E = mc^2",
-    "display": "block"  // or "inline"
+    "display": "block"
   }
 }
 ```
 
 ### Embedded Video Blocks
-
 ```json
 {
   "type": "embedded_video",
@@ -357,7 +500,6 @@ Supports:
 ```
 
 ### PDF Blocks
-
 ```json
 {
   "type": "pdf_block",
@@ -369,7 +511,6 @@ Supports:
 ```
 
 ### Web Preview Blocks
-
 ```json
 {
   "type": "web_preview",
@@ -381,7 +522,6 @@ Supports:
 ```
 
 ### Scenario Blocks (Interactive)
-
 ```json
 {
   "type": "scenarios",
@@ -397,23 +537,6 @@ Supports:
             "id": "opt1",
             "text": "Go left",
             "nextScenarioId": "2"
-          },
-          {
-            "id": "opt2",
-            "text": "Go right",
-            "nextScenarioId": "3"
-          }
-        ]
-      },
-      {
-        "id": "2",
-        "text": "You went left and found treasure!",
-        "imageUrl": "",
-        "options": [
-          {
-            "id": "opt3",
-            "text": "Finish",
-            "nextScenarioId": null
           }
         ]
       }
@@ -422,95 +545,64 @@ Supports:
 }
 ```
 
-## Command Reference
+---
 
-### Importer CLI
+## Performance
 
-The importer provides multiple commands:
+### Import Speed
+- **Small course** (1-5 chapters): ~10-30 seconds
+- **Medium course** (5-10 chapters): ~30-90 seconds
+- **Large course** (10+ chapters): ~1-3 minutes
 
-#### Import Command
+### Image Upload Performance
+- **Sequential**: ~2-5 seconds per image
+- **Parallel (3 workers)**: ~2-5 seconds for 3 images
+- **Speedup**: Up to 3x faster
 
-```bash
-python3 importer.py import <file> [options]
-
-Required:
-  --email EMAIL        Admin email for authentication
-  --password PASSWORD  Admin password for authentication
-
-Optional:
-  --url URL           API URL (default: http://localhost:1338)
-  --org-id ID         Organization ID (default: 1)
-  --skip-validation   Skip JSON validation (not recommended)
-```
-
-#### Validate Command
-
-```bash
-python3 importer.py validate <file> [options]
-
-Optional:
-  --schema PATH       Custom schema file (default: course-schema.json)
-  --verbose, -v       Show detailed validation information
-```
-
-#### Download Images Command
-
-```bash
-python3 importer.py download-images <file> [options]
-
-Optional:
-  --output-dir DIR    Output directory for images (default: images/)
-  --mapping-file FILE Mapping file path (default: image_mapping.json)
-  --force, -f         Re-download existing images
-```
-
-## Example Workflow
-
-All commands should be run from the `generator/` directory:
-
-1. **Create your course JSON** following the schema
-2. **Download images** (optional):
-   ```bash
-   cd generator
-   python3 importer.py download-images my_course.json
-   ```
-3. **Validate it**:
-   ```bash
-   python3 importer.py validate my_course.json --verbose
-   ```
-4. **Import it** (validation runs automatically before import):
-   ```bash
-   python3 importer.py import my_course.json \
-     --url http://localhost:1338 \
-     --email admin@school.dev \
-     --password admin123
-   ```
-
-## Complete Example
-
-See `example1/course_data_from_example.json` for a complete example that demonstrates:
-- All activity types (video, document, dynamic, assignment)
-- All block types
-- Complex nested structures
-- Best practices
+---
 
 ## Troubleshooting
 
-### Validation Errors
+### Authentication Failed
+```
+❌ Authentication failed: Invalid credentials
+💡 Tip: Verify your email and password are correct
+```
 
-If validation fails, check:
-- All required fields are present
-- Activity types match their required fields (e.g., `video` activities need `video_url`)
-- Block types use correct structure
-- JSON is valid (no syntax errors)
+**Solution:** Check your credentials
 
-### Import Errors
+### Network Error
+```
+❌ Network error: Network request failed after 3 retries
+💡 Tip: Check your internet connection and API server status
+```
 
-If import fails:
-- Ensure the API server is running
-- Verify credentials are correct
-- Check that the organization ID exists
-- Review error messages for specific field issues
+**Solution:** Verify API server is running and accessible
+
+### Permission Error
+```
+❌ Failed to create course: No permission to create courses
+💡 Tip: Verify you have admin access to organization 1
+```
+
+**Solution:** Check user permissions in the organization
+
+### Image Upload Failed
+```
+⚠️ Failed to download image: HTTP 404
+```
+
+**Solution:** Image URL is broken - will fallback to URL
+
+### Pre-flight Check Failed
+```
+❌ Pre-flight checks failed:
+   • Organization 5 not found
+
+💡 Tip: Fix the issues above or use --skip-preflight to bypass checks
+```
+
+**Solution:** Fix the organization ID or skip checks
 
 ### Common Issues
 
@@ -518,6 +610,45 @@ If import fails:
 2. **"Invalid activity type"**: Must be one of: `video`, `document`, `dynamic`, `assignment`
 3. **"Invalid block type"**: Check the list of supported block types above
 4. **"Login failed"**: Verify API URL and credentials
+
+---
+
+## Best Practices
+
+### 1. Always Validate First
+```bash
+python importer.py validate course.json
+```
+
+### 2. Use Dry-Run for Testing
+```bash
+python importer.py import course.json --dry-run
+```
+
+### 3. Enable Verbose for Debugging
+```bash
+python importer.py import course.json --verbose
+```
+
+### 4. Use Templates for New Courses
+```bash
+python importer.py init-course --output my-course.json
+```
+
+### 5. Check Pre-flight Before Large Imports
+Pre-flight checks are enabled by default and catch issues early.
+
+---
+
+## Files in This Directory
+
+- `course-schema.json` - JSON schema definition for course data structure
+- `importer.py` - CLI tool with all commands
+- `courses/` - Course data examples and documentation
+- `organisation/` - Organization data examples
+- `videos/` - Marketing video examples
+
+---
 
 ## Schema Validation
 
@@ -527,7 +658,9 @@ The validator uses JSON Schema Draft 7. It checks:
 - Enum values
 - String lengths
 - Array constraints
-- Custom business rules (e.g., video activities must have video_url)
+- Custom business rules
+
+---
 
 ## API Requirements
 
@@ -536,11 +669,42 @@ The validator uses JSON Schema Draft 7. It checks:
 - Organization must exist
 - User must have permission to create courses
 
+---
+
 ## Notes
 
 - All dates should be in ISO 8601 format (e.g., `2024-12-31T23:59:59Z`)
 - URLs should be absolute and accessible
-- Images and documents should be hosted externally or uploaded separately
+- Images and documents are automatically uploaded to the server
 - The importer automatically converts markdown to Tiptap format
 - Quiz questions support multiple choice only (for now)
 
+---
+
+## Quick Command Reference
+
+```bash
+# Generate templates
+python importer.py init-course
+python importer.py init-org
+
+# Validate
+python importer.py validate course.json
+
+# Import
+python importer.py import course.json --email EMAIL --password PASS
+
+# Import with options
+python importer.py import course.json \
+  --email EMAIL \
+  --password PASS \
+  --verbose \
+  --dry-run
+
+# Complete workflow
+python importer.py publish course.json --email EMAIL --password PASS
+```
+
+---
+
+**Part of the LearnHouse project**

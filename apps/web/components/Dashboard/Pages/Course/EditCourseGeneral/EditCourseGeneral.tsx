@@ -7,7 +7,7 @@ import FormLayout, {
 import { useFormik } from 'formik';
 import { AlertTriangle } from 'lucide-react';
 import * as Form from '@radix-ui/react-form';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import ThumbnailUpdate from './ThumbnailUpdate';
 import { useCourse, useCourseDispatch } from '@components/Contexts/CourseContext';
 import FormTagInput from '@components/Objects/StyledElements/Form/TagInput';
@@ -111,8 +111,9 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
     }
   };
 
-  // Create initial values object
-  const getInitialValues = () => {
+  // Memoize initial values to prevent infinite re-renders
+  // Only recreate when courseStructure actually changes
+  const initialValues = useMemo(() => {
     const thumbnailType = courseStructure?.thumbnail_type || 'image';
     return {
       name: courseStructure?.name || '',
@@ -123,10 +124,10 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
       public: courseStructure?.public || false,
       thumbnail_type: thumbnailType,
     };
-  };
+  }, [courseStructure]);
 
   const formik = useFormik({
-    initialValues: getInitialValues(),
+    initialValues,
     validate: (values: any) => validate(values, t),
     onSubmit: async values => {
       try {
@@ -139,13 +140,8 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
     enableReinitialize: true,
   }) as any;
 
-  // Reset form when courseStructure changes
-  useEffect(() => {
-    if (courseStructure && !isLoading) {
-      const newValues = getInitialValues();
-      formik.resetForm({ values: newValues });
-    }
-  }, [courseStructure, isLoading]);
+  // Note: Form reset is handled by Formik's enableReinitialize: true
+  // Removing this effect prevents infinite loop caused by regenerating learnings IDs
 
   useEffect(() => {
     if (!isLoading) {

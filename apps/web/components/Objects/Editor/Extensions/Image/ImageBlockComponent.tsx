@@ -32,8 +32,8 @@ function ImageBlockComponent(props: any) {
   })
   const [alignment, setAlignment] = React.useState(props.node.attrs.alignment || 'center')
   const [isModalOpen, setIsModalOpen] = React.useState(false)
-  
-  const fileId = blockObject
+
+  const fileId = blockObject?.content?.file_id
     ? `${blockObject.content.file_id}.${blockObject.content.file_format}`
     : null
 

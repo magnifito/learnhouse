@@ -57,9 +57,9 @@ export default function RootLayout({
   const isRtl = rtlLocales.includes(locale)
 
   return (
-    <html className="" lang={locale} dir={isRtl ? 'rtl' : 'ltr'}>
+    <html className="" lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning>
       <head />
-      <body>
+      <body suppressHydrationWarning>
         {/* Inject runtime configuration for client-side access */}
         <Script src="/runtime-config.js" strategy="beforeInteractive" />
         {isDevEnv ? '' : <Script data-website-id="a1af6d7a-9286-4a1f-8385-ddad2a29fcbb" src="/umami/script.js" />}

@@ -54,7 +54,7 @@ const LearningItemsList = ({ value, onChange, error }: LearningItemsListProps) =
     }, 0);
   };
 
-  // Parse the JSON string to items array when the component mounts or value changes
+  // Sync items with value prop
   useEffect(() => {
     try {
       if (value) {
@@ -63,38 +63,34 @@ const LearningItemsList = ({ value, onChange, error }: LearningItemsListProps) =
           setItems(parsedItems);
           initializedRef.current = true;
         } else if (!initializedRef.current) {
-          // Initialize with one empty item if no valid array and not already initialized
-          const newItem: LearningItem = {
+          // Initialize with one empty item
+          const newItems = [{
             id: Date.now().toString(),
             text: '',
             emoji: '📝',
-          };
-          setItems([newItem]);
-          onChange(JSON.stringify([newItem]));
+          }];
+          setItems(newItems);
           initializedRef.current = true;
         }
       } else if (!initializedRef.current) {
-        // Initialize with one empty item if no value and not already initialized
-        const newItem: LearningItem = {
+        // Initialize with one empty item
+        const newItems = [{
           id: Date.now().toString(),
           text: '',
           emoji: '📝',
-        };
-        setItems([newItem]);
-        onChange(JSON.stringify([newItem]));
+        }];
+        setItems(newItems);
         initializedRef.current = true;
       }
     } catch (e) {
       console.error('Error parsing learning items:', e);
-      // Initialize with one empty item on error if not already initialized
       if (!initializedRef.current) {
-        const newItem: LearningItem = {
+        const newItems = [{
           id: Date.now().toString(),
           text: '',
           emoji: '📝',
-        };
-        setItems([newItem]);
-        onChange(JSON.stringify([newItem]));
+        }];
+        setItems(newItems);
         initializedRef.current = true;
       }
     }

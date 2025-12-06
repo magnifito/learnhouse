@@ -2,7 +2,7 @@
   "name": "ACME Learning Academy",
   "description": "Professional training for marketing and sales teams. Master the art of customer engagement and drive business growth.",
   "about": "# Welcome to ACME Learning Academy\n\nACME Learning Academy is a premier educational platform specializing in marketing and sales training. We provide comprehensive courses designed to help professionals excel in their careers.\n\n## Our Mission\n\nTo empower marketing and sales professionals with the knowledge and skills needed to succeed in today's competitive business landscape.\n\n## What We Offer\n\n- **Marketing Courses**: Learn modern marketing strategies, digital marketing, content creation, and analytics\n- **Sales Training**: Master sales techniques, customer relationship management, and closing strategies\n- **Practical Skills**: Hands-on learning with real-world case studies and projects\n- **Expert Instructors**: Learn from industry veterans with years of experience\n\n## Why Choose ACME?\n\n- Industry-leading curriculum\n- Flexible learning schedules\n- Certificate programs\n- Community support and networking opportunities",
-  "slug": "acme-learning-academy",
+  "slug": "default",
   "email": "contact@acme-learning.com",
   "label": "Learn. Grow. Succeed.",
   "default_locale": "en",
