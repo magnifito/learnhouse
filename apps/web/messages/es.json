@@ -381,6 +381,36 @@
     "desktopOnlyMessage": "Esta página solo es accesible desde un dispositivo de escritorio.",
     "switchToDesktop": "Por favor cambia a un escritorio para ver y gestionar la configuración de usuarios."
   },
+  "usergroups": {
+    "title": "Manage UserGroups & Users",
+    "description": "UserGroups are a way to group users together to manage their access to the resources (Courses) in your organization.",
+    "table": {
+      "userGroup": "UserGroup",
+      "description": "Description",
+      "manageUsers": "Manage Users",
+      "actions": "Actions"
+    },
+    "buttons": {
+      "manageUsers": "Manage Users",
+      "create": "Create a UserGroup"
+    },
+    "manageUsersModal": {
+      "title": "Manage UserGroup Users",
+      "description": "Manage the users in this UserGroup"
+    },
+    "createModal": {
+      "title": "Create a UserGroup",
+      "description": "Create a new UserGroup to manage users"
+    },
+    "deleteModal": {
+      "title": "Delete UserGroup?",
+      "message": "Access to all resources will be removed for all users in this UserGroup. Are you sure you want to delete this UserGroup?",
+      "confirmButton": "Delete UserGroup"
+    },
+    "deleting": "Deleting...",
+    "deletedSuccess": "Deleted usergroup",
+    "deleteError": "Error deleting usergroup"
+  },
   "organization": {
     "generalTitle": "General",
     "generalDescription": "Gestionar la configuración de tu organización",

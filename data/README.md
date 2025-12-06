@@ -43,10 +43,34 @@ pip install tqdm tenacity
 
 ## Quick Start
 
+### Using the CLI Scripts (Recommended)
+
+Import all courses from a folder with a single command:
+
+```bash
+# Import all marketing courses (uses default password: admin123)
+./bin/import-marketing-courses.sh
+
+# Import courses from any folder
+./bin/import-courses.sh data/courses/marketing
+
+# With custom password
+LEARNHOUSE_ADMIN_PASSWORD=mypass ./bin/import-courses.sh
+
+# With all custom settings
+LEARNHOUSE_API_URL=http://localhost:1338 \
+LEARNHOUSE_ADMIN_EMAIL=admin@school.dev \
+LEARNHOUSE_ADMIN_PASSWORD=mypass \
+LEARNHOUSE_ORG_ID=1 \
+./bin/import-courses.sh data/courses/sales
+```
+
+### Using the Python Script Directly
+
 ### 1. Generate a Template
 ```bash
 # Create a course template
-python importer.py init-course --output my-course.json
+python data/importer.py init-course --output my-course.json
 
 # Create an organization template
 python importer.py init-org --output my-org.json

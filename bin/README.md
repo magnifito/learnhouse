@@ -42,6 +42,11 @@ This directory contains scripts to manage your local development environment.
 - **`./bin/reset-database.sh`** - Drop and recreate database schema (destructive!)
 - **`./bin/cleanup-docker.sh`** - Remove all Docker containers (destructive!)
 
+### Course Import
+
+- **`./bin/import-marketing-courses.sh`** - Import all marketing course JSON files
+- **`./bin/import-courses.sh [FOLDER]`** - Import all course JSON files from specified folder
+
 ## Service Details
 
 ### PostgreSQL
@@ -163,6 +168,26 @@ docker exec -it learnhouse-postgres psql -U learnhouse
 # Reset database
 ./bin/reset-database.sh
 cd apps/api && alembic upgrade head
+```
+
+### Import Course Data
+
+```bash
+# Import all marketing courses (uses default password: admin123)
+./bin/import-marketing-courses.sh
+
+# Import courses from a specific folder
+./bin/import-courses.sh data/courses/sales
+
+# Import with custom password
+LEARNHOUSE_ADMIN_PASSWORD=mypass ./bin/import-courses.sh
+
+# Import with all custom settings
+LEARNHOUSE_API_URL=http://localhost:1338 \
+LEARNHOUSE_ADMIN_EMAIL=admin@school.dev \
+LEARNHOUSE_ADMIN_PASSWORD=mypass \
+LEARNHOUSE_ORG_ID=1 \
+./bin/import-courses.sh data/courses/marketing
 ```
 
 ## Notes

@@ -381,6 +381,36 @@
     "desktopOnlyMessage": "Cette page n'est accessible que depuis un ordinateur de bureau.",
     "switchToDesktop": "Veuillez passer à un ordinateur de bureau pour afficher et gérer les paramètres utilisateur."
   },
+  "usergroups": {
+    "title": "Gérer les Groupes d'utilisateurs",
+    "description": "Les groupes d'utilisateurs permettent de regrouper des utilisateurs pour gérer leur accès aux ressources (Cours) de votre organisation.",
+    "table": {
+      "userGroup": "Groupe d'utilisateurs",
+      "description": "Description",
+      "manageUsers": "Gérer les utilisateurs",
+      "actions": "Actions"
+    },
+    "buttons": {
+      "manageUsers": "Gérer les utilisateurs",
+      "create": "Créer un groupe d'utilisateurs"
+    },
+    "manageUsersModal": {
+      "title": "Gérer les utilisateurs du groupe",
+      "description": "Gérer les utilisateurs de ce groupe d'utilisateurs"
+    },
+    "createModal": {
+      "title": "Créer un groupe d'utilisateurs",
+      "description": "Créer un nouveau groupe d'utilisateurs pour gérer les utilisateurs"
+    },
+    "deleteModal": {
+      "title": "Supprimer le groupe d'utilisateurs?",
+      "message": "L'accès à toutes les ressources sera supprimé pour tous les utilisateurs de ce groupe. Êtes-vous sûr de vouloir supprimer ce groupe d'utilisateurs?",
+      "confirmButton": "Supprimer le groupe"
+    },
+    "deleting": "Suppression en cours...",
+    "deletedSuccess": "Groupe d'utilisateurs supprimé",
+    "deleteError": "Erreur lors de la suppression du groupe"
+  },
   "organization": {
     "generalTitle": "Général",
     "generalDescription": "Gérer les paramètres de votre organisation",

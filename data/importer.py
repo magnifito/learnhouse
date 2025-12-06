@@ -1224,7 +1224,7 @@ class LearnHouseImporter:
                         'PUT',
                         f"{self.api_url}/api/v1/activities/{activity_uuid}",
                         headers=self.headers,
-                        json={"content": updated_content},
+                        json={"content": updated_content, "published": True},
                         timeout=90
                     )
                     
@@ -1250,7 +1250,7 @@ class LearnHouseImporter:
                     update_response = requests.put(
                         f"{self.api_url}/api/v1/activities/{activity_uuid}",
                         headers=self.headers,
-                        json={"content": updated_content}
+                        json={"content": updated_content, "published": True}
                     )
                     if update_response.status_code == 200:
                         activity_result = update_response.json()

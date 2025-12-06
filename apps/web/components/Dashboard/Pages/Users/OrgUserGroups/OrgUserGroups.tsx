@@ -10,6 +10,7 @@ import { getAPIUrl } from '@services/config/config'
 import { deleteUserGroup } from '@services/usergroups/usergroups'
 import { swrFetcher } from '@services/utils/ts/requests'
 import { Pencil, SquareUserRound, Users, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import React from 'react'
 import toast from 'react-hot-toast'
 import useSWR, { mutate } from 'swr'
@@ -17,6 +18,8 @@ import useSWR, { mutate } from 'swr'
 function OrgUserGroups() {
     const org = useOrg() as any
     const session = useLHSession() as any
+    const t = useTranslations('usergroups')
+    const c = useTranslations('common')
     const access_token = session?.data?.tokens?.access_token;
     const [userGroupManagementModal, setUserGroupManagementModal] = React.useState(false)
     const [createUserGroupModal, setCreateUserGroupModal] = React.useState(false)
@@ -29,14 +32,14 @@ function OrgUserGroups() {
     )
 
     const deleteUserGroupUI = async (usergroup_id: any) => {
-        const toastId = toast.loading("Deleting...");
+        const toastId = toast.loading(t('deleting'));
         const res = await deleteUserGroup(usergroup_id, access_token)
         if (res.status == 200) {
             mutate(`${getAPIUrl()}usergroups/org/${org.id}`)
-            toast.success("Deleted usergroup", {id:toastId})
+            toast.success(t('deletedSuccess'), {id:toastId})
         }
         else {
-            toast.error('Error deleting usergroup', {id:toastId})
+            toast.error(t('deleteError'), {id:toastId})
         }
 
     }
@@ -51,20 +54,20 @@ function OrgUserGroups() {
             <div className="h-6"></div>
             <div className="ml-10 mr-10 mx-auto bg-white rounded-xl shadow-xs px-4 py-4">
                 <div className="flex flex-col bg-gray-50 -space-y-1  px-5 py-3 rounded-md mb-3 ">
-                    <h1 className="font-bold text-xl text-gray-800">Manage UserGroups & Users</h1>
+                    <h1 className="font-bold text-xl text-gray-800">{t('title')}</h1>
                     <h2 className="text-gray-500 text-sm">
                         {' '}
-                        UserGroups are a way to group users together to manage their access to the resources (Courses) in your organization.{' '}
+                        {t('description')}{' '}
                     </h2>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="table-auto w-full text-left whitespace-nowrap rounded-md overflow-hidden">
                         <thead className="bg-gray-100 text-gray-500 rounded-xl uppercase">
                             <tr className="font-bolder text-sm">
-                                <th className="py-3 px-4">UserGroup</th>
-                                <th className="py-3 px-4">Description</th>
-                                <th className="py-3 px-4">Manage Users</th>
-                                <th className="py-3 px-4">Actions</th>
+                                <th className="py-3 px-4">{t('table.userGroup')}</th>
+                                <th className="py-3 px-4">{t('table.description')}</th>
+                                <th className="py-3 px-4">{t('table.manageUsers')}</th>
+                                <th className="py-3 px-4">{t('table.actions')}</th>
                             </tr>
                         </thead>
                         <>
@@ -89,14 +92,14 @@ function OrgUserGroups() {
                                                         usergroup_id={usergroup.id}
                                                     />
                                                 }
-                                                dialogTitle="Manage UserGroup Users"
+                                                dialogTitle={t('manageUsersModal.title')}
                                                 dialogDescription={
-                                                    'Manage the users in this UserGroup'
+                                                    t('manageUsersModal.description')
                                                 }
                                                 dialogTrigger={
                                                     <button className="flex space-x-2 hover:cursor-pointer p-1 px-3 bg-yellow-700 rounded-md font-bold items-center text-sm text-yellow-100">
                                                         <Users className="w-4 h-4" />
-                                                        <span> Manage Users</span>
+                                                        <span> {t('buttons.manageUsers')}</span>
                                                     </button>
                                                 }
                                             />
@@ -107,7 +110,7 @@ function OrgUserGroups() {
                                             dialogTrigger={
                                                 <button className="flex space-x-2 hover:cursor-pointer p-1 px-3 bg-sky-700 rounded-md font-bold items-center text-sm text-sky-100">
                                                     <Pencil className="size-4" />
-                                                    <span>Edit</span>
+                                                    <span>{c('edit')}</span>
                                                 </button>
                                             }
                                             minHeight='sm'
@@ -120,13 +123,13 @@ function OrgUserGroups() {
                                             }
                                             />
                                             <ConfirmationModal
-                                                confirmationButtonText="Delete UserGroup"
-                                                confirmationMessage="Access to all resources will be removed for all users in this UserGroup. Are you sure you want to delete this UserGroup ?"
-                                                dialogTitle={'Delete UserGroup ?'}
+                                                confirmationButtonText={t('deleteModal.confirmButton')}
+                                                confirmationMessage={t('deleteModal.message')}
+                                                dialogTitle={t('deleteModal.title')}
                                                 dialogTrigger={
                                                     <button className="flex space-x-2 hover:cursor-pointer p-1 px-3 bg-rose-700 rounded-md font-bold items-center text-sm text-rose-100">
                                                         <X className="w-4 h-4" />
-                                                        <span>Delete</span>
+                                                        <span>{c('delete')}</span>
                                                     </button>
                                                 }
                                                 functionToExecute={() => {
@@ -155,16 +158,16 @@ function OrgUserGroups() {
                                 setCreateUserGroupModal={setCreateUserGroupModal}
                             />
                         }
-                        dialogTitle="Create a UserGroup"
+                        dialogTitle={t('createModal.title')}
                         dialogDescription={
-                            'Create a new UserGroup to manage users'
+                            t('createModal.description')
                         }
                         dialogTrigger={
                             <button
                                 className=" flex space-x-2 hover:cursor-pointer p-1 px-3 bg-green-700 rounded-md font-bold items-center text-sm text-green-100"
                             >
                                 <SquareUserRound className="w-4 h-4" />
-                                <span>Create a UserGroup</span>
+                                <span>{t('buttons.create')}</span>
                             </button>
                         }
                     />
