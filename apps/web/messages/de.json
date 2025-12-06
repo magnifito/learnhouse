@@ -382,7 +382,7 @@
     "switchToDesktop": "Bitte wechseln Sie zu einem Desktop, um Benutzereinstellungen anzuzeigen und zu verwalten."
   },
   "usergroups": {
-    "title": "Manage UserGroups & Users",
+    "title": "Benutzergruppen & Benutzer verwalten",
     "description": "UserGroups are a way to group users together to manage their access to the resources (Courses) in your organization.",
     "table": {
       "userGroup": "UserGroup",
@@ -479,7 +479,8 @@
       "scriptDeleteError": "Fehler beim Löschen des Skripts",
       "deletingScript": "Skript wird gelöscht...",
       "nameRequired": "Skriptname ist erforderlich",
-      "contentRequired": "Skriptinhalt ist erforderlich"
+      "contentRequired": "Skriptinhalt ist erforderlich",
+      "saving": "Speichern..."
     }
   },
   "landing": {
@@ -567,6 +568,7 @@
     "imagePosition": "Bildposition",
     "selectImagePosition": "Wählen Sie die Bildposition",
     "uploadNewImage": "Neues Bild hochladen",
+    "uploadImageText": "Bild hochladen",
     "uploading": "Wird hochgeladen...",
     "successImageUpload": "Bild erfolgreich hochgeladen",
     "errorImageUpload": "Fehler beim Hochladen des Bildes",
@@ -665,7 +667,11 @@
     "addLoomVideoTitle": "Loom-Video hinzufügen",
     "pasteLoomUrl": "Fügen Sie Ihre Loom-Video-URL ein",
     "youtubeUrlPlaceholder": "https://youtube.com/watch?v=...",
-    "loomUrlPlaceholder": "https://www.loom.com/share/..."
+    "loomUrlPlaceholder": "https://www.loom.com/share/...",
+    "addVideo": "Video hinzufügen",
+    "addVideoPreview": "Video-Vorschau hinzufügen",
+    "dragDropImages": "Bilder hierher ziehen und ablegen",
+    "pasteYouTubeOrLoom": "Fügen Sie Ihre YouTube- oder Loom-Video-URL ein"
   },
   "dashboardHome": {
     "hello": "Hallo,",
@@ -853,7 +859,7 @@
     },
     "predefined": {
       "admin": {
-        "name": "Admin",
+        "name": "Administrator",
         "desc": "Volle Plattformkontrolle mit allen Berechtigungen"
       },
       "courseManager": {
@@ -869,7 +875,7 @@
         "desc": "Lesezugriff auf Kurse und Inhalte"
       },
       "contentCreator": {
-        "name": "Content Creator",
+        "name": "Inhaltsersteller",
         "desc": "Kann Inhalte erstellen und bearbeiten, aber keine Benutzer verwalten"
       },
       "userManager": {
@@ -893,6 +899,34 @@
       "creating": "Erstellen...",
       "success": "Neue Rolle erstellt",
       "error": "Neue Rolle konnte nicht erstellt werden"
+    }
+  },
+  "roles": {
+    "title": "Rollen & Berechtigungen verwalten",
+    "description": "Rollen definieren, was Benutzer in Ihrer Organisation tun können. Erstellen Sie benutzerdefinierte Rollen mit spezifischen Berechtigungen für verschiedene Benutzertypen.",
+    "systemWide": "Systemweit",
+    "noPermissions": "Keine Berechtigungen",
+    "permissions": "{count} Berechtigungen",
+    "noDescription": "Keine Beschreibung",
+    "tableHeaders": {
+      "roleName": "Rollenname",
+      "description": "Beschreibung",
+      "permissions": "Berechtigungen",
+      "actions": "Aktionen"
+    },
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "editRole": "Rolle bearbeiten",
+    "editRoleDescription": "Berechtigungen und Details der Rolle bearbeiten",
+    "deleteRole": "Rolle löschen",
+    "deleteRoleTitle": "Rolle löschen?",
+    "deleteRoleMessage": "Diese Aktion kann nicht rückgängig gemacht werden. Alle Benutzer mit dieser Rolle verlieren ihre Berechtigungen. Möchten Sie diese Rolle wirklich löschen?",
+    "createRole": "Rolle erstellen",
+    "createRoleDescription": "Erstellen Sie eine neue Rolle mit spezifischen Berechtigungen",
+    "toasts": {
+      "deleting": "Wird gelöscht...",
+      "deleted": "Rolle gelöscht",
+      "deleteError": "Fehler beim Löschen der Rolle"
     }
   },
   "addUserGroupModal": {
@@ -959,21 +993,21 @@
     "assignment": {
       "title": "Aufgabentitel",
       "titlePlaceholder": "Aufgabentitel eingeben",
-      "desc": "Description",
+      "desc": "Beschreibung",
       "description": "Beschreibung",
-      "descPlaceholder": "Please enter a description",
+      "descPlaceholder": "Bitte geben Sie eine Beschreibung ein",
       "descriptionPlaceholder": "Aufgabenanweisungen eingeben",
       "dueDate": "Fälligkeitsdatum",
-      "datePlaceholder": "Please select a due date",
+      "datePlaceholder": "Bitte wählen Sie ein Fälligkeitsdatum",
       "gradingType": "Bewertungstyp",
-      "gradingPlaceholder": "Please select a grading type",
-      "create": "Create Assignment",
+      "gradingPlaceholder": "Bitte wählen Sie einen Bewertungstyp",
+      "create": "Aufgabe erstellen",
       "creating": "Aufgabe wird erstellt...",
       "success": "Aufgabe erfolgreich erstellt",
       "options": {
-        "alphabet": "Alphabet (A, B, C, D, F)",
-        "numeric": "Numeric (0-100)",
-        "percentage": "Percentage (0%-100%)"
+        "alphabet": "Alphabetisch (A, B, C, D, F)",
+        "numeric": "Numerisch (0-100)",
+        "percentage": "Prozentsatz (0%-100%)"
       }
     },
     "common": {
@@ -981,11 +1015,11 @@
     }
   },
   "activityNavigation": {
-    "next": "Next",
-    "previous": "Previous",
-    "of": "of",
-    "noNextActivity": "No next activity",
-    "noPreviousActivity": "No previous activity"
+    "next": "Weiter",
+    "previous": "Zurück",
+    "of": "von",
+    "noNextActivity": "Keine weitere Aktivität",
+    "noPreviousActivity": "Keine vorherige Aktivität"
   },
   "activityIndicators": {
     "activityTypes": {

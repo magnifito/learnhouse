@@ -35,7 +35,7 @@ function VideoModal({
   chapterId,
   course,
 }: any) {
-  const t = useTranslations('activityModals.video');
+  const t = useTranslations();
   const [video, setVideo] = React.useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [name, setName] = React.useState('')
@@ -113,10 +113,10 @@ function VideoModal({
 
     return (
       <div className="space-y-4 mt-4 p-4 bg-gray-50 rounded-lg">
-        <h3 className="font-medium text-gray-900 mb-3">{t('settings')}</h3>
+        <h3 className="font-medium text-gray-900 mb-3">{t('activityModals.video.settings')}</h3>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label>{t('startTime')}</Label>
+            <Label>{t('activityModals.video.startTime')}</Label>
             <div className="flex gap-2 mt-1">
               <div className="flex-1">
                 <Input
@@ -134,7 +134,7 @@ function VideoModal({
                   placeholder="0"
                   className="w-full"
                 />
-                <span className="text-xs text-gray-500 mt-1 block">{t('minutes')}</span>
+                <span className="text-xs text-gray-500 mt-1 block">{t('activityModals.video.minutes')}</span>
               </div>
               <div className="flex-1">
                 <Input
@@ -153,13 +153,13 @@ function VideoModal({
                   placeholder="0"
                   className="w-full"
                 />
-                <span className="text-xs text-gray-500 mt-1 block">{t('seconds')}</span>
+                <span className="text-xs text-gray-500 mt-1 block">{t('activityModals.video.seconds')}</span>
               </div>
             </div>
           </div>
 
           <div>
-            <Label>{t('endTime')}</Label>
+            <Label>{t('activityModals.video.endTime')}</Label>
             <div className="flex gap-2 mt-1">
               <div className="flex-1">
                 <Input
@@ -180,7 +180,7 @@ function VideoModal({
                   placeholder="0"
                   className="w-full"
                 />
-                <span className="text-xs text-gray-500 mt-1 block">{t('minutes')}</span>
+                <span className="text-xs text-gray-500 mt-1 block">{t('activityModals.video.minutes')}</span>
               </div>
               <div className="flex-1">
                 <Input
@@ -202,7 +202,7 @@ function VideoModal({
                   placeholder="0"
                   className="w-full"
                 />
-                <span className="text-xs text-gray-500 mt-1 block">{t('seconds')}</span>
+                <span className="text-xs text-gray-500 mt-1 block">{t('activityModals.video.seconds')}</span>
               </div>
             </div>
           </div>
@@ -219,7 +219,7 @@ function VideoModal({
               })}
               className="rounded border-gray-300 text-black focus:ring-black"
             />
-            <span className="text-sm text-gray-700">{t('autoplay')}</span>
+            <span className="text-sm text-gray-700">{t('activityModals.video.autoplay')}</span>
           </label>
 
           <label className="flex items-center space-x-2">
@@ -232,7 +232,7 @@ function VideoModal({
               })}
               className="rounded border-gray-300 text-black focus:ring-black"
             />
-            <span className="text-sm text-gray-700">{t('muted')}</span>
+            <span className="text-sm text-gray-700">{t('activityModals.video.muted')}</span>
           </label>
         </div>
       </div>
@@ -242,14 +242,14 @@ function VideoModal({
   return (
     <Form.Root onSubmit={handleSubmit}>
       <div>
-        <Label htmlFor="video-activity-name">{t('name')}</Label>
+        <Label htmlFor="video-activity-name">{t('activityModals.video.name')}</Label>
         <Input
           id="video-activity-name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           type="text"
           required
-          placeholder={t('namePlaceholder')}
+          placeholder={t('activityModals.video.namePlaceholder')}
         />
       </div>
 
@@ -264,7 +264,7 @@ function VideoModal({
               }`}
           >
             <Upload size={18} />
-            <span>{t('upload')}</span>
+            <span>{t('activityModals.video.uploadTab')}</span>
           </button>
           <button
             type="button"
@@ -275,7 +275,7 @@ function VideoModal({
               }`}
           >
             <Youtube size={18} />
-            <span>{t('youtube')}</span>
+            <span>{t('activityModals.video.youtubeTab')}</span>
           </button>
         </div>
 
@@ -283,7 +283,7 @@ function VideoModal({
           {selectedView === 'file' && (
             <div className="space-y-4">
               <div>
-                <Label htmlFor="video-activity-file">{t('fileLabel')}</Label>
+                <Label htmlFor="video-activity-file">{t('activityModals.video.fileLabel')}</Label>
                 <div className="mt-2">
                   <input
                     id="video-activity-file"
@@ -302,7 +302,7 @@ function VideoModal({
           {selectedView === 'youtube' && (
             <div className="space-y-4">
               <div>
-                <Label htmlFor="youtube-url">{t('youtubeUrl')}</Label>
+                <Label htmlFor="youtube-url">{t('activityModals.video.urlLabel')}</Label>
                 <Input
                   id="youtube-url"
                   value={youtubeUrl}
@@ -331,7 +331,7 @@ function VideoModal({
               color="#ffffff"
             />
           ) : (
-            t('create')
+            t('activityModals.video.create')
           )}
         </Button>
       </div>

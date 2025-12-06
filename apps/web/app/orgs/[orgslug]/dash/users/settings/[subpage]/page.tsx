@@ -24,31 +24,31 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
   const params = use(props.params);
   const session = useLHSession() as any
   const org = useOrg() as any
-  const t = useTranslations('users')
+  const t = useTranslations()
   const [H1Label, setH1Label] = React.useState('')
   const [H2Label, setH2Label] = React.useState('')
   const isMobile = useMediaQuery('(max-width: 767px)')
 
   function handleLabels() {
     if (params.subpage == 'users') {
-      setH1Label(t('usersTitle'))
-      setH2Label(t('usersDescription'))
+      setH1Label(t('users.usersTitle'))
+      setH2Label(t('users.usersDescription'))
     }
     if (params.subpage == 'signups') {
-      setH1Label(t('signupsTitle'))
-      setH2Label(t('signupsDescription'))
+      setH1Label(t('users.signupsTitle'))
+      setH2Label(t('users.signupsDescription'))
     }
     if (params.subpage == 'add') {
-      setH1Label(t('inviteMembersTitle'))
-      setH2Label(t('inviteMembersDescription'))
+      setH1Label(t('users.inviteMembersTitle'))
+      setH2Label(t('users.inviteMembersDescription'))
     }
     if (params.subpage == 'usergroups') {
-      setH1Label(t('userGroupsTitle'))
-      setH2Label(t('userGroupsDescription'))
+      setH1Label(t('users.userGroupsTitle'))
+      setH2Label(t('users.userGroupsDescription'))
     }
     if (params.subpage == 'roles') {
-      setH1Label(t('rolesTitle'))
-      setH2Label(t('rolesDescription'))
+      setH1Label(t('users.rolesTitle'))
+      setH2Label(t('users.rolesDescription'))
     }
   }
 
@@ -61,10 +61,10 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
     return (
       <div className="h-screen w-full bg-[#f8f8f8] flex items-center justify-center p-4">
         <div className="bg-white p-6 rounded-lg shadow-md text-center">
-          <h2 className="text-xl font-bold mb-4">{t('desktopOnly')}</h2>
+          <h2 className="text-xl font-bold mb-4">{t('users.desktopOnly')}</h2>
           <Monitor className='mx-auto my-5' size={60} />
-          <p>{t('desktopOnlyMessage')}</p>
-          <p>{t('switchToDesktop')}</p>
+          <p>{t('users.desktopOnlyMessage')}</p>
+          <p>{t('users.switchToDesktop')}</p>
         </div>
       </div>
     )
@@ -98,7 +98,7 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
             >
               <div className="flex items-center space-x-2.5 mx-2">
                 <Users size={16} />
-                <div>{t('usersTitle')}</div>
+                <div>{t('users.usersTitle')}</div>
               </div>
             </div>
           </Link>
@@ -115,7 +115,7 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
             >
               <div className="flex items-center space-x-2.5 mx-2">
                 <SquareUserRound size={16} />
-                <div>{t('userGroupsTitle')}</div>
+                <div>{t('users.userGroupsTitle')}</div>
               </div>
             </div>
           </Link>
@@ -132,7 +132,7 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
             >
               <div className="flex items-center space-x-2.5 mx-2">
                 <Shield size={16} />
-                <div>{t('rolesTitle')}</div>
+                <div>{t('users.rolesTitle')}</div>
               </div>
             </div>
           </Link>
@@ -149,7 +149,7 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
             >
               <div className="flex items-center space-x-2.5 mx-2">
                 <ScanEye size={16} />
-                <div>{t('signupsTitle')}</div>
+                <div>{t('users.signupsTitle')}</div>
               </div>
             </div>
           </Link>
@@ -166,7 +166,7 @@ function UsersSettingsPage(props: { params: Promise<SettingsParams> }) {
             >
               <div className="flex items-center space-x-2.5 mx-2">
                 <UserPlus size={16} />
-                <div>{t('inviteMembersTitle')}</div>
+                <div>{t('users.inviteMembersTitle')}</div>
               </div>
             </div>
           </Link>

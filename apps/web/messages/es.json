@@ -382,7 +382,7 @@
     "switchToDesktop": "Por favor cambia a un escritorio para ver y gestionar la configuración de usuarios."
   },
   "usergroups": {
-    "title": "Manage UserGroups & Users",
+    "title": "Administrar Grupos de Usuarios y Usuarios",
     "description": "UserGroups are a way to group users together to manage their access to the resources (Courses) in your organization.",
     "table": {
       "userGroup": "UserGroup",
@@ -479,7 +479,8 @@
       "scriptDeleteError": "Error al eliminar el script",
       "deletingScript": "Eliminando script...",
       "nameRequired": "El nombre del script es obligatorio",
-      "contentRequired": "El contenido del script es obligatorio"
+      "contentRequired": "El contenido del script es obligatorio",
+      "saving": "Guardando..."
     }
   },
   "landing": {
@@ -567,6 +568,7 @@
     "imagePosition": "Posición de la Imagen",
     "selectImagePosition": "Selecciona la posición de la imagen",
     "uploadNewImage": "Subir Nueva Imagen",
+    "uploadImageText": "Subir Imagen",
     "uploading": "Subiendo...",
     "successImageUpload": "Imagen subida exitosamente",
     "errorImageUpload": "Error al subir la imagen",
@@ -665,7 +667,11 @@
     "addLoomVideoTitle": "Agregar Video de Loom",
     "pasteLoomUrl": "Pega la URL de tu video de Loom",
     "youtubeUrlPlaceholder": "https://youtube.com/watch?v=...",
-    "loomUrlPlaceholder": "https://www.loom.com/share/..."
+    "loomUrlPlaceholder": "https://www.loom.com/share/...",
+    "addVideo": "Agregar Video",
+    "addVideoPreview": "Agregar Vista Previa de Video",
+    "dragDropImages": "Arrastra y suelta imágenes aquí",
+    "pasteYouTubeOrLoom": "Pega la URL de tu video de YouTube o Loom"
   },
   "dashboardHome": {
     "hello": "Hola,",
@@ -853,7 +859,7 @@
     },
     "predefined": {
       "admin": {
-        "name": "Admin",
+        "name": "Administrador",
         "desc": "Control total de la plataforma con todos los permisos"
       },
       "courseManager": {
@@ -893,6 +899,34 @@
       "creating": "Creando...",
       "success": "Nuevo rol creado",
       "error": "No se pudo crear el nuevo rol"
+    }
+  },
+  "roles": {
+    "title": "Administrar Roles y Permisos",
+    "description": "Los roles definen lo que los usuarios pueden hacer dentro de su organización. Crea roles personalizados con permisos específicos para diferentes tipos de usuarios.",
+    "systemWide": "Sistema",
+    "noPermissions": "Sin permisos",
+    "permissions": "{count} permisos",
+    "noDescription": "Sin descripción",
+    "tableHeaders": {
+      "roleName": "Nombre del Rol",
+      "description": "Descripción",
+      "permissions": "Permisos",
+      "actions": "Acciones"
+    },
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "editRole": "Editar Rol",
+    "editRoleDescription": "Editar los permisos y detalles del rol",
+    "deleteRole": "Eliminar Rol",
+    "deleteRoleTitle": "¿Eliminar Rol?",
+    "deleteRoleMessage": "Esta acción no se puede deshacer. Todos los usuarios con este rol perderán sus permisos. ¿Estás seguro de que quieres eliminar este rol?",
+    "createRole": "Crear un Rol",
+    "createRoleDescription": "Crear un nuevo rol con permisos específicos",
+    "toasts": {
+      "deleting": "Eliminando...",
+      "deleted": "Rol eliminado",
+      "deleteError": "Error al eliminar el rol"
     }
   },
   "addUserGroupModal": {
@@ -959,21 +993,21 @@
     "assignment": {
       "title": "Título de la Tarea",
       "titlePlaceholder": "Ingresa el título de la tarea",
-      "desc": "Description",
+      "desc": "Descripción",
       "description": "Descripción",
-      "descPlaceholder": "Please enter a description",
+      "descPlaceholder": "Por favor ingresa una descripción",
       "descriptionPlaceholder": "Ingresa las instrucciones de la tarea",
       "dueDate": "Fecha de Vencimiento",
-      "datePlaceholder": "Please select a due date",
+      "datePlaceholder": "Por favor selecciona una fecha de vencimiento",
       "gradingType": "Tipo de Calificación",
-      "gradingPlaceholder": "Please select a grading type",
-      "create": "Create Assignment",
+      "gradingPlaceholder": "Por favor selecciona un tipo de calificación",
+      "create": "Crear Tarea",
       "creating": "Creando tarea...",
       "success": "Tarea creada exitosamente",
       "options": {
-        "alphabet": "Alphabet (A, B, C, D, F)",
-        "numeric": "Numeric (0-100)",
-        "percentage": "Percentage (0%-100%)"
+        "alphabet": "Alfabético (A, B, C, D, F)",
+        "numeric": "Numérico (0-100)",
+        "percentage": "Porcentaje (0%-100%)"
       }
     },
     "common": {
@@ -981,11 +1015,11 @@
     }
   },
   "activityNavigation": {
-    "next": "Next",
-    "previous": "Previous",
-    "of": "of",
-    "noNextActivity": "No next activity",
-    "noPreviousActivity": "No previous activity"
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "of": "de",
+    "noNextActivity": "No hay siguiente actividad",
+    "noPreviousActivity": "No hay actividad anterior"
   },
   "activityIndicators": {
     "activityTypes": {

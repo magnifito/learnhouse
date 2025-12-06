@@ -13,20 +13,20 @@ import * as Yup from 'yup'
 import { useTranslations } from 'next-intl'
 
 const createValidationSchema = (t: any) => Yup.object().shape({
-  old_password: Yup.string().required(t('currentPasswordRequired')),
+  old_password: Yup.string().required(t('settings.currentPasswordRequired')),
   new_password: Yup.string()
-    .required(t('newPasswordRequired'))
-    .min(8, t('passwordMinLength')),
+    .required(t('settings.newPasswordRequired'))
+    .min(8, t('settings.passwordMinLength')),
 })
 
 function UserEditPassword() {
-  const t = useTranslations('settings')
+  const t = useTranslations()
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token;
   const validationSchema = createValidationSchema(t)
 
   const updatePasswordUI = async (values: any) => {
-    const loadingToast = toast.loading(t('updatingPassword'))
+    const loadingToast = toast.loading(t('settings.updatingPassword'))
     try {
       let user_id = session.data.user.id
       const response = await updatePassword(user_id, values, access_token)
@@ -35,10 +35,10 @@ function UserEditPassword() {
         toast.dismiss(loadingToast)
 
         // Show success message and notify about logout
-        toast.success(t('passwordUpdatedSuccess'), { duration: 4000 })
+        toast.success(t('settings.passwordUpdatedSuccess'), { duration: 4000 })
         toast((toastInstance: any) => (
           <div className="flex items-center gap-2">
-            <span>{t('pleaseLoginWithNewPassword')}</span>
+            <span>{t('settings.pleaseLoginWithNewPassword')}</span>
           </div>
         ), {
           duration: 4000,
@@ -49,10 +49,10 @@ function UserEditPassword() {
         await new Promise(resolve => setTimeout(resolve, 4000))
         signOut({ redirect: true, callbackUrl: getUriWithoutOrg('/') })
       } else {
-        toast.error(response.data.detail || t('failedToUpdatePassword'), { id: loadingToast })
+        toast.error(response.data.detail || t('settings.failedToUpdatePassword'), { id: loadingToast })
       }
     } catch (error: any) {
-      const errorMessage = error.data?.detail || t('failedToUpdatePasswordTryAgain')
+      const errorMessage = error.data?.detail || t('settings.failedToUpdatePasswordTryAgain')
       toast.error(errorMessage, { id: loadingToast })
       console.error('Password update error:', error)
     }
@@ -65,10 +65,10 @@ function UserEditPassword() {
       <div className="flex flex-col">
         <div className="flex flex-col bg-gray-50 -space-y-1 px-5 py-3 mx-3 my-3 rounded-md">
           <h1 className="font-bold text-xl text-gray-800">
-            {t('changePassword')}
+            {t('settings.changePassword')}
           </h1>
           <h2 className="text-gray-500 text-md">
-            {t('changePasswordDescription')}
+            {t('settings.changePasswordDescription')}
           </h2>
         </div>
 
@@ -86,7 +86,7 @@ function UserEditPassword() {
             {({ isSubmitting, handleChange, errors, touched }) => (
               <Form className="w-full max-w-2xl mx-auto space-y-6">
                 <div>
-                  <Label htmlFor="old_password">{t('currentPassword')}</Label>
+                  <Label htmlFor="old_password">{t('settings.currentPassword')}</Label>
                   <Input
                     type="password"
                     id="old_password"
@@ -100,7 +100,7 @@ function UserEditPassword() {
                 </div>
 
                 <div>
-                  <Label htmlFor="new_password">{t('newPassword')}</Label>
+                  <Label htmlFor="new_password">{t('settings.newPassword')}</Label>
                   <Input
                     type="password"
                     id="new_password"
@@ -115,7 +115,7 @@ function UserEditPassword() {
 
                 <div className="flex items-center space-x-2 text-amber-600 bg-amber-50 p-3 rounded-md">
                   <AlertTriangle size={16} />
-                  <span className="text-sm">{t('loggedOutAfterPasswordChange')}</span>
+                  <span className="text-sm">{t('settings.loggedOutAfterPasswordChange')}</span>
                 </div>
 
                 <div className="flex justify-end pt-2">
@@ -124,7 +124,7 @@ function UserEditPassword() {
                     disabled={isSubmitting}
                     className="bg-black text-white hover:bg-black/90"
                   >
-                    {isSubmitting ? t('updating') : t('updatePassword')}
+                    {isSubmitting ? t('settings.updating') : t('settings.updatePassword')}
                   </Button>
                 </div>
               </Form>

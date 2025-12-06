@@ -23,8 +23,7 @@ function NewCollection(props: { params: Promise<{ orgslug: string }> }) {
   const [selectedCourses, setSelectedCourses] = React.useState([]) as any
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
-  const t = useTranslations('collections')
-  const tCommon = useTranslations('common')
+  const t = useTranslations()
   const { data: courses, error: error, isLoading } = useSWR(
     `${getAPIUrl()}courses/org_slug/${orgslug}/page/1/limit/10`,
     (url) => swrFetcher(url, access_token)
@@ -49,17 +48,17 @@ function NewCollection(props: { params: Promise<{ orgslug: string }> }) {
     e.preventDefault()
 
     if (!name.trim()) {
-      toast.error(t('validation.nameRequired'))
+      toast.error(t('collections.validation.nameRequired'))
       return
     }
 
     if (!description.trim()) {
-      toast.error(t('validation.descRequired'))
+      toast.error(t('collections.validation.descRequired'))
       return
     }
 
     if (selectedCourses.length === 0) {
-      toast.error(t('validation.courseRequired'))
+      toast.error(t('collections.validation.courseRequired'))
       return
     }
 
@@ -75,10 +74,10 @@ function NewCollection(props: { params: Promise<{ orgslug: string }> }) {
       }
       await createCollection(collection, session.data?.tokens?.access_token)
       await revalidateTags(['collections'], org.slug)
-      toast.success(t('success'))
+      toast.success(t('collections.success'))
       router.push(getUriWithOrg(orgslug, '/collections'))
     } catch (error) {
-      toast.error(t('error'))
+      toast.error(t('collections.error'))
     } finally {
       setIsSubmitting(false)
     }
@@ -87,7 +86,7 @@ function NewCollection(props: { params: Promise<{ orgslug: string }> }) {
   if (error) {
     return (
       <div className="flex items-center justify-center h-[60vh]">
-        <div className="text-red-500">{t('loadError')}</div>
+        <div className="text-red-500">{t('collections.loadError')}</div>
       </div>
     )
   }
@@ -96,19 +95,19 @@ function NewCollection(props: { params: Promise<{ orgslug: string }> }) {
     <div className="max-w-2xl mx-auto py-12 px-4">
       <div className="space-y-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('create')}</h1>
+          <h1 className="text-2xl font-bold text-gray-900">{t('collections.create')}</h1>
           <p className="mt-2 text-sm text-gray-600">
-            {t('createDescription')}
+            {t('collections.createDescription')}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <label className="block">
-              <span className="text-sm font-medium text-gray-700">{t('name')}</span>
+              <span className="text-sm font-medium text-gray-700">{t('collections.name')}</span>
               <input
                 type="text"
-                placeholder={t('namePlaceholder')}
+                placeholder={t('collections.namePlaceholder')}
                 value={name}
                 onChange={handleNameChange}
                 className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
@@ -117,22 +116,22 @@ function NewCollection(props: { params: Promise<{ orgslug: string }> }) {
             </label>
 
             <label className="block">
-              <span className="text-sm font-medium text-gray-700">{t('visibility')}</span>
+              <span className="text-sm font-medium text-gray-700">{t('collections.visibility')}</span>
               <select
                 onChange={handleVisibilityChange}
                 className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 defaultValue={isPublic}
                 value={isPublic}
               >
-                <option value="true">{t('public')}</option>
-                <option value="false">{t('private')}</option>
+                <option value="true">{t('collections.public')}</option>
+                <option value="false">{t('collections.private')}</option>
               </select>
             </label>
 
             <label className="block">
-              <span className="text-sm font-medium text-gray-700">{t('description')}</span>
+              <span className="text-sm font-medium text-gray-700">{t('collections.description')}</span>
               <textarea
-                placeholder={t('descriptionPlaceholder')}
+                placeholder={t('collections.descriptionPlaceholder')}
                 value={description}
                 onChange={handleDescriptionChange}
                 rows={4}
@@ -142,13 +141,13 @@ function NewCollection(props: { params: Promise<{ orgslug: string }> }) {
             </label>
 
             <div className="space-y-2">
-              <span className="text-sm font-medium text-gray-700">{t('selectCourses')}</span>
+              <span className="text-sm font-medium text-gray-700">{t('collections.selectCourses')}</span>
               {isLoading ? (
                 <div className="flex items-center justify-center py-8">
                   <Loader2 className="w-6 h-6 animate-spin text-gray-500" />
                 </div>
               ) : courses?.length === 0 ? (
-                <p className="text-sm text-gray-500 py-4">{t('noCourses')}</p>
+                <p className="text-sm text-gray-500 py-4">{t('collections.noCourses')}</p>
               ) : (
                 <div className="mt-2 border border-gray-200 rounded-lg bg-gray-50">
                   <div className="max-h-[400px] overflow-y-auto p-4 space-y-3 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400">
@@ -210,7 +209,7 @@ function NewCollection(props: { params: Promise<{ orgslug: string }> }) {
               type="button"
               className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition"
             >
-              {tCommon('cancel')}
+              {t('common.cancel')}
             </button>
             <button
               type="submit"
@@ -218,7 +217,7 @@ function NewCollection(props: { params: Promise<{ orgslug: string }> }) {
               className="px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg shadow-xs hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
             >
               {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
-              <span>{isSubmitting ? t('creating') : t('createButton')}</span>
+              <span>{isSubmitting ? t('collections.creating') : t('collections.createButton')}</span>
             </button>
           </div>
         </form>

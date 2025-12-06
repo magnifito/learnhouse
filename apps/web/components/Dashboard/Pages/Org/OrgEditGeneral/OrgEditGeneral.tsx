@@ -57,15 +57,15 @@ const ORG_LABELS = [
 
 const createValidationSchema = (t: any) => Yup.object().shape({
   name: Yup.string()
-    .required(t('nameRequired'))
-    .max(60, t('nameMaxLength')),
+    .required(t('organization.nameRequired'))
+    .max(60, t('organization.nameMaxLength')),
   description: Yup.string()
-    .required(t('descriptionRequired'))
-    .max(100, t('descriptionMaxLength')),
+    .required(t('organization.descriptionRequired'))
+    .max(100, t('organization.descriptionMaxLength')),
   about: Yup.string()
     .optional()
-    .max(400, t('aboutMaxLength')),
-  label: Yup.string().required(t('labelRequired')),
+    .max(400, t('organization.aboutMaxLength')),
+  label: Yup.string().required(t('organization.labelRequired')),
   explore: Yup.boolean(),
 })
 
@@ -82,7 +82,7 @@ const OrgEditGeneral: React.FC = () => {
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token
   const org = useOrg() as any
-  const t = useTranslations('organization')
+  const t = useTranslations()
   const validationSchema = createValidationSchema(t)
 
   const initialValues: OrganizationValues = {
@@ -94,14 +94,14 @@ const OrgEditGeneral: React.FC = () => {
   }
 
   const updateOrg = async (values: OrganizationValues) => {
-    const loadingToast = toast.loading(t('updatingOrganization'))
+    const loadingToast = toast.loading(t('organization.updatingOrganization'))
     try {
       await updateOrganization(org.id, values, access_token)
       await revalidateTags(['organizations'], org.slug)
       mutate(`${getAPIUrl()}orgs/slug/${org.slug}`)
-      toast.success(t('organizationUpdated'), { id: loadingToast })
+      toast.success(t('organization.organizationUpdated'), { id: loadingToast })
     } catch (err) {
-      toast.error(t('failedToUpdateOrg'), { id: loadingToast })
+      toast.error(t('organization.failedToUpdateOrg'), { id: loadingToast })
     }
   }
 
@@ -123,10 +123,10 @@ const OrgEditGeneral: React.FC = () => {
             <div className="flex flex-col gap-0">
               <div className="flex flex-col bg-gray-50 -space-y-1 px-5 py-3 mx-3 my-3 rounded-md">
                 <h1 className="font-bold text-xl text-gray-800">
-                  {t('organizationSettings')}
+                  {t('organization.organizationSettings')}
                 </h1>
                 <h2 className="text-gray-500 text-md">
-                  {t('manageOrgProfile')}
+                  {t('organization.manageOrgProfile')}
                 </h2>
               </div>
 
@@ -135,7 +135,7 @@ const OrgEditGeneral: React.FC = () => {
                   <div className="space-y-4">
                     <div>
                       <Label htmlFor="name">
-                        {t('organizationName')}
+                        {t('organization.organizationName')}
                         <span className="text-gray-500 text-sm ml-2">
                           ({t('charactersLeft', { count: 60 - (values.name?.length || 0) })})
                         </span>
@@ -145,7 +145,7 @@ const OrgEditGeneral: React.FC = () => {
                         name="name"
                         value={values.name}
                         onChange={handleChange}
-                        placeholder={t('organizationName')}
+                        placeholder={t('organization.organizationName')}
                         maxLength={60}
                       />
                       {touched.name && errors.name && (
@@ -155,7 +155,7 @@ const OrgEditGeneral: React.FC = () => {
 
                     <div>
                       <Label htmlFor="description">
-                        {t('shortDescription')}
+                        {t('organization.shortDescription')}
                         <span className="text-gray-500 text-sm ml-2">
                           ({t('charactersLeft', { count: 100 - (values.description?.length || 0) })})
                         </span>
@@ -165,7 +165,7 @@ const OrgEditGeneral: React.FC = () => {
                         name="description"
                         value={values.description}
                         onChange={handleChange}
-                        placeholder={t('briefDescription')}
+                        placeholder={t('organization.briefDescription')}
                         maxLength={100}
                       />
                       {touched.description && errors.description && (
@@ -174,13 +174,13 @@ const OrgEditGeneral: React.FC = () => {
                     </div>
 
                     <div>
-                      <Label htmlFor="label">{t('organizationLabel')}</Label>
+                      <Label htmlFor="label">{t('organization.organizationLabel')}</Label>
                       <Select
                         value={values.label}
                         onValueChange={(value) => setFieldValue('label', value)}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder={t('selectOrgLabel')} />
+                          <SelectValue placeholder={t('organization.selectOrgLabel')} />
                         </SelectTrigger>
                         <SelectContent>
                           {ORG_LABELS.map((type) => (
@@ -197,7 +197,7 @@ const OrgEditGeneral: React.FC = () => {
 
                     <div>
                       <Label htmlFor="about">
-                        {t('aboutOrganization')}
+                        {t('organization.aboutOrganization')}
                         <span className="text-gray-500 text-sm ml-2">
                           ({t('charactersLeft', { count: 400 - (values.about?.length || 0) })})
                         </span>
@@ -207,7 +207,7 @@ const OrgEditGeneral: React.FC = () => {
                         name="about"
                         value={values.about}
                         onChange={handleChange}
-                        placeholder={t('detailedDescription')}
+                        placeholder={t('organization.detailedDescription')}
                         className="min-h-[250px]"
                         maxLength={400}
                       />
@@ -233,9 +233,9 @@ const OrgEditGeneral: React.FC = () => {
                           </span>
                         </Link>
                         <div className="space-y-0.5">
-                          <Label className="text-base">{t('showcaseInExplore')}</Label>
+                          <Label className="text-base">{t('organization.showcaseInExplore')}</Label>
                           <p className="text-sm text-gray-500">
-                            {t('showcaseDescription')}
+                            {t('organization.showcaseDescription')}
                           </p>
                         </div>
                       </div>
@@ -254,7 +254,7 @@ const OrgEditGeneral: React.FC = () => {
                   disabled={isSubmitting}
                   className="bg-black text-white hover:bg-black/90"
                 >
-                  {isSubmitting ? t('saving') : t('saveChanges')}
+                  {isSubmitting ? t('organization.saving') : t('organization.saveChanges')}
                 </Button>
               </div>
             </div>

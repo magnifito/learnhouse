@@ -20,7 +20,7 @@ type AddUserGroupProps = {
 }
 
 function AddUserGroup(props: AddUserGroupProps) {
-    const t = useTranslations('addUserGroupModal');
+    const t = useTranslations();
     const org = useOrg() as any;
     const session = useLHSession() as any
     const access_token = session?.data?.tokens?.access_token;
@@ -30,7 +30,7 @@ function AddUserGroup(props: AddUserGroupProps) {
         const errors: any = {}
 
         if (!values.name) {
-            errors.name = t('validation.nameRequired')
+            errors.name = t('addUserGroupModal.validation.nameRequired')
         }
 
         return errors
@@ -44,17 +44,17 @@ function AddUserGroup(props: AddUserGroupProps) {
         },
         validate,
         onSubmit: async (values) => {
-            const toastID = toast.loading(t('toasts.creating'))
+            const toastID = toast.loading(t('addUserGroupModal.toasts.creating'))
             setIsSubmitting(true)
             const res = await createUserGroup(values, access_token)
             if (res.status == 200) {
                 setIsSubmitting(false)
                 mutate(`${getAPIUrl()}usergroups/org/${org.id}`)
                 props.setCreateUserGroupModal(false)
-                toast.success(t('toasts.success'), { id: toastID })
+                toast.success(t('addUserGroupModal.toasts.success'), { id: toastID })
             } else {
                 setIsSubmitting(false)
-                toast.error(t('toasts.error'), { id: toastID })
+                toast.error(t('addUserGroupModal.toasts.error'), { id: toastID })
             }
         },
     })
@@ -63,7 +63,7 @@ function AddUserGroup(props: AddUserGroupProps) {
         <FormLayout onSubmit={formik.handleSubmit}>
             <FormField name="name">
                 <FormLabelAndMessage
-                    label={t('name')}
+                    label={t('addUserGroupModal.name')}
                     message={formik.errors.name}
                 />
                 <Form.Control asChild>
@@ -77,7 +77,7 @@ function AddUserGroup(props: AddUserGroupProps) {
             </FormField>
             <FormField name="description">
                 <FormLabelAndMessage
-                    label={t('description')}
+                    label={t('addUserGroupModal.description')}
                     message={formik.errors.description}
                 />
                 <Form.Control asChild>
@@ -91,7 +91,7 @@ function AddUserGroup(props: AddUserGroupProps) {
             <div className="flex py-4">
                 <Form.Submit asChild>
                     <button className="w-full bg-black text-white font-bold text-center p-2 rounded-md shadow-md hover:cursor-pointer">
-                        {isSubmitting ? t('loading') : t('createGroup')}
+                        {isSubmitting ? t('addUserGroupModal.loading') : t('addUserGroupModal.createGroup')}
                     </button>
                 </Form.Submit>
             </div>

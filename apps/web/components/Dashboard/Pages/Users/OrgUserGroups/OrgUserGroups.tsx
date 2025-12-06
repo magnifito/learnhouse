@@ -18,8 +18,7 @@ import useSWR, { mutate } from 'swr'
 function OrgUserGroups() {
     const org = useOrg() as any
     const session = useLHSession() as any
-    const t = useTranslations('usergroups')
-    const c = useTranslations('common')
+    const t = useTranslations()
     const access_token = session?.data?.tokens?.access_token;
     const [userGroupManagementModal, setUserGroupManagementModal] = React.useState(false)
     const [createUserGroupModal, setCreateUserGroupModal] = React.useState(false)
@@ -32,14 +31,14 @@ function OrgUserGroups() {
     )
 
     const deleteUserGroupUI = async (usergroup_id: any) => {
-        const toastId = toast.loading(t('deleting'));
+        const toastId = toast.loading(t('usergroups.deleting'));
         const res = await deleteUserGroup(usergroup_id, access_token)
         if (res.status == 200) {
             mutate(`${getAPIUrl()}usergroups/org/${org.id}`)
-            toast.success(t('deletedSuccess'), {id:toastId})
+            toast.success(t('usergroups.deletedSuccess'), {id:toastId})
         }
         else {
-            toast.error(t('deleteError'), {id:toastId})
+            toast.error(t('usergroups.deleteError'), {id:toastId})
         }
 
     }
@@ -54,20 +53,20 @@ function OrgUserGroups() {
             <div className="h-6"></div>
             <div className="ml-10 mr-10 mx-auto bg-white rounded-xl shadow-xs px-4 py-4">
                 <div className="flex flex-col bg-gray-50 -space-y-1  px-5 py-3 rounded-md mb-3 ">
-                    <h1 className="font-bold text-xl text-gray-800">{t('title')}</h1>
+                    <h1 className="font-bold text-xl text-gray-800">{t('usergroups.title')}</h1>
                     <h2 className="text-gray-500 text-sm">
                         {' '}
-                        {t('description')}{' '}
+                        {t('usergroups.description')}{' '}
                     </h2>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="table-auto w-full text-left whitespace-nowrap rounded-md overflow-hidden">
                         <thead className="bg-gray-100 text-gray-500 rounded-xl uppercase">
                             <tr className="font-bolder text-sm">
-                                <th className="py-3 px-4">{t('table.userGroup')}</th>
-                                <th className="py-3 px-4">{t('table.description')}</th>
-                                <th className="py-3 px-4">{t('table.manageUsers')}</th>
-                                <th className="py-3 px-4">{t('table.actions')}</th>
+                                <th className="py-3 px-4">{t('usergroups.table.userGroup')}</th>
+                                <th className="py-3 px-4">{t('usergroups.table.description')}</th>
+                                <th className="py-3 px-4">{t('usergroups.table.manageUsers')}</th>
+                                <th className="py-3 px-4">{t('usergroups.table.actions')}</th>
                             </tr>
                         </thead>
                         <>
@@ -92,14 +91,14 @@ function OrgUserGroups() {
                                                         usergroup_id={usergroup.id}
                                                     />
                                                 }
-                                                dialogTitle={t('manageUsersModal.title')}
+                                                dialogTitle={t('usergroups.manageUsersModal.title')}
                                                 dialogDescription={
-                                                    t('manageUsersModal.description')
+                                                    t('usergroups.manageUsersModal.description')
                                                 }
                                                 dialogTrigger={
                                                     <button className="flex space-x-2 hover:cursor-pointer p-1 px-3 bg-yellow-700 rounded-md font-bold items-center text-sm text-yellow-100">
                                                         <Users className="w-4 h-4" />
-                                                        <span> {t('buttons.manageUsers')}</span>
+                                                        <span> {t('usergroups.buttons.manageUsers')}</span>
                                                     </button>
                                                 }
                                             />
@@ -110,7 +109,7 @@ function OrgUserGroups() {
                                             dialogTrigger={
                                                 <button className="flex space-x-2 hover:cursor-pointer p-1 px-3 bg-sky-700 rounded-md font-bold items-center text-sm text-sky-100">
                                                     <Pencil className="size-4" />
-                                                    <span>{c('edit')}</span>
+                                                    <span>{t('common.edit')}</span>
                                                 </button>
                                             }
                                             minHeight='sm'
@@ -123,13 +122,13 @@ function OrgUserGroups() {
                                             }
                                             />
                                             <ConfirmationModal
-                                                confirmationButtonText={t('deleteModal.confirmButton')}
-                                                confirmationMessage={t('deleteModal.message')}
-                                                dialogTitle={t('deleteModal.title')}
+                                                confirmationButtonText={t('usergroups.deleteModal.confirmButton')}
+                                                confirmationMessage={t('usergroups.deleteModal.message')}
+                                                dialogTitle={t('usergroups.deleteModal.title')}
                                                 dialogTrigger={
                                                     <button className="flex space-x-2 hover:cursor-pointer p-1 px-3 bg-rose-700 rounded-md font-bold items-center text-sm text-rose-100">
                                                         <X className="w-4 h-4" />
-                                                        <span>{c('delete')}</span>
+                                                        <span>{t('common.delete')}</span>
                                                     </button>
                                                 }
                                                 functionToExecute={() => {
@@ -158,16 +157,16 @@ function OrgUserGroups() {
                                 setCreateUserGroupModal={setCreateUserGroupModal}
                             />
                         }
-                        dialogTitle={t('createModal.title')}
+                        dialogTitle={t('usergroups.createModal.title')}
                         dialogDescription={
-                            t('createModal.description')
+                            t('usergroups.createModal.description')
                         }
                         dialogTrigger={
                             <button
                                 className=" flex space-x-2 hover:cursor-pointer p-1 px-3 bg-green-700 rounded-md font-bold items-center text-sm text-green-100"
                             >
                                 <SquareUserRound className="w-4 h-4" />
-                                <span>{t('buttons.create')}</span>
+                                <span>{t('usergroups.buttons.create')}</span>
                             </button>
                         }
                     />

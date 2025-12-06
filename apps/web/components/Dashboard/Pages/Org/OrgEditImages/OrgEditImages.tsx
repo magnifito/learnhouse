@@ -66,7 +66,7 @@ const ADD_PREVIEW_OPTIONS = [
 ] as const;
 
 export default function OrgEditImages() {
-  const t = useTranslations('images')
+  const t = useTranslations()
   const router = useRouter()
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token
@@ -114,14 +114,14 @@ export default function OrgEditImages() {
       const file = event.target.files[0]
       setLocalLogo(URL.createObjectURL(file))
       setIsLogoUploading(true)
-      const loadingToast = toast.loading(t('uploadingLogo'))
+      const loadingToast = toast.loading(t('images.uploadingLogo'))
       try {
         await uploadOrganizationLogo(org.id, file, access_token)
         await new Promise((r) => setTimeout(r, 1500))
-        toast.success(t('logoUpdated'), { id: loadingToast })
+        toast.success(t('images.logoUpdated'), { id: loadingToast })
         router.refresh()
       } catch (err) {
-        toast.error(t('failedToUploadLogo'), { id: loadingToast })
+        toast.error(t('images.failedToUploadLogo'), { id: loadingToast })
       } finally {
         setIsLogoUploading(false)
       }
@@ -133,14 +133,14 @@ export default function OrgEditImages() {
       const file = event.target.files[0]
       setLocalThumbnail(URL.createObjectURL(file))
       setIsThumbnailUploading(true)
-      const loadingToast = toast.loading(t('uploadingThumbnail'))
+      const loadingToast = toast.loading(t('images.uploadingThumbnail'))
       try {
         await uploadOrganizationThumbnail(org.id, file, access_token)
         await new Promise((r) => setTimeout(r, 1500))
-        toast.success(t('thumbnailUpdated'), { id: loadingToast })
+        toast.success(t('images.thumbnailUpdated'), { id: loadingToast })
         router.refresh()
       } catch (err) {
-        toast.error(t('failedToUploadThumbnail'), { id: loadingToast })
+        toast.error(t('images.failedToUploadThumbnail'), { id: loadingToast })
       } finally {
         setIsThumbnailUploading(false)
       }
@@ -203,7 +203,7 @@ export default function OrgEditImages() {
         toast.success(t('previewsAdded', { count: files.length, plural: files.length === 1 ? '' : 's' }), { id: loadingToast })
         router.refresh()
       } catch (err) {
-        toast.error(t('failedToUploadPreviews'), { id: loadingToast })
+        toast.error(t('images.failedToUploadPreviews'), { id: loadingToast })
       } finally {
         setIsPreviewUploading(false)
       }
@@ -211,7 +211,7 @@ export default function OrgEditImages() {
   }
 
   const removePreview = async (id: string) => {
-    const loadingToast = toast.loading(t('removingPreview'))
+    const loadingToast = toast.loading(t('images.removingPreview'))
     try {
       const updatedPreviews = previews.filter(p => p.id !== id)
       const updatedPreviewFilenames = updatedPreviews.map(p => p.filename)
@@ -223,10 +223,10 @@ export default function OrgEditImages() {
       }, access_token)
 
       setPreviews(updatedPreviews)
-      toast.success(t('previewRemoved'), { id: loadingToast })
+      toast.success(t('images.previewRemoved'), { id: loadingToast })
       router.refresh()
     } catch (err) {
-      toast.error(t('failedToRemovePreview'), { id: loadingToast })
+      toast.error(t('images.failedToRemovePreview'), { id: loadingToast })
     }
   }
 
@@ -252,11 +252,11 @@ export default function OrgEditImages() {
 
     // Check if video already exists
     if (previews.some(preview => preview.id === videoId)) {
-      toast.error(t('videoAlreadyAdded'));
+      toast.error(t('images.videoAlreadyAdded'));
       return;
     }
 
-    const loadingToast = toast.loading(t('addingVideoPreview'));
+    const loadingToast = toast.loading(t('images.addingVideoPreview'));
     
     try {
       const thumbnailUrl = type === 'youtube' 
@@ -296,10 +296,10 @@ export default function OrgEditImages() {
       setPreviews(updatedPreviews);
       setVideoUrl('');
       setVideoDialogOpen(false);
-      toast.success(t('videoPreviewAdded'), { id: loadingToast });
+      toast.success(t('images.videoPreviewAdded'), { id: loadingToast });
       router.refresh();
     } catch (err) {
-      toast.error(t('failedToAddVideoPreview'), { id: loadingToast });
+      toast.error(t('images.failedToAddVideoPreview'), { id: loadingToast });
     }
   };
 
@@ -340,10 +340,10 @@ export default function OrgEditImages() {
         }
       }, access_token);
 
-      toast.success(t('previewRemoved'), { id: loadingToast });
+      toast.success(t('images.previewRemoved'), { id: loadingToast });
       router.refresh();
     } catch (err) {
-      toast.error(t('failedToRemovePreview'), { id: loadingToast });
+      toast.error(t('images.failedToRemovePreview'), { id: loadingToast });
       setPreviews(previews);
     }
   };
@@ -358,10 +358,10 @@ export default function OrgEditImages() {
     <div className="sm:mx-10 mx-0 bg-white rounded-xl nice-shadow px-3 py-3 sm:mb-0 mb-16">
       <div className="flex flex-col bg-gray-50 -space-y-1 px-5 py-3 mb-2 rounded-md">
         <h1 className="font-bold text-xl text-gray-800">
-          {t('imagesAndPreviews')}
+          {t('images.imagesAndPreviews')}
         </h1>
         <h2 className="text-gray-500 text-md">
-          {t('manageOrgMedia')}
+          {t('images.manageOrgMedia')}
         </h2>
       </div>
       <Tabs defaultValue="logo" className="w-full">
@@ -371,21 +371,21 @@ export default function OrgEditImages() {
             className="data-[state=active]:bg-white data-[state=active]:shadow-xs transition-all flex items-center space-x-2"
           >
             <StarIcon size={16} />
-            <span>{t('logo')}</span>
+            <span>{t('images.logo')}</span>
           </TabsTrigger>
           <TabsTrigger
             value="thumbnail"
             className="data-[state=active]:bg-white data-[state=active]:shadow-xs transition-all flex items-center space-x-2"
           >
             <ImageIcon size={16} />
-            <span>{t('thumbnail')}</span>
+            <span>{t('images.thumbnail')}</span>
           </TabsTrigger>
           <TabsTrigger
             value="previews"
             className="data-[state=active]:bg-white data-[state=active]:shadow-xs transition-all flex items-center space-x-2"
           >
             <Images size={16} />
-            <span>{t('previews')}</span>
+            <span>{t('images.previews')}</span>
           </TabsTrigger>
         </TabsList>
 
@@ -426,15 +426,15 @@ export default function OrgEditImages() {
                     onClick={handleImageButtonClick('fileInput')}
                   >
                     <UploadCloud size={18} className={cn("", isLogoUploading && "animate-bounce")} />
-                    <span>{isLogoUploading ? t('uploadingLogo') : t('uploadNewLogo')}</span>
+                    <span>{isLogoUploading ? t('images.uploadingLogo') : t('images.uploadNewLogo')}</span>
                   </button>
 
                   <div className="flex flex-col text-xs space-y-2 items-center text-gray-500">
                     <div className="flex items-center space-x-2 bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full">
                       <Info size={14} />
-                      <p className="font-medium">{t('acceptsPngJpg')}</p>
+                      <p className="font-medium">{t('images.acceptsPngJpg')}</p>
                     </div>
-                    <p className="text-gray-400">{t('recommendedSize')}</p>
+                    <p className="text-gray-400">{t('images.recommendedSize')}</p>
                   </div>
                 </div>
               </div>
@@ -479,15 +479,15 @@ export default function OrgEditImages() {
                     onClick={handleImageButtonClick('thumbnailInput')}
                   >
                     <UploadCloud size={18} className={cn("", isThumbnailUploading && "animate-bounce")} />
-                    <span>{isThumbnailUploading ? t('uploadingThumbnail') : t('uploadNewThumbnail')}</span>
+                    <span>{isThumbnailUploading ? t('images.uploadingThumbnail') : t('images.uploadNewThumbnail')}</span>
                   </button>
 
                   <div className="flex flex-col text-xs space-y-2 items-center text-gray-500">
                     <div className="flex items-center space-x-2 bg-purple-50 text-purple-700 px-3 py-1.5 rounded-full">
                       <Info size={14} />
-                      <p className="font-medium">{t('acceptsPngJpg')}</p>
+                      <p className="font-medium">{t('images.acceptsPngJpg')}</p>
                     </div>
-                    <p className="text-gray-400">{t('recommendedSize')}</p>
+                    <p className="text-gray-400">{t('images.recommendedSize')}</p>
                   </div>
                 </div>
               </div>
@@ -603,12 +603,12 @@ export default function OrgEditImages() {
                                   <div className="bg-blue-50 rounded-full p-2 group-hover:bg-blue-100 transition-colors duration-200">
                                     <Plus size={20} className="text-blue-500" />
                                   </div>
-                                  <span className="text-sm font-medium text-gray-600">{t('addVideoPreview')}</span>
+                                  <span className="text-sm font-medium text-gray-600">{t('images.addVideoPreview')}</span>
                                 </button>
                               </DialogTrigger>
                               <DialogContent className="sm:max-w-[600px]">
                                 <DialogHeader>
-                                  <DialogTitle>{t('addVideoPreview')}</DialogTitle>
+                                  <DialogTitle>{t('images.addVideoPreview')}</DialogTitle>
                                 </DialogHeader>
                                 <div className={cn(
                                   "p-6",
@@ -669,10 +669,10 @@ export default function OrgEditImages() {
                                           </div>
                                           <div>
                                             <h3 className="font-medium text-gray-900">
-                                              {selectedService === 'youtube' ? t('addVideo') : t('addVideo')}
+                                              {selectedService === 'youtube' ? t('images.addVideo') : t('images.addVideo')}
                                             </h3>
                                             <p className="text-sm text-gray-500">
-                                              {t('pasteYouTubeOrLoom')}
+                                              {t('images.pasteYouTubeOrLoom')}
                                             </p>
                                           </div>
                                         </div>
@@ -705,7 +705,7 @@ export default function OrgEditImages() {
                                           )}
                                           disabled={!videoUrl}
                                         >
-                                          {t('addVideo')}
+                                          {t('images.addVideo')}
                                         </Button>
                                       </div>
                                     </div>
@@ -722,7 +722,7 @@ export default function OrgEditImages() {
                 
                 <div className="flex items-center space-x-2 bg-gray-50 text-gray-600 px-4 py-2 rounded-full">
                   <Info size={14} />
-                  <p className="text-sm">{t('dragDropImages')} • {t('maxPreviews', { max: 4 })}</p>
+                  <p className="text-sm">{t('images.dragDropImages')} • {t('maxPreviews', { max: 4 })}</p>
                 </div>
               </div>
             </div>

@@ -8,7 +8,7 @@ import AdminAuthorization from '@components/Security/AdminAuthorization'
 import { useTranslations } from 'next-intl'
 
 function DashboardHome() {
-  const t = useTranslations('dashboard')
+  const t = useTranslations()
   return (
     <div className="flex items-center justify-center mx-auto min-h-screen flex-col p-4 sm:mb-0 mb-16">
       <div className="mx-auto pb-6 sm:pb-10">
@@ -25,20 +25,20 @@ function DashboardHome() {
           <DashboardCard
             href="/dash/courses"
             icon={<BookCopy className="mx-auto text-gray-500/100" size={50} />}
-            title={t('coursesTitle')}
-            description={t('coursesDescription')}
+            title={t('dashboard.coursesTitle')}
+            description={t('dashboard.coursesDescription')}
           />
           <DashboardCard
             href="/dash/org/settings/general"
             icon={<School className="mx-auto text-gray-500/100" size={50} />}
-            title={t('organizationTitle')}
-            description={t('organizationDescription')}
+            title={t('dashboard.organizationTitle')}
+            description={t('dashboard.organizationDescription')}
           />
           <DashboardCard
             href="/dash/users/settings/users"
             icon={<Users className="mx-auto text-gray-500/100" size={50} />}
-            title={t('usersTitle')}
-            description={t('usersDescription')}
+            title={t('dashboard.usersTitle')}
+            description={t('dashboard.usersDescription')}
           />
         </div>
       </AdminAuthorization>
@@ -53,7 +53,7 @@ function DashboardHome() {
             >
               <University className="text-gray-100/100" size={20} />
               <div className="text-sm font-bold text-gray-100/100">
-                {t('learnhouseUniversity')}
+                {t('dashboard.learnhouseUniversity')}
               </div>
             </Link>
           </div>
@@ -67,9 +67,9 @@ function DashboardHome() {
           <div className="flex flex-col sm:flex-row mx-auto gap-2 sm:gap-3 items-center text-center sm:text-left">
             <Settings className="text-gray-500/100" size={20} />
             <div>
-              <div className="font-bold text-gray-500/100">{t('accountSettings')}</div>
+              <div className="font-bold text-gray-500/100">{t('dashboard.accountSettings')}</div>
               <p className="text-sm text-gray-400/100">
-                {t('accountSettingsDescription')}
+                {t('dashboard.accountSettingsDescription')}
               </p>
             </div>
           </div>

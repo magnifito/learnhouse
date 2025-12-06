@@ -21,7 +21,7 @@ type CourseProps = {
 }
 
 function CoursesHome(params: CourseProps) {
-  const t = useTranslations('courseListings')
+  const t = useTranslations()
   const searchParams = useSearchParams()
   const isCreatingCourse = searchParams.get('new') ? true : false
   const [newCourseModal, setNewCourseModal] = React.useState(isCreatingCourse)
@@ -40,13 +40,13 @@ function CoursesHome(params: CourseProps) {
         <BreadCrumbs type="courses" />
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-4">
           <div className="flex items-center space-x-4">
-            <h1 className="text-3xl font-bold mb-4 sm:mb-0">{t('title')}</h1>
+            <h1 className="text-3xl font-bold mb-4 sm:mb-0">{t('courseListings.title')}</h1>
             <Link
               href={getUriWithOrg(org?.slug, '/dash/documentation/rights')}
               className="rounded-lg bg-black hover:scale-105 transition-all duration-100 ease-linear antialiased p-2 px-5 font text-xs font-bold text-white drop-shadow-lg flex space-x-2 items-center"
             >
               <BookOpen className="w-4 h-4" />
-              <span>{t('rightsGuide')}</span>
+              <span>{t('courseListings.rightsGuide')}</span>
             </Link>
           </div>
           <AuthenticatedClientElement
@@ -65,8 +65,8 @@ function CoursesHome(params: CourseProps) {
                   orgslug={orgslug}
                 />
               }
-              dialogTitle={t('createCourse')}
-              dialogDescription={t('createNewCourse')}
+              dialogTitle={t('courseListings.createCourse')}
+              dialogDescription={t('courseListings.createNewCourse')}
               dialogTrigger={
                 <button>
                   <NewCourseButton />
@@ -99,13 +99,13 @@ function CoursesHome(params: CourseProps) {
                 </svg>
               </div>
               <h2 className="text-2xl font-bold text-gray-600 mb-2">
-                {t('noCoursesYet')}
+                {t('courseListings.noCoursesYet')}
               </h2>
               <p className="text-lg text-gray-400">
                 {isUserAdmin ? (
-                  t('createCourseToAddContent')
+                  t('courseListings.createCourseToAddContent')
                 ) : (
-                  t('noCoursesAvailable')
+                  t('courseListings.noCoursesAvailable')
                 )}
               </p>
               {isUserAdmin && (
@@ -126,8 +126,8 @@ function CoursesHome(params: CourseProps) {
                           orgslug={orgslug}
                         />
                       }
-                      dialogTitle={t('createCourse')}
-                      dialogDescription={t('createNewCourse')}
+                      dialogTitle={t('courseListings.createCourse')}
+                      dialogDescription={t('courseListings.createNewCourse')}
                       dialogTrigger={
                         <button>
                           <NewCourseButton />

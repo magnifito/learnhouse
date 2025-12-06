@@ -11,7 +11,7 @@ type BreadCrumbsProps = {
 }
 
 function BreadCrumbs(props: BreadCrumbsProps) {
-  const t = useTranslations('breadcrumbs');
+  const t = useTranslations();
   const org = useOrg() as any
 
   return (
@@ -23,7 +23,7 @@ function BreadCrumbs(props: BreadCrumbsProps) {
             <div className="flex space-x-2 items-center">
               {' '}
               <Book className="text-gray" size={14}></Book>
-              <Link href="/dash/courses">{t('courses')}</Link>
+              <Link href="/dash/courses">{t('breadcrumbs.courses')}</Link>
             </div>
           ) : (
             ''
@@ -32,7 +32,7 @@ function BreadCrumbs(props: BreadCrumbsProps) {
             <div className="flex space-x-2 items-center">
               {' '}
               <Backpack className="text-gray" size={14}></Backpack>
-              <Link href="/dash/assignments">{t('assignments')}</Link>
+              <Link href="/dash/assignments">{t('breadcrumbs.assignments')}</Link>
             </div>
           ) : (
             ''
@@ -42,7 +42,7 @@ function BreadCrumbs(props: BreadCrumbsProps) {
               {' '}
               <User className="text-gray" size={14}></User>
               <Link href="/dash/user-account/settings/general">
-                {t('accountSettings')}
+                {t('breadcrumbs.accountSettings')}
               </Link>
             </div>
           ) : (
@@ -52,7 +52,7 @@ function BreadCrumbs(props: BreadCrumbsProps) {
             <div className="flex space-x-2 items-center">
               {' '}
               <Users className="text-gray" size={14}></Users>
-              <Link href="/dash/users/settings/users">{t('orgUsers')}</Link>
+              <Link href="/dash/users/settings/users">{t('breadcrumbs.orgUsers')}</Link>
             </div>
           ) : (
             ''
@@ -62,7 +62,7 @@ function BreadCrumbs(props: BreadCrumbsProps) {
             <div className="flex space-x-2 items-center">
               {' '}
               <School className="text-gray" size={14}></School>
-              <Link href="/dash/users">{t('orgSettings')}</Link>
+              <Link href="/dash/users">{t('breadcrumbs.orgSettings')}</Link>
             </div>
           ) : (
             ''
@@ -71,7 +71,7 @@ function BreadCrumbs(props: BreadCrumbsProps) {
             <div className="flex space-x-2 items-center">
               {' '}
               <CreditCard className="text-gray" size={14}></CreditCard>
-              <Link href="/dash/payments">{t('payments')}</Link>
+              <Link href="/dash/payments">{t('breadcrumbs.payments')}</Link>
             </div>
           ) : (
             ''

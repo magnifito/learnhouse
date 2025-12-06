@@ -31,7 +31,7 @@ function MenuLinks(props: { orgslug: string }) {
   )
 }
 const LinkItem = (props: any) => {
-  const t = useTranslations('orgMenu');
+  const t = useTranslations();
   const link = props.link
   const orgslug = props.orgslug
   return (
@@ -40,21 +40,21 @@ const LinkItem = (props: any) => {
         {props.type == 'courses' && (
           <>
             <BookCopy size={20} />{' '}
-            <span>{t('courses')}</span>
+            <span>{t('orgMenu.courses')}</span>
           </>
         )}
 
         {props.type == 'collections' && (
           <>
             <SquareLibrary size={20} />{' '}
-            <span>{t('collections')}</span>
+            <span>{t('orgMenu.collections')}</span>
           </>
         )}
 
         {props.type == 'trail' && (
           <>
             <Signpost size={20} />{' '}
-            <span>{t('progress')}</span>
+            <span>{t('orgMenu.progress')}</span>
           </>
         )}
       </li>

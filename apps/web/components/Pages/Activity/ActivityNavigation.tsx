@@ -45,7 +45,7 @@ export default function ActivityNavigation(props: ActivityNavigationProps): Reac
   };
 
   const { allActivities, currentIndex } = findActivityPosition();
-  const t = useTranslations('activityNavigation');
+  const t = useTranslations();
 
   // Get previous and next activities
   const prevActivity = currentIndex > 0 ? allActivities[currentIndex - 1] : null;
@@ -107,13 +107,13 @@ export default function ActivityNavigation(props: ActivityNavigationProps): Reac
               : 'opacity-50 text-gray-400 cursor-not-allowed'
               }`}
             disabled={!prevActivity}
-            title={prevActivity ? `${t('previous')}: ${prevActivity.name}` : t('noPreviousActivity')}
+            title={prevActivity ? `${t('activityNavigation.previous')}: ${prevActivity.name}` : t('activityNavigation.noPreviousActivity')}
           >
             <ChevronLeft size={20} className="text-gray-800 shrink-0" />
             <div className="flex flex-col items-start">
-              <span className="text-xs text-gray-500">{t('previous')}</span>
+              <span className="text-xs text-gray-500">{t('activityNavigation.previous')}</span>
               <span className="text-sm capitalize font-semibold text-left">
-                {prevActivity ? prevActivity.name : t('noPreviousActivity')}
+                {prevActivity ? prevActivity.name : t('activityNavigation.noPreviousActivity')}
               </span>
             </div>
           </button>
@@ -125,12 +125,12 @@ export default function ActivityNavigation(props: ActivityNavigationProps): Reac
               : 'opacity-50 text-gray-400 cursor-not-allowed'
               }`}
             disabled={!nextActivity}
-            title={nextActivity ? `${t('next')}: ${nextActivity.name}` : t('noNextActivity')}
+            title={nextActivity ? `${t('activityNavigation.next')}: ${nextActivity.name}` : t('activityNavigation.noNextActivity')}
           >
             <div className="flex flex-col items-end">
-              <span className="text-xs text-gray-500">{t('next')}</span>
+              <span className="text-xs text-gray-500">{t('activityNavigation.next')}</span>
               <span className="text-sm capitalize font-semibold text-right">
-                {nextActivity ? nextActivity.name : t('noNextActivity')}
+                {nextActivity ? nextActivity.name : t('activityNavigation.noNextActivity')}
               </span>
             </div>
             <ChevronRight size={20} className="text-gray-800 shrink-0" />
@@ -147,20 +147,20 @@ export default function ActivityNavigation(props: ActivityNavigationProps): Reac
                 : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 }`}
               disabled={!prevActivity}
-              title={prevActivity ? `${t('previous')}: ${prevActivity.name}` : t('noPreviousActivity')}
+              title={prevActivity ? `${t('activityNavigation.previous')}: ${prevActivity.name}` : t('activityNavigation.noPreviousActivity')}
             >
               <ChevronLeft size={16} className="shrink-0" />
               <div className="flex flex-col items-start">
-                <span className="text-xs text-gray-500">{t('previous')}</span>
+                <span className="text-xs text-gray-500">{t('activityNavigation.previous')}</span>
                 <span className="text-sm capitalize font-semibold text-left">
-                  {prevActivity ? prevActivity.name : t('noPreviousActivity')}
+                  {prevActivity ? prevActivity.name : t('activityNavigation.noPreviousActivity')}
                 </span>
               </div>
             </button>
           </div>
 
           <div className="text-sm text-gray-500 justify-self-center">
-            {currentIndex + 1} {t('of')} {allActivities.length}
+            {currentIndex + 1} {t('activityNavigation.of')} {allActivities.length}
           </div>
 
           <div className="justify-self-end">
@@ -171,12 +171,12 @@ export default function ActivityNavigation(props: ActivityNavigationProps): Reac
                 : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 }`}
               disabled={!nextActivity}
-              title={nextActivity ? `${t('next')}: ${nextActivity.name}` : t('noNextActivity')}
+              title={nextActivity ? `${t('activityNavigation.next')}: ${nextActivity.name}` : t('activityNavigation.noNextActivity')}
             >
               <div className="flex flex-col items-end">
-                <span className="text-xs text-gray-500">{t('next')}</span>
+                <span className="text-xs text-gray-500">{t('activityNavigation.next')}</span>
                 <span className="text-sm capitalize font-semibold text-right">
-                  {nextActivity ? nextActivity.name : t('noNextActivity')}
+                  {nextActivity ? nextActivity.name : t('activityNavigation.noNextActivity')}
                 </span>
               </div>
               <ChevronRight size={16} className="shrink-0" />

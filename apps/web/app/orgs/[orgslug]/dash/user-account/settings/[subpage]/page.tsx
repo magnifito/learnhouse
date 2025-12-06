@@ -34,24 +34,24 @@ type NavigationItem = {
 }
 
 const useNavigationItems = () => {
-  const t = useTranslations('settings')
+  const t = useTranslations()
 
   return [
     {
       id: 'general',
-      label: t('general'),
+      label: t('settings.general'),
       icon: Info,
       component: UserEditGeneral
     },
     {
       id: 'profile',
-      label: t('profile'),
+      label: t('settings.profile'),
       icon: User,
       component: UserProfile
     },
     {
       id: 'security',
-      label: t('password'),
+      label: t('settings.password'),
       icon: Lock,
       component: UserEditPassword
     },
@@ -89,7 +89,6 @@ const SettingsNavigation = ({
 )
 
 function SettingsPage({ params }: { params: Promise<SettingsParams> }) {
-  const t = useTranslations('settings')
   const { subpage, orgslug } = use(params);
   const session = useLHSession() as Session;
   const navigationItems = useNavigationItems()
@@ -107,7 +106,7 @@ function SettingsPage({ params }: { params: Promise<SettingsParams> }) {
         />
         <div className="my-2 tracking-tighter">
           <div className="w-100 flex justify-between">
-            <div className="pt-3 flex font-bold text-4xl">{t('accountSettings')}</div>
+            <div className="pt-3 flex font-bold text-4xl">{t('settings.accountSettings')}</div>
           </div>
         </div>
         <SettingsNavigation 

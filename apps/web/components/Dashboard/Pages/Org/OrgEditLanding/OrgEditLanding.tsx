@@ -127,7 +127,7 @@ const getSectionDisplayName = (section: LandingSection, t: any) => {
 }
 
 const OrgEditLanding = () => {
-  const t = useTranslations('landing')
+  const t = useTranslations()
   const org = useOrg() as any
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token
@@ -251,7 +251,7 @@ const OrgEditLanding = () => {
 
   const handleSave = async () => {
     if (!org?.id) {
-      toast.error(t('orgIdNotFound'))
+      toast.error(t('landing.orgIdNotFound'))
       return
     }
 
@@ -263,12 +263,12 @@ const OrgEditLanding = () => {
       }, access_token)
 
       if (res.status === 200) {
-        toast.success(t('landingPageSaved'))
+        toast.success(t('landing.landingPageSaved'))
       } else {
-        toast.error(t('errorSavingLanding'))
+        toast.error(t('landing.errorSavingLanding'))
       }
     } catch (error) {
-      toast.error(t('errorSavingLanding'))
+      toast.error(t('landing.errorSavingLanding'))
       console.error('Error saving landing page:', error)
     } finally {
       setIsSaving(false)
@@ -281,8 +281,8 @@ const OrgEditLanding = () => {
         {/* Enable/Disable Landing Page */}
         <div className="flex items-center justify-between border-b pb-4">
           <div>
-            <h2 className="text-xl font-semibold flex items-center">{t('landingPage')} <div className="text-xs ml-2 bg-gray-200 text-gray-700 px-2 py-1 rounded-full"> {t('beta')} </div></h2>
-            <p className="text-gray-600">{t('customizeLanding')}</p>
+            <h2 className="text-xl font-semibold flex items-center">{t('landing.landingPage')} <div className="text-xs ml-2 bg-gray-200 text-gray-700 px-2 py-1 rounded-full"> {t('landing.beta')} </div></h2>
+            <p className="text-gray-600">{t('landing.customizeLanding')}</p>
           </div>
           <div className="flex items-center space-x-4">
             <label className="relative inline-flex items-center cursor-pointer">
@@ -301,7 +301,7 @@ const OrgEditLanding = () => {
               className="bg-black hover:bg-black/90"
             >
               <Save className="h-4 w-4 mr-2" />
-              {isSaving ? t('savingChanges') : t('saveChanges')}
+              {isSaving ? t('landing.savingChanges') : t('landing.saveChanges')}
             </Button>
           </div>
         </div>
@@ -312,7 +312,7 @@ const OrgEditLanding = () => {
             <div className="grid grid-cols-4 gap-6">
               {/* Sections Panel */}
               <div className="col-span-1 border-r pr-4">
-                <h3 className="font-medium mb-4">{t('sections')}</h3>
+                <h3 className="font-medium mb-4">{t('landing.sections')}</h3>
                 <DragDropContext onDragEnd={onDragEnd}>
                   <Droppable droppableId="sections">
                     {(provided) => (
@@ -407,7 +407,7 @@ const OrgEditLanding = () => {
                       <div className="w-full">
                         <Button variant="default" className="w-full bg-black hover:bg-black/90 text-white">
                           <Plus className="h-4 w-4 mr-2" />
-                          {t('addSection')}
+                          {t('landing.addSection')}
                         </Button>
                       </div>
                     </SelectTrigger>
@@ -439,7 +439,7 @@ const OrgEditLanding = () => {
                   />
                 ) : (
                   <div className="h-full flex items-center justify-center text-gray-500">
-                    {t('selectToEdit')}
+                    {t('landing.selectToEdit')}
                   </div>
                 )}
               </div>
@@ -477,7 +477,6 @@ const HeroSectionEditor: React.FC<{
   section: LandingHeroSection
   onChange: (section: LandingHeroSection) => void
 }> = ({ section, onChange }) => {
-  const t = useTranslations('landing')
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -500,18 +499,18 @@ const HeroSectionEditor: React.FC<{
     <div className="space-y-6 p-6 bg-white rounded-lg nice-shadow">
       <div className="flex items-center space-x-2">
         <LayoutTemplate className="w-5 h-5 text-gray-500" />
-        <h3 className="font-medium text-lg">{t('heroSection')}</h3>
+        <h3 className="font-medium text-lg">{t('landing.heroSection')}</h3>
       </div>
 
       <div className="space-y-4">
         {/* Title */}
         <div>
-          <Label htmlFor="title">{t('sectionTitle')}</Label>
+          <Label htmlFor="title">{t('landing.sectionTitle')}</Label>
           <Input
             id="title"
             value={section.title}
             onChange={(e) => onChange({ ...section, title: e.target.value })}
-            placeholder={t('enterSectionTitle')}
+            placeholder={t('landing.enterSectionTitle')}
           />
         </div>
 
@@ -519,19 +518,19 @@ const HeroSectionEditor: React.FC<{
           <TabsList className="grid w-full grid-cols-4 p-1 bg-gray-100 rounded-lg">
             <TabsTrigger value="content" className="flex items-center space-x-2">
               <TextIcon className="h-4 w-4" />
-              <span>{t('tabs.content')}</span>
+              <span>{t('landing.tabs.content')}</span>
             </TabsTrigger>
             <TabsTrigger value="background" className="flex items-center space-x-2">
               <LayoutTemplate className="h-4 w-4" />
-              <span>{t('tabs.background')}</span>
+              <span>{t('landing.tabs.background')}</span>
             </TabsTrigger>
             <TabsTrigger value="buttons" className="flex items-center space-x-2">
               <Button className="h-4 w-4" />
-              <span>{t('tabs.buttons')}</span>
+              <span>{t('landing.tabs.buttons')}</span>
             </TabsTrigger>
             <TabsTrigger value="illustration" className="flex items-center space-x-2">
               <ImageIcon className="h-4 w-4" />
-              <span>{t('tabs.illustration')}</span>
+              <span>{t('landing.tabs.illustration')}</span>
             </TabsTrigger>
           </TabsList>
 
@@ -539,7 +538,7 @@ const HeroSectionEditor: React.FC<{
             {/* Heading */}
             <div className="space-y-4">
               <div>
-                <Label htmlFor="heading">{t('heading.label')}</Label>
+                <Label htmlFor="heading">{t('landing.heading.label')}</Label>
                 <Input
                   id="heading"
                   value={section.heading.text}
@@ -547,11 +546,11 @@ const HeroSectionEditor: React.FC<{
                     ...section,
                     heading: { ...section.heading, text: e.target.value }
                   })}
-                  placeholder={t('heading.placeholder')}
+                  placeholder={t('landing.heading.placeholder')}
                 />
               </div>
               <div>
-                <Label htmlFor="headingColor">{t('heading.color')}</Label>
+                <Label htmlFor="headingColor">{t('landing.heading.color')}</Label>
                 <div className="flex items-center space-x-2">
                   <Input
                     id="headingColor"
@@ -579,7 +578,7 @@ const HeroSectionEditor: React.FC<{
             {/* Subheading */}
             <div className="space-y-4">
               <div>
-                <Label htmlFor="subheading">{t('subheading.label')}</Label>
+                <Label htmlFor="subheading">{t('landing.subheading.label')}</Label>
                 <Input
                   id="subheading"
                   value={section.subheading.text}
@@ -587,11 +586,11 @@ const HeroSectionEditor: React.FC<{
                     ...section,
                     subheading: { ...section.subheading, text: e.target.value }
                   })}
-                  placeholder={t('subheading.placeholder')}
+                  placeholder={t('landing.subheading.placeholder')}
                 />
               </div>
               <div>
-                <Label htmlFor="subheadingColor">{t('subheading.color')}</Label>
+                <Label htmlFor="subheadingColor">{t('landing.subheading.color')}</Label>
                 <div className="flex items-center space-x-2">
                   <Input
                     id="subheadingColor"
@@ -619,7 +618,7 @@ const HeroSectionEditor: React.FC<{
 
           <TabsContent value="background" className="space-y-4 mt-4">
             <div>
-              <Label htmlFor="background">{t('background.type')}</Label>
+              <Label htmlFor="background">{t('landing.background.type')}</Label>
               <Select
                 value={section.background.type}
                 onValueChange={(value) => {
@@ -635,19 +634,19 @@ const HeroSectionEditor: React.FC<{
                 }}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder={t('background.selectType')} />
+                  <SelectValue placeholder={t('landing.background.selectType')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="solid">{t('background.types.solid')}</SelectItem>
-                  <SelectItem value="gradient">{t('background.types.gradient')}</SelectItem>
-                  <SelectItem value="image">{t('background.types.image')}</SelectItem>
+                  <SelectItem value="solid">{t('landing.background.types.solid')}</SelectItem>
+                  <SelectItem value="gradient">{t('landing.background.types.gradient')}</SelectItem>
+                  <SelectItem value="image">{t('landing.background.types.image')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             {section.background.type === 'solid' && (
               <div>
-                <Label htmlFor="backgroundColor">{t('background.color')}</Label>
+                <Label htmlFor="backgroundColor">{t('landing.background.color')}</Label>
                 <div className="flex items-center space-x-2">
                   <Input
                     id="backgroundColor"
@@ -675,7 +674,7 @@ const HeroSectionEditor: React.FC<{
             {section.background.type === 'gradient' && (
               <div className="space-y-4">
                 <div>
-                  <Label>{t('background.gradient.type')}</Label>
+                  <Label>{t('landing.background.gradient.type')}</Label>
                   <Select
                     value={Object.values(PREDEFINED_GRADIENTS).some(
                       preset => preset.colors[0] === section.background.colors?.[0] &&
@@ -704,11 +703,11 @@ const HeroSectionEditor: React.FC<{
                     }}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder={t('background.gradient.selectType')} />
+                      <SelectValue placeholder={t('landing.background.gradient.selectType')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="preset">{t('background.gradient.preset')}</SelectItem>
-                      <SelectItem value="custom">{t('background.gradient.custom')}</SelectItem>
+                      <SelectItem value="preset">{t('landing.background.gradient.preset')}</SelectItem>
+                      <SelectItem value="custom">{t('landing.background.gradient.custom')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -719,7 +718,7 @@ const HeroSectionEditor: React.FC<{
                 ) ? (
                   <div className="space-y-4">
                     <div>
-                      <Label>{t('background.gradient.startColor')}</Label>
+                      <Label>{t('landing.background.gradient.startColor')}</Label>
                       <div className="flex items-center space-x-2">
                         <Input
                           type="color"
@@ -749,7 +748,7 @@ const HeroSectionEditor: React.FC<{
                     </div>
 
                     <div>
-                      <Label>{t('background.gradient.endColor')}</Label>
+                      <Label>{t('landing.background.gradient.endColor')}</Label>
                       <div className="flex items-center space-x-2">
                         <Input
                           type="color"
@@ -780,7 +779,7 @@ const HeroSectionEditor: React.FC<{
                   </div>
                 ) : (
                   <div>
-                    <Label>{t('background.gradient.presetLabel')}</Label>
+                    <Label>{t('landing.background.gradient.presetLabel')}</Label>
                     <Select
                       value={Object.entries(PREDEFINED_GRADIENTS).find(
                         ([_, gradient]) =>
@@ -797,7 +796,7 @@ const HeroSectionEditor: React.FC<{
                       })}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder={t('background.gradient.selectPreset')} />
+                        <SelectValue placeholder={t('landing.background.gradient.selectPreset')} />
                       </SelectTrigger>
                       <SelectContent>
                         {Object.entries(PREDEFINED_GRADIENTS).map(([name]) => (
@@ -819,7 +818,7 @@ const HeroSectionEditor: React.FC<{
                 )}
 
                 <div>
-                  <Label>{t('background.gradient.direction')}</Label>
+                  <Label>{t('landing.background.gradient.direction')}</Label>
                   <Select
                     value={section.background.direction || '45deg'}
                     onValueChange={(value) => onChange({
@@ -828,7 +827,7 @@ const HeroSectionEditor: React.FC<{
                     })}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder={t('background.gradient.selectDirection')} />
+                      <SelectValue placeholder={t('landing.background.gradient.selectDirection')} />
                     </SelectTrigger>
                     <SelectContent>
                       {Object.entries(GRADIENT_DIRECTIONS).map(([value, label]) => (
@@ -854,7 +853,7 @@ const HeroSectionEditor: React.FC<{
             {section.background.type === 'image' && (
               <div className="space-y-4">
                 <div>
-                  <Label>{t('background.image.label')}</Label>
+                  <Label>{t('landing.background.image.label')}</Label>
                   <div className="mt-2 flex items-center space-x-4">
                     <Button
                       variant="outline"
@@ -862,7 +861,7 @@ const HeroSectionEditor: React.FC<{
                       className="w-full"
                     >
                       <Upload className="h-4 w-4 mr-2" />
-                      {t('background.image.upload')}
+                      {t('landing.background.image.upload')}
                     </Button>
                     <input
                       id="imageUpload"
@@ -891,7 +890,7 @@ const HeroSectionEditor: React.FC<{
               {section.buttons.map((button, index) => (
                 <div key={index} className="grid grid-cols-[1fr_1fr_auto] gap-2 p-4 border rounded-lg">
                   <div className="space-y-2">
-                    <Label>{t('buttons.textAndColors')}</Label>
+                    <Label>{t('landing.buttons.textAndColors')}</Label>
                     <Input
                       value={button.text}
                       onChange={(e) => {
@@ -899,11 +898,11 @@ const HeroSectionEditor: React.FC<{
                         newButtons[index] = { ...button, text: e.target.value }
                         onChange({ ...section, buttons: newButtons })
                       }}
-                      placeholder={t('buttons.placeholder')}
+                      placeholder={t('landing.buttons.placeholder')}
                     />
                     <div className="flex items-center space-x-2">
                       <div className="space-y-1">
-                        <Label className="text-xs">{t('buttons.textColor')}</Label>
+                        <Label className="text-xs">{t('landing.buttons.textColor')}</Label>
                         <Input
                           type="color"
                           value={button.color}
@@ -916,7 +915,7 @@ const HeroSectionEditor: React.FC<{
                         />
                       </div>
                       <div className="space-y-1">
-                        <Label className="text-xs">{t('buttons.background')}</Label>
+                        <Label className="text-xs">{t('landing.buttons.background')}</Label>
                         <Input
                           type="color"
                           value={button.background}
@@ -931,7 +930,7 @@ const HeroSectionEditor: React.FC<{
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label>{t('buttons.link')}</Label>
+                    <Label>{t('landing.buttons.link')}</Label>
                     <div className="flex items-center space-x-2">
                       <Link className="h-4 w-4 text-gray-500" />
                       <Input
@@ -941,7 +940,7 @@ const HeroSectionEditor: React.FC<{
                           newButtons[index] = { ...button, link: e.target.value }
                           onChange({ ...section, buttons: newButtons })
                         }}
-                        placeholder={t('buttons.linkPlaceholder')}
+                        placeholder={t('landing.buttons.placeholder')}
                       />
                     </div>
                   </div>
@@ -963,7 +962,7 @@ const HeroSectionEditor: React.FC<{
                   variant="outline"
                   onClick={() => {
                     const newButton: LandingButton = {
-                      text: t('newButton'),
+                      text: t('landing.newButton'),
                       link: '#',
                       color: '#ffffff',
                       background: '#000000'
@@ -976,7 +975,7 @@ const HeroSectionEditor: React.FC<{
                   className="w-full"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  {t('addButton')}
+                  {t('landing.addButton')}
                 </Button>
               )}
             </div>
@@ -985,7 +984,7 @@ const HeroSectionEditor: React.FC<{
           <TabsContent value="illustration" className="space-y-4 mt-4">
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label>{t('illustration.image')}</Label>
+                <Label>{t('landing.illustration.image')}</Label>
                 <Input
                   value={section.illustration?.image.url || ''}
                   onChange={(e) => {
@@ -1001,7 +1000,7 @@ const HeroSectionEditor: React.FC<{
                       })
                     }
                   }}
-                  placeholder={t('illustration.url')}
+                  placeholder={t('landing.illustration.url')}
                 />
                 <Input
                   value={section.illustration?.image.alt || ''}
@@ -1016,7 +1015,7 @@ const HeroSectionEditor: React.FC<{
                       })
                     }
                   }}
-                  placeholder={t('common.altText')}
+                  placeholder={t('landing.common.altText')}
                 />
                 <ImageUploader
                   id="hero-illustration"
@@ -1029,7 +1028,7 @@ const HeroSectionEditor: React.FC<{
                       size: 'medium'
                     }
                   })}
-                  buttonText={t('illustration.upload')}
+                  buttonText={t('landing.illustration.upload')}
                 />
                 {section.illustration?.image.url && (
                   <img
@@ -1042,7 +1041,7 @@ const HeroSectionEditor: React.FC<{
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>{t('illustration.position')}</Label>
+                  <Label>{t('landing.illustration.position')}</Label>
                   <Select
                     value={section.illustration?.position || 'left'}
                     onValueChange={(value: 'left' | 'right') => onChange({
@@ -1057,17 +1056,17 @@ const HeroSectionEditor: React.FC<{
                     })}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder={t('illustration.selectPosition')} />
+                      <SelectValue placeholder={t('landing.illustration.selectPosition')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="left">{t('common.left')}</SelectItem>
-                      <SelectItem value="right">{t('common.right')}</SelectItem>
+                      <SelectItem value="left">{t('landing.common.left')}</SelectItem>
+                      <SelectItem value="right">{t('landing.common.right')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label>{t('illustration.size')}</Label>
+                  <Label>{t('landing.illustration.size')}</Label>
                   <Select
                     value={section.illustration?.size || 'medium'}
                     onValueChange={(value: 'small' | 'medium' | 'large') => onChange({
@@ -1082,12 +1081,12 @@ const HeroSectionEditor: React.FC<{
                     })}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder={t('illustration.selectSize')} />
+                      <SelectValue placeholder={t('landing.illustration.selectSize')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="small">{t('common.small')}</SelectItem>
-                      <SelectItem value="medium">{t('common.medium')}</SelectItem>
-                      <SelectItem value="large">{t('common.large')}</SelectItem>
+                      <SelectItem value="small">{t('landing.common.small')}</SelectItem>
+                      <SelectItem value="medium">{t('landing.common.medium')}</SelectItem>
+                      <SelectItem value="large">{t('landing.common.large')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -1103,7 +1102,7 @@ const HeroSectionEditor: React.FC<{
                   className="text-red-500 hover:text-red-600 hover:bg-red-50 w-full"
                 >
                   <Trash2 className="h-4 w-4 mr-2" />
-                  {t('illustration.remove')}
+                  {t('landing.illustration.remove')}
                 </Button>
               )}
             </div>
@@ -1122,7 +1121,6 @@ interface ImageUploaderProps {
 }
 
 const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUploaded, className, buttonText, id }) => {
-  const t = useTranslations('landing')
   const org = useOrg() as any
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token
@@ -1149,13 +1147,13 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUploaded, classNam
       if (response.status === 200) {
         const imageUrl = getOrgLandingMediaDirectory(org.org_uuid, response.data.filename)
         onImageUploaded(imageUrl)
-        toast.success(t('successImageUpload'))
+        toast.success(t('landing.successImageUpload'))
       } else {
-        toast.error(t('errorImageUpload'))
+        toast.error(t('landing.errorImageUpload'))
       }
     } catch (error) {
       console.error('Error uploading image:', error)
-      toast.error(t('errorImageUpload'))
+      toast.error(t('landing.errorImageUpload'))
     } finally {
       setIsUploading(false)
     }
@@ -1170,7 +1168,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUploaded, classNam
         className="w-full"
       >
         <Upload className="h-4 w-4 mr-2" />
-        {isUploading ? t('uploading') : (buttonText || t('uploadImageText'))}
+        {isUploading ? t('landing.uploading') : (buttonText || t('landing.uploadImageText'))}
       </Button>
       <input
         id={inputId}
@@ -1187,59 +1185,58 @@ const TextAndImageSectionEditor: React.FC<{
   section: LandingTextAndImageSection
   onChange: (section: LandingTextAndImageSection) => void
 }> = ({ section, onChange }) => {
-  const t = useTranslations('landing')
 
   return (
     <div className="space-y-6 p-6 bg-white rounded-lg nice-shadow">
       <div className="flex items-center space-x-2">
         <ImageIcon className="w-5 h-5 text-gray-500" />
-        <h3 className="font-medium text-lg">{t('textAndImageSection')}</h3>
+        <h3 className="font-medium text-lg">{t('landing.textAndImageSection')}</h3>
       </div>
 
       <div className="space-y-4">
         {/* Title */}
         <div>
-          <Label htmlFor="title">{t('sectionTitle')}</Label>
+          <Label htmlFor="title">{t('landing.sectionTitle')}</Label>
           <Input
             id="title"
             value={section.title}
             onChange={(e) => onChange({ ...section, title: e.target.value })}
-            placeholder={t('enterSectionTitle')}
+            placeholder={t('landing.enterSectionTitle')}
           />
         </div>
 
         {/* Text */}
         <div>
-          <Label htmlFor="content">{t('content')}</Label>
+          <Label htmlFor="content">{t('landing.content')}</Label>
           <Textarea
             id="content"
             value={section.text}
             onChange={(e) => onChange({ ...section, text: e.target.value })}
-            placeholder={t('enterSectionContent')}
+            placeholder={t('landing.enterSectionContent')}
             className="min-h-[100px]"
           />
         </div>
 
         {/* Flow */}
         <div>
-          <Label htmlFor="flow">{t('imagePosition')}</Label>
+          <Label htmlFor="flow">{t('landing.imagePosition')}</Label>
           <Select
             value={section.flow}
             onValueChange={(value) => onChange({ ...section, flow: value as 'left' | 'right' })}
           >
             <SelectTrigger>
-              <SelectValue placeholder={t('selectImagePosition')} />
+              <SelectValue placeholder={t('landing.selectImagePosition')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="left">{t('common.left')}</SelectItem>
-              <SelectItem value="right">{t('common.right')}</SelectItem>
+              <SelectItem value="left">{t('landing.common.left')}</SelectItem>
+              <SelectItem value="right">{t('landing.common.right')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         {/* Image */}
         <div>
-          <Label>{t('background.image.label')}</Label>
+          <Label>{t('landing.background.image.label')}</Label>
           <div className="grid grid-cols-2 gap-4 mt-2">
             <div className="space-y-2">
               <Input
@@ -1248,7 +1245,7 @@ const TextAndImageSectionEditor: React.FC<{
                   ...section,
                   image: { ...section.image, url: e.target.value }
                 })}
-                placeholder={t('illustration.url')}
+                placeholder={t('landing.illustration.url')}
               />
               <ImageUploader
                 id="text-image-section"
@@ -1256,7 +1253,7 @@ const TextAndImageSectionEditor: React.FC<{
                   ...section,
                   image: { ...section.image, url }
                 })}
-                buttonText={t('uploadNewImage')}
+                buttonText={t('landing.uploadNewImage')}
               />
             </div>
             <div>
@@ -1266,7 +1263,7 @@ const TextAndImageSectionEditor: React.FC<{
                   ...section,
                   image: { ...section.image, alt: e.target.value }
                 })}
-                placeholder={t('common.altText')}
+                placeholder={t('landing.common.altText')}
               />
             </div>
           </div>
@@ -1289,26 +1286,25 @@ const LogosSectionEditor: React.FC<{
   section: LandingLogos
   onChange: (section: LandingLogos) => void
 }> = ({ section, onChange }) => {
-  const t = useTranslations('landing')
 
   return (
     <div className="space-y-6 p-6 bg-white rounded-lg nice-shadow">
       <div className="flex items-center space-x-2">
         <Award className="w-5 h-5 text-gray-500" />
-        <h3 className="font-medium text-lg">{t('logosSection')}</h3>
+        <h3 className="font-medium text-lg">{t('landing.logosSection')}</h3>
       </div>
 
       <div>
-        <Label>{t('logos.label')}</Label>
+        <Label>{t('landing.logos.label')}</Label>
         <div className="space-y-3 mt-2">
           {/* Title */}
           <div>
-            <Label htmlFor="title">{t('sectionTitle')}</Label>
+            <Label htmlFor="title">{t('landing.sectionTitle')}</Label>
             <Input
               id="title"
               value={section.title}
               onChange={(e) => onChange({ ...section, title: e.target.value })}
-              placeholder={t('enterSectionTitle')}
+              placeholder={t('landing.enterSectionTitle')}
             />
           </div>
 
@@ -1322,7 +1318,7 @@ const LogosSectionEditor: React.FC<{
                     newLogos[index] = { ...logo, url: e.target.value }
                     onChange({ ...section, logos: newLogos })
                   }}
-                  placeholder={t('logos.url')}
+                  placeholder={t('landing.logos.url')}
                 />
                 <ImageUploader
                   id={`logo-${index}`}
@@ -1331,7 +1327,7 @@ const LogosSectionEditor: React.FC<{
                     newLogos[index] = { ...section.logos[index], url }
                     onChange({ ...section, logos: newLogos })
                   }}
-                  buttonText={t('logos.upload')}
+                  buttonText={t('landing.logos.upload')}
                 />
               </div>
               <div className="space-y-2">
@@ -1342,7 +1338,7 @@ const LogosSectionEditor: React.FC<{
                     newLogos[index] = { ...logo, alt: e.target.value }
                     onChange({ ...section, logos: newLogos })
                   }}
-                  placeholder={t('common.altText')}
+                  placeholder={t('landing.common.altText')}
                 />
                 {logo.url && (
                   <img
@@ -1380,7 +1376,7 @@ const LogosSectionEditor: React.FC<{
             className="w-full"
           >
             <Plus className="h-4 w-4 mr-2" />
-            {t('logos.add')}
+            {t('landing.logos.add')}
           </Button>
         </div>
       </div>
@@ -1392,35 +1388,34 @@ const PeopleSectionEditor: React.FC<{
   section: LandingPeople
   onChange: (section: LandingPeople) => void
 }> = ({ section, onChange }) => {
-  const t = useTranslations('landing')
 
   return (
     <div className="space-y-6 p-6 bg-white rounded-lg nice-shadow">
       <div className="flex items-center space-x-2">
         <Users className="w-5 h-5 text-gray-500" />
-        <h3 className="font-medium text-lg">{t('peopleSection')}</h3>
+        <h3 className="font-medium text-lg">{t('landing.peopleSection')}</h3>
       </div>
 
       <div className="space-y-4">
         {/* Title */}
         <div>
-          <Label htmlFor="title">{t('sectionTitle')}</Label>
+          <Label htmlFor="title">{t('landing.sectionTitle')}</Label>
           <Input
             id="title"
             value={section.title}
             onChange={(e) => onChange({ ...section, title: e.target.value })}
-            placeholder={t('enterSectionTitle')}
+            placeholder={t('landing.enterSectionTitle')}
           />
         </div>
 
         {/* People List */}
         <div>
-          <Label>{t('people.label')}</Label>
+          <Label>{t('landing.people.label')}</Label>
           <div className="space-y-4 mt-2">
             {section.people.map((person, index) => (
               <div key={index} className="grid grid-cols-[1fr_1fr_1fr_1fr_auto] gap-4 p-4 border rounded-lg">
                 <div className="space-y-2">
-                  <Label>{t('people.name')}</Label>
+                  <Label>{t('landing.people.name')}</Label>
                   <Input
                     value={person.name}
                     onChange={(e) => {
@@ -1428,12 +1423,12 @@ const PeopleSectionEditor: React.FC<{
                       newPeople[index] = { ...person, name: e.target.value }
                       onChange({ ...section, people: newPeople })
                     }}
-                    placeholder={t('people.enterName')}
+                    placeholder={t('landing.people.enterName')}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label>{t('people.username')}</Label>
+                  <Label>{t('landing.people.username')}</Label>
                   <Input
                     value={person.username || ''}
                     onChange={(e) => {
@@ -1446,7 +1441,7 @@ const PeopleSectionEditor: React.FC<{
                 </div>
 
                 <div className="space-y-2">
-                  <Label>{t('people.image')}</Label>
+                  <Label>{t('landing.people.image')}</Label>
                   <div className="space-y-2">
                     <Input
                       value={person.image_url}
@@ -1455,7 +1450,7 @@ const PeopleSectionEditor: React.FC<{
                         newPeople[index] = { ...person, image_url: e.target.value }
                         onChange({ ...section, people: newPeople })
                       }}
-                      placeholder={t('illustration.url')}
+                      placeholder={t('landing.illustration.url')}
                     />
                     <ImageUploader
                       id={`person-${index}`}
@@ -1464,7 +1459,7 @@ const PeopleSectionEditor: React.FC<{
                         newPeople[index] = { ...section.people[index], image_url: url }
                         onChange({ ...section, people: newPeople })
                       }}
-                      buttonText={t('people.upload')}
+                      buttonText={t('landing.people.upload')}
                     />
                     {person.image_url && (
                       <img
@@ -1477,7 +1472,7 @@ const PeopleSectionEditor: React.FC<{
                 </div>
 
                 <div className="space-y-2">
-                  <Label>{t('people.description')}</Label>
+                  <Label>{t('landing.people.description')}</Label>
                   <Input
                     value={person.description}
                     onChange={(e) => {
@@ -1485,7 +1480,7 @@ const PeopleSectionEditor: React.FC<{
                       newPeople[index] = { ...person, description: e.target.value }
                       onChange({ ...section, people: newPeople })
                     }}
-                    placeholder={t('people.descriptionPlaceholder')}
+                    placeholder={t('landing.people.descriptionPlaceholder')}
                   />
                 </div>
 
@@ -1522,7 +1517,7 @@ const PeopleSectionEditor: React.FC<{
               className="w-full"
             >
               <Plus className="h-4 w-4 mr-2" />
-              {t('people.add')}
+              {t('landing.people.add')}
             </Button>
           </div>
         </div>
@@ -1535,7 +1530,6 @@ const FeaturedCoursesEditor: React.FC<{
   section: LandingFeaturedCourses
   onChange: (section: LandingFeaturedCourses) => void
 }> = ({ section, onChange }) => {
-  const t = useTranslations('landing')
   const org = useOrg() as any
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token
@@ -1549,24 +1543,24 @@ const FeaturedCoursesEditor: React.FC<{
     <div className="space-y-6 p-6 bg-white rounded-lg nice-shadow">
       <div className="flex items-center space-x-2">
         <BookOpen className="w-5 h-5 text-gray-500" />
-        <h3 className="font-medium text-lg">{t('coursesSection')}</h3>
+        <h3 className="font-medium text-lg">{t('landing.coursesSection')}</h3>
       </div>
 
       <div className="space-y-4">
         {/* Title */}
         <div>
-          <Label htmlFor="title">{t('sectionTitle')}</Label>
+          <Label htmlFor="title">{t('landing.sectionTitle')}</Label>
           <Input
             id="title"
             value={section.title}
             onChange={(e) => onChange({ ...section, title: e.target.value })}
-            placeholder={t('enterSectionTitle')}
+            placeholder={t('landing.enterSectionTitle')}
           />
         </div>
 
         {/* Course Selection */}
         <div>
-          <Label>{t('courses.select')}</Label>
+          <Label>{t('landing.courses.select')}</Label>
           <div className="space-y-4 mt-2">
             {courses ? (
               <div className="grid gap-4">
@@ -1601,14 +1595,14 @@ const FeaturedCoursesEditor: React.FC<{
                       }}
                       className={section.courses.includes(course.course_uuid) ? "bg-black hover:bg-black/90" : ""}
                     >
-                      {section.courses.includes(course.course_uuid) ? t('courses.selected') : t('courses.selectButton')}
+                      {section.courses.includes(course.course_uuid) ? t('landing.courses.selected') : t('landing.courses.selectButton')}
                     </Button>
                   </div>
                 ))}
               </div>
             ) : (
               <div className="text-center py-8 text-gray-500">
-                {t('courses.loading')}
+                {t('landing.courses.loading')}
               </div>
             )}
           </div>

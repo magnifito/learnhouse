@@ -7,7 +7,7 @@ type NewCourseButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const NewCourseButton = React.forwardRef<HTMLButtonElement, NewCourseButtonProps>(
   ({ className = '', ...props }, ref) => {
-    const t = useTranslations('courses')
+    const t = useTranslations()
 
     return (
       <button
@@ -19,7 +19,7 @@ const NewCourseButton = React.forwardRef<HTMLButtonElement, NewCourseButtonProps
         }
         {...props}
       >
-        <div>{t('createCourse')}</div>
+        <div>{t('courses.createCourse')}</div>
         <div className="text-md bg-neutral-800 px-1 rounded-full">+</div>
       </button>
     )

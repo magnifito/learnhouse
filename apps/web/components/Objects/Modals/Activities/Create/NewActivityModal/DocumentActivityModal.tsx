@@ -15,7 +15,7 @@ import { constructAcceptValue } from '@/lib/constants';
 const SUPPORTED_FILES = constructAcceptValue(['pdf'])
 
 function DocumentPdfModal({ submitFileActivity, chapterId, course }: any) {
-  const t = useTranslations('activityModals');
+  const t = useTranslations();
   const [documentpdf, setDocumentPdf] = React.useState(null) as any
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [name, setName] = React.useState('')
@@ -52,9 +52,9 @@ function DocumentPdfModal({ submitFileActivity, chapterId, course }: any) {
     <FormLayout onSubmit={handleSubmit}>
       <FormField name="documentpdf-activity-name">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>{t('document.name')}</FormLabel>
+          <FormLabel>{t('activityModals.document.name')}</FormLabel>
           <FormMessage match="valueMissing">
-            {t('document.namePlaceholder')}
+            {t('activityModals.document.namePlaceholder')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -63,9 +63,9 @@ function DocumentPdfModal({ submitFileActivity, chapterId, course }: any) {
       </FormField>
       <FormField name="documentpdf-activity-file">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>{t('document.fileLabel')}</FormLabel>
+          <FormLabel>{t('activityModals.document.fileLabel')}</FormLabel>
           <FormMessage match="valueMissing">
-            {t('document.fileError')}
+            {t('activityModals.document.fileError')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -83,7 +83,7 @@ function DocumentPdfModal({ submitFileActivity, chapterId, course }: any) {
                 color="#ffffff"
               />
             ) : (
-              t('common.create')
+              t('activityModals.common.create')
             )}
           </ButtonBlack>
         </Form.Submit>

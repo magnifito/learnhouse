@@ -136,7 +136,7 @@ const defaultRights: Rights = {
 }
 
 function AddRole(props: AddRoleProps) {
-    const t = useTranslations('addRoleModal');
+    const t = useTranslations();
     const org = useOrg() as any;
     const session = useLHSession() as any
     const access_token = session?.data?.tokens?.access_token;
@@ -145,8 +145,8 @@ function AddRole(props: AddRoleProps) {
 
     const predefinedRoles = {
         'Admin': {
-            name: t('predefined.admin.name'),
-            description: t('predefined.admin.desc'),
+            name: t('addRoleModal.predefined.admin.name'),
+            description: t('addRoleModal.predefined.admin.desc'),
             rights: {
                 courses: { action_create: true, action_read: true, action_read_own: true, action_update: true, action_update_own: true, action_delete: true, action_delete_own: true },
                 users: { action_create: true, action_read: true, action_update: true, action_delete: true },
@@ -160,8 +160,8 @@ function AddRole(props: AddRoleProps) {
             }
         },
         'Course Manager': {
-            name: t('predefined.courseManager.name'),
-            description: t('predefined.courseManager.desc'),
+            name: t('addRoleModal.predefined.courseManager.name'),
+            description: t('addRoleModal.predefined.courseManager.desc'),
             rights: {
                 courses: { action_create: true, action_read: true, action_read_own: true, action_update: true, action_update_own: true, action_delete: false, action_delete_own: true },
                 users: { action_create: false, action_read: true, action_update: false, action_delete: false },
@@ -175,8 +175,8 @@ function AddRole(props: AddRoleProps) {
             }
         },
         'Instructor': {
-            name: t('predefined.instructor.name'),
-            description: t('predefined.instructor.desc'),
+            name: t('addRoleModal.predefined.instructor.name'),
+            description: t('addRoleModal.predefined.instructor.desc'),
             rights: {
                 courses: { action_create: true, action_read: true, action_read_own: true, action_update: false, action_update_own: true, action_delete: false, action_delete_own: true },
                 users: { action_create: false, action_read: false, action_update: false, action_delete: false },
@@ -190,8 +190,8 @@ function AddRole(props: AddRoleProps) {
             }
         },
         'Viewer': {
-            name: t('predefined.viewer.name'),
-            description: t('predefined.viewer.desc'),
+            name: t('addRoleModal.predefined.viewer.name'),
+            description: t('addRoleModal.predefined.viewer.desc'),
             rights: {
                 courses: { action_create: false, action_read: true, action_read_own: true, action_update: false, action_update_own: false, action_delete: false, action_delete_own: false },
                 users: { action_create: false, action_read: false, action_update: false, action_delete: false },
@@ -205,8 +205,8 @@ function AddRole(props: AddRoleProps) {
             }
         },
         'Content Creator': {
-            name: t('predefined.contentCreator.name'),
-            description: t('predefined.contentCreator.desc'),
+            name: t('addRoleModal.predefined.contentCreator.name'),
+            description: t('addRoleModal.predefined.contentCreator.desc'),
             rights: {
                 courses: { action_create: true, action_read: true, action_read_own: true, action_update: true, action_update_own: true, action_delete: false, action_delete_own: false },
                 users: { action_create: false, action_read: false, action_update: false, action_delete: false },
@@ -220,8 +220,8 @@ function AddRole(props: AddRoleProps) {
             }
         },
         'User Manager': {
-            name: t('predefined.userManager.name'),
-            description: t('predefined.userManager.desc'),
+            name: t('addRoleModal.predefined.userManager.name'),
+            description: t('addRoleModal.predefined.userManager.desc'),
             rights: {
                 courses: { action_create: false, action_read: true, action_read_own: true, action_update: false, action_update_own: false, action_delete: false, action_delete_own: false },
                 users: { action_create: true, action_read: true, action_update: true, action_delete: true },
@@ -235,8 +235,8 @@ function AddRole(props: AddRoleProps) {
             }
         },
         'Moderator': {
-            name: t('predefined.moderator.name'),
-            description: t('predefined.moderator.desc'),
+            name: t('addRoleModal.predefined.moderator.name'),
+            description: t('addRoleModal.predefined.moderator.desc'),
             rights: {
                 courses: { action_create: false, action_read: true, action_read_own: true, action_update: false, action_update_own: false, action_delete: false, action_delete_own: false },
                 users: { action_create: false, action_read: true, action_update: false, action_delete: false },
@@ -250,8 +250,8 @@ function AddRole(props: AddRoleProps) {
             }
         },
         'Analyst': {
-            name: t('predefined.analyst.name'),
-            description: t('predefined.analyst.desc'),
+            name: t('addRoleModal.predefined.analyst.name'),
+            description: t('addRoleModal.predefined.analyst.desc'),
             rights: {
                 courses: { action_create: false, action_read: true, action_read_own: true, action_update: false, action_update_own: false, action_delete: false, action_delete_own: false },
                 users: { action_create: false, action_read: true, action_update: false, action_delete: false },
@@ -265,8 +265,8 @@ function AddRole(props: AddRoleProps) {
             }
         },
         'Guest': {
-            name: t('predefined.guest.name'),
-            description: t('predefined.guest.desc'),
+            name: t('addRoleModal.predefined.guest.name'),
+            description: t('addRoleModal.predefined.guest.desc'),
             rights: {
                 courses: { action_create: false, action_read: true, action_read_own: false, action_update: false, action_update_own: false, action_delete: false, action_delete_own: false },
                 users: { action_create: false, action_read: false, action_update: false, action_delete: false },
@@ -284,14 +284,14 @@ function AddRole(props: AddRoleProps) {
     const validate = (values: any) => {
         const errors: any = {}
         if (!values.name) {
-            errors.name = t('validation.required')
+            errors.name = t('addRoleModal.validation.required')
         } else if (values.name.length < 2) {
-            errors.name = t('validation.nameMin')
+            errors.name = t('addRoleModal.validation.nameMin')
         }
         if (!values.description) {
-            errors.description = t('validation.required')
+            errors.description = t('addRoleModal.validation.required')
         } else if (values.description.length < 10) {
-            errors.description = t('validation.descMin')
+            errors.description = t('addRoleModal.validation.descMin')
         }
         return errors
     }
@@ -305,7 +305,7 @@ function AddRole(props: AddRoleProps) {
         },
         validate,
         onSubmit: async (values) => {
-            const toastID = toast.loading(t('toasts.creating'))
+            const toastID = toast.loading(t('addRoleModal.toasts.creating'))
             setIsSubmitting(true)
 
             // Ensure rights object is properly structured
@@ -376,10 +376,10 @@ function AddRole(props: AddRoleProps) {
                 setIsSubmitting(false)
                 mutate(`${getAPIUrl()}roles/org/${org.id}`)
                 props.setCreateRoleModal(false)
-                toast.success(t('toasts.success'), { id: toastID })
+                toast.success(t('addRoleModal.toasts.success'), { id: toastID })
             } else {
                 setIsSubmitting(false)
-                toast.error(t('toasts.error'), { id: toastID })
+                toast.error(t('addRoleModal.toasts.error'), { id: toastID })
             }
         },
     })
@@ -431,8 +431,8 @@ function AddRole(props: AddRoleProps) {
                         className="flex items-center space-x-2 text-sm text-blue-600 hover:text-blue-700 font-medium self-start sm:self-auto transition-colors"
                     >
                         {allSelected ? <CheckSquare className="w-4 h-4" /> : someSelected ? <Square className="w-4 h-4" /> : <Square className="w-4 h-4" />}
-                        <span className="hidden sm:inline">{allSelected ? t('deselectAll') : t('selectAll')}</span>
-                        <span className="sm:hidden">{allSelected ? t('deselect') : t('select')}</span>
+                        <span className="hidden sm:inline">{allSelected ? t('addRoleModal.deselectAll') : t('addRoleModal.selectAll')}</span>
+                        <span className="sm:hidden">{allSelected ? t('addRoleModal.deselect') : t('addRoleModal.select')}</span>
                     </button>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -460,34 +460,34 @@ function AddRole(props: AddRoleProps) {
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
                     <div className="space-y-4 sm:space-y-6">
                         <FormField name="name">
-                            <FormLabelAndMessage label={t('roleName')} message={formik.errors.name} />
+                            <FormLabelAndMessage label={t('addRoleModal.roleName')} message={formik.errors.name} />
                             <Form.Control asChild>
                                 <Input
                                     onChange={formik.handleChange}
                                     value={formik.values.name}
                                     type="text"
                                     required
-                                    placeholder={t('namePlaceholder')}
+                                    placeholder={t('addRoleModal.namePlaceholder')}
                                     className="w-full"
                                 />
                             </Form.Control>
                         </FormField>
 
                         <FormField name="description">
-                            <FormLabelAndMessage label={t('description')} message={formik.errors.description} />
+                            <FormLabelAndMessage label={t('addRoleModal.description')} message={formik.errors.description} />
                             <Form.Control asChild>
                                 <Textarea
                                     onChange={formik.handleChange}
                                     value={formik.values.description}
                                     required
-                                    placeholder={t('descPlaceholder')}
+                                    placeholder={t('addRoleModal.descPlaceholder')}
                                     className="w-full"
                                 />
                             </Form.Control>
                         </FormField>
 
                         <div className="mt-6">
-                            <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('predefinedRights')}</h3>
+                            <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('addRoleModal.predefinedRights')}</h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                                 {Object.keys(predefinedRoles).map((roleKey) => (
                                     <button
@@ -505,66 +505,66 @@ function AddRole(props: AddRoleProps) {
                     </div>
 
                     <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('permissions')}</h3>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('addRoleModal.permissions')}</h3>
 
                         <PermissionSection
-                            title={t('sections.courses')}
+                            title={t('addRoleModal.sections.courses')}
                             icon={BookOpen}
                             section="courses"
                             permissions={['action_create', 'action_read', 'action_read_own', 'action_update', 'action_update_own', 'action_delete', 'action_delete_own']}
                         />
 
                         <PermissionSection
-                            title={t('sections.users')}
+                            title={t('addRoleModal.sections.users')}
                             icon={Users}
                             section="users"
                             permissions={['action_create', 'action_read', 'action_update', 'action_delete']}
                         />
 
                         <PermissionSection
-                            title={t('sections.usergroups')}
+                            title={t('addRoleModal.sections.usergroups')}
                             icon={UserCheck}
                             section="usergroups"
                             permissions={['action_create', 'action_read', 'action_update', 'action_delete']}
                         />
 
                         <PermissionSection
-                            title={t('sections.collections')}
+                            title={t('addRoleModal.sections.collections')}
                             icon={FolderOpen}
                             section="collections"
                             permissions={['action_create', 'action_read', 'action_update', 'action_delete']}
                         />
 
                         <PermissionSection
-                            title={t('sections.organizations')}
+                            title={t('addRoleModal.sections.organizations')}
                             icon={Building}
                             section="organizations"
                             permissions={['action_create', 'action_read', 'action_update', 'action_delete']}
                         />
 
                         <PermissionSection
-                            title={t('sections.coursechapters')}
+                            title={t('addRoleModal.sections.coursechapters')}
                             icon={FileText}
                             section="coursechapters"
                             permissions={['action_create', 'action_read', 'action_update', 'action_delete']}
                         />
 
                         <PermissionSection
-                            title={t('sections.activities')}
+                            title={t('addRoleModal.sections.activities')}
                             icon={Activity}
                             section="activities"
                             permissions={['action_create', 'action_read', 'action_update', 'action_delete']}
                         />
 
                         <PermissionSection
-                            title={t('sections.roles')}
+                            title={t('addRoleModal.sections.roles')}
                             icon={Shield}
                             section="roles"
                             permissions={['action_create', 'action_read', 'action_update', 'action_delete']}
                         />
 
                         <PermissionSection
-                            title={t('sections.dashboard')}
+                            title={t('addRoleModal.sections.dashboard')}
                             icon={Monitor}
                             section="dashboard"
                             permissions={['action_access']}
@@ -578,7 +578,7 @@ function AddRole(props: AddRoleProps) {
                         onClick={() => props.setCreateRoleModal(false)}
                         className="px-4 py-2 text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors w-full sm:w-auto font-medium"
                     >
-                        {t('cancel')}
+                        {t('addRoleModal.cancel')}
                     </button>
                     <Form.Submit asChild>
                         <button
@@ -586,7 +586,7 @@ function AddRole(props: AddRoleProps) {
                             disabled={isSubmitting}
                             className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors disabled:opacity-50 w-full sm:w-auto font-medium shadow-sm"
                         >
-                            {isSubmitting ? t('creating') : t('createRole')}
+                            {isSubmitting ? t('addRoleModal.creating') : t('addRoleModal.createRole')}
                         </button>
                     </Form.Submit>
                 </div>

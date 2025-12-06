@@ -55,26 +55,26 @@ function TabLink({ tab, isActive, orgslug, t }: {
 
 function OrgPage(props: { params: Promise<OrgParams> }) {
   const params = use(props.params);
-  const t = useTranslations('organization')
+  const t = useTranslations()
   const [H1Label, setH1Label] = React.useState('')
   const [H2Label, setH2Label] = React.useState('')
 
   function handleLabels() {
     if (params.subpage == 'general') {
-      setH1Label(t('generalTitle'))
-      setH2Label(t('generalDescription'))
+      setH1Label(t('organization.generalTitle'))
+      setH2Label(t('organization.generalDescription'))
     } else if (params.subpage == 'previews') {
-      setH1Label(t('previewsTitle'))
-      setH2Label(t('previewsDescription'))
+      setH1Label(t('organization.previewsTitle'))
+      setH2Label(t('organization.previewsDescription'))
     } else if (params.subpage == 'socials') {
-      setH1Label(t('socialsTitle'))
-      setH2Label(t('socialsDescription'))
+      setH1Label(t('organization.socialsTitle'))
+      setH2Label(t('organization.socialsDescription'))
     } else if (params.subpage == 'landing') {
-      setH1Label(t('landingPageTitle'))
-      setH2Label(t('landingPageDescription'))
+      setH1Label(t('organization.landingPageTitle'))
+      setH2Label(t('organization.landingPageDescription'))
     } else if (params.subpage == 'other') {
-      setH1Label(t('otherTitle'))
-      setH2Label(t('otherDescription'))
+      setH1Label(t('organization.otherTitle'))
+      setH2Label(t('organization.otherDescription'))
     }
   }
 

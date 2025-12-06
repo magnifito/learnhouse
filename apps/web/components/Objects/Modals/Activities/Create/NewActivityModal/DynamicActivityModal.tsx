@@ -13,7 +13,7 @@ import * as Form from '@radix-ui/react-form'
 import BarLoader from 'react-spinners/BarLoader'
 
 function DynamicCanvaModal({ submitActivity, chapterId, course }: any) {
-  const t = useTranslations('activityModals');
+  const t = useTranslations();
   const [activityName, setActivityName] = useState('')
   const [activityDescription, setActivityDescription] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -44,9 +44,9 @@ function DynamicCanvaModal({ submitActivity, chapterId, course }: any) {
     <FormLayout onSubmit={handleSubmit}>
       <FormField name="dynamic-activity-name">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>{t('dynamic.name')}</FormLabel>
+          <FormLabel>{t('activityModals.dynamic.name')}</FormLabel>
           <FormMessage match="valueMissing">
-            {t('dynamic.namePlaceholder')}
+            {t('activityModals.dynamic.namePlaceholder')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -55,9 +55,9 @@ function DynamicCanvaModal({ submitActivity, chapterId, course }: any) {
       </FormField>
       <FormField name="dynamic-activity-desc">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>{t('dynamic.desc')}</FormLabel>
+          <FormLabel>{t('activityModals.dynamic.description')}</FormLabel>
           <FormMessage match="valueMissing">
-            {t('dynamic.descPlaceholder')}
+            {t('activityModals.dynamic.descriptionPlaceholder')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -75,7 +75,7 @@ function DynamicCanvaModal({ submitActivity, chapterId, course }: any) {
                 color="#ffffff"
               />
             ) : (
-              t('common.create')
+              t('activityModals.common.create')
             )}
           </ButtonBlack>
         </Form.Submit>

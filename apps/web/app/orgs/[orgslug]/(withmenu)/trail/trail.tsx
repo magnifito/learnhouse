@@ -19,7 +19,7 @@ import { BookOpen } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 function Trail(params: any) {
-  const t = useTranslations('trail')
+  const t = useTranslations()
   let orgslug = params.orgslug
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token;
@@ -63,12 +63,12 @@ function Trail(params: any) {
   return (
     <GeneralWrapperStyled>
       <div className="flex justify-between items-center mb-6">
-        <TypeOfContentTitle title={t('title')} type="tra" />
+        <TypeOfContentTitle title={t('trail.title')} type="tra" />
         {trail?.runs?.length > 0 && (
           <ConfirmationModal
-            confirmationButtonText={isQuittingAll ? `${t('quittingCourses')} (${quittingProgress}%)` : t('quitAllCourses')}
-            confirmationMessage={t('quitConfirmationMessage')}
-            dialogTitle={t('quitConfirmationTitle')}
+            confirmationButtonText={isQuittingAll ? `${t('trail.quittingCourses')} (${quittingProgress}%)` : t('trail.quitAllCourses')}
+            confirmationMessage={t('trail.quitConfirmationMessage')}
+            dialogTitle={t('trail.quitConfirmationTitle')}
             dialogTrigger={
               <button
                 disabled={isQuittingAll}
@@ -79,8 +79,8 @@ function Trail(params: any) {
                   }`}
               >
                 {isQuittingAll
-                  ? `${t('quittingCourses')} (${quittingProgress}%)`
-                  : t('quitAllCourses')
+                  ? `${t('trail.quittingCourses')} (${quittingProgress}%)`
+                  : t('trail.quitAllCourses')
                 }
               </button>
             }
@@ -95,7 +95,7 @@ function Trail(params: any) {
         <div className="bg-white rounded-xl shadow-sm p-6">
           <div className="flex items-center space-x-3 mb-6">
             <BookOpen className="w-6 h-6 text-blue-500" />
-            <h2 className="text-xl font-semibold text-gray-900">{t('myProgress')}</h2>
+            <h2 className="text-xl font-semibold text-gray-900">{t('trail.myProgress')}</h2>
             {trail?.runs && (
               <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
                 {trail.runs.length}
@@ -108,8 +108,8 @@ function Trail(params: any) {
           ) : trail.runs.length === 0 ? (
             <div className="text-center py-8">
               <BookOpen className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-              <p className="text-gray-500">{t('noCoursesInProgress')}</p>
-              <p className="text-sm text-gray-400 mt-1">{t('startCourseToSeeProgress')}</p>
+              <p className="text-gray-500">{t('trail.noCoursesInProgress')}</p>
+              <p className="text-sm text-gray-400 mt-1">{t('trail.startCourseToSeeProgress')}</p>
             </div>
           ) : (
             <div className="space-y-6">

@@ -34,8 +34,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
   const { width, height } = useWindowSize();
   const org = useOrg() as any;
   const session = useLHSession() as any;
-  const t = useTranslations('courseEndView');
-  const tCert = useTranslations('certificatePage'); // Reusing certificate labels
+  const t = useTranslations();
   const [userCertificate, setUserCertificate] = useState<any>(null);
   const [isLoadingCertificate, setIsLoadingCertificate] = useState(false);
   const [certificateError, setCertificateError] = useState<string | null>(null);
@@ -84,7 +83,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
       if (!isCourseCompleted) return;
 
       if (!session?.data?.tokens?.access_token) {
-        setCertificateError(t('authRequired'));
+        setCertificateError(t('courseEndView.authRequired'));
         return;
       }
 
@@ -100,11 +99,11 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
         if (result.success && result.data && result.data.length > 0) {
           setUserCertificate(result.data[0]);
         } else {
-          setCertificateError(t('notFound'));
+          setCertificateError(t('courseEndView.notFound'));
         }
       } catch (error) {
         console.error('Error fetching user certificate:', error);
-        setCertificateError(t('loadError'));
+        setCertificateError(t('courseEndView.loadError'));
       } finally {
         setIsLoadingCertificate(false);
       }
@@ -182,17 +181,17 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
 
       const getCertificateTypeLabel = (type: string) => {
         const typeMap: Record<string, string> = {
-          completion: tCert('types.completion'),
-          achievement: tCert('types.achievement'),
-          assessment: tCert('types.assessment'),
-          participation: tCert('types.participation'),
-          mastery: tCert('types.mastery'),
-          professional: tCert('types.professional'),
-          continuing: tCert('types.continuing'),
-          workshop: tCert('types.workshop'),
-          specialization: tCert('types.specialization')
+          completion: t('certificatePage.types.completion'),
+          achievement: t('certificatePage.types.achievement'),
+          assessment: t('certificatePage.types.assessment'),
+          participation: t('certificatePage.types.participation'),
+          mastery: t('certificatePage.types.mastery'),
+          professional: t('certificatePage.types.professional'),
+          continuing: t('certificatePage.types.continuing'),
+          workshop: t('certificatePage.types.workshop'),
+          specialization: t('certificatePage.types.specialization')
         }
-        return typeMap[type] || tCert('types.completion');
+        return typeMap[type] || t('certificatePage.types.completion');
       }
 
       // Create certificate content
@@ -204,7 +203,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
           font-size: 12px;
           color: ${theme.secondary};
           font-weight: 500;
-        ">${tCert('idLabel')} ${certificateId}</div>
+        ">${t('certificatePage.idLabel')} ${certificateId}</div>
         
         <div style="
           position: absolute;
@@ -235,7 +234,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
           letter-spacing: 1px;
         ">
           <div style="width: 24px; height: 1px; background: linear-gradient(90deg, transparent, ${theme.secondary}, transparent);"></div>
-          ${tCert('certificateLabel')}
+          ${t('certificatePage.certificateLabel')}
           <div style="width: 24px; height: 1px; background: linear-gradient(90deg, transparent, ${theme.secondary}, transparent);"></div>
         </div>
         
@@ -267,7 +266,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
           margin-bottom: 30px;
           line-height: 1.5;
           max-width: 500px;
-        ">${userCertificate.certification.config.certification_description || tCert('defaultDescription')}</div>
+        ">${userCertificate.certification.config.certification_description || t('certificatePage.defaultDescription')}</div>
         
         <div style="
           display: flex;
@@ -308,10 +307,10 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
           max-width: 400px;
         ">
           <div style="margin: 8px 0; font-size: 14px; color: #374151;">
-            <strong style="color: ${theme.primary};">${tCert('certificateIdLabel')}</strong> ${certificateId}
+            <strong style="color: ${theme.primary};">${t('certificatePage.certificateIdLabel')}</strong> ${certificateId}
           </div>
           <div style="margin: 8px 0; font-size: 14px; color: #374151;">
-            <strong style="color: ${theme.primary};">${tCert('awardedLabel')}</strong> ${new Date(userCertificate.certificate_user.created_at).toLocaleDateString('en-US', {
+            <strong style="color: ${theme.primary};">${t('certificatePage.awardedLabel')}</strong> ${new Date(userCertificate.certificate_user.created_at).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
@@ -319,7 +318,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
           </div>
           ${userCertificate.certification.config.certificate_instructor ?
           `<div style="margin: 8px 0; font-size: 14px; color: #374151;">
-              <strong style="color: ${theme.primary};">${tCert('instructorLabel')}</strong> ${userCertificate.certification.config.certificate_instructor}
+              <strong style="color: ${theme.primary};">${t('certificatePage.instructorLabel')}</strong> ${userCertificate.certification.config.certificate_instructor}
             </div>` : ''
         }
         </div>
@@ -329,7 +328,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
           font-size: 12px;
           color: #6b7280;
         ">
-          ${tCert('verifiedAt')} ${qrCodeData.replace('https://', '').replace('http://', '')}
+          ${t('certificatePage.verifiedAt')} ${qrCodeData.replace('https://', '').replace('http://', '')}
         </div>
       `;
 
@@ -448,23 +447,23 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
           </div>
 
           <h1 className="text-4xl font-bold text-gray-900">
-            {t('congratulations')}
+            {t('courseEndView.congratulations')}
           </h1>
 
           <p className="text-xl text-gray-600">
-            {t('completedMessage')}
+            {t('courseEndView.completedMessage')}
             <span className="font-semibold text-gray-900"> {courseName}</span>
           </p>
 
           <p className="text-gray-500">
-            {t('masteredMessage')}
+            {t('courseEndView.masteredMessage')}
           </p>
 
           {/* Certificate Display */}
           {isLoadingCertificate ? (
             <div className="flex items-center justify-center py-8">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-              <span className="ml-3 text-gray-600">{t('loadingCertificate')}</span>
+              <span className="ml-3 text-gray-600">{t('courseEndView.loadingCertificate')}</span>
             </div>
           ) : certificateError ? (
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
@@ -474,7 +473,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
             </div>
           ) : userCertificate ? (
             <div className="space-y-4">
-              <h2 className="text-2xl font-semibold text-gray-900">{t('yourCertificate')}</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">{t('courseEndView.yourCertificate')}</h2>
               <div className="max-w-2xl mx-auto" id="certificate-preview">
                 <div id="certificate-content">
                   <CertificatePreview
@@ -499,7 +498,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
                   className="inline-flex items-center space-x-2 bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition duration-200"
                 >
                   <Download className="w-5 h-5" />
-                  <span>{t('downloadCertificatePdf')}</span>
+                  <span>{t('courseEndView.downloadCertificatePdf')}</span>
                 </button>
                 <Link
                   href={getUriWithOrg(orgslug, `/certificates/${userCertificate.certificate_user.user_certification_uuid}/verify`)}
@@ -508,14 +507,14 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
                   className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-200"
                 >
                   <Shield className="w-5 h-5" />
-                  <span>{t('verifyCertificate')}</span>
+                  <span>{t('courseEndView.verifyCertificate')}</span>
                 </Link>
               </div>
             </div>
           ) : (
             <div className="bg-gray-50 rounded-lg p-6">
               <p className="text-gray-600">
-                {t('noCertificateAvailable')}
+                {t('courseEndView.noCertificateAvailable')}
               </p>
             </div>
           )}
@@ -526,7 +525,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
               className="inline-flex items-center space-x-2 bg-gray-800 text-white px-6 py-3 rounded-full hover:bg-gray-700 transition duration-200"
             >
               <ArrowLeft className="w-5 h-5" />
-              <span>{t('backToCourse')}</span>
+              <span>{t('courseEndView.backToCourse')}</span>
             </Link>
           </div>
         </div>
@@ -556,11 +555,11 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
           </div>
 
           <h1 className="text-4xl font-bold text-gray-900">
-            {t('keepGoing')}
+            {t('courseEndView.keepGoing')}
           </h1>
 
           <p className="text-xl text-gray-600">
-            {t('makingProgress')}
+            {t('courseEndView.makingProgress')}
             <span className="font-semibold text-gray-900"> {courseName}</span>
           </p>
 
@@ -568,12 +567,12 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
             <div className="bg-gray-50 rounded-lg p-6 space-y-4">
               <div className="flex items-center justify-center space-x-2">
                 <BookOpen className="w-5 h-5 text-gray-600" />
-                <span className="text-lg font-semibold text-gray-700">{t('courseProgress')}</span>
+                <span className="text-lg font-semibold text-gray-700">{t('courseEndView.courseProgress')}</span>
               </div>
 
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">{t('progressLabel')}</span>
+                  <span className="text-gray-600">{t('courseEndView.progressLabel')}</span>
                   <span className="font-semibold text-gray-900">{progressInfo.percentage}%</span>
                 </div>
 
@@ -592,7 +591,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
           )}
 
           <p className="text-gray-500">
-            {t('encouragement')}
+            {t('courseEndView.encouragement')}
           </p>
 
           <div className="pt-6">
@@ -601,7 +600,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
               className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-200"
             >
               <ArrowLeft className="w-5 h-5" />
-              <span>{t('continueLearning')}</span>
+              <span>{t('courseEndView.continueLearning')}</span>
             </Link>
           </div>
         </div>

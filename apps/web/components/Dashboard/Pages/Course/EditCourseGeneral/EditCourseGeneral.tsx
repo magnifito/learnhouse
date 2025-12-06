@@ -30,35 +30,35 @@ const validate = (values: any, t: any) => {
   const errors = {} as any;
 
   if (!values.name) {
-    errors.name = t('required');
+    errors.name = t('courseEditor.required');
   } else if (values.name.length > 100) {
     errors.name = t('maxLength', { count: 100 });
   }
 
   if (!values.description) {
-    errors.description = t('required');
+    errors.description = t('courseEditor.required');
   } else if (values.description.length > 1000) {
     errors.description = t('maxLength', { count: 1000 });
   }
 
   if (!values.learnings) {
-    errors.learnings = t('required');
+    errors.learnings = t('courseEditor.required');
   } else {
     try {
       const learningItems = JSON.parse(values.learnings);
       if (!Array.isArray(learningItems)) {
-        errors.learnings = t('invalidFormat');
+        errors.learnings = t('courseEditor.invalidFormat');
       } else if (learningItems.length === 0) {
-        errors.learnings = t('learningsRequired');
+        errors.learnings = t('courseEditor.learningsRequired');
       } else {
         // Check if any item has empty text
         const hasEmptyText = learningItems.some((item: any) => !item.text || item.text.trim() === '');
         if (hasEmptyText) {
-          errors.learnings = t('learningsEmptyText');
+          errors.learnings = t('courseEditor.learningsEmptyText');
         }
       }
     } catch (e) {
-      errors.learnings = t('invalidFormat');
+      errors.learnings = t('courseEditor.invalidFormat');
     }
   }
 
@@ -66,7 +66,7 @@ const validate = (values: any, t: any) => {
 };
 
 function EditCourseGeneral(props: EditCourseStructureProps) {
-  const t = useTranslations('courseEditor');
+  const t = useTranslations();
   const [error, setError] = useState('');
   const course = useCourse();
   const dispatchCourse = useCourseDispatch() as any;
@@ -134,7 +134,7 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
         // Add your submission logic here
         dispatchCourse({ type: 'setIsSaved' });
       } catch (e) {
-        setError(t('saveError'));
+        setError(t('courseEditor.saveError'));
       }
     },
     enableReinitialize: true,
@@ -181,7 +181,7 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
 
             <div className="space-y-6">
               <FormField name="name">
-                <FormLabelAndMessage label={t('name')} message={formik.errors.name} />
+                <FormLabelAndMessage label={t('courseEditor.name')} message={formik.errors.name} />
                 <Form.Control asChild>
                   <Input
                     style={{ backgroundColor: 'white' }}
@@ -194,7 +194,7 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
               </FormField>
 
               <FormField name="description">
-                <FormLabelAndMessage label={t('description')} message={formik.errors.description} />
+                <FormLabelAndMessage label={t('courseEditor.description')} message={formik.errors.description} />
                 <Form.Control asChild>
                   <Input
                     style={{ backgroundColor: 'white' }}
@@ -207,7 +207,7 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
               </FormField>
 
               <FormField name="about">
-                <FormLabelAndMessage label={t('about')} message={formik.errors.about} />
+                <FormLabelAndMessage label={t('courseEditor.about')} message={formik.errors.about} />
                 <Form.Control asChild>
                   <Textarea
                     style={{ backgroundColor: 'white', height: '200px', minHeight: '200px' }}
@@ -219,7 +219,7 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
               </FormField>
 
               <FormField name="learnings">
-                <FormLabelAndMessage label={t('learnings')} message={formik.errors.learnings} />
+                <FormLabelAndMessage label={t('courseEditor.learnings')} message={formik.errors.learnings} />
                 <Form.Control asChild>
                   <LearningItemsList
                     value={formik.values.learnings}
@@ -230,10 +230,10 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
               </FormField>
 
               <FormField name="tags">
-                <FormLabelAndMessage label={t('tags')} message={formik.errors.tags} />
+                <FormLabelAndMessage label={t('courseEditor.tags')} message={formik.errors.tags} />
                 <Form.Control asChild>
                   <FormTagInput
-                    placeholder={t('enterToAdd')}
+                    placeholder={t('courseEditor.enterToAdd')}
                     onChange={(value) => formik.setFieldValue('tags', value)}
                     value={formik.values.tags}
                   />
@@ -241,7 +241,7 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
               </FormField>
 
               <FormField name="thumbnail_type">
-                <FormLabelAndMessage label={t('thumbnailType')} />
+                <FormLabelAndMessage label={t('courseEditor.thumbnailType')} />
                 <Form.Control asChild>
                   <CustomSelect
                     value={formik.values.thumbnail_type}
@@ -252,22 +252,22 @@ function EditCourseGeneral(props: EditCourseStructureProps) {
                   >
                     <CustomSelectTrigger className="w-full bg-white">
                       <CustomSelectValue>
-                        {formik.values.thumbnail_type === 'image' ? t('image') :
-                          formik.values.thumbnail_type === 'video' ? t('video') :
-                            formik.values.thumbnail_type === 'both' ? t('both') : t('image')}
+                        {formik.values.thumbnail_type === 'image' ? t('courseEditor.image') :
+                          formik.values.thumbnail_type === 'video' ? t('courseEditor.video') :
+                            formik.values.thumbnail_type === 'both' ? t('courseEditor.both') : t('courseEditor.image')}
                       </CustomSelectValue>
                     </CustomSelectTrigger>
                     <CustomSelectContent>
-                      <CustomSelectItem value="image">{t('image')}</CustomSelectItem>
-                      <CustomSelectItem value="video">{t('video')}</CustomSelectItem>
-                      <CustomSelectItem value="both">{t('both')}</CustomSelectItem>
+                      <CustomSelectItem value="image">{t('courseEditor.image')}</CustomSelectItem>
+                      <CustomSelectItem value="video">{t('courseEditor.video')}</CustomSelectItem>
+                      <CustomSelectItem value="both">{t('courseEditor.both')}</CustomSelectItem>
                     </CustomSelectContent>
                   </CustomSelect>
                 </Form.Control>
               </FormField>
 
               <FormField name="thumbnail">
-                <FormLabelAndMessage label={t('thumbnail')} />
+                <FormLabelAndMessage label={t('courseEditor.thumbnail')} />
                 <Form.Control asChild>
                   <ThumbnailUpdate thumbnailType={formik.values.thumbnail_type} />
                 </Form.Control>

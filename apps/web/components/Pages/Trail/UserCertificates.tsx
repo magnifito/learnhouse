@@ -17,7 +17,7 @@ interface UserCertificatesProps {
 }
 
 const UserCertificates: React.FC<UserCertificatesProps> = ({ orgslug }) => {
-  const t = useTranslations('trail')
+  const t = useTranslations()
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token
   const org = useOrg() as any
@@ -32,7 +32,7 @@ const UserCertificates: React.FC<UserCertificatesProps> = ({ orgslug }) => {
       <div className="bg-white rounded-xl shadow-sm p-6">
         <div className="flex items-center space-x-3 mb-4">
           <Award className="w-6 h-6 text-yellow-500" />
-          <h2 className="text-xl font-semibold text-gray-900">{t('myCertificates')}</h2>
+          <h2 className="text-xl font-semibold text-gray-900">{t('trail.myCertificates')}</h2>
         </div>
         <div className="animate-pulse space-y-4">
           {[1, 2, 3].map((i) => (
@@ -48,7 +48,7 @@ const UserCertificates: React.FC<UserCertificatesProps> = ({ orgslug }) => {
       <div className="bg-white rounded-xl shadow-sm p-6">
         <div className="flex items-center space-x-3 mb-4">
           <Award className="w-6 h-6 text-yellow-500" />
-          <h2 className="text-xl font-semibold text-gray-900">{t('myCertificates')}</h2>
+          <h2 className="text-xl font-semibold text-gray-900">{t('trail.myCertificates')}</h2>
         </div>
         <div className="text-center py-8">
           <p className="text-gray-500">Failed to load certificates</p>
@@ -65,12 +65,12 @@ const UserCertificates: React.FC<UserCertificatesProps> = ({ orgslug }) => {
       <div className="bg-white rounded-xl shadow-sm p-6">
         <div className="flex items-center space-x-3 mb-4">
           <Award className="w-6 h-6 text-yellow-500" />
-          <h2 className="text-xl font-semibold text-gray-900">{t('myCertificates')}</h2>
+          <h2 className="text-xl font-semibold text-gray-900">{t('trail.myCertificates')}</h2>
         </div>
         <div className="text-center py-8">
           <Award className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-          <p className="text-gray-500">{t('noCertificatesEarned')}</p>
-          <p className="text-sm text-gray-400 mt-1">{t('completeCoursesToEarnCertificates')}</p>
+          <p className="text-gray-500">{t('trail.noCertificatesEarned')}</p>
+          <p className="text-sm text-gray-400 mt-1">{t('trail.completeCoursesToEarnCertificates')}</p>
         </div>
       </div>
     )
@@ -80,7 +80,7 @@ const UserCertificates: React.FC<UserCertificatesProps> = ({ orgslug }) => {
     <div className="bg-white rounded-xl shadow-sm p-6">
       <div className="flex items-center space-x-3 mb-6">
         <Award className="w-6 h-6 text-yellow-500" />
-        <h2 className="text-xl font-semibold text-gray-900">{t('myCertificates')}</h2>
+        <h2 className="text-xl font-semibold text-gray-900">{t('trail.myCertificates')}</h2>
         <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
           {certificatesData.length}
         </span>
@@ -134,7 +134,7 @@ const UserCertificates: React.FC<UserCertificatesProps> = ({ orgslug }) => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-1 text-blue-600 hover:text-blue-700 text-xs font-medium"
                   >
-                    <span>{t('verify')}</span>
+                    <span>{t('trail.verify')}</span>
                     <ExternalLink className="w-3 h-3" />
                   </Link>
                 </div>

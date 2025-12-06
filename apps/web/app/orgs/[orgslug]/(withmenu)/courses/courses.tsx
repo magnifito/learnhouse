@@ -18,7 +18,7 @@ interface CourseProps {
 }
 
 function Courses(props: CourseProps) {
-  const t = useTranslations('courses')
+  const t = useTranslations()
   const orgslug = props.orgslug
   const courses = props.courses
   const searchParams = useSearchParams()
@@ -35,7 +35,7 @@ function Courses(props: CourseProps) {
       <GeneralWrapperStyled>
         <div className="flex flex-col space-y-2 mb-2">
           <div className="flex items-center justify-between">
-            <TypeOfContentTitle title={t('title')} type="cou" />
+            <TypeOfContentTitle title={t('courses.title')} type="cou" />
             <AuthenticatedClientElement
               checkMethod="roles"
               action="create"
@@ -52,8 +52,8 @@ function Courses(props: CourseProps) {
                     orgslug={orgslug}
                   />
                 }
-                dialogTitle={t('createCourse')}
-                dialogDescription={t('createNewCourse')}
+                dialogTitle={t('courses.createCourse')}
+                dialogDescription={t('courses.createNewCourse')}
                 dialogTrigger={<NewCourseButton />}
               />
             </AuthenticatedClientElement>
@@ -81,10 +81,10 @@ function Courses(props: CourseProps) {
                     </svg>
                   </div>
                   <h1 className="text-xl font-bold text-gray-600 mb-2">
-                    {t('noCoursesYet')}
+                    {t('courses.noCoursesYet')}
                   </h1>
                   <p className="text-md text-gray-400">
-                    {isUserAdmin ? t('createCourseToAddContent') : t('noCoursesAvailable')}
+                    {isUserAdmin ? t('courses.createCourseToAddContent') : t('courses.noCoursesAvailable')}
                   </p>
                   {isUserAdmin && (
                     <div className="mt-4 flex justify-center">
@@ -104,8 +104,8 @@ function Courses(props: CourseProps) {
                               orgslug={orgslug}
                             />
                           }
-                          dialogTitle={t('createCourse')}
-                          dialogDescription={t('createNewCourse')}
+                          dialogTitle={t('courses.createCourse')}
+                          dialogDescription={t('courses.createNewCourse')}
                           dialogTrigger={<NewCourseButton />}
                         />
                       </AuthenticatedClientElement>

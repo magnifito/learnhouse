@@ -20,15 +20,15 @@ interface Props {
 function getActivityTypeLabel(activityType: string, t: any): string {
   switch (activityType) {
     case 'TYPE_VIDEO':
-      return t('activityTypes.video')
+      return t('activityIndicators.activityTypes.video')
     case 'TYPE_DOCUMENT':
-      return t('activityTypes.document')
+      return t('activityIndicators.activityTypes.document')
     case 'TYPE_DYNAMIC':
-      return t('activityTypes.dynamic')
+      return t('activityIndicators.activityTypes.dynamic')
     case 'TYPE_ASSIGNMENT':
-      return t('activityTypes.assignment')
+      return t('activityIndicators.activityTypes.assignment')
     default:
-      return t('activityTypes.unknown')
+      return t('activityIndicators.activityTypes.unknown')
   }
 }
 
@@ -92,7 +92,7 @@ const ActivityTooltipContent = memo(({
         {getActivityTypeLabel(activity.activity_type, t)}
       </span>
       <span className="text-xs text-gray-400">
-        {isCurrent ? t('tooltips.currentActivity') : isDone ? t('tooltips.completed') : t('tooltips.notStarted')}
+        {isCurrent ? t('activityIndicators.tooltips.currentActivity') : isDone ? t('activityIndicators.tooltips.completed') : t('activityIndicators.tooltips.notStarted')}
       </span>
     </div>
   </div>
@@ -116,9 +116,9 @@ const ChapterTooltipContent = memo(({
 }) => (
   <div className="bg-white rounded-lg nice-shadow py-3 px-4 min-w-[200px] animate-in fade-in duration-200">
     <div className="flex items-center gap-2">
-      <span className="text-sm font-medium text-gray-900">{t('tooltips.chapter', { number: chapterNumber })}</span>
+      <span className="text-sm font-medium text-gray-900">{t('activityIndicators.tooltips.chapter', { number: chapterNumber })}</span>
       <span className="text-xs bg-gray-100 px-2 py-0.5 rounded-full text-gray-600">
-        {t('tooltips.chapterProgress', { completed: completedActivities, total: totalActivities })}
+        {t('activityIndicators.tooltips.chapterProgress', { completed: completedActivities, total: totalActivities })}
       </span>
     </div>
     <div className="mt-1">
@@ -149,14 +149,14 @@ const CertificationBadge = memo(({
         <div className="flex items-center gap-2">
           <Trophy size={16} className="text-yellow-500" />
           <span className="text-sm font-medium text-gray-900">
-            {isCompleted ? t('certificate.completed') : t('certificate.completion')}
+            {isCompleted ? t('activityIndicators.certificate.completed') : t('activityIndicators.certificate.completion')}
           </span>
         </div>
         <div className="mt-1">
           <span className="text-sm text-gray-700">
             {isCompleted
-              ? t('certificate.viewCertificate')
-              : t('certificate.unlockCertificate')
+              ? t('activityIndicators.certificate.viewCertificate')
+              : t('activityIndicators.certificate.unlockCertificate')
             }
           </span>
         </div>
@@ -182,7 +182,7 @@ const CertificationBadge = memo(({
 CertificationBadge.displayName = 'CertificationBadge';
 
 function ActivityIndicators(props: Props) {
-  const t = useTranslations('activityIndicators')
+  const t = useTranslations()
   const course = props.course
   const orgslug = props.orgslug
   const courseid = props.course_uuid.replace('course_', '')

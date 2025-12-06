@@ -39,7 +39,7 @@ export type OrderPayload =
   | undefined
 
 const EditCourseStructure = (props: EditCourseStructureProps) => {
-  const t = useTranslations('courseStructure');
+  const t = useTranslations();
   const router = useRouter()
   const session = useLHSession() as any;
   const access_token = session?.data?.tokens?.access_token;
@@ -155,8 +155,8 @@ const EditCourseStructure = (props: EditCourseStructureProps) => {
                 submitChapter={submitChapter}
               ></NewChapterModal>
             }
-            dialogTitle={t('createChapter')}
-            dialogDescription={t('addChapterDescription')}
+            dialogTitle={t('courseStructure.createChapter')}
+            dialogDescription={t('courseStructure.addChapterDescription')}
             dialogTrigger={
               <div className="w-44 my-16 py-5 max-w-(--breakpoint-2xl) mx-auto bg-cyan-800 text-white rounded-xl shadow-xs px-6 items-center flex flex-row h-10">
                 <div className="mx-auto flex space-x-2 items-center hover:cursor-pointer">
@@ -165,7 +165,7 @@ const EditCourseStructure = (props: EditCourseStructureProps) => {
                     size={16}
                     className="text-white text-sm "
                   />
-                  <div className="font-bold text-sm">{t('addChapter')}</div>
+                  <div className="font-bold text-sm">{t('courseStructure.addChapter')}</div>
                 </div>
               </div>
             }

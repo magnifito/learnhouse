@@ -14,7 +14,7 @@ import useSWR from 'swr';
 import { useTranslations } from 'next-intl';
 
 function HomeClient() {
-  const t = useTranslations('dashboardHome');
+  const t = useTranslations();
   const session = useLHSession() as any;
   const access_token = session?.data?.tokens?.access_token;
   const { data: orgs } = useSWR(`${getAPIUrl()}orgs/user/page/1/limit/10`, (url) => swrFetcher(url, access_token))
@@ -34,11 +34,11 @@ function HomeClient() {
         />
       </div>
 
-      <div className='flex space-x-4 mx-auto font-semibold text-2xl pt-16 items-center'><span>{t('hello')}</span> <UserAvatar /> <span className='capitalize'>{session?.data?.user.first_name} {session?.data?.user.last_name}</span></div>
-      <div className='flex space-x-4 mx-auto font-semibold text-sm mt-12 items-center uppercase bg-slate-200 text-gray-600 px-3 py-2 rounded-md'>{t('yourOrganizations')}</div>
+      <div className='flex space-x-4 mx-auto font-semibold text-2xl pt-16 items-center'><span>{t('dashboardHome.hello')}</span> <UserAvatar /> <span className='capitalize'>{session?.data?.user.first_name} {session?.data?.user.last_name}</span></div>
+      <div className='flex space-x-4 mx-auto font-semibold text-sm mt-12 items-center uppercase bg-slate-200 text-gray-600 px-3 py-2 rounded-md'>{t('dashboardHome.yourOrganizations')}</div>
       {orgs && orgs.length == 0 && <div className='flex mx-auto my-5 space-x-3 bg-rose-200 rounded-lg px-3 py-2'>
         <Info />
-        <span>{t('noOrganizations')}</span>
+        <span>{t('dashboardHome.noOrganizations')}</span>
       </div>}
       <div className='flex mx-auto pt-10 rounded-lg'>
         {orgs && orgs.map((org: any) => (
@@ -48,7 +48,7 @@ function HomeClient() {
           </Link>
         ))}
       </div>
-      <div className='flex cursor-pointer space-x-4 mx-auto font-semibold text-2xl pt-16 items-center'><span onClick={() => signOut({ redirect: true, callbackUrl: getUriWithoutOrg('/') })}>{t('signOut')}</span></div>
+      <div className='flex cursor-pointer space-x-4 mx-auto font-semibold text-2xl pt-16 items-center'><span onClick={() => signOut({ redirect: true, callbackUrl: getUriWithoutOrg('/') })}>{t('dashboardHome.signOut')}</span></div>
 
     </div>
   )

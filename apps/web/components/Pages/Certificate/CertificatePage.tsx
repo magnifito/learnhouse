@@ -20,7 +20,7 @@ interface CertificatePageProps {
 
 const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qrCodeLink }) => {
   const session = useLHSession() as any;
-  const t = useTranslations('certificatePage');
+  const t = useTranslations();
   const [userCertificate, setUserCertificate] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -29,7 +29,7 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
   useEffect(() => {
     const fetchCertificate = async () => {
       if (!session?.data?.tokens?.access_token) {
-        setError(t('authRequired'));
+        setError(t('certificatePage.authRequired'));
         setIsLoading(false);
         return;
       }
@@ -44,11 +44,11 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
         if (result.success && result.data && result.data.length > 0) {
           setUserCertificate(result.data[0]);
         } else {
-          setError(t('notFound'));
+          setError(t('certificatePage.notFound'));
         }
       } catch (error) {
         console.error('Error fetching certificate:', error);
-        setError(t('loadError'));
+        setError(t('certificatePage.loadError'));
       } finally {
         setIsLoading(false);
       }
@@ -128,17 +128,17 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
 
       const getCertificateTypeLabel = (type: string) => {
         const typeMap: Record<string, string> = {
-          completion: t('types.completion'),
-          achievement: t('types.achievement'),
-          assessment: t('types.assessment'),
-          participation: t('types.participation'),
-          mastery: t('types.mastery'),
-          professional: t('types.professional'),
-          continuing: t('types.continuing'),
-          workshop: t('types.workshop'),
-          specialization: t('types.specialization')
+          completion: t('certificatePage.types.completion'),
+          achievement: t('certificatePage.types.achievement'),
+          assessment: t('certificatePage.types.assessment'),
+          participation: t('certificatePage.types.participation'),
+          mastery: t('certificatePage.types.mastery'),
+          professional: t('certificatePage.types.professional'),
+          continuing: t('certificatePage.types.continuing'),
+          workshop: t('certificatePage.types.workshop'),
+          specialization: t('certificatePage.types.specialization')
         }
-        return typeMap[type] || t('types.completion');
+        return typeMap[type] || t('certificatePage.types.completion');
       }
 
       // Create certificate content
@@ -150,7 +150,7 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
           font-size: 12px;
           color: ${theme.secondary};
           font-weight: 500;
-        ">${t('idLabel')} ${certificateId}</div>
+        ">${t('certificatePage.idLabel')} ${certificateId}</div>
         
         <div style="
           position: absolute;
@@ -181,7 +181,7 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
           letter-spacing: 1px;
         ">
           <div style="width: 24px; height: 1px; background: linear-gradient(90deg, transparent, ${theme.secondary}, transparent);"></div>
-          ${t('certificateLabel')}
+          ${t('certificatePage.certificateLabel')}
           <div style="width: 24px; height: 1px; background: linear-gradient(90deg, transparent, ${theme.secondary}, transparent);"></div>
         </div>
         
@@ -213,7 +213,7 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
           margin-bottom: 30px;
           line-height: 1.5;
           max-width: 500px;
-        ">${userCertificate.certification.config.certification_description || t('defaultDescription')}</div>
+        ">${userCertificate.certification.config.certification_description || t('certificatePage.defaultDescription')}</div>
         
         <div style="
           display: flex;
@@ -254,10 +254,10 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
           max-width: 400px;
         ">
           <div style="margin: 8px 0; font-size: 14px; color: #374151;">
-            <strong style="color: ${theme.primary};">${t('certificateIdLabel')}</strong> ${certificateId}
+            <strong style="color: ${theme.primary};">${t('certificatePage.certificateIdLabel')}</strong> ${certificateId}
           </div>
           <div style="margin: 8px 0; font-size: 14px; color: #374151;">
-            <strong style="color: ${theme.primary};">${t('awardedLabel')}</strong> ${new Date(userCertificate.certificate_user.created_at).toLocaleDateString('en-US', {
+            <strong style="color: ${theme.primary};">${t('certificatePage.awardedLabel')}</strong> ${new Date(userCertificate.certificate_user.created_at).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
@@ -265,7 +265,7 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
           </div>
           ${userCertificate.certification.config.certificate_instructor ?
           `<div style="margin: 8px 0; font-size: 14px; color: #374151;">
-              <strong style="color: ${theme.primary};">${t('instructorLabel')}</strong> ${userCertificate.certification.config.certificate_instructor}
+              <strong style="color: ${theme.primary};">${t('certificatePage.instructorLabel')}</strong> ${userCertificate.certification.config.certificate_instructor}
             </div>` : ''
         }
         </div>
@@ -275,7 +275,7 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
           font-size: 12px;
           color: #6b7280;
         ">
-          ${t('verifiedAt')} ${qrCodeData.replace('https://', '').replace('http://', '')}
+          ${t('certificatePage.verifiedAt')} ${qrCodeData.replace('https://', '').replace('http://', '')}
         </div>
       `;
 
@@ -326,7 +326,7 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">{t('loading')}</p>
+          <p className="text-gray-600">{t('certificatePage.loading')}</p>
         </div>
       </div>
     );
@@ -337,14 +337,14 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-6">
           <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-red-800 mb-2">{t('unavailableTitle')}</h2>
+            <h2 className="text-xl font-semibold text-red-800 mb-2">{t('certificatePage.unavailableTitle')}</h2>
             <p className="text-red-600 mb-4">{error}</p>
             <Link
               href={getUriWithOrg(orgslug, '') + `/course/${courseid}`}
               className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-200"
             >
               <ArrowLeft className="w-5 h-5" />
-              <span>{t('backToCourse')}</span>
+              <span>{t('certificatePage.backToCourse')}</span>
             </Link>
           </div>
         </div>
@@ -357,16 +357,16 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-6">
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-yellow-800 mb-2">{t('noCertificateTitle')}</h2>
+            <h2 className="text-xl font-semibold text-yellow-800 mb-2">{t('certificatePage.noCertificateTitle')}</h2>
             <p className="text-yellow-600 mb-4">
-              {t('noCertificateMessage')}
+              {t('certificatePage.noCertificateMessage')}
             </p>
             <Link
               href={getUriWithOrg(orgslug, '') + `/course/${courseid}`}
               className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-200"
             >
               <ArrowLeft className="w-5 h-5" />
-              <span>{t('backToCourse')}</span>
+              <span>{t('certificatePage.backToCourse')}</span>
             </Link>
           </div>
         </div>
@@ -384,7 +384,7 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
             className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition duration-200"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span>{t('backToCourse')}</span>
+            <span>{t('certificatePage.backToCourse')}</span>
           </Link>
 
           <div className="flex items-center space-x-4">
@@ -393,7 +393,7 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
               className="inline-flex items-center space-x-2 bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition duration-200"
             >
               <Download className="w-5 h-5" />
-              <span>{t('downloadPdf')}</span>
+              <span>{t('certificatePage.downloadPdf')}</span>
             </button>
           </div>
         </div>
@@ -421,10 +421,10 @@ const CertificatePage: React.FC<CertificatePageProps> = ({ orgslug, courseid, qr
         {/* Instructions */}
         <div className="mt-8 text-center text-gray-600">
           <p className="mb-2">
-            {t('downloadInstructions')}
+            {t('certificatePage.downloadInstructions')}
           </p>
           <p className="text-sm">
-            {t('qrCodeInfo')}
+            {t('certificatePage.qrCodeInfo')}
           </p>
         </div>
       </div>

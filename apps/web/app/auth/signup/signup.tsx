@@ -25,7 +25,7 @@ interface SignUpClientProps {
 }
 
 function SignUpClient(props: SignUpClientProps) {
-  const t = useTranslations('auth')
+  const t = useTranslations()
   const session = useLHSession() as any
   const [joinMethod, setJoinMethod] = React.useState('open')
   const [inviteCode, setInviteCode] = React.useState('')
@@ -65,7 +65,7 @@ function SignUpClient(props: SignUpClientProps) {
         </div>
         <div className="ml-10 h-3/4 flex flex-row text-white">
           <div className="m-auto flex space-x-4 items-center flex-wrap">
-            <div>{t('youveBeenInvitedToJoin')} </div>
+            <div>{t('auth.youveBeenInvitedToJoin')} </div>
             <div className="shadow-[0px_4px_16px_rgba(0,0,0,0.02)]">
               {props.org?.logo_image ? (
                 <img
@@ -114,7 +114,6 @@ function SignUpClient(props: SignUpClientProps) {
 }
 
 const LoggedInJoinScreen = (props: any) => {
-  const t = useTranslations('auth')
   const session = useLHSession() as any
   const org = useOrg() as any
   const invite_code = props.inviteCode
@@ -153,7 +152,7 @@ const LoggedInJoinScreen = (props: any) => {
        <Toast />
       <div className="flex space-y-7 flex-col justify-center items-center">
         <p className="pt-3 text-2xl font-semibold text-black/70 flex justify-center space-x-2 items-center">
-          <span className="items-center">{t('hi')}</span>
+          <span className="items-center">{t('auth.hi')}</span>
           <span className="capitalize flex space-x-2 items-center">
             <UserAvatar rounded="rounded-xl" border="border-4" width={35} />
             <span>{session.data.username},</span>
@@ -166,7 +165,7 @@ const LoggedInJoinScreen = (props: any) => {
             width={60}
             color="#ffffff"
           /> : <><UserPlus size={18} />
-            <p>{t('join')} </p></>}
+            <p>{t('auth.join')} </p></>}
         </button>
       </div>
     </div>
@@ -174,7 +173,6 @@ const LoggedInJoinScreen = (props: any) => {
 }
 
 const NoTokenScreen = (props: any) => {
-  const t = useTranslations('auth')
   const session = useLHSession() as any
   const org = useOrg() as any
   const router = useRouter()
@@ -192,13 +190,13 @@ const NoTokenScreen = (props: any) => {
     //wait for 1s
     if (res.success) {
       toast.success(
-        t('inviteCodeValid')
+        t('auth.inviteCodeValid')
       )
       setTimeout(() => {
         router.push(getUriWithoutOrg(`/signup?inviteCode=${inviteCode}&orgslug=${org.slug}`))
       }, 2000)
     } else {
-      toast.error(t('inviteCodeInvalid'))
+      toast.error(t('auth.inviteCodeInvalid'))
       setIsLoading(false)
     }
   }
@@ -225,7 +223,7 @@ const NoTokenScreen = (props: any) => {
           <input
             onChange={handleInviteCodeChange}
             className="bg-white outline-2 outline outline-gray-200 rounded-lg px-5 w-[300px] h-[50px]"
-            placeholder={t('pleaseEnterInviteCode')}
+            placeholder={t('auth.pleaseEnterInviteCode')}
             type="text"
           />
           <button
@@ -233,7 +231,7 @@ const NoTokenScreen = (props: any) => {
             className="flex w-fit space-x-2 bg-black px-6 py-2 text-md rounded-lg font-semibold h-fit text-white items-center shadow-md"
           >
             <Ticket size={18} />
-            <p>{t('submit')} </p>
+            <p>{t('auth.submit')} </p>
           </button>
         </div>
       )}

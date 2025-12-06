@@ -10,7 +10,7 @@ interface CourseBreadcrumbsProps {
 }
 
 export default function CourseBreadcrumbs({ course, orgslug }: CourseBreadcrumbsProps) {
-  const t = useTranslations('breadcrumbs')
+  const t = useTranslations()
   const cleanCourseUuid = course.course_uuid?.replace('course_', '')
 
   return (
@@ -19,7 +19,7 @@ export default function CourseBreadcrumbs({ course, orgslug }: CourseBreadcrumbs
         <div className="flex space-x-2 items-center">
           <Book className="text-gray" size={14} />
           <Link href={getUriWithOrg(orgslug, '') + `/courses`}>
-            {t('courses')}
+            {t('breadcrumbs.courses')}
           </Link>
         </div>
         <ChevronRight size={14} />

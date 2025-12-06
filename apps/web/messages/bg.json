@@ -382,34 +382,34 @@
     "switchToDesktop": "Моля, преминете към десктоп, за да преглеждате и управлявате настройките на потребителите."
   },
   "usergroups": {
-    "title": "Manage UserGroups & Users",
-    "description": "UserGroups are a way to group users together to manage their access to the resources (Courses) in your organization.",
+    "title": "Управлявай Потребителски Групи и Потребители",
+    "description": "Потребителските групи са начин за групиране на потребители заедно за управление на достъпа.",
     "table": {
-      "userGroup": "UserGroup",
-      "description": "Description",
-      "manageUsers": "Manage Users",
-      "actions": "Actions"
+      "userGroup": "Потребителска Група",
+      "description": "Описание",
+      "manageUsers": "Управлявай Потребители",
+      "actions": "Действия"
     },
     "buttons": {
-      "manageUsers": "Manage Users",
-      "create": "Create a UserGroup"
+      "manageUsers": "Управлявай Потребители",
+      "create": "Създай Потребителска Група"
     },
     "manageUsersModal": {
-      "title": "Manage UserGroup Users",
-      "description": "Manage the users in this UserGroup"
+      "title": "Управлявай Потребители в Група",
+      "description": "Управлявай потребителите в тази потребителска група"
     },
     "createModal": {
-      "title": "Create a UserGroup",
-      "description": "Create a new UserGroup to manage users"
+      "title": "Създай Потребителска Група",
+      "description": "Създай нова потребителска група за управление на потребители"
     },
     "deleteModal": {
-      "title": "Delete UserGroup?",
-      "message": "Access to all resources will be removed for all users in this UserGroup. Are you sure you want to delete this UserGroup?",
-      "confirmButton": "Delete UserGroup"
+      "title": "Изтрий Потребителска Група?",
+      "message": "Достъпът до всички ресурси ще бъде премахнат за всички потребители в тази група.",
+      "confirmButton": "Изтрий Потребителска Група"
     },
-    "deleting": "Deleting...",
-    "deletedSuccess": "Deleted usergroup",
-    "deleteError": "Error deleting usergroup"
+    "deleting": "Изтриване...",
+    "deletedSuccess": "Потребителската група е изтрита",
+    "deleteError": "Грешка при изтриване на потребителска група"
   },
   "organization": {
     "generalTitle": "Общи",
@@ -479,7 +479,8 @@
       "scriptDeleteError": "Неуспешно изтриване на скрипта",
       "deletingScript": "Изтриване на скрипт...",
       "nameRequired": "Името на скрипта е задължително",
-      "contentRequired": "Съдържанието на скрипта е задължително"
+      "contentRequired": "Съдържанието на скрипта е задължително",
+      "saving": "Запазва се..."
     }
   },
   "landing": {
@@ -567,6 +568,7 @@
     "imagePosition": "Позиция на Изображението",
     "selectImagePosition": "Изберете позиция на изображението",
     "uploadNewImage": "Качване на Ново Изображение",
+    "uploadImageText": "Качи Изображение",
     "uploading": "Качва се...",
     "successImageUpload": "Изображението е качено успешно",
     "errorImageUpload": "Неуспешно качване на изображението",
@@ -665,7 +667,11 @@
     "addLoomVideoTitle": "Добави Loom видео",
     "pasteLoomUrl": "Поставете вашия Loom видео URL",
     "youtubeUrlPlaceholder": "https://youtube.com/watch?v=...",
-    "loomUrlPlaceholder": "https://www.loom.com/share/..."
+    "loomUrlPlaceholder": "https://www.loom.com/share/...",
+    "addVideo": "Добави Видео",
+    "addVideoPreview": "Добави Видео Визуализация",
+    "dragDropImages": "Плъзнете и пуснете изображения тук",
+    "pasteYouTubeOrLoom": "Поставете вашия YouTube или Loom видео URL"
   },
   "dashboardHome": {
     "hello": "Здравейте,",
@@ -893,6 +899,34 @@
       "creating": "Създаване...",
       "success": "Новата роля е създадена",
       "error": "Неуспешно създаване на нова роля"
+    }
+  },
+  "roles": {
+    "title": "Управлявай Роли и Разрешения",
+    "description": "Ролите определят какво могат да правят потребителите във вашата организация. Създайте персонализирани роли със специфични разрешения за различни типове потребители.",
+    "systemWide": "Системно",
+    "noPermissions": "Без разрешения",
+    "permissions": "{count} разрешения",
+    "noDescription": "Няма описание",
+    "tableHeaders": {
+      "roleName": "Име на Роля",
+      "description": "Описание",
+      "permissions": "Разрешения",
+      "actions": "Действия"
+    },
+    "edit": "Редактирай",
+    "delete": "Изтрий",
+    "editRole": "Редактирай Роля",
+    "editRoleDescription": "Редактирай разрешенията и детайлите на ролята",
+    "deleteRole": "Изтрий Роля",
+    "deleteRoleTitle": "Изтрий Роля?",
+    "deleteRoleMessage": "Това действие не може да бъде отменено. Всички потребители с тази роля ще загубят своите разрешения. Сигурни ли сте, че искате да изтриете тази роля?",
+    "createRole": "Създай Роля",
+    "createRoleDescription": "Създай нова роля със специфични разрешения",
+    "toasts": {
+      "deleting": "Изтриване...",
+      "deleted": "Ролята е изтрита",
+      "deleteError": "Грешка при изтриване на ролята"
     }
   },
   "addUserGroupModal": {

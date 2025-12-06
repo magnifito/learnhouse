@@ -479,7 +479,8 @@
       "scriptDeleteError": "Failed to delete script",
       "deletingScript": "Deleting script...",
       "nameRequired": "Script name is required",
-      "contentRequired": "Script content is required"
+      "contentRequired": "Script content is required",
+      "saving": "Saving..."
     }
   },
   "landing": {
@@ -567,6 +568,7 @@
     "imagePosition": "Image Position",
     "selectImagePosition": "Select image position",
     "uploadNewImage": "Upload New Image",
+    "uploadImageText": "Upload Image",
     "uploading": "Uploading...",
     "successImageUpload": "Image uploaded successfully",
     "errorImageUpload": "Failed to upload image",
@@ -665,7 +667,11 @@
     "addLoomVideoTitle": "Add Loom Video",
     "pasteLoomUrl": "Paste your Loom video URL",
     "youtubeUrlPlaceholder": "https://youtube.com/watch?v=...",
-    "loomUrlPlaceholder": "https://www.loom.com/share/..."
+    "loomUrlPlaceholder": "https://www.loom.com/share/...",
+    "addVideo": "Add Video",
+    "addVideoPreview": "Add Video Preview",
+    "dragDropImages": "Drag and drop images here",
+    "pasteYouTubeOrLoom": "Paste your YouTube or Loom video URL"
   },
   "dashboardHome": {
     "hello": "Hello,",
@@ -893,6 +899,34 @@
       "creating": "Creating...",
       "success": "Created new role",
       "error": "Couldn't create new role"
+    }
+  },
+  "roles": {
+    "title": "Manage Roles & Permissions",
+    "description": "Roles define what users can do within your organization. Create custom roles with specific permissions for different user types.",
+    "systemWide": "System-wide",
+    "noPermissions": "No permissions",
+    "permissions": "{count} permissions",
+    "noDescription": "No description",
+    "tableHeaders": {
+      "roleName": "Role Name",
+      "description": "Description",
+      "permissions": "Permissions",
+      "actions": "Actions"
+    },
+    "edit": "Edit",
+    "delete": "Delete",
+    "editRole": "Edit Role",
+    "editRoleDescription": "Edit the role permissions and details",
+    "deleteRole": "Delete Role",
+    "deleteRoleTitle": "Delete Role?",
+    "deleteRoleMessage": "This action cannot be undone. All users with this role will lose their permissions. Are you sure you want to delete this role?",
+    "createRole": "Create a Role",
+    "createRoleDescription": "Create a new role with specific permissions",
+    "toasts": {
+      "deleting": "Deleting...",
+      "deleted": "Deleted role",
+      "deleteError": "Error deleting role"
     }
   },
   "addUserGroupModal": {

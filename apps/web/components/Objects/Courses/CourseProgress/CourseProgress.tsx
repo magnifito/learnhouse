@@ -14,7 +14,7 @@ interface CourseProgressProps {
 }
 
 const CourseProgress: React.FC<CourseProgressProps> = ({ course, orgslug, isOpen, onClose, trailData }) => {
-  const t = useTranslations('courseActions')
+  const t = useTranslations()
   const [completedActivities, setCompletedActivities] = useState(0)
   const [totalActivities, setTotalActivities] = useState(0)
 
@@ -119,7 +119,7 @@ const CourseProgress: React.FC<CourseProgressProps> = ({ course, orgslug, isOpen
       isDialogOpen={isOpen}
       onOpenChange={onClose}
       dialogContent={dialogContent}
-      dialogTitle={t('courseProgress')}
+      dialogTitle={t('courseActions.courseProgress')}
       dialogDescription={t('progressSummary', { completed: completedActivities, total: totalActivities })}
       minWidth="md"
     />

@@ -22,33 +22,31 @@ const validate = (values: any, tv: any, t: any) => {
     const errors: any = {}
 
     if (!values.email) {
-        errors.email = tv('emailRequired')
+        errors.email = t('authValidation.emailRequired')
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-        errors.email = tv('emailInvalid')
+        errors.email = t('authValidation.emailInvalid')
     }
 
     if (!values.new_password) {
-        errors.new_password = tv('passwordRequired')
+        errors.new_password = t('authValidation.passwordRequired')
     }
 
     if (!values.confirm_password) {
-        errors.confirm_password = tv('passwordRequired')
+        errors.confirm_password = t('authValidation.passwordRequired')
     }
 
     if (values.new_password !== values.confirm_password) {
-        errors.confirm_password = t('passwordsDoNotMatch')
+        errors.confirm_password = t('auth.passwordsDoNotMatch')
     }
 
     if (!values.reset_code) {
-        errors.reset_code = tv('emailRequired')
+        errors.reset_code = t('authValidation.emailRequired')
     }
     return errors
 }
 
 function ResetPasswordClient() {
-    const t = useTranslations('auth')
-    const tv = useTranslations('authValidation')
-    const c = useTranslations('common')
+    const t = useTranslations()
 
     const org = useOrg() as any;
     const [isSubmitting, setIsSubmitting] = React.useState(false)
@@ -66,7 +64,7 @@ function ResetPasswordClient() {
             confirm_password: '',
             reset_code: reset_code
         },
-        validate: (values) => validate(values, tv, t),
+        validate: (values) => validate(values, t, t),
         enableReinitialize: true,
         onSubmit: async (values) => {
             setIsSubmitting(true)
@@ -132,9 +130,9 @@ function ResetPasswordClient() {
             </div>
             <div className="left-login-part bg-white flex flex-row">
                 <div className="login-form m-auto w-72">
-                    <h1 className="text-2xl font-bold mb-4">{t('resetPasswordTitle')}</h1>
+                    <h1 className="text-2xl font-bold mb-4">{t('auth.resetPasswordTitle')}</h1>
                     <p className="text-sm mb-4">
-                        {t('resetPasswordDescription')}
+                        {t('auth.resetPasswordDescription')}
                     </p>
 
                     {error && (
@@ -150,14 +148,14 @@ function ResetPasswordClient() {
                                 <div className="font-bold text-sm">{message}</div>
                             </div>
                             <Link href={getUriWithoutOrg('/login?orgslug=' + org.slug)} className="text-center text-sm text-blue-600 hover:text-blue-800">
-                                {t('pleaseLoginAgain')}
+                                {t('auth.pleaseLoginAgain')}
                             </Link>
                         </div>
                     )}
                     <FormLayout onSubmit={formik.handleSubmit}>
                         <FormField name="email">
                             <FormLabelAndMessage
-                                label={t('email')}
+                                label={t('auth.email')}
                                 message={formik.errors.email}
                             />
                             <Form.Control asChild>
@@ -171,7 +169,7 @@ function ResetPasswordClient() {
 
                         <FormField name="reset_code">
                             <FormLabelAndMessage
-                                label={t('resetCode')}
+                                label={t('auth.resetCode')}
                                 message={formik.errors.reset_code}
                             />
                             <Form.Control asChild>
@@ -185,7 +183,7 @@ function ResetPasswordClient() {
 
                         <FormField name="new_password">
                             <FormLabelAndMessage
-                                label={t('newPassword')}
+                                label={t('auth.newPassword')}
                                 message={formik.errors.new_password}
                             />
                             <Form.Control asChild>
@@ -199,7 +197,7 @@ function ResetPasswordClient() {
 
                         <FormField name="confirm_password">
                             <FormLabelAndMessage
-                                label={t('confirmPassword')}
+                                label={t('auth.confirmPassword')}
                                 message={formik.errors.confirm_password}
                             />
                             <Form.Control asChild>
@@ -215,7 +213,7 @@ function ResetPasswordClient() {
                         <div className="flex  py-4">
                             <Form.Submit asChild>
                                 <button className="w-full bg-black text-white font-bold text-center p-2 rounded-md shadow-md hover:cursor-pointer">
-                                    {isSubmitting ? c('loading') : t('changePassword')}
+                                    {isSubmitting ? t('common.loading') : t('auth.changePassword')}
                                 </button>
                             </Form.Submit>
                         </div>

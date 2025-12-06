@@ -16,7 +16,7 @@ import { useTranslations } from 'next-intl';
 
 function OrgUsers() {
   const org = useOrg() as any
-  const t = useTranslations('orgUsers');
+  const t = useTranslations();
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token;
   const { data: orgUsers } = useSWR(
@@ -33,13 +33,13 @@ function OrgUsers() {
   }
 
   const handleRemoveUser = async (user_id: any) => {
-    const toastId = toast.loading(t('toasts.removing'));
+    const toastId = toast.loading(t('orgUsers.toasts.removing'));
     const res = await removeUserFromOrg(org.id, user_id, access_token)
     if (res.status === 200) {
       await mutate(`${getAPIUrl()}orgs/${org.id}/users`)
-      toast.success(t('toasts.removeSuccess'), { id: toastId });
+      toast.success(t('orgUsers.toasts.removeSuccess'), { id: toastId });
     } else {
-      toast.error(t('toasts.removeError'), { id: toastId });
+      toast.error(t('orgUsers.toasts.removeError'), { id: toastId });
     }
   }
 
@@ -61,18 +61,18 @@ function OrgUsers() {
           <div className="h-6"></div>
           <div className="ml-10 mr-10 mx-auto bg-white rounded-xl shadow-xs px-4 py-4  ">
             <div className="flex flex-col bg-gray-50 -space-y-1  px-5 py-3 rounded-md mb-3 ">
-              <h1 className="font-bold text-xl text-gray-800">{t('title')}</h1>
+              <h1 className="font-bold text-xl text-gray-800">{t('orgUsers.title')}</h1>
               <h2 className="text-gray-500  text-md">
                 {' '}
-                {t('description')}{' '}
+                {t('orgUsers.description')}{' '}
               </h2>
             </div>
             <table className="table-auto w-full text-left whitespace-nowrap rounded-md overflow-hidden">
               <thead className="bg-gray-100 text-gray-500 rounded-xl uppercase">
                 <tr className="font-bolder text-sm">
-                  <th className="py-3 px-4">{t('tableHeaderUser')}</th>
-                  <th className="py-3 px-4">{t('tableHeaderRole')}</th>
-                  <th className="py-3 px-4">{t('tableHeaderActions')}</th>
+                  <th className="py-3 px-4">{t('orgUsers.tableHeaderUser')}</th>
+                  <th className="py-3 px-4">{t('orgUsers.tableHeaderRole')}</th>
+                  <th className="py-3 px-4">{t('orgUsers.tableHeaderActions')}</th>
                 </tr>
               </thead>
               <>
@@ -107,26 +107,26 @@ function OrgUsers() {
                               user={user}
                             />
                           }
-                          dialogTitle={t('updateRoleTitle')}
+                          dialogTitle={t('orgUsers.updateRoleTitle')}
                           dialogDescription={
                             t('updateRoleDesc', { username: user.user.username })
                           }
                           dialogTrigger={
                             <button className="flex space-x-2 hover:cursor-pointer p-1 px-3 bg-yellow-700 rounded-md font-bold items-center text-sm text-yellow-100">
                               <KeyRound className="w-4 h-4" />
-                              <span> {t('editRole')}</span>
+                              <span> {t('orgUsers.editRole')}</span>
                             </button>
                           }
                         />
 
                         <ConfirmationModal
-                          confirmationButtonText={t('removeUserButton')}
-                          confirmationMessage={t('removeUserMessage')}
+                          confirmationButtonText={t('orgUsers.removeUserButton')}
+                          confirmationMessage={t('orgUsers.removeUserMessage')}
                           dialogTitle={t('removeUserTitle', { username: user.user.username })}
                           dialogTrigger={
                             <button className="mr-2 flex space-x-2 hover:cursor-pointer p-1 px-3 bg-rose-700 rounded-md font-bold items-center text-sm text-rose-100">
                               <LogOut className="w-4 h-4" />
-                              <span> {t('removeFromOrg')}</span>
+                              <span> {t('orgUsers.removeFromOrg')}</span>
                             </button>
                           }
                           functionToExecute={() => {

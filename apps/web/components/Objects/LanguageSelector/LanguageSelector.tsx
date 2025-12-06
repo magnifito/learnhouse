@@ -24,7 +24,7 @@ export default function LanguageSelector({
   className = '',
   showLabel = true
 }: LanguageSelectorProps) {
-  const t = useTranslations('settings');
+  const t = useTranslations();
   const [currentLocale, setCurrentLocale] = useState<Locale>(() => getLocaleFromCookie());
 
   const handleLanguageChange = (newLocale: string) => {
@@ -52,7 +52,7 @@ export default function LanguageSelector({
       {showLabel && (
         <Label htmlFor="language" className="flex items-center gap-2 mb-2">
           <Globe className="w-4 h-4" />
-          {t('language')}
+          {t('settings.language')}
         </Label>
       )}
       <Select value={currentLocale} onValueChange={handleLanguageChange}>
@@ -79,7 +79,7 @@ export default function LanguageSelector({
         </SelectContent>
       </Select>
       <p className="text-xs text-gray-500 mt-1">
-        {t('selectLanguage')}
+        {t('settings.selectLanguage')}
       </p>
     </div>
   );

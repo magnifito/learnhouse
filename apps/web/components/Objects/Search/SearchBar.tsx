@@ -97,7 +97,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   isMobile = false,
   showSearchSuggestions = false,
 }) => {
-  const t = useTranslations('searchBar');
+  const t = useTranslations();
   const org = useOrg() as any;
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResults>({
@@ -179,10 +179,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({
               <Sparkles className="w-6 h-6 text-black/70" />
             </div>
             <h3 className="text-sm font-medium text-black/80 mb-1">
-              {t('discoverTitle')}
+              {t('searchBar.discoverTitle')}
             </h3>
             <p className="text-xs text-black/50 max-w-[240px]">
-              {t('discoverSubtitle')}
+              {t('searchBar.discoverSubtitle')}
             </p>
           </div>
         </div>
@@ -203,7 +203,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         <div className="p-2">
           <div className="flex items-center gap-2 px-2 py-2 text-sm text-black/50">
             <ScanSearch size={16} />
-            <span className="font-medium">{t('suggestions')}</span>
+            <span className="font-medium">{t('searchBar.suggestions')}</span>
           </div>
           <div className="space-y-1">
             {searchTerms.map(({ term, type, icon }) => (
@@ -237,7 +237,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       <div className="p-2">
         <div className="flex items-center gap-2 px-2 py-2 text-sm text-black/50">
           <TextSearch size={16} />
-          <span className="font-medium">{t('quickResults')}</span>
+          <span className="font-medium">{t('searchBar.quickResults')}</span>
         </div>
 
         {/* Courses Section */}
@@ -245,7 +245,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           <div className="mb-2">
             <div className="flex items-center gap-2 px-2 py-1 text-xs text-black/40">
               <GraduationCap size={12} />
-              <span>{t('sections.courses')}</span>
+              <span>{t('searchBar.sections.courses')}</span>
             </div>
             {searchResults.courses.map((course) => (
               <Link
@@ -272,7 +272,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <h3 className="text-sm font-medium text-black/80 truncate">{course.name}</h3>
-                    <span className="text-[10px] font-medium text-black/40 uppercase tracking-wide whitespace-nowrap">{t('labels.course')}</span>
+                    <span className="text-[10px] font-medium text-black/40 uppercase tracking-wide whitespace-nowrap">{t('searchBar.labels.course')}</span>
                   </div>
                   <p className="text-xs text-black/50 truncate">{course.description}</p>
                 </div>
@@ -286,7 +286,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           <div className="mb-2">
             <div className="flex items-center gap-2 px-2 py-1 text-xs text-black/40">
               <Book size={12} />
-              <span>{t('sections.collections')}</span>
+              <span>{t('searchBar.sections.collections')}</span>
             </div>
             {searchResults.collections.map((collection) => (
               <Link
@@ -300,7 +300,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <h3 className="text-sm font-medium text-black/80 truncate">{collection.name}</h3>
-                    <span className="text-[10px] font-medium text-black/40 uppercase tracking-wide whitespace-nowrap">{t('labels.collection')}</span>
+                    <span className="text-[10px] font-medium text-black/40 uppercase tracking-wide whitespace-nowrap">{t('searchBar.labels.collection')}</span>
                   </div>
                   <p className="text-xs text-black/50 truncate">{collection.description}</p>
                 </div>
@@ -314,7 +314,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           <div className="mb-2">
             <div className="flex items-center gap-2 px-2 py-1 text-xs text-black/40">
               <Users size={12} />
-              <span>{t('sections.users')}</span>
+              <span>{t('searchBar.sections.users')}</span>
             </div>
             {searchResults.users.map((user) => (
               <Link
@@ -336,7 +336,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                     <h3 className="text-sm font-medium text-black/80 truncate">
                       {user.first_name} {user.last_name}
                     </h3>
-                    <span className="text-[10px] font-medium text-black/40 uppercase tracking-wide whitespace-nowrap">{t('labels.user')}</span>
+                    <span className="text-[10px] font-medium text-black/40 uppercase tracking-wide whitespace-nowrap">{t('searchBar.labels.user')}</span>
                   </div>
                   <p className="text-xs text-black/50 truncate">@{user.username}</p>
                 </div>
@@ -361,7 +361,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           value={searchQuery}
           onChange={handleSearchChange}
           onFocus={() => setShowResults(true)}
-          placeholder={t('placeholder')}
+          placeholder={t('searchBar.placeholder')}
           className="w-full h-9 pl-11 pr-4 rounded-xl nice-shadow bg-white
                      focus:outline-none focus:ring-1 focus:ring-black/5 focus:border-black/20
                      text-sm placeholder:text-black/40 transition-all"
@@ -396,7 +396,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                       href={getUriWithOrg(orgslug, `/search?q=${encodeURIComponent(searchQuery)}`)}
                       className="flex items-center justify-between px-4 py-2.5 text-xs text-black/50 hover:text-black/70 hover:bg-black/[0.02] transition-colors"
                     >
-                      <span>{t('viewAll')}</span>
+                      <span>{t('searchBar.viewAll')}</span>
                       <ArrowRight size={14} />
                     </Link>
                   )}

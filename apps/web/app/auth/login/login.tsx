@@ -26,24 +26,22 @@ const validate = (values: any, t: any) => {
   const errors: any = {}
 
   if (!values.email) {
-    errors.email = t('emailRequired')
+    errors.email = t('auth.emailRequired')
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-    errors.email = t('emailInvalid')
+    errors.email = t('auth.emailInvalid')
   }
 
   if (!values.password) {
-    errors.password = t('passwordRequired')
+    errors.password = t('auth.passwordRequired')
   } else if (values.password.length < 8) {
-    errors.password = t('passwordTooShort')
+    errors.password = t('auth.passwordTooShort')
   }
 
   return errors
 }
 
 const LoginClient = (props: LoginClientProps) => {
-  const t = useTranslations('auth')
-  const tv = useTranslations('authValidation')
-  const c = useTranslations('common')
+  const t = useTranslations()
 
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const router = useRouter();
@@ -55,7 +53,7 @@ const LoginClient = (props: LoginClientProps) => {
       email: '',
       password: '',
     },
-    validate: (values) => validate(values, tv),
+    validate: (values) => validate(values, t),
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values, {validateForm, setErrors, setSubmitting}) => {
@@ -74,7 +72,7 @@ const LoginClient = (props: LoginClientProps) => {
         callbackUrl: '/redirect_from_auth'
       });
       if (res && res.error) {
-        setError(t('wrongEmailOrPassword'));
+        setError(t('auth.wrongEmailOrPassword'));
         setIsSubmitting(false);
       } else {
         await signIn('credentials', {
@@ -108,7 +106,7 @@ const LoginClient = (props: LoginClientProps) => {
         </div>
         <div className="ml-10 h-4/6 flex flex-row text-white">
           <div className="m-auto flex space-x-4 items-center flex-wrap">
-            <div>{t('loginTo')} </div>
+            <div>{t('auth.loginTo')} </div>
             <div className="shadow-[0px_4px_16px_rgba(0,0,0,0.02)]">
               {props.org?.logo_image ? (
                 <img
@@ -145,7 +143,7 @@ const LoginClient = (props: LoginClientProps) => {
           <FormLayout onSubmit={formik.handleSubmit}>
             <FormField name="email">
               <FormLabelAndMessage
-                label={t('email')}
+                label={t('auth.email')}
                 message={formik.errors.email}
               />
               <Form.Control asChild>
@@ -160,7 +158,7 @@ const LoginClient = (props: LoginClientProps) => {
             {/* for password  */}
             <FormField name="password">
               <FormLabelAndMessage
-                label={t('password')}
+                label={t('auth.password')}
                 message={formik.errors.password}
               />
 
@@ -179,27 +177,27 @@ const LoginClient = (props: LoginClientProps) => {
                 passHref
                 className="text-xs text-gray-500 hover:underline"
               >
-                {t('forgotPassword')}
+                {t('auth.forgotPassword')}
               </Link>
             </div>
             <div className="flex  py-4">
               <Form.Submit asChild>
                 <button  className="w-full bg-black text-white font-bold text-center p-2 rounded-md shadow-md hover:cursor-pointer">
-                  {isSubmitting ? c('loading') : t('login')}
+                  {isSubmitting ? t('common.loading') : t('auth.login')}
                 </button>
               </Form.Submit>
             </div>
           </FormLayout>
           <div className='flex h-0.5 rounded-2xl bg-slate-100 mt-5  mx-10'></div>
-          <div className='flex justify-center py-5 mx-auto'>{t('or')} </div>
+          <div className='flex justify-center py-5 mx-auto'>{t('auth.or')} </div>
           <div className='flex flex-col space-y-4'>
             <Link href={{ pathname: getUriWithoutOrg('/signup'), query: props.org.slug ? { orgslug: props.org.slug } : null }}  className="flex justify-center items-center py-3 text-md w-full bg-gray-800 text-gray-300 space-x-3 font-semibold text-center p-2 rounded-md shadow-sm hover:cursor-pointer">
               <UserRoundPlus size={17} />
-              <span>{t('signUp')}</span>
+              <span>{t('auth.signUp')}</span>
             </Link>
             <button onClick={() => signIn('google', { callbackUrl: '/redirect_from_auth' })} className="flex justify-center py-3 text-md w-full bg-white text-slate-600 space-x-3 font-semibold text-center p-2 rounded-md shadow-sm hover:cursor-pointer">
               <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="" />
-              <span>{t('signInWithGoogle')}</span>
+              <span>{t('auth.signInWithGoogle')}</span>
             </button>
           </div>
         </div>

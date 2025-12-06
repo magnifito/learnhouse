@@ -36,8 +36,7 @@ interface OrganizationValues {
 import { useTranslations } from 'next-intl'
 
 export default function OrgEditSocials() {
-  const t = useTranslations('organization.socials')
-  const tCommon = useTranslations('organization')
+  const t = useTranslations()
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token
   const org = useOrg() as any
@@ -48,15 +47,15 @@ export default function OrgEditSocials() {
   }
 
   const updateOrg = async (values: OrganizationValues) => {
-    const loadingToast = toast.loading(tCommon('updatingOrganization'))
+    const loadingToast = toast.loading(t('organization.updatingOrganization'))
     try {
       await updateOrganization(org.id, values, access_token)
       await revalidateTags(['organizations'], org.slug)
 
       mutate(`${getAPIUrl()}orgs/slug/${org.slug}`)
-      toast.success(tCommon('organizationUpdated'), { id: loadingToast })
+      toast.success(t('organization.organizationUpdated'), { id: loadingToast })
     } catch (err) {
-      toast.error(tCommon('failedToUpdateOrg'), { id: loadingToast })
+      toast.error(t('organization.failedToUpdateOrg'), { id: loadingToast })
     }
   }
 
@@ -77,17 +76,17 @@ export default function OrgEditSocials() {
             <div className="flex flex-col gap-0">
               <div className="flex flex-col bg-gray-50 -space-y-1 px-5 py-3 mx-3 my-3 rounded-md">
                 <h1 className="font-bold text-xl text-gray-800">
-                  {t('title')}
+                  {t('organization.socials.title')}
                 </h1>
                 <h2 className="text-gray-500 text-md">
-                  {t('description')}
+                  {t('organization.socials.description')}
                 </h2>
               </div>
 
               <div className="flex flex-col lg:flex-row lg:space-x-8 mt-0 mx-5 my-5">
                 <div className="w-full space-y-6">
                   <div>
-                    <Label className="text-lg font-semibold">{t('subtitle')}</Label>
+                    <Label className="text-lg font-semibold">{t('organization.socials.subtitle')}</Label>
                     <div className="space-y-3 bg-gray-50/50 p-4 rounded-lg nice-shadow mt-2">
                       <div className="grid gap-3">
                         <div className="flex items-center space-x-3">
@@ -99,7 +98,7 @@ export default function OrgEditSocials() {
                             name="socials.twitter"
                             value={values.socials.twitter || ''}
                             onChange={handleChange}
-                            placeholder={t('twitterPlaceholder')}
+                            placeholder={t('organization.socials.twitterPlaceholder')}
                             className="h-9 bg-white"
                           />
                         </div>
@@ -113,7 +112,7 @@ export default function OrgEditSocials() {
                             name="socials.facebook"
                             value={values.socials.facebook || ''}
                             onChange={handleChange}
-                            placeholder={t('facebookPlaceholder')}
+                            placeholder={t('organization.socials.facebookPlaceholder')}
                             className="h-9 bg-white"
                           />
                         </div>
@@ -127,7 +126,7 @@ export default function OrgEditSocials() {
                             name="socials.instagram"
                             value={values.socials.instagram || ''}
                             onChange={handleChange}
-                            placeholder={t('instagramPlaceholder')}
+                            placeholder={t('organization.socials.instagramPlaceholder')}
                             className="h-9 bg-white"
                           />
                         </div>
@@ -141,7 +140,7 @@ export default function OrgEditSocials() {
                             name="socials.youtube"
                             value={values.socials.youtube || ''}
                             onChange={handleChange}
-                            placeholder={t('youtubePlaceholder')}
+                            placeholder={t('organization.socials.youtubePlaceholder')}
                             className="h-9 bg-white"
                           />
                         </div>
@@ -152,7 +151,7 @@ export default function OrgEditSocials() {
 
                 <div className="w-full space-y-6">
                   <div>
-                    <Label className="text-lg font-semibold">{t('customLinks')}</Label>
+                    <Label className="text-lg font-semibold">{t('organization.socials.customLinks')}</Label>
                     <div className="space-y-3 bg-gray-50/50 p-4 rounded-lg nice-shadow mt-2">
                       {Object.entries(values.links).map(([linkKey, linkValue], index) => (
                         <div key={index} className="flex gap-3 items-center">
@@ -161,7 +160,7 @@ export default function OrgEditSocials() {
                           </div>
                           <div className="flex-1 flex gap-2">
                             <Input
-                              placeholder={t('labelPlaceholder')}
+                              placeholder={t('organization.socials.labelPlaceholder')}
                               value={linkKey}
                               className="h-9 w-1/3 bg-white"
                               onChange={(e) => {
@@ -172,7 +171,7 @@ export default function OrgEditSocials() {
                               }}
                             />
                             <Input
-                              placeholder={t('urlPlaceholder')}
+                              placeholder={t('organization.socials.urlPlaceholder')}
                               value={linkValue}
                               className="h-9 flex-1 bg-white"
                               onChange={(e) => {
@@ -205,17 +204,17 @@ export default function OrgEditSocials() {
                           className="mt-2"
                           onClick={() => {
                             const newLinks = { ...values.links };
-                            newLinks[`${t('linkDefaultLabel')} ${Object.keys(newLinks).length + 1}`] = '';
+                            newLinks[`${t('organization.socials.linkDefaultLabel')} ${Object.keys(newLinks).length + 1}`] = '';
                             setFieldValue('links', newLinks);
                           }}
                         >
                           <Plus className="h-4 w-4 mr-2" />
-                          {t('addLink')}
+                          {t('organization.socials.addLink')}
                         </Button>
                       )}
 
                       <p className="text-xs text-gray-500 mt-2">
-                        {t('limitMessage')}
+                        {t('organization.socials.limitMessage')}
                       </p>
                     </div>
                   </div>
@@ -228,7 +227,7 @@ export default function OrgEditSocials() {
                   disabled={isSubmitting}
                   className="bg-black text-white hover:bg-black/90"
                 >
-                  {isSubmitting ? tCommon('saving') : tCommon('saveChanges')}
+                  {isSubmitting ? t('organization.saving') : t('organization.saveChanges')}
                 </Button>
               </div>
             </div>

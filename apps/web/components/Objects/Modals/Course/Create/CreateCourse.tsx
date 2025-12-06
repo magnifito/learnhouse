@@ -25,7 +25,7 @@ import { useTranslations } from 'next-intl';
 
 
 function CreateCourseModal({ closeModal, orgslug }: any) {
-  const t = useTranslations('createCourseModal');
+  const t = useTranslations();
   const router = useRouter()
   const session = useLHSession() as any
   const [orgId, setOrgId] = React.useState(null) as any
@@ -34,10 +34,10 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .required(t('validation.nameRequired'))
-      .max(100, t('validation.nameMax')),
+      .required(t('createCourseModal.validation.nameRequired'))
+      .max(100, t('createCourseModal.validation.nameMax')),
     description: Yup.string()
-      .max(1000, t('validation.descMax')),
+      .max(1000, t('createCourseModal.validation.descMax')),
     learnings: Yup.string(),
     tags: Yup.string(),
     visibility: Yup.boolean(),
@@ -55,7 +55,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
     },
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
-      const toast_loading = toast.loading(t('creating'))
+      const toast_loading = toast.loading(t('createCourseModal.creating'))
 
       try {
         const res = await createNewCourse(
@@ -74,7 +74,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
         if (res.success) {
           await revalidateTags(['courses'], orgslug)
           toast.dismiss(toast_loading)
-          toast.success(t('success'))
+          toast.success(t('createCourseModal.success'))
 
           if (res.data.org_id === orgId) {
             closeModal()
@@ -85,7 +85,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
           toast.error(res.data.detail)
         }
       } catch (error) {
-        toast.error(t('error'))
+        toast.error(t('createCourseModal.error'))
       } finally {
         setSubmitting(false)
       }
@@ -121,7 +121,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
       const file = new File([blob], 'unsplash_image.jpg', { type: 'image/jpeg' })
       formik.setFieldValue('thumbnail', file)
     } catch (error) {
-      toast.error(t('unsplashError'))
+      toast.error(t('createCourseModal.unsplashError'))
     }
     setIsUploading(false)
   }
@@ -130,7 +130,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
     <FormLayout onSubmit={formik.handleSubmit} >
       <FormField name="name">
         <FormLabelAndMessage
-          label={t('courseName')}
+          label={t('createCourseModal.courseName')}
           message={formik.errors.name}
         />
         <Form.Control asChild>
@@ -145,7 +145,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
 
       <FormField name="description">
         <FormLabelAndMessage
-          label={t('description')}
+          label={t('createCourseModal.description')}
           message={formik.errors.description}
         />
         <Form.Control asChild>
@@ -159,7 +159,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
 
       <FormField name="thumbnail">
         <FormLabelAndMessage
-          label={t('thumbnail')}
+          label={t('createCourseModal.thumbnail')}
           message={formik.errors.thumbnail}
         />
         <div className="w-auto bg-gray-50 rounded-xl outline outline-1 outline-gray-200 h-[200px] shadow-sm">
@@ -190,7 +190,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
                   onClick={() => document.getElementById('fileInput')?.click()}
                 >
                   <UploadCloud size={16} className="mr-2" />
-                  <span>{t('uploadImage')}</span>
+                  <span>{t('createCourseModal.uploadImage')}</span>
                 </button>
                 <button
                   type="button"
@@ -198,7 +198,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
                   onClick={() => setShowUnsplashPicker(true)}
                 >
                   <ImageIcon size={16} className="mr-2" />
-                  <span>{t('chooseFromGallery')}</span>
+                  <span>{t('createCourseModal.chooseFromGallery')}</span>
                 </button>
               </div>
             </div>
@@ -208,11 +208,11 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
 
       <FormField name="learnings">
         <FormLabelAndMessage
-          label={t('learnings')}
+          label={t('createCourseModal.learnings')}
           message={formik.errors.learnings}
         />
         <FormTagInput
-          placeholder={t('enterToAdd')}
+          placeholder={t('createCourseModal.enterToAdd')}
           value={formik.values.learnings}
           onChange={(value) => formik.setFieldValue('learnings', value)}
           error={formik.errors.learnings}
@@ -221,11 +221,11 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
 
       <FormField name="tags">
         <FormLabelAndMessage
-          label={t('tags')}
+          label={t('createCourseModal.tags')}
           message={formik.errors.tags}
         />
         <FormTagInput
-          placeholder={t('enterToAdd')}
+          placeholder={t('createCourseModal.enterToAdd')}
           value={formik.values.tags}
           onChange={(value) => formik.setFieldValue('tags', value)}
           error={formik.errors.tags}
@@ -234,7 +234,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
 
       <FormField name="visibility">
         <FormLabelAndMessage
-          label={t('visibility')}
+          label={t('createCourseModal.visibility')}
           message={formik.errors.visibility}
         />
         <Select
@@ -242,11 +242,11 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
           onValueChange={(value) => formik.setFieldValue('visibility', value === 'true')}
         >
           <SelectTrigger>
-            <SelectValue placeholder={t('selectVisibility')} />
+            <SelectValue placeholder={t('createCourseModal.selectVisibility')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="true">{t('public')}</SelectItem>
-            <SelectItem value="false">{t('private')}</SelectItem>
+            <SelectItem value="true">{t('createCourseModal.public')}</SelectItem>
+            <SelectItem value="false">{t('createCourseModal.private')}</SelectItem>
           </SelectContent>
         </Select>
       </FormField>
@@ -264,7 +264,7 @@ function CreateCourseModal({ closeModal, orgslug }: any) {
               color="#ffffff"
             />
           ) : (
-            t('createCourse')
+            t('createCourseModal.createCourse')
           )}
         </button>
       </div>

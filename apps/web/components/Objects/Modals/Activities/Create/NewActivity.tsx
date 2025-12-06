@@ -19,7 +19,7 @@ function NewActivityModal({
   chapterId,
   course,
 }: any) {
-  const t = useTranslations('newActivityModal');
+  const t = useTranslations();
   const [selectedView, setSelectedView] = useState('home')
 
   return (
@@ -35,7 +35,7 @@ function NewActivityModal({
               <Image unoptimized quality={100} alt="Dynamic Page" src={DynamicPageActivityImage}></Image>
             </div>
             <div className="flex text-sm h-5 font-medium text-gray-500 items-center justify-center text-center">
-              {t('dynamicPage')}
+              {t('newActivityModal.dynamicPage')}
             </div>
           </ActivityOption>
           <ActivityOption
@@ -47,7 +47,7 @@ function NewActivityModal({
               <Image unoptimized quality={100} alt="Video Page" src={VideoPageActivityImage}></Image>
             </div>
             <div className="flex text-sm h-5 font-medium text-gray-500 items-center justify-center text-center">
-              {t('video')}
+              {t('newActivityModal.video')}
             </div>
           </ActivityOption>
           <ActivityOption
@@ -59,7 +59,7 @@ function NewActivityModal({
               <Image unoptimized quality={100} alt="Document PDF Page" src={DocumentPdfPageActivityImage}></Image>
             </div>
             <div className="flex text-sm h-5 font-medium text-gray-500 items-center justify-center text-center">
-              {t('document')}
+              {t('newActivityModal.document')}
             </div>
           </ActivityOption>
           <ActivityOption
@@ -71,7 +71,7 @@ function NewActivityModal({
               <Image unoptimized quality={100} alt="Assignment Page" src={AssignmentActivityImage}></Image>
             </div>
             <div className="flex text-sm h-5 font-medium text-gray-500 items-center justify-center text-center">
-              {t('assignments')}
+              {t('newActivityModal.assignments')}
             </div>
           </ActivityOption>
         </div>

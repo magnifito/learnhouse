@@ -19,15 +19,14 @@ interface LandingClassicProps {
 }
 
 function LandingClassic({ courses, collections, orgslug, org_id }: LandingClassicProps) {
-  const tCollections = useTranslations('collections')
-  const tCourses = useTranslations('courses')
+  const t = useTranslations()
   return (
     <div className="w-full">
       <GeneralWrapperStyled>
         {/* Collections */}
         <div className="flex flex-col space-y-4 mb-8">
           <div className="flex items-center justify-between">
-            <TypeOfContentTitle title={tCollections('title')} type="col" />
+            <TypeOfContentTitle title={t('collections.title')} type="col" />
             <AuthenticatedClientElement
               checkMethod="roles"
               ressourceType="collections"
@@ -80,11 +79,11 @@ function LandingClassic({ courses, collections, orgslug, org_id }: LandingClassi
                     </svg>
                   </div>
                   <h1 className="text-xl font-bold text-gray-600 mb-2">
-                    {tCollections('noCollectionsYet')}
+                    {t('collections.noCollectionsYet')}
                   </h1>
                   <p className="text-md text-gray-400">
                     <ContentPlaceHolderIfUserIsNotAdmin
-                      text={tCollections('createCollectionToAddContent')}
+                      text={t('collections.createCollectionToAddContent')}
                     />
                   </p>
                 </div>
@@ -96,7 +95,7 @@ function LandingClassic({ courses, collections, orgslug, org_id }: LandingClassi
         {/* Courses */}
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <TypeOfContentTitle title={tCourses('title')} type="cou" />
+            <TypeOfContentTitle title={t('courses.title')} type="cou" />
             <AuthenticatedClientElement
               ressourceType="courses"
               action="create"
@@ -145,10 +144,10 @@ function LandingClassic({ courses, collections, orgslug, org_id }: LandingClassi
                     </svg>
                   </div>
                   <h1 className="text-xl font-bold text-gray-600 mb-2">
-                    {tCourses('noCoursesYet')}
+                    {t('courses.noCoursesYet')}
                   </h1>
                   <p className="text-md text-gray-400">
-                    <ContentPlaceHolderIfUserIsNotAdmin text={tCourses('createCourseToAddContent')} />
+                    <ContentPlaceHolderIfUserIsNotAdmin text={t('courses.createCourseToAddContent')} />
                   </p>
                 </div>
               </div>

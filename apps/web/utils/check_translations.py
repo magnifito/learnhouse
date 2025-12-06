@@ -33,13 +33,10 @@ def load_json_keys(file_path):
 def find_usages(source_dirs):
     used_keys = set()
     usage_locations = {} # key -> list of file paths
-    potential_missing_keys = []
 
-    # Regex to find namespace declarations: const t = useTranslations('namespace')
-    ns_pattern = re.compile(r"useTranslations\(\s*['\"]([^'\"]+)['\"]\s*\)")
-    
-    # Regex to find usage: t('key') or t("key")
-    usage_pattern = re.compile(r"\bt\(\s*['\"]([^'\"]+)['\"]\s*[,)]")
+    # Regex to find usage with dot notation: t('namespace.key') or t("namespace.key")
+    # This pattern matches t('...') where ... contains at least one dot
+    usage_pattern = re.compile(r"\bt\(\s*['\"]([^'\"]+\.[^'\"]+)['\"]\s*[,)]")
 
     for source_dir in source_dirs:
         for root, _, files in os.walk(source_dir):
@@ -47,29 +44,19 @@ def find_usages(source_dirs):
                 if file.endswith(('.tsx', '.ts', '.jsx', '.js')):
                     file_path = os.path.join(root, file)
                     rel_path = os.path.relpath(file_path, PROJECT_ROOT)
-                    
+
                     try:
                         with open(file_path, 'r', encoding='utf-8') as f:
                             content = f.read()
-                            
-                            namespaces = ns_pattern.findall(content)
+
                             usages = usage_pattern.findall(content)
-                            
-                            for key_part in usages:
-                                candidates = []
-                                
-                                if namespaces:
-                                    for ns in namespaces:
-                                        candidates.append(f"{ns}.{key_part}")
-                                else:
-                                    candidates.append(key_part)
-                                
-                                for cand in candidates:
-                                    if cand not in usage_locations:
-                                        usage_locations[cand] = []
-                                    usage_locations[cand].append(rel_path)
-                                    used_keys.add(cand)
-                                    
+
+                            for full_key in usages:
+                                if full_key not in usage_locations:
+                                    usage_locations[full_key] = []
+                                usage_locations[full_key].append(rel_path)
+                                used_keys.add(full_key)
+
                     except Exception as e:
                         print(f"Error reading {file_path}: {e}")
 

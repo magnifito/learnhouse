@@ -11,7 +11,7 @@ import React, { useEffect } from 'react'
 import { useTranslations } from 'next-intl';
 
 function AssignmentStudentActivity() {
-  const t = useTranslations('assignmentStudentView');
+  const t = useTranslations();
   const assignments = useAssignments() as any;
   const course = useCourse() as any;
   const org = useOrg() as any;
@@ -26,7 +26,7 @@ function AssignmentStudentActivity() {
         <div className='text-xs h-fit flex space-x-3 items-center'>
           <div className='flex gap-2 py-2 px-4 md:px-5 h-fit text-sm text-slate-700 bg-slate-100/5 rounded-full nice-shadow items-center'>
             <Backpack size={14} className="md:size-[14px]" />
-            <p className='font-semibold'>{t('assignment')}</p>
+            <p className='font-semibold'>{t('assignmentStudentView.assignment')}</p>
           </div>
         </div>
         <div>
@@ -35,7 +35,7 @@ function AssignmentStudentActivity() {
             <div className='flex gap-2 items-center'>
               <div className='flex gap-1 md:space-x-2 text-xs items-center text-slate-400'>
                 <Calendar size={14} />
-                <p className='font-semibold'>{t('dueDate')}</p>
+                <p className='font-semibold'>{t('assignmentStudentView.dueDate')}</p>
                 <p className='font-semibold'>{assignments?.assignment_object?.due_date}</p>
               </div>
             </div>
@@ -50,7 +50,7 @@ function AssignmentStudentActivity() {
           <div className='flex flex-col space-y-3'>
             <div className='flex items-center gap-2 text-slate-700'>
               <Info size={16} className="text-slate-500" />
-              <h3 className='text-sm font-semibold'>{t('description')}</h3>
+              <h3 className='text-sm font-semibold'>{t('assignmentStudentView.description')}</h3>
             </div>
             <div className='pl-6'>
               <p className='text-sm leading-relaxed text-slate-600'>{assignments.assignment_object.description}</p>
@@ -65,7 +65,7 @@ function AssignmentStudentActivity() {
           <div className='flex flex-col space-y-2' key={task.assignment_task_uuid}>
             <div className='flex flex-col md:flex-row md:justify-between py-2 space-y-2 md:space-y-0'>
               <div className='flex flex-wrap space-x-2 font-semibold text-slate-800'>
-                <p>{t('taskPrefix')} {index + 1} : </p>
+                <p>{t('assignmentStudentView.taskPrefix')} {index + 1} : </p>
                 <p className='text-slate-500 break-words'>{task.description}</p>
               </div>
               <div className='flex flex-wrap gap-2'>
@@ -73,7 +73,7 @@ function AssignmentStudentActivity() {
                   onClick={() => alert(task.hint)}
                   className='px-3 py-1 flex items-center nice-shadow bg-amber-50/40 text-amber-900 rounded-full space-x-2 cursor-pointer'>
                   <Info size={13} />
-                  <p className='text-xs font-semibold'>{t('hint')}</p>
+                  <p className='text-xs font-semibold'>{t('assignmentStudentView.hint')}</p>
                 </div>
                 <Link
                   href={getTaskRefFileDir(
@@ -94,7 +94,7 @@ function AssignmentStudentActivity() {
                         <span className='absolute right-0 top-0 block h-2 w-2 rounded-full ring-2 ring-white bg-green-400'></span>
                       </span>
                     )}
-                    <p className='text-xs font-semibold'>{t('referenceDocument')}</p>
+                    <p className='text-xs font-semibold'>{t('assignmentStudentView.referenceDocument')}</p>
                   </div>
                 </Link>
               </div>

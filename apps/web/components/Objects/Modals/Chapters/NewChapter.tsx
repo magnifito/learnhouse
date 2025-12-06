@@ -13,7 +13,7 @@ import BarLoader from 'react-spinners/BarLoader'
 import { useTranslations } from 'next-intl';
 
 function NewChapterModal({ submitChapter, closeModal, course }: any) {
-  const t = useTranslations('newChapterModal');
+  const t = useTranslations();
   const [chapterName, setChapterName] = useState('')
   const [chapterDescription, setChapterDescription] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -45,9 +45,9 @@ function NewChapterModal({ submitChapter, closeModal, course }: any) {
     <FormLayout onSubmit={handleSubmit}>
       <FormField name="chapter-name">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>{t('chapterName')}</FormLabel>
+          <FormLabel>{t('newChapterModal.chapterName')}</FormLabel>
           <FormMessage match="valueMissing">
-            {t('namePlaceholder')}
+            {t('newChapterModal.namePlaceholder')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -56,9 +56,9 @@ function NewChapterModal({ submitChapter, closeModal, course }: any) {
       </FormField>
       <FormField name="chapter-desc">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>{t('chapterDesc')}</FormLabel>
+          <FormLabel>{t('newChapterModal.chapterDesc')}</FormLabel>
           <FormMessage match="valueMissing">
-            {t('descPlaceholder')}
+            {t('newChapterModal.descPlaceholder')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -76,7 +76,7 @@ function NewChapterModal({ submitChapter, closeModal, course }: any) {
                 color="#ffffff"
               />
             ) : (
-              t('createChapter')
+              t('newChapterModal.createChapter')
             )}
           </ButtonBlack>
         </Form.Submit>

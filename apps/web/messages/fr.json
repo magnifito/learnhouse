@@ -479,7 +479,8 @@
       "scriptDeleteError": "Échec de la suppression du script",
       "deletingScript": "Suppression du script...",
       "nameRequired": "Le nom du script est requis",
-      "contentRequired": "Le contenu du script est requis"
+      "contentRequired": "Le contenu du script est requis",
+      "saving": "Enregistrement..."
     }
   },
   "landing": {
@@ -567,6 +568,7 @@
     "imagePosition": "Position de l'Image",
     "selectImagePosition": "Sélectionnez la position de l'image",
     "uploadNewImage": "Télécharger Nouvelle Image",
+    "uploadImageText": "Télécharger l'Image",
     "uploading": "Téléchargement...",
     "successImageUpload": "Image téléchargée avec succès",
     "errorImageUpload": "Échec du téléchargement de l'image",
@@ -665,7 +667,11 @@
     "addLoomVideoTitle": "Ajouter une Vidéo Loom",
     "pasteLoomUrl": "Collez l'URL de votre vidéo Loom",
     "youtubeUrlPlaceholder": "https://youtube.com/watch?v=...",
-    "loomUrlPlaceholder": "https://www.loom.com/share/..."
+    "loomUrlPlaceholder": "https://www.loom.com/share/...",
+    "addVideo": "Ajouter une Vidéo",
+    "addVideoPreview": "Ajouter un Aperçu Vidéo",
+    "dragDropImages": "Glissez-déposez les images ici",
+    "pasteYouTubeOrLoom": "Collez l'URL de votre vidéo YouTube ou Loom"
   },
   "dashboardHome": {
     "hello": "Bonjour,",
@@ -853,7 +859,7 @@
     },
     "predefined": {
       "admin": {
-        "name": "Admin",
+        "name": "Administrateur",
         "desc": "Contrôle total de la plateforme avec toutes les permissions"
       },
       "courseManager": {
@@ -893,6 +899,34 @@
       "creating": "Création...",
       "success": "Nouveau rôle créé",
       "error": "Impossible de créer le nouveau rôle"
+    }
+  },
+  "roles": {
+    "title": "Gérer les Rôles et les Permissions",
+    "description": "Les rôles définissent ce que les utilisateurs peuvent faire dans votre organisation. Créez des rôles personnalisés avec des permissions spécifiques pour différents types d'utilisateurs.",
+    "systemWide": "Système",
+    "noPermissions": "Aucune permission",
+    "permissions": "{count} permissions",
+    "noDescription": "Aucune description",
+    "tableHeaders": {
+      "roleName": "Nom du Rôle",
+      "description": "Description",
+      "permissions": "Permissions",
+      "actions": "Actions"
+    },
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "editRole": "Modifier le Rôle",
+    "editRoleDescription": "Modifier les permissions et les détails du rôle",
+    "deleteRole": "Supprimer le Rôle",
+    "deleteRoleTitle": "Supprimer le Rôle?",
+    "deleteRoleMessage": "Cette action ne peut pas être annulée. Tous les utilisateurs avec ce rôle perdront leurs permissions. Êtes-vous sûr de vouloir supprimer ce rôle?",
+    "createRole": "Créer un Rôle",
+    "createRoleDescription": "Créer un nouveau rôle avec des permissions spécifiques",
+    "toasts": {
+      "deleting": "Suppression...",
+      "deleted": "Rôle supprimé",
+      "deleteError": "Erreur lors de la suppression du rôle"
     }
   },
   "addUserGroupModal": {
@@ -961,19 +995,19 @@
       "titlePlaceholder": "Entrez le titre du devoir",
       "desc": "Description",
       "description": "Description",
-      "descPlaceholder": "Please enter a description",
+      "descPlaceholder": "Veuillez entrer une description",
       "descriptionPlaceholder": "Entrez les instructions du devoir",
       "dueDate": "Date d'échéance",
-      "datePlaceholder": "Please select a due date",
+      "datePlaceholder": "Veuillez sélectionner une date d'échéance",
       "gradingType": "Type de Notation",
-      "gradingPlaceholder": "Please select a grading type",
-      "create": "Create Assignment",
+      "gradingPlaceholder": "Veuillez sélectionner un type de notation",
+      "create": "Créer un Devoir",
       "creating": "Création du devoir...",
       "success": "Devoir créé avec succès",
       "options": {
-        "alphabet": "Alphabet (A, B, C, D, F)",
-        "numeric": "Numeric (0-100)",
-        "percentage": "Percentage (0%-100%)"
+        "alphabet": "Alphabétique (A, B, C, D, F)",
+        "numeric": "Numérique (0-100)",
+        "percentage": "Pourcentage (0%-100%)"
       }
     },
     "common": {
@@ -981,11 +1015,11 @@
     }
   },
   "activityNavigation": {
-    "next": "Next",
-    "previous": "Previous",
-    "of": "of",
-    "noNextActivity": "No next activity",
-    "noPreviousActivity": "No previous activity"
+    "next": "Suivant",
+    "previous": "Précédent",
+    "of": "de",
+    "noNextActivity": "Aucune activité suivante",
+    "noPreviousActivity": "Aucune activité précédente"
   },
   "activityIndicators": {
     "activityTypes": {

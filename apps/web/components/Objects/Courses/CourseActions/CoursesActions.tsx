@@ -65,7 +65,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
   const { contributorStatus, refetch } = useContributorStatus(courseuuid)
   const [isProgressOpen, setIsProgressOpen] = useState(false)
   const org = useOrg() as any
-  const t = useTranslations('courseActions')
+  const t = useTranslations()
 
   // Clean up course UUID by removing 'course_' prefix if it exists
   const cleanCourseUuid = course.course_uuid?.replace('course_', '');
@@ -127,18 +127,18 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
 
     setIsActionLoading(true)
     const loadingToast = toast.loading(
-      isStarted ? t('leaving') : t('starting')
+      isStarted ? t('courseActions.leaving') : t('courseActions.starting')
     )
 
     try {
       if (isStarted) {
         await removeCourse('course_' + courseuuid, orgslug, session.data?.tokens?.access_token)
         mutate(`${getAPIUrl()}trail/org/${org?.id}/trail`)
-        toast.success(t('successLeave'), { id: loadingToast })
+        toast.success(t('courseActions.successLeave'), { id: loadingToast })
       } else {
         await startCourse('course_' + courseuuid, orgslug, session.data?.tokens?.access_token)
         mutate(`${getAPIUrl()}trail/org/${org?.id}/trail`)
-        toast.success(t('successStart'), { id: loadingToast })
+        toast.success(t('courseActions.successStart'), { id: loadingToast })
 
         // Get the first activity from the first chapter
         const firstChapter = course.chapters?.[0]
@@ -158,8 +158,8 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
       console.error('Failed to perform course action:', error)
       toast.error(
         isStarted
-          ? t('failedLeave')
-          : t('failedStart'),
+          ? t('courseActions.failedLeave')
+          : t('courseActions.failedStart'),
         { id: loadingToast }
       )
     } finally {
@@ -174,20 +174,20 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
     }
 
     setIsContributeLoading(true)
-    const loadingToast = toast.loading(t('submittingApplication'))
+    const loadingToast = toast.loading(t('courseActions.submittingApplication'))
 
     try {
       const data = {
-        message: t('contributeMessage')
+        message: t('courseActions.contributeMessage')
       }
 
       await applyForContributor('course_' + courseuuid, data, session.data?.tokens?.access_token)
       await revalidateTags(['courses'], orgslug)
       await refetch()
-      toast.success(t('applicationSuccess'), { id: loadingToast })
+      toast.success(t('courseActions.applicationSuccess'), { id: loadingToast })
     } catch (error) {
       console.error('Failed to apply as contributor:', error)
-      toast.error(t('applicationError'), { id: loadingToast })
+      toast.error(t('courseActions.applicationError'), { id: loadingToast })
     } finally {
       setIsContributeLoading(false)
     }
@@ -198,7 +198,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
       return (
         <>
           <UserAvatar width={24} predefined_avatar="empty" rounded="rounded-full" border="border-2" borderColor="border-white" />
-          <span>{action === 'start' ? t('startCourse') : t('leaveCourse')}</span>
+          <span>{action === 'start' ? t('courseActions.startCourse') : t('courseActions.leaveCourse')}</span>
           <ArrowRight className="w-5 h-5" />
         </>
       );
@@ -213,7 +213,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
           border="border-2"
           borderColor="border-white"
         />
-        <span>{action === 'start' ? t('startCourse') : t('leaveCourse')}</span>
+        <span>{action === 'start' ? t('courseActions.startCourse') : t('courseActions.leaveCourse')}</span>
         <ArrowRight className="w-5 h-5" />
       </>
     );
@@ -232,7 +232,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
           className="w-full bg-white text-neutral-700 border border-neutral-200 py-3 rounded-lg nice-shadow font-semibold hover:bg-neutral-50 transition-colors flex items-center justify-center gap-2 mt-3 cursor-pointer"
         >
           <UserPen className="w-5 h-5" />
-          {t('authenticateToContribute')}
+          {t('courseActions.authenticateToContribute')}
         </button>
       );
     }
@@ -241,7 +241,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
       return (
         <div className="w-full bg-green-50 text-green-700 border border-green-200 py-3 rounded-lg nice-shadow font-semibold flex items-center justify-center gap-2 mt-3">
           <UserPen className="w-5 h-5" />
-          {t('youAreContributor')}
+          {t('courseActions.youAreContributor')}
         </div>
       );
     }
@@ -250,7 +250,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
       return (
         <div className="w-full bg-amber-50 text-amber-700 border border-amber-200 py-3 rounded-lg nice-shadow font-semibold flex items-center justify-center gap-2 mt-3">
           <ClockIcon className="w-5 h-5" />
-          {t('applicationPending')}
+          {t('courseActions.applicationPending')}
         </div>
       );
     }
@@ -267,7 +267,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
         ) : (
           <>
             <UserPen className="w-5 h-5" />
-            {t('applyToContribute')}
+            {t('courseActions.applyToContribute')}
           </>
         )}
       </button>
@@ -318,7 +318,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
                     </div>
                   </div>
                   <div className="flex-1">
-                    <div className="text-sm font-medium text-gray-900">{t('readyToBegin')}</div>
+                    <div className="text-sm font-medium text-gray-900">{t('courseActions.readyToBegin')}</div>
                     <div className="text-sm text-gray-500">
                       {t('startJourney', { count: totalActivities })}
                     </div>
@@ -378,7 +378,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
                   aria-label={`View course progress: ${completedActivities} of ${totalActivities} activities completed`}
                   className="flex-1 text-left hover:bg-neutral-50/50 p-2 rounded-lg transition-colors"
                 >
-                  <div className="text-sm font-medium text-gray-900">{t('courseProgress')}</div>
+                  <div className="text-sm font-medium text-gray-900">{t('courseActions.courseProgress')}</div>
                   <div className="text-sm text-gray-500">
                     {t('progressSummary', { completed: completedActivities, total: totalActivities })}
                   </div>
@@ -404,10 +404,10 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
               <div className="p-4 bg-green-50 border border-green-200 rounded-lg nice-shadow">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <h3 className="text-green-800 font-semibold">{t('youOwnThisCourse')}</h3>
+                  <h3 className="text-green-800 font-semibold">{t('courseActions.youOwnThisCourse')}</h3>
                 </div>
                 <p className="text-green-700 text-sm mt-1">
-                  {t('ownCourseDesc')}
+                  {t('courseActions.ownCourseDesc')}
                 </p>
               </div>
               <button
@@ -432,27 +432,27 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
               <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg nice-shadow">
                 <div className="flex items-center gap-3">
                   <AlertCircle className="w-5 h-5 text-amber-800" />
-                  <h3 className="text-amber-800 font-semibold">{t('paidCourse')}</h3>
+                  <h3 className="text-amber-800 font-semibold">{t('courseActions.paidCourse')}</h3>
                 </div>
                 <p className="text-amber-700 text-sm mt-1">
-                  {t('paidCourseDesc')}
+                  {t('courseActions.paidCourseDesc')}
                 </p>
               </div>
               <Modal
                 isDialogOpen={isModalOpen}
                 onOpenChange={setIsModalOpen}
                 dialogContent={<CoursePaidOptions course={course} />}
-                dialogTitle={t('purchaseCourse')}
-                dialogDescription={t('purchaseDesc')}
+                dialogTitle={t('courseActions.purchaseCourse')}
+                dialogDescription={t('courseActions.purchaseDesc')}
                 minWidth="sm"
               />
               <button
                 className="w-full bg-neutral-900 text-white py-3 rounded-lg nice-shadow font-semibold hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2"
                 onClick={() => setIsModalOpen(true)}
-                aria-label={t('purchaseCourse')}
+                aria-label={t('courseActions.purchaseCourse')}
               >
                 <ShoppingCart className="w-5 h-5" />
-                {t('purchaseCourse')}
+                {t('courseActions.purchaseCourse')}
               </button>
               {renderContributorButton()}
             </>

@@ -42,7 +42,7 @@ const ICON_MAP = {
 } as const
 
 const UserProfilePopup = ({ children, userId }: UserProfilePopupProps) => {
-  const t = useTranslations('userProfilePopup');
+  const t = useTranslations();
   const session = useLHSession() as any
   const router = useRouter()
   const [userData, setUserData] = useState<UserData | null>(null)
@@ -60,7 +60,7 @@ const UserProfilePopup = ({ children, userId }: UserProfilePopupProps) => {
         const data = await getUser(userId, session?.data?.tokens?.access_token)
         setUserData(data)
       } catch (err) {
-        setError(t('errorLoading'))
+        setError(t('userProfilePopup.errorLoading'))
         console.error('Error fetching user data:', err)
       } finally {
         setIsLoading(false)

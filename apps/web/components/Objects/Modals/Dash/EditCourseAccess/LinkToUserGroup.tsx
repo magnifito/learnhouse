@@ -18,7 +18,7 @@ type LinkToUserGroupProps = {
 }
 
 function LinkToUserGroup(props: LinkToUserGroupProps) {
-    const t = useTranslations('courseAccess');
+    const t = useTranslations();
     const course = useCourse() as any
     const org = useOrg() as any
     const session = useLHSession() as any
@@ -36,7 +36,7 @@ function LinkToUserGroup(props: LinkToUserGroupProps) {
         const res = await linkResourcesToUserGroup(selectedUserGroup, courseStructure.course_uuid, access_token)
         if (res.status === 200) {
             props.setUserGroupModal(false)
-            toast.success(t('toasts.linkSuccess'))
+            toast.success(t('courseAccess.toasts.linkSuccess'))
             mutate(`${getAPIUrl()}usergroups/resource/${courseStructure.course_uuid}`)
         }
         else {
@@ -55,12 +55,12 @@ function LinkToUserGroup(props: LinkToUserGroupProps) {
         <div className='flex flex-col space-y-1 '>
             <div className='flex bg-yellow-100 text-yellow-900 mx-auto w-fit mt-3 px-4 py-2 space-x-2 text-sm rounded-full items-center'>
                 <Info size={19} />
-                <h1 className=' font-medium'>{t('linkToGroupWarning')}</h1>
+                <h1 className=' font-medium'>{t('courseAccess.linkToGroupWarning')}</h1>
             </div>
             <div className='p-4 flex-row flex justify-between items-center'>
                 {usergroups?.length >= 1 &&
                     <div className='py-1'>
-                        <span className='px-3 text-gray-400 font-bold rounded-full py-1 bg-gray-100 mx-3'>{t('userGroupName')}</span>
+                        <span className='px-3 text-gray-400 font-bold rounded-full py-1 bg-gray-100 mx-3'>{t('courseAccess.userGroupName')}</span>
 
                         <select
                             onChange={(e) => setSelectedUserGroup(e.target.value)}
@@ -75,11 +75,11 @@ function LinkToUserGroup(props: LinkToUserGroupProps) {
                     </div>}
                 {usergroups?.length == 0 &&
                     <div className='flex space-x-3 items-center'>
-                        <span className='px-3 text-yellow-700 font-bold rounded-full py-1 mx-3'>{t('noGroups')}</span>
-                        <Link className='px-3 text-blue-700 font-bold rounded-full py-1 bg-blue-100 mx-1' target='_blank' href={getUriWithOrg(org.slug, '/dash/users/settings/usergroups')}>{t('createGroup')}</Link>
+                        <span className='px-3 text-yellow-700 font-bold rounded-full py-1 mx-3'>{t('courseAccess.noGroups')}</span>
+                        <Link className='px-3 text-blue-700 font-bold rounded-full py-1 bg-blue-100 mx-1' target='_blank' href={getUriWithOrg(org.slug, '/dash/users/settings/usergroups')}>{t('courseAccess.createGroup')}</Link>
                     </div>}
                 <div className='py-3'>
-                    <button onClick={() => { handleLink() }} className='bg-green-700 text-white font-bold px-4 py-2 rounded-md shadow-sm'>{t('linkButton')}</button>
+                    <button onClick={() => { handleLink() }} className='bg-green-700 text-white font-bold px-4 py-2 rounded-md shadow-sm'>{t('courseAccess.linkButton')}</button>
                 </div>
             </div>
         </div>

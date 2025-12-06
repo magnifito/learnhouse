@@ -38,8 +38,7 @@ const validationSchema = Yup.object().shape({
 import { useTranslations } from 'next-intl'
 
 const OrgEditOther: React.FC = () => {
-  const t = useTranslations('organization.other')
-  const tCommon = useTranslations('common')
+  const t = useTranslations()
   const router = useRouter()
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token
@@ -58,12 +57,12 @@ const OrgEditOther: React.FC = () => {
   }, [org])
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required(t('nameRequired')),
-    content: Yup.string().required(t('contentRequired'))
+    name: Yup.string().required(t('organization.other.nameRequired')),
+    content: Yup.string().required(t('organization.other.contentRequired'))
   })
 
   const updateOrg = async (values: Script) => {
-    const loadingToast = toast.loading(t('saving'))
+    const loadingToast = toast.loading(t('organization.other.saving'))
     try {
       let updatedScripts: Script[]
 
@@ -91,15 +90,15 @@ const OrgEditOther: React.FC = () => {
       setScripts(updatedScripts)
       setSelectedView('list')
       setCurrentScript(null)
-      toast.success(t('scriptSaved'), { id: loadingToast })
+      toast.success(t('organization.other.scriptSaved'), { id: loadingToast })
     } catch (err) {
       console.error('Error updating organization:', err)
-      toast.error(t('scriptSaveError'), { id: loadingToast })
+      toast.error(t('organization.other.scriptSaveError'), { id: loadingToast })
     }
   }
 
   const deleteScript = async (scriptToDelete: Script) => {
-    const loadingToast = toast.loading(t('deletingScript'))
+    const loadingToast = toast.loading(t('organization.other.deletingScript'))
     try {
       const updatedScripts = scripts.filter(script => script.name !== scriptToDelete.name)
 
@@ -115,10 +114,10 @@ const OrgEditOther: React.FC = () => {
       await revalidateTags(['organizations'], org.slug)
       mutate(`${getAPIUrl()}orgs/slug/${org.slug}`)
       setScripts(updatedScripts)
-      toast.success(t('scriptDeleted'), { id: loadingToast })
+      toast.success(t('organization.other.scriptDeleted'), { id: loadingToast })
     } catch (err) {
       console.error('Error deleting script:', err)
-      toast.error(t('scriptDeleteError'), { id: loadingToast })
+      toast.error(t('organization.other.scriptDeleteError'), { id: loadingToast })
     }
   }
 
@@ -130,7 +129,7 @@ const OrgEditOther: React.FC = () => {
             <div>
               <h1 className="font-bold text-xl text-gray-800 flex items-center space-x-2">
                 <Code2 className="h-5 w-5" />
-                <span>{t('scriptsTitle')}</span>
+                <span>{t('organization.other.scriptsTitle')}</span>
                 <TooltipProvider delayDuration={100}>
                   <Tooltip>
                     <TooltipTrigger>
@@ -140,13 +139,13 @@ const OrgEditOther: React.FC = () => {
                       className="max-w-[400px] bg-orange-50 border-orange-100 text-orange-900 [&>p]:text-orange-800 data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-1"
                       sideOffset={8}
                     >
-                      <p className="p-2 leading-relaxed">{t('scriptsTooltip')}</p>
+                      <p className="p-2 leading-relaxed">{t('organization.other.scriptsTooltip')}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               </h1>
               <h2 className="text-gray-500 text-md">
-                {t('scriptsDescription')}
+                {t('organization.other.scriptsDescription')}
               </h2>
             </div>
             {selectedView === 'list' && (
@@ -158,7 +157,7 @@ const OrgEditOther: React.FC = () => {
                 className="bg-black text-white hover:bg-black/90"
               >
                 <Plus className="h-4 w-4 mr-2" />
-                {t('addScript')}
+                {t('organization.other.addScript')}
               </Button>
             )}
           </div>
@@ -171,8 +170,8 @@ const OrgEditOther: React.FC = () => {
             {(!scripts || scripts.length === 0) ? (
               <div className="text-center py-8 px-4 text-gray-500 bg-gray-50/50 rounded-lg border border-dashed border-gray-200">
                 <Code2 className="h-8 w-8 mx-auto mb-2 text-gray-400" />
-                <p className="text-sm font-medium">{t('noScripts')}</p>
-                <p className="text-xs text-gray-400 mt-1">{t('noScriptsDesc')}</p>
+                <p className="text-sm font-medium">{t('organization.other.noScripts')}</p>
+                <p className="text-xs text-gray-400 mt-1">{t('organization.other.noScriptsDesc')}</p>
               </div>
             ) : (
               scripts.map((script, index) => (
@@ -230,7 +229,7 @@ const OrgEditOther: React.FC = () => {
               <Form onSubmit={handleSubmit}>
                 <div className="space-y-4">
                   <div>
-                    <Label htmlFor="name">{t('scriptName')}</Label>
+                    <Label htmlFor="name">{t('organization.other.scriptName')}</Label>
                     <input
                       type="text"
                       id="name"
@@ -238,21 +237,21 @@ const OrgEditOther: React.FC = () => {
                       value={values.name}
                       onChange={handleChange}
                       className="mt-1 w-full px-3 py-2 border rounded-md"
-                      placeholder={t('scriptNamePlaceholder')}
+                      placeholder={t('organization.other.scriptNamePlaceholder')}
                     />
                     {touched.name && errors.name && (
                       <p className="text-red-500 text-sm mt-1">{errors.name}</p>
                     )}
                   </div>
                   <div>
-                    <Label htmlFor="content">{t('scriptContent')}</Label>
+                    <Label htmlFor="content">{t('organization.other.scriptContent')}</Label>
                     <Textarea
                       id="content"
                       name="content"
                       value={values.content}
                       onChange={handleChange}
                       className="mt-1 font-mono"
-                      placeholder={t('scriptContentPlaceholder')}
+                      placeholder={t('organization.other.scriptContentPlaceholder')}
                       rows={10}
                     />
                     {touched.content && errors.content && (
@@ -268,14 +267,14 @@ const OrgEditOther: React.FC = () => {
                         setCurrentScript(null)
                       }}
                     >
-                      {tCommon('cancel')}
+                      {t('common.cancel')}
                     </Button>
                     <Button
                       type="submit"
                       disabled={isSubmitting}
                       className="bg-black text-white hover:bg-black/90"
                     >
-                      {isSubmitting ? t('saving') : t('saveScript')}
+                      {isSubmitting ? t('organization.other.saving') : t('organization.other.saveScript')}
                     </Button>
                   </div>
                 </div>

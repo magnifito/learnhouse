@@ -26,7 +26,7 @@ interface Props {
 }
 
 function RolesUpdate(props: Props) {
-  const t = useTranslations('rolesUpdate');
+  const t = useTranslations();
   const org = useOrg() as any
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token;
@@ -51,15 +51,15 @@ function RolesUpdate(props: Props) {
     e.preventDefault()
     setIsSubmitting(true)
     const res = await updateUserRole(org.id, props.user.user.id, assignedRole, access_token)
-    const toastId = toast.loading(t('toasts.updating'))
+    const toastId = toast.loading(t('rolesUpdate.toasts.updating'))
     if (res.status === 200) {
       await mutate(`${getAPIUrl()}orgs/${org.id}/users`)
       props.setRolesModal(false)
-      toast.success(t('toasts.success'), { id: toastId })
+      toast.success(t('rolesUpdate.toasts.success'), { id: toastId })
     } else {
       setIsSubmitting(false)
       setError('Error ' + res.status + ': ' + res.data.detail)
-      toast.error(t('toasts.error'), { id: toastId })
+      toast.error(t('rolesUpdate.toasts.error'), { id: toastId })
     }
   }
 
@@ -79,9 +79,9 @@ function RolesUpdate(props: Props) {
           <Flex
             css={{ alignItems: 'baseline', justifyContent: 'space-between' }}
           >
-            <FormLabel>{t('label')}</FormLabel>
+            <FormLabel>{t('rolesUpdate.label')}</FormLabel>
             <FormMessage match="valueMissing">
-              {t('placeholder')}
+              {t('rolesUpdate.placeholder')}
             </FormMessage>
           </Flex>
           <Form.Control asChild>
@@ -93,10 +93,10 @@ function RolesUpdate(props: Props) {
               disabled={!roles || rolesError}
             >
               {!roles || rolesError ? (
-                <option value="">{t('loading')}</option>
+                <option value="">{t('rolesUpdate.loading')}</option>
               ) : (
                 <>
-                  <option value="">{t('select')}</option>
+                  <option value="">{t('rolesUpdate.select')}</option>
                   {roles.map((role: any) => (
                     <option key={role.id} value={role.role_uuid || role.id}>
                       {role.name}
@@ -118,7 +118,7 @@ function RolesUpdate(props: Props) {
                   color="#ffffff"
                 />
               ) : (
-                t('submit')
+                t('rolesUpdate.submit')
               )}
             </ButtonBlack>
           </Form.Submit>
