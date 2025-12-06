@@ -238,7 +238,7 @@
   "collections": {
     "title": "Колекции",
     "noCollectionsYet": "Все още няма колекции",
-    "createCollectionToAddContent": "Създайте колекции, за да групирате курсове",
+    "createCollectionToAddContent": "Създайте колекции, за да групирате курсове заедно",
     "newCollection": "Нова колекция",
     "create": "Създаване на нова колекция",
     "createDescription": "Групирайте курсовете си в колекция, за да ги намирате и управлявате по-лесно.",

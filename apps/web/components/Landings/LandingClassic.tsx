@@ -9,6 +9,7 @@ import NewCollectionButton from '@components/Objects/StyledElements/Buttons/NewC
 import ContentPlaceHolderIfUserIsNotAdmin from '@components/Objects/ContentPlaceHolder'
 import Link from 'next/link'
 import { getUriWithOrg } from '@services/config/config'
+import { useTranslations } from 'next-intl'
 
 interface LandingClassicProps {
   courses: any[]
@@ -18,13 +19,15 @@ interface LandingClassicProps {
 }
 
 function LandingClassic({ courses, collections, orgslug, org_id }: LandingClassicProps) {
+  const tCollections = useTranslations('collections')
+  const tCourses = useTranslations('courses')
   return (
     <div className="w-full">
       <GeneralWrapperStyled>
         {/* Collections */}
         <div className="flex flex-col space-y-4 mb-8">
           <div className="flex items-center justify-between">
-            <TypeOfContentTitle title="Collections" type="col" />
+            <TypeOfContentTitle title={tCollections('title')} type="col" />
             <AuthenticatedClientElement
               checkMethod="roles"
               ressourceType="collections"
@@ -77,11 +80,11 @@ function LandingClassic({ courses, collections, orgslug, org_id }: LandingClassi
                     </svg>
                   </div>
                   <h1 className="text-xl font-bold text-gray-600 mb-2">
-                    No collections yet
+                    {tCollections('noCollectionsYet')}
                   </h1>
                   <p className="text-md text-gray-400">
                     <ContentPlaceHolderIfUserIsNotAdmin
-                      text="Create collections to group courses together"
+                      text={tCollections('createCollectionToAddContent')}
                     />
                   </p>
                 </div>
@@ -93,7 +96,7 @@ function LandingClassic({ courses, collections, orgslug, org_id }: LandingClassi
         {/* Courses */}
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <TypeOfContentTitle title="Courses" type="cou" />
+            <TypeOfContentTitle title={tCourses('title')} type="cou" />
             <AuthenticatedClientElement
               ressourceType="courses"
               action="create"
@@ -142,10 +145,10 @@ function LandingClassic({ courses, collections, orgslug, org_id }: LandingClassi
                     </svg>
                   </div>
                   <h1 className="text-xl font-bold text-gray-600 mb-2">
-                    No courses yet
+                    {tCourses('noCoursesYet')}
                   </h1>
                   <p className="text-md text-gray-400">
-                    <ContentPlaceHolderIfUserIsNotAdmin text='Create courses to add content' />
+                    <ContentPlaceHolderIfUserIsNotAdmin text={tCourses('createCourseToAddContent')} />
                   </p>
                 </div>
               </div>
