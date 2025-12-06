@@ -6,6 +6,7 @@ import { useLHSession } from '@components/Contexts/LHSessionContext'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl';
 
 type UserProfilePopupProps = {
   children: React.ReactNode
@@ -41,6 +42,7 @@ const ICON_MAP = {
 } as const
 
 const UserProfilePopup = ({ children, userId }: UserProfilePopupProps) => {
+  const t = useTranslations('userProfilePopup');
   const session = useLHSession() as any
   const router = useRouter()
   const [userData, setUserData] = useState<UserData | null>(null)
@@ -50,15 +52,15 @@ const UserProfilePopup = ({ children, userId }: UserProfilePopupProps) => {
   useEffect(() => {
     const fetchUserData = async () => {
       if (!userId) return
-      
+
       setIsLoading(true)
       setError(null)
-      
+
       try {
         const data = await getUser(userId, session?.data?.tokens?.access_token)
         setUserData(data)
       } catch (err) {
-        setError('Failed to load user data')
+        setError(t('errorLoading'))
         console.error('Error fetching user data:', err)
       } finally {
         setIsLoading(false)
@@ -92,7 +94,7 @@ const UserProfilePopup = ({ children, userId }: UserProfilePopupProps) => {
             <div className="relative">
               {/* Background gradient */}
               <div className="absolute inset-0 bg-gradient-to-b from-gray-100/30 to-transparent h-28 rounded-t-lg" />
-              
+
               {/* Content */}
               <div className="relative px-5 pt-5 pb-4">
                 <div className="flex items-start gap-4">

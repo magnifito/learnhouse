@@ -8,10 +8,12 @@ import FormLayout, {
   Textarea,
 } from '@components/Objects/StyledElements/Form/Form'
 import React, { useState } from 'react'
+import { useTranslations } from 'next-intl';
 import * as Form from '@radix-ui/react-form'
 import BarLoader from 'react-spinners/BarLoader'
 
 function DynamicCanvaModal({ submitActivity, chapterId, course }: any) {
+  const t = useTranslations('activityModals');
   const [activityName, setActivityName] = useState('')
   const [activityDescription, setActivityDescription] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -42,9 +44,9 @@ function DynamicCanvaModal({ submitActivity, chapterId, course }: any) {
     <FormLayout onSubmit={handleSubmit}>
       <FormField name="dynamic-activity-name">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>Activity name</FormLabel>
+          <FormLabel>{t('dynamic.name')}</FormLabel>
           <FormMessage match="valueMissing">
-            Please provide a name for your activity
+            {t('dynamic.namePlaceholder')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -53,13 +55,13 @@ function DynamicCanvaModal({ submitActivity, chapterId, course }: any) {
       </FormField>
       <FormField name="dynamic-activity-desc">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>Activity description</FormLabel>
+          <FormLabel>{t('dynamic.desc')}</FormLabel>
           <FormMessage match="valueMissing">
-            Please provide a description for your activity
+            {t('dynamic.descPlaceholder')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
-          <Textarea onChange={handleActivityDescriptionChange}  />
+          <Textarea onChange={handleActivityDescriptionChange} />
         </Form.Control>
       </FormField>
 
@@ -73,7 +75,7 @@ function DynamicCanvaModal({ submitActivity, chapterId, course }: any) {
                 color="#ffffff"
               />
             ) : (
-              'Create activity'
+              t('common.create')
             )}
           </ButtonBlack>
         </Form.Submit>

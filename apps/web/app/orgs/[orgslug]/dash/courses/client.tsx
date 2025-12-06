@@ -12,6 +12,7 @@ import { getUriWithOrg } from '@services/config/config'
 import { useOrg } from '@components/Contexts/OrgContext'
 import { BookOpen } from 'lucide-react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl';
 
 type CourseProps = {
   orgslug: string
@@ -20,6 +21,7 @@ type CourseProps = {
 }
 
 function CoursesHome(params: CourseProps) {
+  const t = useTranslations('courseListings')
   const searchParams = useSearchParams()
   const isCreatingCourse = searchParams.get('new') ? true : false
   const [newCourseModal, setNewCourseModal] = React.useState(isCreatingCourse)
@@ -38,13 +40,13 @@ function CoursesHome(params: CourseProps) {
         <BreadCrumbs type="courses" />
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-4">
           <div className="flex items-center space-x-4">
-            <h1 className="text-3xl font-bold mb-4 sm:mb-0">Courses</h1>
+            <h1 className="text-3xl font-bold mb-4 sm:mb-0">{t('title')}</h1>
             <Link
               href={getUriWithOrg(org?.slug, '/dash/documentation/rights')}
               className="rounded-lg bg-black hover:scale-105 transition-all duration-100 ease-linear antialiased p-2 px-5 font text-xs font-bold text-white drop-shadow-lg flex space-x-2 items-center"
             >
               <BookOpen className="w-4 h-4" />
-              <span>Rights Guide</span>
+              <span>{t('rightsGuide')}</span>
             </Link>
           </div>
           <AuthenticatedClientElement
@@ -63,8 +65,8 @@ function CoursesHome(params: CourseProps) {
                   orgslug={orgslug}
                 />
               }
-              dialogTitle="Create Course"
-              dialogDescription="Create a new course"
+              dialogTitle={t('createCourse')}
+              dialogDescription={t('createNewCourse')}
               dialogTrigger={
                 <button>
                   <NewCourseButton />
@@ -74,7 +76,7 @@ function CoursesHome(params: CourseProps) {
           </AuthenticatedClientElement>
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {courses.map((course: any) => (
           <div key={course.course_uuid}>
@@ -97,13 +99,13 @@ function CoursesHome(params: CourseProps) {
                 </svg>
               </div>
               <h2 className="text-2xl font-bold text-gray-600 mb-2">
-                No courses yet
+                {t('noCoursesYet')}
               </h2>
               <p className="text-lg text-gray-400">
                 {isUserAdmin ? (
-                  "Create a course to add content"
+                  t('createCourseToAddContent')
                 ) : (
-                  "No courses available yet"
+                  t('noCoursesAvailable')
                 )}
               </p>
               {isUserAdmin && (
@@ -124,8 +126,8 @@ function CoursesHome(params: CourseProps) {
                           orgslug={orgslug}
                         />
                       }
-                      dialogTitle="Create Course"
-                      dialogDescription="Create a new course"
+                      dialogTitle={t('createCourse')}
+                      dialogDescription={t('createNewCourse')}
                       dialogTrigger={
                         <button>
                           <NewCourseButton />

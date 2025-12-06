@@ -10,8 +10,10 @@ import { FormMessage } from '@radix-ui/react-form'
 import * as Form from '@radix-ui/react-form'
 import React, { useState } from 'react'
 import BarLoader from 'react-spinners/BarLoader'
+import { useTranslations } from 'next-intl';
 
 function NewChapterModal({ submitChapter, closeModal, course }: any) {
+  const t = useTranslations('newChapterModal');
   const [chapterName, setChapterName] = useState('')
   const [chapterDescription, setChapterDescription] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -43,9 +45,9 @@ function NewChapterModal({ submitChapter, closeModal, course }: any) {
     <FormLayout onSubmit={handleSubmit}>
       <FormField name="chapter-name">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>Chapter name</FormLabel>
+          <FormLabel>{t('chapterName')}</FormLabel>
           <FormMessage match="valueMissing">
-            Please provide a chapter name
+            {t('namePlaceholder')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -54,9 +56,9 @@ function NewChapterModal({ submitChapter, closeModal, course }: any) {
       </FormField>
       <FormField name="chapter-desc">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>Chapter description</FormLabel>
+          <FormLabel>{t('chapterDesc')}</FormLabel>
           <FormMessage match="valueMissing">
-            Please provide a chapter description
+            {t('descPlaceholder')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -74,7 +76,7 @@ function NewChapterModal({ submitChapter, closeModal, course }: any) {
                 color="#ffffff"
               />
             ) : (
-              'Create Chapter'
+              t('createChapter')
             )}
           </ButtonBlack>
         </Form.Submit>

@@ -17,8 +17,10 @@ import { createAssignment } from '@services/courses/assignments'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
 import { createActivity, deleteActivity } from '@services/courses/activities'
 import toast from 'react-hot-toast'
+import { useTranslations } from 'next-intl';
 
 function NewAssignment({ submitActivity, chapterId, course, closeModal }: any) {
+    const t = useTranslations('activityModals.assignment');
     const org = useOrg() as any;
     const session = useLHSession() as any
     const [activityName, setActivityName] = React.useState('')
@@ -66,11 +68,11 @@ function NewAssignment({ submitActivity, chapterId, course, closeModal }: any) {
             chapter_id: chapterId,
             activity_id: activity_res?.id,
         }, session.data?.tokens?.access_token)
-        const toast_loading = toast.loading('Creating assignment...')
+        const toast_loading = toast.loading(t('creating'))
 
         if (res.success) {
             toast.dismiss(toast_loading)
-            toast.success('Assignment created successfully')
+            toast.success(t('success'))
         } else {
             toast.error(res.data.detail)
             await deleteActivity(activity_res.activity_uuid, session.data?.tokens?.access_token)
@@ -87,9 +89,9 @@ function NewAssignment({ submitActivity, chapterId, course, closeModal }: any) {
         <FormLayout onSubmit={handleSubmit}>
             <FormField name="assignment-activity-title">
                 <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-                    <FormLabel>Assignment Title</FormLabel>
+                    <FormLabel>{t('title')}</FormLabel>
                     <FormMessage match="valueMissing">
-                        Please provide a name for your assignment
+                        {t('titlePlaceholder')}
                     </FormMessage>
                 </Flex>
                 <Form.Control asChild>
@@ -100,9 +102,9 @@ function NewAssignment({ submitActivity, chapterId, course, closeModal }: any) {
             {/* Description  */}
             <FormField name="assignment-activity-description">
                 <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-                    <FormLabel>Assignment Description</FormLabel>
+                    <FormLabel>{t('desc')}</FormLabel>
                     <FormMessage match="valueMissing">
-                        Please provide a description for your assignment
+                        {t('descPlaceholder')}
                     </FormMessage>
                 </Flex>
                 <Form.Control asChild>
@@ -113,9 +115,9 @@ function NewAssignment({ submitActivity, chapterId, course, closeModal }: any) {
             {/* Due date  */}
             <FormField name="assignment-activity-due-date">
                 <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-                    <FormLabel>Due Date</FormLabel>
+                    <FormLabel>{t('dueDate')}</FormLabel>
                     <FormMessage match="valueMissing">
-                        Please provide a due date for your assignment
+                        {t('datePlaceholder')}
                     </FormMessage>
                 </Flex>
                 <Form.Control asChild>
@@ -126,16 +128,16 @@ function NewAssignment({ submitActivity, chapterId, course, closeModal }: any) {
             {/* Grading type  */}
             <FormField name="assignment-activity-grading-type">
                 <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-                    <FormLabel>Grading Type</FormLabel>
+                    <FormLabel>{t('gradingType')}</FormLabel>
                     <FormMessage match="valueMissing">
-                        Please provide a grading type for your assignment
+                        {t('gradingPlaceholder')}
                     </FormMessage>
                 </Flex>
                 <Form.Control asChild>
                     <select className='bg-gray-100/40 rounded-lg px-1 py-2 outline outline-1 outline-gray-100' onChange={handleGradingTypeChange} required>
-                        <option value="ALPHABET">Alphabet</option>
-                        <option value="NUMERIC">Numeric</option>
-                        <option value="PERCENTAGE">Percentage</option>
+                        <option value="ALPHABET">{t('options.alphabet')}</option>
+                        <option value="NUMERIC">{t('options.numeric')}</option>
+                        <option value="PERCENTAGE">{t('options.percentage')}</option>
                     </select>
                 </Form.Control>
             </FormField>
@@ -150,7 +152,7 @@ function NewAssignment({ submitActivity, chapterId, course, closeModal }: any) {
                                 color="#ffffff"
                             />
                         ) : (
-                            'Create activity'
+                            t('create')
                         )}
                     </ButtonBlack>
                 </Form.Submit>

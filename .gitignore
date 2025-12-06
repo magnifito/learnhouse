@@ -43,6 +43,9 @@ __pycache__/
 # vscode
 .vscode/
 
+.shared/
+.claude/skills/ui-ux-pro-max/
+
 # Flyio
 .flyio/
 fly.toml
@@ -53,3 +56,7 @@ logs/
 
 # Course data images
 data/images/
+codemap.md
+.agent/workflows/ui-ux-pro-max.md
+.gitignore
+.cursor/commands/ui-ux-pro-max.md

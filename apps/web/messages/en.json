@@ -85,6 +85,22 @@
     "passwordsDoNotMatch": "Passwords do not match"
   },
   "authValidation": {
+    "congratulations": "Congratulations! 🎉",
+    "completedMessage": "You've successfully completed",
+    "masteredMessage": "Your dedication and hard work have paid off. You've mastered all the content in this course.",
+    "loadingCertificate": "Loading your certificate...",
+    "yourCertificate": "Your Certificate",
+    "downloadCertificatePdf": "Download Certificate PDF",
+    "verifyCertificate": "Verify Certificate",
+    "noCertificateAvailable": "No certificate is available for this course. Contact your instructor for more information.",
+    "backToCourse": "Back to Course",
+    "keepGoing": "Keep Going! 💪",
+    "makingProgress": "You're making great progress in",
+    "courseProgress": "Course Progress",
+    "progressLabel": "Progress",
+    "activitiesCompleted": "{completed} of {total} activities completed",
+    "encouragement": "You're doing great! Complete the remaining activities to unlock your course completion certificate.",
+    "continueLearning": "Continue Learning",
     "emailRequired": "Required",
     "emailInvalid": "Invalid email address",
     "passwordRequired": "Required",
@@ -93,6 +109,24 @@
     "usernameTooShort": "Username must be at least 4 characters",
     "bioRequired": "Required",
     "somethingWentWrong": "Something went wrong"
+  },
+  "searchBar": {
+    "placeholder": "Search courses, users, collections...",
+    "discoverTitle": "Discover Your Next Learning Journey",
+    "discoverSubtitle": "Start typing to search through available content",
+    "suggestions": "Search suggestions",
+    "quickResults": "Quick Results",
+    "sections": {
+      "courses": "Courses",
+      "collections": "Collections",
+      "users": "Users"
+    },
+    "labels": {
+      "course": "Course",
+      "collection": "Collection",
+      "user": "User"
+    },
+    "viewAll": "View all results"
   },
   "courses": {
     "title": "Courses",
@@ -430,12 +464,400 @@
     "addLoomVideoTitle": "Add Loom Video",
     "pasteLoomUrl": "Paste your Loom video URL",
     "youtubeUrlPlaceholder": "https://youtube.com/watch?v=...",
-    "loomUrlPlaceholder": "https://www.loom.com/share/...",
-    "addVideo": "Add Video",
-    "dragToReorder": "Drag to reorder • Maximum 4 previews • Supports images & videos",
-    "uploadNewLogo": "Upload New Logo",
-    "uploadNewThumbnail": "Upload New Thumbnail",
-    "acceptsPngJpg": "Accepts PNG, JPG (max 5MB)",
-    "recommendedSize": "Recommended size: 200x100 pixels"
+    "loomUrlPlaceholder": "https://www.loom.com/share/..."
+  },
+  "dashboardHome": {
+    "hello": "Hello,",
+    "yourOrganizations": "Your Organizations",
+    "noOrganizations": "It seems you're not part of an organization yet, join one to be able to see it here",
+    "signOut": "Sign out"
+  },
+  "courseEditor": {
+    "name": "Name",
+    "description": "Description",
+    "about": "About",
+    "learnings": "Learnings",
+    "tags": "Tags",
+    "thumbnailType": "Thumbnail Type",
+    "thumbnail": "Thumbnail",
+    "image": "Image",
+    "video": "Video",
+    "both": "Both",
+    "required": "Required",
+    "maxLength": "Must be {count} characters or less",
+    "invalidFormat": "Invalid format",
+    "learningsRequired": "At least one learning item is required",
+    "learningsEmptyText": "All learning items must have text",
+    "saveSuccess": "Course structure saved",
+    "saveError": "Failed to save course structure"
+  },
+  "courseListings": {
+    "title": "Courses",
+    "rightsGuide": "Rights Guide",
+    "noCoursesYet": "No courses yet",
+    "createCourseToAddContent": "Create a course to add content",
+    "noCoursesAvailable": "No courses available yet",
+    "createCourse": "Create Course",
+    "createNewCourse": "Create a new course"
+  },
+  "courseStructure": {
+    "createChapter": "Create chapter",
+    "addChapter": "Add Chapter",
+    "addChapterDescription": "Add a new chapter to the course"
+  },
+  "breadcrumbs": {
+    "courses": "Courses",
+    "assignments": "Assignments",
+    "accountSettings": "Account Settings",
+    "orgUsers": "Organization users",
+    "orgSettings": "Organization Settings",
+    "payments": "Payments"
+  },
+  "errorUI": {
+    "defaultMessage": "Something went wrong",
+    "retry": "Retry",
+    "home": "Home"
+  },
+  "userProfilePopup": {
+    "errorLoading": "Failed to load user data"
+  },
+  "createCourseModal": {
+    "courseName": "Course Name",
+    "description": "Description",
+    "thumbnail": "Course Thumbnail",
+    "uploadImage": "Upload Image",
+    "chooseFromGallery": "Choose from Gallery",
+    "unsplashError": "Failed to load image from Unsplash",
+    "enterToAdd": "Enter to add...",
+    "learnings": "Course Learnings (What will you teach?)",
+    "tags": "Course Tags",
+    "visibility": "Course Visibility",
+    "public": "Public (Available to see on the internet)",
+    "private": "Private (Private to users)",
+    "selectVisibility": "Select visibility",
+    "createCourse": "Create Course",
+    "creating": "Creating course...",
+    "success": "Course created successfully",
+    "error": "Failed to create course",
+    "validation": {
+      "nameRequired": "Course name is required",
+      "nameMax": "Must be 100 characters or less",
+      "descMax": "Must be 1000 characters or less"
+    }
+  },
+  "newChapterModal": {
+    "chapterName": "Chapter name",
+    "chapterDesc": "Chapter description",
+    "namePlaceholder": "Please provide a chapter name",
+    "descPlaceholder": "Please provide a chapter description",
+    "createChapter": "Create Chapter"
+  },
+  "courseAccess": {
+    "title": "Access to the course",
+    "description": "Choose if you want your course to be publicly available on the internet or only accessible to signed in users",
+    "publicTitle": "Change to Public?",
+    "publicMessage": "Are you sure you want this course to be publicly available on the internet?",
+    "publicButton": "Change to Public",
+    "publicCardTitle": "Public",
+    "publicCardDesc": "The Course is publicly available on the internet, it is indexed by search engines and can be accessed by anyone",
+    "active": "Active",
+    "usersOnlyTitle": "Change to Users Only?",
+    "usersOnlyMessage": "Are you sure you want this course to be only accessible to signed in users?",
+    "usersOnlyButton": "Change to Users Only",
+    "usersOnlyCardTitle": "Users Only",
+    "usersOnlyCardDesc": "The Course is only accessible to signed in users, additionally you can choose which UserGroups can access this course",
+    "userGroupsTitle": "UserGroups",
+    "userGroupsDesc": "You can choose to give access to this course to specific groups of users only by linking it to a UserGroup",
+    "tableHeaderName": "Name",
+    "tableHeaderActions": "Actions",
+    "unlinkTitle": "Unlink UserGroup?",
+    "unlinkMessage": "Users from this UserGroup will no longer have access to this course",
+    "deleteLink": "Delete link",
+    "deleteLinkButton": "Delete Link",
+    "linkToGroupTitle": "Link Course to a UserGroup",
+    "linkToGroupDesc": "Choose a UserGroup to link this course to. Users from this UserGroup will have access to this course.",
+    "linkToGroupButton": "Link to a UserGroup",
+    "linkToGroupWarning": "Users that are not part of the UserGroup will no longer have access to this course",
+    "userGroupName": "UserGroup Name",
+    "noGroups": "No UserGroups available",
+    "createGroup": "Create a UserGroup",
+    "linkButton": "Link",
+    "toasts": {
+      "unlinkSuccess": "Successfully unlinked from usergroup",
+      "unlinkError": "An error occurred while unlinking the user group.",
+      "linkSuccess": "Successfully linked to usergroup"
+    }
+  },
+  "orgUsers": {
+    "title": "Active users",
+    "description": "Manage your organization users, assign roles and permissions",
+    "tableHeaderUser": "User",
+    "tableHeaderRole": "Role",
+    "tableHeaderActions": "Actions",
+    "editRole": "Edit Role",
+    "removeFromOrg": "Remove from organization",
+    "updateRoleTitle": "Update Role",
+    "updateRoleDesc": "Update @{username}'s role",
+    "removeUserTitle": "Delete {username} ?",
+    "removeUserMessage": "Are you sure you want remove this user from the organization?",
+    "removeUserButton": "Remove User",
+    "toasts": {
+      "removing": "Removing...",
+      "removeSuccess": "Removed user from org",
+      "removeError": "Error removing user"
+    }
+  },
+  "rolesUpdate": {
+    "label": "Roles",
+    "placeholder": "Please choose a role for the user",
+    "loading": "Loading roles...",
+    "select": "Select a role",
+    "submit": "Update user role",
+    "toasts": {
+      "updating": "Updating role...",
+      "success": "Updated role",
+      "error": "Error while updating role"
+    }
+  },
+  "addRoleModal": {
+    "roleName": "Role Name",
+    "description": "Description",
+    "namePlaceholder": "e.g., Course Manager",
+    "descPlaceholder": "Describe what this role can do...",
+    "predefinedRights": "Predefined Rights",
+    "permissions": "Permissions",
+    "selectAll": "Select All",
+    "deselectAll": "Deselect All",
+    "select": "Select",
+    "deselect": "Deselect",
+    "cancel": "Cancel",
+    "createRole": "Create Role",
+    "creating": "Creating...",
+    "validation": {
+      "required": "Required",
+      "nameMin": "Name must be at least 2 characters",
+      "descMin": "Description must be at least 10 characters"
+    },
+    "sections": {
+      "courses": "Courses",
+      "users": "Users",
+      "usergroups": "User Groups",
+      "collections": "Collections",
+      "organizations": "Organizations",
+      "coursechapters": "Course Chapters",
+      "activities": "Activities",
+      "roles": "Roles",
+      "dashboard": "Dashboard"
+    },
+    "predefined": {
+      "admin": {
+        "name": "Admin",
+        "desc": "Full platform control with all permissions"
+      },
+      "courseManager": {
+        "name": "Course Manager",
+        "desc": "Can manage courses, chapters, and activities"
+      },
+      "instructor": {
+        "name": "Instructor",
+        "desc": "Can create and manage their own courses"
+      },
+      "viewer": {
+        "name": "Viewer",
+        "desc": "Read-only access to courses and content"
+      },
+      "contentCreator": {
+        "name": "Content Creator",
+        "desc": "Can create and edit content but not manage users"
+      },
+      "userManager": {
+        "name": "User Manager",
+        "desc": "Can manage users and user groups"
+      },
+      "moderator": {
+        "name": "Moderator",
+        "desc": "Can moderate content and manage activities"
+      },
+      "analyst": {
+        "name": "Analyst",
+        "desc": "Read-only access with analytics capabilities"
+      },
+      "guest": {
+        "name": "Guest",
+        "desc": "Limited access for external users"
+      }
+    },
+    "toasts": {
+      "creating": "Creating...",
+      "success": "Created new role",
+      "error": "Couldn't create new role"
+    }
+  },
+  "addUserGroupModal": {
+    "name": "Name",
+    "description": "Description",
+    "createGroup": "Create a UserGroup",
+    "loading": "Loading...",
+    "validation": {
+      "nameRequired": "Name is Required"
+    },
+    "toasts": {
+      "creating": "Creating...",
+      "success": "Created new usergroup",
+      "error": "Couldn't create new usergroup"
+    }
+  },
+  "newActivityModal": {
+    "dynamicPage": "Dynamic Page",
+    "video": "Video",
+    "document": "Document",
+    "assignments": "Assignments"
+  },
+  "assignmentStudentView": {
+    "assignment": "Assignment",
+    "dueDate": "Due Date",
+    "description": "Assignment Description",
+    "taskPrefix": "Task",
+    "hint": "Hint",
+    "referenceDocument": "Reference Document"
+  },
+  "activityModals": {
+    "dynamic": {
+      "name": "Activity name",
+      "namePlaceholder": "Please provide a name for your activity",
+      "description": "Activity description",
+      "descriptionPlaceholder": "Please provide a description for your activity",
+      "create": "Create activity"
+    },
+    "video": {
+      "settings": "Video Settings",
+      "startTime": "Start Time",
+      "minutes": "Minutes",
+      "seconds": "Seconds",
+      "endTime": "End Time",
+      "autoplay": "Autoplay video",
+      "muted": "Start muted",
+      "name": "Activity name",
+      "namePlaceholder": "Please provide a name for your activity",
+      "uploadTab": "Upload Video",
+      "youtubeTab": "YouTube Video",
+      "fileLabel": "Video File",
+      "urlLabel": "YouTube URL",
+      "urlPlaceholder": "Enter YouTube URL",
+      "create": "Create Activity"
+    },
+    "document": {
+      "name": "PDF Document Name",
+      "namePlaceholder": "Enter document name",
+      "fileLabel": "Document File (PDF)",
+      "filePlaceholder": "Click to upload PDF",
+      "fileError": "Document file is required",
+      "create": "Create activity"
+    },
+    "assignment": {
+      "title": "Assignment Title",
+      "titlePlaceholder": "Enter assignment title",
+      "description": "Description",
+      "descriptionPlaceholder": "Enter assignment instructions",
+      "dueDate": "Due Date",
+      "gradingType": "Grading Type",
+      "creating": "Creating assignment...",
+      "success": "Assignment created successfully"
+    },
+    "common": {
+      "create": "Create activity"
+    }
+  },
+  "activityIndicators": {
+    "activityTypes": {
+      "video": "Video",
+      "document": "Document",
+      "dynamic": "Interactive",
+      "assignment": "Assignment",
+      "unknown": "Unknown"
+    },
+    "tooltips": {
+      "currentActivity": "Current Activity",
+      "completed": "Completed",
+      "notStarted": "Not Started",
+      "chapter": "Chapter {number}",
+      "chapterProgress": "{completed}/{total} completed"
+    },
+    "certificate": {
+      "completed": "Course Completed!",
+      "completion": "Course Completion",
+      "viewCertificate": "View your completion certificate",
+      "unlockCertificate": "Complete all activities to unlock your certificate"
+    }
+  },
+  "courseActions": {
+    "startCourse": "Start Course",
+    "leaveCourse": "Leave Course",
+    "starting": "Starting course...",
+    "leaving": "Leaving course...",
+    "successStart": "Successfully started the course",
+    "successLeave": "Successfully left the course",
+    "failedStart": "Failed to start the course. Please try again later.",
+    "failedLeave": "Failed to leave the course. Please try again later.",
+    "readyToBegin": "Ready to Begin?",
+    "startJourney": "Start your learning journey with {count} exciting {count, plural, =1 {activity} other {activities}}",
+    "courseProgress": "Course Progress",
+    "progressSummary": "{completed} of {total} completed",
+    "youOwnThisCourse": "You Own This Course",
+    "ownCourseDesc": "You have purchased this course and have full access to all content.",
+    "paidCourse": "Paid Course",
+    "paidCourseDesc": "This course requires purchase to access its content.",
+    "purchaseCourse": "Purchase Course",
+    "purchaseDesc": "Select a payment option to access this course",
+    "authenticateToContribute": "Authenticate to contribute",
+    "youAreContributor": "You are a contributor",
+    "applicationPending": "Contributor application pending",
+    "applyToContribute": "Apply to contribute",
+    "submittingApplication": "Submitting contributor application...",
+    "applicationSuccess": "Your application to contribute has been submitted successfully",
+    "applicationError": "Failed to submit your application. Please try again later.",
+    "contributeMessage": "I would like to contribute to this course."
+  },
+  "coursePaidOptions": {
+    "subscription": "Subscription",
+    "oneTime": "One-time payment",
+    "perMonth": "(per month)",
+    "benefits": "Benefits:",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "minimumPrice": "Minimum Price:",
+    "price": "Price:",
+    "choosePrice": "Choose your price",
+    "processing": "Processing...",
+    "subscribeNow": "Subscribe Now",
+    "purchaseNow": "Purchase Now",
+    "failedToLoad": "Failed to load product options",
+    "loading": "Loading...",
+    "checkoutError": "Failed to initiate checkout process",
+    "genericError": "An error occurred while processing your request"
+  },
+  "courseAuthors": {
+    "authorsAndUpdates": "Authors & Updates",
+    "andMore": "& {count} more",
+    "courseUpdates": "Course Updates",
+    "updateCount": "{count, plural, =1 {update} other {updates}}",
+    "newUpdate": "New Update",
+    "cancel": "Cancel",
+    "publishUpdate": "Publish Update",
+    "updateTitle": "Update Title",
+    "updateContent": "Update Content",
+    "titlePlaceholder": "What's new in this update?",
+    "contentPlaceholder": "Share the details of your update...",
+    "titleRequired": "Title is required",
+    "contentRequired": "Content is required",
+    "updateAdded": "Update added successfully",
+    "failedToAdd": "Failed to add update",
+    "noUpdates": "No updates yet",
+    "noUpdatesDesc": "Updates about this course will appear here",
+    "deleteUpdate": "Delete Update",
+    "confirmDelete": "Are you sure you want to delete this update?",
+    "deleting": "Deleting update...",
+    "deleteSuccess": "Update deleted successfully",
+    "deleteError": "Failed to delete update"
   }
 }

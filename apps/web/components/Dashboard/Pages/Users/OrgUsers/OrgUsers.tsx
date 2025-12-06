@@ -12,9 +12,11 @@ import { KeyRound, LogOut } from 'lucide-react'
 import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import useSWR, { mutate } from 'swr'
+import { useTranslations } from 'next-intl';
 
 function OrgUsers() {
   const org = useOrg() as any
+  const t = useTranslations('orgUsers');
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token;
   const { data: orgUsers } = useSWR(
@@ -31,13 +33,13 @@ function OrgUsers() {
   }
 
   const handleRemoveUser = async (user_id: any) => {
-    const toastId = toast.loading("Removing...");
-    const res = await removeUserFromOrg(org.id, user_id,access_token)
+    const toastId = toast.loading(t('toasts.removing'));
+    const res = await removeUserFromOrg(org.id, user_id, access_token)
     if (res.status === 200) {
       await mutate(`${getAPIUrl()}orgs/${org.id}/users`)
-      toast.success("Removed user from org", {id:toastId});
+      toast.success(t('toasts.removeSuccess'), { id: toastId });
     } else {
-      toast.error('Error removing user', {id:toastId});
+      toast.error(t('toasts.removeError'), { id: toastId });
     }
   }
 
@@ -59,18 +61,18 @@ function OrgUsers() {
           <div className="h-6"></div>
           <div className="ml-10 mr-10 mx-auto bg-white rounded-xl shadow-xs px-4 py-4  ">
             <div className="flex flex-col bg-gray-50 -space-y-1  px-5 py-3 rounded-md mb-3 ">
-              <h1 className="font-bold text-xl text-gray-800">Active users</h1>
+              <h1 className="font-bold text-xl text-gray-800">{t('title')}</h1>
               <h2 className="text-gray-500  text-md">
                 {' '}
-                Manage your organization users, assign roles and permissions{' '}
+                {t('description')}{' '}
               </h2>
             </div>
             <table className="table-auto w-full text-left whitespace-nowrap rounded-md overflow-hidden">
               <thead className="bg-gray-100 text-gray-500 rounded-xl uppercase">
                 <tr className="font-bolder text-sm">
-                  <th className="py-3 px-4">User</th>
-                  <th className="py-3 px-4">Role</th>
-                  <th className="py-3 px-4">Actions</th>
+                  <th className="py-3 px-4">{t('tableHeaderUser')}</th>
+                  <th className="py-3 px-4">{t('tableHeaderRole')}</th>
+                  <th className="py-3 px-4">{t('tableHeaderActions')}</th>
                 </tr>
               </thead>
               <>
@@ -105,26 +107,26 @@ function OrgUsers() {
                               user={user}
                             />
                           }
-                          dialogTitle="Update Role"
+                          dialogTitle={t('updateRoleTitle')}
                           dialogDescription={
-                            'Update @' + user.user.username + "'s role"
+                            t('updateRoleDesc', { username: user.user.username })
                           }
                           dialogTrigger={
                             <button className="flex space-x-2 hover:cursor-pointer p-1 px-3 bg-yellow-700 rounded-md font-bold items-center text-sm text-yellow-100">
                               <KeyRound className="w-4 h-4" />
-                              <span> Edit Role</span>
+                              <span> {t('editRole')}</span>
                             </button>
                           }
                         />
 
                         <ConfirmationModal
-                          confirmationButtonText="Remove User"
-                          confirmationMessage="Are you sure you want remove this user from the organization?"
-                          dialogTitle={'Delete ' + user.user.username + ' ?'}
+                          confirmationButtonText={t('removeUserButton')}
+                          confirmationMessage={t('removeUserMessage')}
+                          dialogTitle={t('removeUserTitle', { username: user.user.username })}
                           dialogTrigger={
                             <button className="mr-2 flex space-x-2 hover:cursor-pointer p-1 px-3 bg-rose-700 rounded-md font-bold items-center text-sm text-rose-100">
                               <LogOut className="w-4 h-4" />
-                              <span> Remove from organization</span>
+                              <span> {t('removeFromOrg')}</span>
                             </button>
                           }
                           functionToExecute={() => {

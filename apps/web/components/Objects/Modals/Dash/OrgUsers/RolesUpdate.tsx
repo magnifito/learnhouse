@@ -17,6 +17,7 @@ import toast from 'react-hot-toast'
 import { BarLoader } from 'react-spinners'
 import { mutate } from 'swr'
 import useSWR from 'swr'
+import { useTranslations } from 'next-intl';
 
 interface Props {
   user: any
@@ -25,6 +26,7 @@ interface Props {
 }
 
 function RolesUpdate(props: Props) {
+  const t = useTranslations('rolesUpdate');
   const org = useOrg() as any
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token;
@@ -48,20 +50,20 @@ function RolesUpdate(props: Props) {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     setIsSubmitting(true)
-    const res = await updateUserRole(org.id, props.user.user.id, assignedRole,access_token)
-    const toastId = toast.loading("Updating role...")
+    const res = await updateUserRole(org.id, props.user.user.id, assignedRole, access_token)
+    const toastId = toast.loading(t('toasts.updating'))
     if (res.status === 200) {
       await mutate(`${getAPIUrl()}orgs/${org.id}/users`)
       props.setRolesModal(false)
-      toast.success("Updated role", {id:toastId})
+      toast.success(t('toasts.success'), { id: toastId })
     } else {
       setIsSubmitting(false)
       setError('Error ' + res.status + ': ' + res.data.detail)
-      toast.error("Error while updating role", {id:toastId})
+      toast.error(t('toasts.error'), { id: toastId })
     }
   }
 
-  useEffect(() => {}, [assignedRole])
+  useEffect(() => { }, [assignedRole])
 
   return (
     <div>
@@ -77,9 +79,9 @@ function RolesUpdate(props: Props) {
           <Flex
             css={{ alignItems: 'baseline', justifyContent: 'space-between' }}
           >
-            <FormLabel>Roles</FormLabel>
+            <FormLabel>{t('label')}</FormLabel>
             <FormMessage match="valueMissing">
-              Please choose a role for the user
+              {t('placeholder')}
             </FormMessage>
           </Flex>
           <Form.Control asChild>
@@ -91,10 +93,10 @@ function RolesUpdate(props: Props) {
               disabled={!roles || rolesError}
             >
               {!roles || rolesError ? (
-                <option value="">Loading roles...</option>
+                <option value="">{t('loading')}</option>
               ) : (
                 <>
-                  <option value="">Select a role</option>
+                  <option value="">{t('select')}</option>
                   {roles.map((role: any) => (
                     <option key={role.id} value={role.role_uuid || role.id}>
                       {role.name}
@@ -116,7 +118,7 @@ function RolesUpdate(props: Props) {
                   color="#ffffff"
                 />
               ) : (
-                'Update user role'
+                t('submit')
               )}
             </ButtonBlack>
           </Form.Submit>

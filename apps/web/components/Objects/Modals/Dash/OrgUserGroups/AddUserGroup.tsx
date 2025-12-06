@@ -13,25 +13,28 @@ import { getAPIUrl } from '@services/config/config'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
 import { useFormik } from 'formik'
 import toast from 'react-hot-toast'
+import { useTranslations } from 'next-intl';
 
 type AddUserGroupProps = {
     setCreateUserGroupModal: any
 }
-const validate = (values: any) => {
-    const errors: any = {}
-
-    if (!values.name) {
-        errors.name = 'Name is Required'
-    }
-
-    return errors
-}
 
 function AddUserGroup(props: AddUserGroupProps) {
+    const t = useTranslations('addUserGroupModal');
     const org = useOrg() as any;
     const session = useLHSession() as any
     const access_token = session?.data?.tokens?.access_token;
     const [isSubmitting, setIsSubmitting] = React.useState(false)
+
+    const validate = (values: any) => {
+        const errors: any = {}
+
+        if (!values.name) {
+            errors.name = t('validation.nameRequired')
+        }
+
+        return errors
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -41,17 +44,17 @@ function AddUserGroup(props: AddUserGroupProps) {
         },
         validate,
         onSubmit: async (values) => {
-            const toastID = toast.loading("Creating...")
+            const toastID = toast.loading(t('toasts.creating'))
             setIsSubmitting(true)
             const res = await createUserGroup(values, access_token)
             if (res.status == 200) {
                 setIsSubmitting(false)
                 mutate(`${getAPIUrl()}usergroups/org/${org.id}`)
                 props.setCreateUserGroupModal(false)
-                toast.success("Created new usergroup", {id:toastID})
+                toast.success(t('toasts.success'), { id: toastID })
             } else {
                 setIsSubmitting(false)
-                toast.error("Couldn't create new usergroup", {id:toastID})
+                toast.error(t('toasts.error'), { id: toastID })
             }
         },
     })
@@ -60,7 +63,7 @@ function AddUserGroup(props: AddUserGroupProps) {
         <FormLayout onSubmit={formik.handleSubmit}>
             <FormField name="name">
                 <FormLabelAndMessage
-                    label="Name"
+                    label={t('name')}
                     message={formik.errors.name}
                 />
                 <Form.Control asChild>
@@ -74,7 +77,7 @@ function AddUserGroup(props: AddUserGroupProps) {
             </FormField>
             <FormField name="description">
                 <FormLabelAndMessage
-                    label="Description"
+                    label={t('description')}
                     message={formik.errors.description}
                 />
                 <Form.Control asChild>
@@ -88,7 +91,7 @@ function AddUserGroup(props: AddUserGroupProps) {
             <div className="flex py-4">
                 <Form.Submit asChild>
                     <button className="w-full bg-black text-white font-bold text-center p-2 rounded-md shadow-md hover:cursor-pointer">
-                        {isSubmitting ? 'Loading...' : 'Create a UserGroup'}
+                        {isSubmitting ? t('loading') : t('createGroup')}
                     </button>
                 </Form.Submit>
             </div>

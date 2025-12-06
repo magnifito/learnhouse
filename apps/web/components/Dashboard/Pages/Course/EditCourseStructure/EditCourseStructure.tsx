@@ -16,6 +16,7 @@ import { Hexagon } from 'lucide-react'
 import Modal from '@components/Objects/StyledElements/Modal/Modal'
 import NewChapterModal from '@components/Objects/Modals/Chapters/NewChapter'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
+import { useTranslations } from 'next-intl';
 
 type EditCourseStructureProps = {
   orgslug: string
@@ -24,20 +25,21 @@ type EditCourseStructureProps = {
 
 export type OrderPayload =
   | {
-      chapter_order_by_ids: [
-        {
-          chapter_id: string
-          activities_order_by_ids: [
-            {
-              activity_id: string
-            },
-          ]
-        },
-      ]
-    }
+    chapter_order_by_ids: [
+      {
+        chapter_id: string
+        activities_order_by_ids: [
+          {
+            activity_id: string
+          },
+        ]
+      },
+    ]
+  }
   | undefined
 
 const EditCourseStructure = (props: EditCourseStructureProps) => {
+  const t = useTranslations('courseStructure');
   const router = useRouter()
   const session = useLHSession() as any;
   const access_token = session?.data?.tokens?.access_token;
@@ -60,7 +62,7 @@ const EditCourseStructure = (props: EditCourseStructureProps) => {
 
   // Submit new chapter
   const submitChapter = async (chapter: any) => {
-    await createChapter(chapter,access_token)
+    await createChapter(chapter, access_token)
     mutate(`${getAPIUrl()}courses/${course.courseStructure.course_uuid}/meta?with_unpublished_activities=${withUnpublishedActivities}`)
     await revalidateTags(['courses'], props.orgslug)
     router.refresh()
@@ -77,7 +79,7 @@ const EditCourseStructure = (props: EditCourseStructureProps) => {
       return
 
     const newCourseStructure = { ...course_structure }
-    
+
     if (type === 'chapter') {
       const newChapterOrder = Array.from(newCourseStructure.chapters)
       const [movedChapter] = newChapterOrder.splice(source.index, 1)
@@ -153,8 +155,8 @@ const EditCourseStructure = (props: EditCourseStructureProps) => {
                 submitChapter={submitChapter}
               ></NewChapterModal>
             }
-            dialogTitle="Create chapter"
-            dialogDescription="Add a new chapter to the course"
+            dialogTitle={t('createChapter')}
+            dialogDescription={t('addChapterDescription')}
             dialogTrigger={
               <div className="w-44 my-16 py-5 max-w-(--breakpoint-2xl) mx-auto bg-cyan-800 text-white rounded-xl shadow-xs px-6 items-center flex flex-row h-10">
                 <div className="mx-auto flex space-x-2 items-center hover:cursor-pointer">
@@ -163,7 +165,7 @@ const EditCourseStructure = (props: EditCourseStructureProps) => {
                     size={16}
                     className="text-white text-sm "
                   />
-                  <div className="font-bold text-sm">Add Chapter</div>
+                  <div className="font-bold text-sm">{t('addChapter')}</div>
                 </div>
               </div>
             }

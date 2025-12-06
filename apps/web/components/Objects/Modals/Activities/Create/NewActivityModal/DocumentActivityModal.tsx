@@ -8,12 +8,14 @@ import FormLayout, {
 } from '@components/Objects/StyledElements/Form/Form'
 import React, { useState } from 'react'
 import * as Form from '@radix-ui/react-form'
+import { useTranslations } from 'next-intl';
 import BarLoader from 'react-spinners/BarLoader'
 import { constructAcceptValue } from '@/lib/constants';
 
 const SUPPORTED_FILES = constructAcceptValue(['pdf'])
 
 function DocumentPdfModal({ submitFileActivity, chapterId, course }: any) {
+  const t = useTranslations('activityModals');
   const [documentpdf, setDocumentPdf] = React.useState(null) as any
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [name, setName] = React.useState('')
@@ -50,9 +52,9 @@ function DocumentPdfModal({ submitFileActivity, chapterId, course }: any) {
     <FormLayout onSubmit={handleSubmit}>
       <FormField name="documentpdf-activity-name">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>PDF Document name</FormLabel>
+          <FormLabel>{t('document.name')}</FormLabel>
           <FormMessage match="valueMissing">
-            Please provide a name for your PDF Document activity
+            {t('document.namePlaceholder')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -61,9 +63,9 @@ function DocumentPdfModal({ submitFileActivity, chapterId, course }: any) {
       </FormField>
       <FormField name="documentpdf-activity-file">
         <Flex css={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <FormLabel>PDF Document file</FormLabel>
+          <FormLabel>{t('document.fileLabel')}</FormLabel>
           <FormMessage match="valueMissing">
-            Please provide a PDF Document for your activity
+            {t('document.fileError')}
           </FormMessage>
         </Flex>
         <Form.Control asChild>
@@ -81,7 +83,7 @@ function DocumentPdfModal({ submitFileActivity, chapterId, course }: any) {
                 color="#ffffff"
               />
             ) : (
-              'Create activity'
+              t('common.create')
             )}
           </ButtonBlack>
         </Form.Submit>

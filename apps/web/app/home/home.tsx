@@ -11,7 +11,10 @@ import learnhouseIcon from 'public/learnhouse_bigicon_1.png'
 import React, { useEffect } from 'react'
 import useSWR from 'swr';
 
+import { useTranslations } from 'next-intl';
+
 function HomeClient() {
+  const t = useTranslations('dashboardHome');
   const session = useLHSession() as any;
   const access_token = session?.data?.tokens?.access_token;
   const { data: orgs } = useSWR(`${getAPIUrl()}orgs/user/page/1/limit/10`, (url) => swrFetcher(url, access_token))
@@ -31,11 +34,11 @@ function HomeClient() {
         />
       </div>
 
-      <div className='flex space-x-4 mx-auto font-semibold text-2xl pt-16 items-center'><span>Hello,</span> <UserAvatar /> <span className='capitalize'>{session?.data?.user.first_name} {session?.data?.user.last_name}</span></div>
-      <div className='flex space-x-4 mx-auto font-semibold text-sm mt-12 items-center uppercase bg-slate-200 text-gray-600 px-3 py-2 rounded-md'>Your Organizations</div>
+      <div className='flex space-x-4 mx-auto font-semibold text-2xl pt-16 items-center'><span>{t('hello')}</span> <UserAvatar /> <span className='capitalize'>{session?.data?.user.first_name} {session?.data?.user.last_name}</span></div>
+      <div className='flex space-x-4 mx-auto font-semibold text-sm mt-12 items-center uppercase bg-slate-200 text-gray-600 px-3 py-2 rounded-md'>{t('yourOrganizations')}</div>
       {orgs && orgs.length == 0 && <div className='flex mx-auto my-5 space-x-3 bg-rose-200 rounded-lg px-3 py-2'>
         <Info />
-        <span>It seems you're not part of an organization yet, join one to be able to see it here </span>
+        <span>{t('noOrganizations')}</span>
       </div>}
       <div className='flex mx-auto pt-10 rounded-lg'>
         {orgs && orgs.map((org: any) => (
@@ -45,7 +48,7 @@ function HomeClient() {
           </Link>
         ))}
       </div>
-      <div className='flex cursor-pointer space-x-4 mx-auto font-semibold text-2xl pt-16 items-center'><span onClick={() =>  signOut({ redirect: true, callbackUrl: getUriWithoutOrg('/') })}>Sign out</span></div>
+      <div className='flex cursor-pointer space-x-4 mx-auto font-semibold text-2xl pt-16 items-center'><span onClick={() => signOut({ redirect: true, callbackUrl: getUriWithoutOrg('/') })}>{t('signOut')}</span></div>
 
     </div>
   )

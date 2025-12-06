@@ -5,6 +5,7 @@ import ToolTip from '@components/Objects/StyledElements/Tooltip/Tooltip'
 import { getUriWithOrg } from '@services/config/config'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   course: any
@@ -16,18 +17,18 @@ interface Props {
 }
 
 // Helper functions
-function getActivityTypeLabel(activityType: string): string {
+function getActivityTypeLabel(activityType: string, t: any): string {
   switch (activityType) {
     case 'TYPE_VIDEO':
-      return 'Video'
+      return t('activityTypes.video')
     case 'TYPE_DOCUMENT':
-      return 'Document'
+      return t('activityTypes.document')
     case 'TYPE_DYNAMIC':
-      return 'Interactive'
+      return t('activityTypes.dynamic')
     case 'TYPE_ASSIGNMENT':
-      return 'Assignment'
+      return t('activityTypes.assignment')
     default:
-      return 'Unknown'
+      return t('activityTypes.unknown')
   }
 }
 
@@ -65,14 +66,16 @@ const ActivityTypeIcon = memo(({ activityType }: { activityType: string }) => {
 ActivityTypeIcon.displayName = 'ActivityTypeIcon';
 
 // Memoized activity tooltip content
-const ActivityTooltipContent = memo(({ 
-  activity, 
-  isDone, 
-  isCurrent 
-}: { 
-  activity: any, 
-  isDone: boolean, 
-  isCurrent: boolean 
+const ActivityTooltipContent = memo(({
+  activity,
+  isDone,
+  isCurrent,
+  t
+}: {
+  activity: any,
+  isDone: boolean,
+  isCurrent: boolean,
+  t: any
 }) => (
   <div className="bg-white rounded-lg nice-shadow py-3 px-4 min-w-[200px] animate-in fade-in duration-200">
     <div className="flex items-center gap-2">
@@ -86,10 +89,10 @@ const ActivityTooltipContent = memo(({
     </div>
     <div className="flex items-center gap-2 mt-2">
       <span className={`text-xs px-2 py-0.5 rounded-full ${getActivityTypeBadgeColor(activity.activity_type)}`}>
-        {getActivityTypeLabel(activity.activity_type)}
+        {getActivityTypeLabel(activity.activity_type, t)}
       </span>
       <span className="text-xs text-gray-400">
-        {isCurrent ? 'Current Activity' : isDone ? 'Completed' : 'Not Started'}
+        {isCurrent ? t('tooltips.currentActivity') : isDone ? t('tooltips.completed') : t('tooltips.notStarted')}
       </span>
     </div>
   </div>
@@ -98,22 +101,24 @@ const ActivityTooltipContent = memo(({
 ActivityTooltipContent.displayName = 'ActivityTooltipContent';
 
 // Add new memoized component for chapter tooltip
-const ChapterTooltipContent = memo(({ 
+const ChapterTooltipContent = memo(({
   chapter,
   chapterNumber,
   totalActivities,
-  completedActivities 
-}: { 
+  completedActivities,
+  t
+}: {
   chapter: any,
   chapterNumber: number,
   totalActivities: number,
-  completedActivities: number
+  completedActivities: number,
+  t: any
 }) => (
   <div className="bg-white rounded-lg nice-shadow py-3 px-4 min-w-[200px] animate-in fade-in duration-200">
     <div className="flex items-center gap-2">
-      <span className="text-sm font-medium text-gray-900">Chapter {chapterNumber}</span>
+      <span className="text-sm font-medium text-gray-900">{t('tooltips.chapter', { number: chapterNumber })}</span>
       <span className="text-xs bg-gray-100 px-2 py-0.5 rounded-full text-gray-600">
-        {completedActivities}/{totalActivities} completed
+        {t('tooltips.chapterProgress', { completed: completedActivities, total: totalActivities })}
       </span>
     </div>
     <div className="mt-1">
@@ -125,14 +130,16 @@ const ChapterTooltipContent = memo(({
 ChapterTooltipContent.displayName = 'ChapterTooltipContent';
 
 // Add certification badge component
-const CertificationBadge = memo(({ 
+const CertificationBadge = memo(({
   courseid,
   orgslug,
-  isCompleted 
-}: { 
+  isCompleted,
+  t
+}: {
   courseid: string,
   orgslug: string,
-  isCompleted: boolean 
+  isCompleted: boolean,
+  t: any
 }) => (
   <ToolTip
     sideOffset={8}
@@ -142,14 +149,14 @@ const CertificationBadge = memo(({
         <div className="flex items-center gap-2">
           <Trophy size={16} className="text-yellow-500" />
           <span className="text-sm font-medium text-gray-900">
-            {isCompleted ? 'Course Completed!' : 'Course Completion'}
+            {isCompleted ? t('certificate.completed') : t('certificate.completion')}
           </span>
         </div>
         <div className="mt-1">
           <span className="text-sm text-gray-700">
-            {isCompleted 
-              ? 'View your completion certificate' 
-              : 'Complete all activities to unlock your certificate'
+            {isCompleted
+              ? t('certificate.viewCertificate')
+              : t('certificate.unlockCertificate')
             }
           </span>
         </div>
@@ -159,15 +166,13 @@ const CertificationBadge = memo(({
     <Link
       href={`${getUriWithOrg(orgslug, '')}/course/${courseid}/activity/end`}
       prefetch={false}
-      className={`mx-2 h-[20px] flex items-center cursor-pointer focus:outline-none transition-all ${
-        isCompleted ? 'opacity-100' : 'opacity-50 cursor-not-allowed'
-      }`}
+      className={`mx-2 h-[20px] flex items-center cursor-pointer focus:outline-none transition-all ${isCompleted ? 'opacity-100' : 'opacity-50 cursor-not-allowed'
+        }`}
     >
-      <div className={`w-[20px] h-[20px] rounded-full flex items-center justify-center text-xs font-medium transition-colors ${
-        isCompleted 
-          ? 'bg-yellow-500 text-white hover:bg-yellow-600' 
-          : 'bg-gray-100 text-gray-400'
-      }`}>
+      <div className={`w-[20px] h-[20px] rounded-full flex items-center justify-center text-xs font-medium transition-colors ${isCompleted
+        ? 'bg-yellow-500 text-white hover:bg-yellow-600'
+        : 'bg-gray-100 text-gray-400'
+        }`}>
         <Trophy size={12} />
       </div>
     </Link>
@@ -177,6 +182,7 @@ const CertificationBadge = memo(({
 CertificationBadge.displayName = 'CertificationBadge';
 
 function ActivityIndicators(props: Props) {
+  const t = useTranslations('activityIndicators')
   const course = props.course
   const orgslug = props.orgslug
   const courseid = props.course_uuid.replace('course_', '')
@@ -191,7 +197,7 @@ function ActivityIndicators(props: Props) {
 
   // Flatten all activities for navigation and rendering
   const allActivities = useMemo(() => {
-    return course.chapters.flatMap((chapter: any) => 
+    return course.chapters.flatMap((chapter: any) =>
       chapter.activities.map((activity: any) => ({
         ...activity,
         chapterId: chapter.id
@@ -202,7 +208,7 @@ function ActivityIndicators(props: Props) {
   // Find current activity index
   const currentActivityIndex = useMemo(() => {
     if (!props.current_activity) return -1
-    return allActivities.findIndex((activity: any) => 
+    return allActivities.findIndex((activity: any) =>
       activity.activity_uuid.replace('activity_', '') === props.current_activity
     )
   }, [allActivities, props.current_activity])
@@ -211,7 +217,7 @@ function ActivityIndicators(props: Props) {
   const isActivityDone = useMemo(() => (activity: any) => {
     // Clean up course UUID by removing 'course_' prefix if it exists
     const cleanCourseUuid = course.course_uuid?.replace('course_', '');
-    
+
     let run = props.trailData?.runs?.find(
       (run: any) => {
         const cleanRunCourseUuid = run.course?.course_uuid?.replace('course_', '');
@@ -289,7 +295,7 @@ function ActivityIndicators(props: Props) {
           <ChevronLeft size={20} className="text-gray-600" />
         </button>
       )}
-      
+
       <div className="flex items-center w-full">
         {course.chapters.map((chapter: any, chapterIndex: number) => {
           const completedActivities = getChapterProgress(chapter.activities);
@@ -307,31 +313,30 @@ function ActivityIndicators(props: Props) {
                 sideOffset={8}
                 unstyled
                 content={
-                  <ChapterTooltipContent 
+                  <ChapterTooltipContent
                     chapter={chapter}
                     chapterNumber={chapterIndex + 1}
                     totalActivities={chapter.activities.length}
                     completedActivities={completedActivities}
+                    t={t}
                   />
                 }
               >
                 {chapterLinkHref ? (
                   <Link href={chapterLinkHref} prefetch={false} className="mx-2 h-[20px] flex items-center cursor-pointer focus:outline-none">
-                    <div className={`w-[20px] h-[20px] rounded-full flex items-center justify-center text-xs font-medium transition-colors ${
-                      isChapterComplete 
-                        ? 'bg-teal-600 text-white' 
-                        : 'bg-gray-100 text-gray-600'
-                    }`}>
+                    <div className={`w-[20px] h-[20px] rounded-full flex items-center justify-center text-xs font-medium transition-colors ${isChapterComplete
+                      ? 'bg-teal-600 text-white'
+                      : 'bg-gray-100 text-gray-600'
+                      }`}>
                       {chapterIndex + 1}
                     </div>
                   </Link>
                 ) : (
                   <div className="mx-2 h-[20px] flex items-center cursor-not-allowed">
-                    <div className={`w-[20px] h-[20px] rounded-full flex items-center justify-center text-xs font-medium transition-colors ${
-                      isChapterComplete 
-                        ? 'bg-teal-600 text-white' 
-                        : 'bg-gray-100 text-gray-600'
-                    }`}>
+                    <div className={`w-[20px] h-[20px] rounded-full flex items-center justify-center text-xs font-medium transition-colors ${isChapterComplete
+                      ? 'bg-teal-600 text-white'
+                      : 'bg-gray-100 text-gray-600'
+                      }`}>
                       {chapterIndex + 1}
                     </div>
                   </div>
@@ -346,10 +351,11 @@ function ActivityIndicators(props: Props) {
                       sideOffset={8}
                       unstyled
                       content={
-                        <ActivityTooltipContent 
+                        <ActivityTooltipContent
                           activity={activity}
                           isDone={isDone}
                           isCurrent={isCurrent}
+                          t={t}
                         />
                       }
                       key={activity.activity_uuid}
@@ -376,12 +382,13 @@ function ActivityIndicators(props: Props) {
             </React.Fragment>
           )
         })}
-        
+
         {/* Certification Badge */}
-        <CertificationBadge 
+        <CertificationBadge
           courseid={courseid}
           orgslug={orgslug}
           isCompleted={isCourseCompleted}
+          t={t}
         />
       </div>
 
