@@ -928,16 +928,33 @@
     "assignment": {
       "title": "Aufgabentitel",
       "titlePlaceholder": "Aufgabentitel eingeben",
+      "desc": "Description",
       "description": "Beschreibung",
+      "descPlaceholder": "Please enter a description",
       "descriptionPlaceholder": "Aufgabenanweisungen eingeben",
       "dueDate": "Fälligkeitsdatum",
+      "datePlaceholder": "Please select a due date",
       "gradingType": "Bewertungstyp",
+      "gradingPlaceholder": "Please select a grading type",
+      "create": "Create Assignment",
       "creating": "Aufgabe wird erstellt...",
-      "success": "Aufgabe erfolgreich erstellt"
+      "success": "Aufgabe erfolgreich erstellt",
+      "options": {
+        "alphabet": "Alphabet (A, B, C, D, F)",
+        "numeric": "Numeric (0-100)",
+        "percentage": "Percentage (0%-100%)"
+      }
     },
     "common": {
       "create": "Aktivität erstellen"
     }
+  },
+  "activityNavigation": {
+    "next": "Next",
+    "previous": "Previous",
+    "of": "of",
+    "noNextActivity": "No next activity",
+    "noPreviousActivity": "No previous activity"
   },
   "activityIndicators": {
     "activityTypes": {

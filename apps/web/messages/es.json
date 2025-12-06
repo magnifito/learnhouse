@@ -928,16 +928,33 @@
     "assignment": {
       "title": "Título de la Tarea",
       "titlePlaceholder": "Ingresa el título de la tarea",
+      "desc": "Description",
       "description": "Descripción",
+      "descPlaceholder": "Please enter a description",
       "descriptionPlaceholder": "Ingresa las instrucciones de la tarea",
       "dueDate": "Fecha de Vencimiento",
+      "datePlaceholder": "Please select a due date",
       "gradingType": "Tipo de Calificación",
+      "gradingPlaceholder": "Please select a grading type",
+      "create": "Create Assignment",
       "creating": "Creando tarea...",
-      "success": "Tarea creada exitosamente"
+      "success": "Tarea creada exitosamente",
+      "options": {
+        "alphabet": "Alphabet (A, B, C, D, F)",
+        "numeric": "Numeric (0-100)",
+        "percentage": "Percentage (0%-100%)"
+      }
     },
     "common": {
       "create": "Crear actividad"
     }
+  },
+  "activityNavigation": {
+    "next": "Next",
+    "previous": "Previous",
+    "of": "of",
+    "noNextActivity": "No next activity",
+    "noPreviousActivity": "No previous activity"
   },
   "activityIndicators": {
     "activityTypes": {

@@ -129,7 +129,7 @@
     "noCertificateTitle": "Все още няма сертификат",
     "noCertificateMessage": "Все още не сте спечелили сертификат за този курс.",
     "downloadPdf": "Изтегляне на PDF",
-    "idLabel": "ID:",
+    "idLabel": "Номер:",
     "certificateLabel": "Сертификат за",
     "defaultDescription": "За успешно завършване на изискванията на курса.",
     "awardedLabel": "Награден на",
@@ -231,7 +231,7 @@
     "organizationDescription": "Конфигурирайте общите настройки на вашата организация",
     "usersTitle": "Потребители",
     "usersDescription": "Управлявайте потребителите и ролите на вашата организация",
-    "learnhouseUniversity": "LearnHouse University",
+    "learnhouseUniversity": "LearnHouse Университет",
     "accountSettings": "Настройки на акаунта",
     "accountSettingsDescription": "Конфигурирайте личните си настройки, пароли, имейл"
   },
@@ -422,7 +422,7 @@
       "subtitle": "Социални връзки",
       "customLinks": "Персонализирани връзки",
       "labelPlaceholder": "Етикет",
-      "urlPlaceholder": "URL",
+      "urlPlaceholder": "Адрес (URL)",
       "addLink": "Добави връзка",
       "limitMessage": "Добавете до 3 персонализирани връзки, които ще се появят в профила на вашата организация",
       "twitterPlaceholder": "URL на Twitter профил",
@@ -449,7 +449,7 @@
       "scriptDeleteError": "Неуспешно изтриване на скрипта",
       "deletingScript": "Изтриване на скрипт...",
       "nameRequired": "Името на скрипта е задължително",
-      "contentRequired": "Script content is required"
+      "contentRequired": "Съдържанието на скрипта е задължително"
     }
   },
   "landing": {
@@ -913,7 +913,7 @@
       "uploadTab": "Качване на видео",
       "youtubeTab": "YouTube видео",
       "fileLabel": "Видео файл",
-      "urlLabel": "YouTube URL",
+      "urlLabel": "YouTube адрес",
       "urlPlaceholder": "Въведете YouTube URL",
       "create": "Създай дейност"
     },
@@ -928,16 +928,33 @@
     "assignment": {
       "title": "Заглавие на задачата",
       "titlePlaceholder": "Въведете заглавие на задачата",
+      "desc": "Описание",
       "description": "Описание",
+      "descPlaceholder": "Моля, въведете описание",
       "descriptionPlaceholder": "Въведете инструкции за задачата",
       "dueDate": "Краен срок",
+      "datePlaceholder": "Моля, изберете краен срок",
       "gradingType": "Тип оценяване",
+      "gradingPlaceholder": "Моля, изберете тип оценяване",
+      "create": "Създай задача",
       "creating": "Създаване на задача...",
-      "success": "Задачата е създадена успешно"
+      "success": "Задачата е създадена успешно",
+      "options": {
+        "alphabet": "Буквена (A, B, C, D, F)",
+        "numeric": "Числова (0-100)",
+        "percentage": "Процентна (0%-100%)"
+      }
     },
     "common": {
       "create": "Създай дейност"
     }
+  },
+  "activityNavigation": {
+    "next": "Следваща",
+    "previous": "Предишна",
+    "of": "от",
+    "noNextActivity": "Няма следваща дейност",
+    "noPreviousActivity": "Няма предишна дейност"
   },
   "activityIndicators": {
     "activityTypes": {
