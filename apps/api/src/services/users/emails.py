@@ -8,8 +8,13 @@ def send_account_creation_email(
     user: UserRead,
     email: EmailStr,
 ):
+    """
+    Send account creation email.
+    Returns True if sent successfully, False otherwise.
+    Does not raise exceptions - allows user creation to proceed even if email fails.
+    """
     # send email
-    return send_email(
+    result = send_email(
         to=email,
         subject=f"Welcome to LearnHouse, {user.username}!",
         body=f"""
@@ -22,6 +27,7 @@ def send_account_creation_email(
 </html>
 """,
     )
+    return result is not None
 
 
 def send_password_reset_email(
@@ -30,9 +36,12 @@ def send_password_reset_email(
     organization: OrganizationRead,
     email: EmailStr,
 ):
-    
+    """
+    Send password reset email.
+    Returns True if sent successfully, False otherwise.
+    """
     # send email
-    return send_email(
+    result = send_email(
         to=email,
         subject="Reset your password",
         body=f"""
@@ -46,3 +55,4 @@ def send_password_reset_email(
 </html>
 """,
     )
+    return result is not None

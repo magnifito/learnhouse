@@ -1,10 +1,11 @@
 {
   "name": "High-ROI Ad Psychology & NEPQ-Based Messaging - Complete Platform Demo",
   "description": "*A Complete Online Course Demonstrating All Platform Features: Videos, Documents, Dynamic Content, Assignments & All Block Types*",
-  "about": "# About This Course\n\nThis comprehensive course demonstrates **all available features** of the learning platform, including:\n\n- Multiple activity types (Video, Document, Dynamic, Assignment)\n- All block types (Text, Quiz, Images, Code, Callouts, Tables, Buttons, Badges, Flipcards, Scenarios, Math Equations, PDFs, Embedded Videos, Web Previews)\n- Various video formats (YouTube, Hosted)\n- Document types (PDF, DOC)\n- Interactive assignments\n\nPerfect for understanding the full capabilities of the platform!",
+  "about": "About This Course\n\nThis comprehensive course demonstrates all available features of the learning platform, including:\n\n• Multiple activity types (Video, Document, Dynamic, Assignment)\n• All block types (Text, Quiz, Images, Code, Callouts, Tables, Buttons, Badges, Flipcards, Scenarios, Math Equations, PDFs, Embedded Videos, Web Previews)\n• Various video formats (YouTube, Hosted)\n• Document types (PDF, DOC)\n• Interactive assignments\n\nPerfect for understanding the full capabilities of the platform!",
   "learnings": "Understand emotional messaging frameworks\nMaster high-converting ad scripts\nLearn product story extraction\nApply NEPQ questions for marketing\nExplore all platform features and capabilities",
   "tags": "imported, example, demo, platform-features, marketing, psychology",
   "thumbnail_query": "education technology learning platform",
+  "thumbnail_image_url": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&auto=format&fit=crop",
   "chapters": [
     {
       "name": "MODULE 1 — Emotional Messaging Frameworks",
@@ -1028,18 +1029,19 @@
                 "contents": {
                   "questions": [
                     {
-                      "question": "Which primary emotion did you target in your script?",
-                      "type": "multiple_choice",
-                      "answers": [
-                        {"answer": "Desire", "correct": false},
-                        {"answer": "Relief", "correct": false},
-                        {"answer": "Fear", "correct": false},
-                        {"answer": "Belonging", "correct": false}
+                      "questionText": "Which primary emotion did you target in your script?",
+                      "options": [
+                        {"text": "Desire", "assigned_right_answer": false, "fileID": "", "type": "text"},
+                        {"text": "Relief", "assigned_right_answer": false, "fileID": "", "type": "text"},
+                        {"text": "Fear", "assigned_right_answer": false, "fileID": "", "type": "text"},
+                        {"text": "Belonging", "assigned_right_answer": false, "fileID": "", "type": "text"}
                       ]
                     },
                     {
-                      "question": "What proof element did you include?",
-                      "type": "text"
+                      "questionText": "What proof element did you include?",
+                      "options": [
+                        {"text": "", "assigned_right_answer": false, "fileID": "", "type": "text"}
+                      ]
                     }
                   ]
                 }

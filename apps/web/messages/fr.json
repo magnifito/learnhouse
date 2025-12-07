@@ -381,6 +381,98 @@
     "desktopOnlyMessage": "Cette page n'est accessible que depuis un ordinateur de bureau.",
     "switchToDesktop": "Veuillez passer à un ordinateur de bureau pour afficher et gérer les paramètres utilisateur."
   },
+  "signups": {
+    "joinMethod": "Méthode d'adhésion",
+    "joinMethodDescription": "Choisissez comment les utilisateurs peuvent rejoindre votre organisation",
+    "open": {
+      "title": "Ouvert",
+      "description": "Les utilisateurs peuvent s'inscrire librement depuis la page d'inscription",
+      "active": "Actif",
+      "changeTo": "Changer en ouvert",
+      "changeConfirm": "Êtes-vous sûr de vouloir changer le mécanisme d'inscription en ouvert? Cela permettra aux utilisateurs de rejoindre librement votre organisation.",
+      "changeTitle": "Changer en ouvert?"
+    },
+    "closed": {
+      "title": "Fermé",
+      "description": "Les utilisateurs peuvent rejoindre uniquement sur invitation",
+      "active": "Actif",
+      "changeTo": "Changer en fermé",
+      "changeConfirm": "Êtes-vous sûr de vouloir changer le mécanisme d'inscription en fermé? Cela permettra aux utilisateurs de rejoindre votre organisation uniquement sur invitation.",
+      "changeTitle": "Changer en fermé?"
+    },
+    "inviteCodes": {
+      "title": "Codes d'invitation",
+      "description": "Les codes d'invitation peuvent être copiés et utilisés pour rejoindre votre organisation",
+      "tableHeaders": {
+        "code": "Code",
+        "signupLink": "Lien d'inscription",
+        "type": "Type",
+        "expirationDate": "Date d'expiration",
+        "actions": "Actions"
+      },
+      "types": {
+        "linkedToUserGroup": "Lié à un groupe d'utilisateurs",
+        "normal": "Normal"
+      },
+      "deleteCode": "Supprimer le code",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer ce code d'invitation?",
+      "deleteTitle": "Supprimer le code?",
+      "generate": {
+        "title": "Générer un code d'invitation",
+        "description": "Générer un nouveau code d'invitation pour votre organisation",
+        "button": "Générer un code d'invitation",
+        "linkedToUserGroup": {
+          "title": "Code d'invitation lié à un groupe d'utilisateurs",
+          "description": "Lors de l'inscription, les utilisateurs seront automatiquement liés à un groupe d'utilisateurs de votre choix",
+          "generate": "Générer"
+        },
+        "normal": {
+          "title": "Code d'invitation normal",
+          "description": "Lors de l'inscription, l'utilisateur ne sera pas lié à un groupe d'utilisateurs",
+          "generate": "Générer"
+        },
+        "noUserGroups": "Aucun groupe d'utilisateurs disponible",
+        "createUserGroup": "Créer un groupe d'utilisateurs"
+      }
+    },
+    "toasts": {
+      "deleting": "Suppression...",
+      "deleted": "Code d'invitation supprimé",
+      "deleteError": "Erreur lors de la suppression",
+      "changing": "Changement de méthode d'adhésion...",
+      "changed": "Méthode d'adhésion changée en {method}",
+      "changeError": "Erreur lors du changement de méthode d'adhésion",
+      "generateError": "Erreur {status}: {detail}"
+    }
+  },
+  "inviteMembers": {
+    "title": "Inviter des utilisateurs dans votre organisation",
+    "description": "Envoyer une invitation par e-mail, séparée par des virgules",
+    "emailPlaceholder": "Exemple : spike.spiegel@bepop.space, michael.scott@dundermifflin.com",
+    "inviteCode": "Code d'invitation",
+    "inviteCodeTooltip": "Utilisez l'un des codes d'invitation que vous avez générés à partir de la page d'accès à l'inscription",
+    "sendInvites": "Envoyer des invitations par e-mail",
+    "invitedUsers": {
+      "title": "Utilisateurs invités",
+      "description": "Utilisateurs qui ont été invités à rejoindre votre organisation",
+      "tableHeaders": {
+        "email": "E-mail",
+        "signupStatus": "Statut d'inscription",
+        "emailSent": "E-mail envoyé"
+      },
+      "status": {
+        "pending": "En attente",
+        "signed": "Inscrit",
+        "sent": "Envoyé",
+        "no": "Non"
+      }
+    },
+    "toasts": {
+      "sending": "Envoi de l'invitation...",
+      "sent": "Invitation envoyée",
+      "error": "Erreur lors de l'envoi de l'invitation"
+    }
+  },
   "usergroups": {
     "title": "Gérer les Groupes d'utilisateurs",
     "description": "Les groupes d'utilisateurs permettent de regrouper des utilisateurs pour gérer leur accès aux ressources (Cours) de votre organisation.",

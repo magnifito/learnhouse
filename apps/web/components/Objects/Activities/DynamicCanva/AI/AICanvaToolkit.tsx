@@ -154,21 +154,25 @@ function AICanvaToolkit(props: AICanvaToolkitProps) {
             editor={props.editor}
             activity={props.activity}
             label="Explain"
+            isAiEnabled={is_ai_feature_enabled}
           />
           <AIActionButton
             editor={props.editor}
             activity={props.activity}
             label="Summarize"
+            isAiEnabled={is_ai_feature_enabled}
           />
           <AIActionButton
             editor={props.editor}
             activity={props.activity}
             label="Translate"
+            isAiEnabled={is_ai_feature_enabled}
           />
           <AIActionButton
             editor={props.editor}
             activity={props.activity}
             label="Examples"
+            isAiEnabled={is_ai_feature_enabled}
           />
         </div>
       </div>
@@ -183,6 +187,7 @@ function AIActionButton(props: {
   editor: Editor
   label: string
   activity: any
+  isAiEnabled: boolean
 }) {
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token;
@@ -190,6 +195,12 @@ function AIActionButton(props: {
   const aiChatBotState = useAIChatBot() as AIChatBotStateTypes
 
   async function handleAction(label: string) {
+    // Prevent API calls when AI is disabled
+    if (!props.isAiEnabled) {
+      console.warn('AI feature is disabled. Cannot perform action:', label)
+      return
+    }
+
     const selection = getTipTapEditorSelectedText()
     const prompt = getPrompt(label, selection)
     dispatchAIChatBot({ type: 'setIsModalOpen' })

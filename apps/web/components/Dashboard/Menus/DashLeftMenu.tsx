@@ -163,7 +163,7 @@ function DashLeftMenu() {
             <div className="flex items-center flex-col space-y-3">
               <div className="flex flex-col space-y-1 py-1">
                 <ToolTip
-                  content={t('ownedCourses', { username: session.data.user.username })}
+                  content={t('navigation.ownedCourses', { username: session.data.user.username })}
                 slateBlack
                 sideOffset={8}
                 side="right"
@@ -179,7 +179,7 @@ function DashLeftMenu() {
                 </Link>
               </ToolTip>
                 <ToolTip
-                  content={t('userSettings', { username: session.data.user.username })}
+                  content={t('navigation.userSettings', { username: session.data.user.username })}
                 slateBlack
                 sideOffset={8}
                 side="right"

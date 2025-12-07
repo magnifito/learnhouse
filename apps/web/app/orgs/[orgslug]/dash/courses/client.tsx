@@ -67,11 +67,7 @@ function CoursesHome(params: CourseProps) {
               }
               dialogTitle={t('courseListings.createCourse')}
               dialogDescription={t('courseListings.createNewCourse')}
-              dialogTrigger={
-                <button>
-                  <NewCourseButton />
-                </button>
-              }
+              dialogTrigger={<NewCourseButton />}
             />
           </AuthenticatedClientElement>
         </div>
@@ -128,11 +124,7 @@ function CoursesHome(params: CourseProps) {
                       }
                       dialogTitle={t('courseListings.createCourse')}
                       dialogDescription={t('courseListings.createNewCourse')}
-                      dialogTrigger={
-                        <button>
-                          <NewCourseButton />
-                        </button>
-                      }
+                      dialogTrigger={<NewCourseButton />}
                     />
                   </AuthenticatedClientElement>
                 </div>

@@ -24,11 +24,11 @@ interface TabItem {
 }
 
 const SETTING_TABS: TabItem[] = [
-  { id: 'general', labelKey: 'generalTitle', icon: TextIcon },
-  { id: 'landing', labelKey: 'landingPageTitle', icon: LayoutDashboardIcon },
-  { id: 'previews', labelKey: 'imagesAndPreviews', icon: ImageIcon },
-  { id: 'socials', labelKey: 'socialsTitle', icon: Share2Icon },
-  { id: 'other', labelKey: 'otherTitle', icon: CodeIcon },
+  { id: 'general', labelKey: 'organization.generalTitle', icon: TextIcon },
+  { id: 'landing', labelKey: 'organization.landingPageTitle', icon: LayoutDashboardIcon },
+  { id: 'previews', labelKey: 'organization.imagesAndPreviews', icon: ImageIcon },
+  { id: 'socials', labelKey: 'organization.socialsTitle', icon: Share2Icon },
+  { id: 'other', labelKey: 'organization.otherTitle', icon: CodeIcon },
 ]
 
 function TabLink({ tab, isActive, orgslug, t }: {

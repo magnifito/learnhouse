@@ -188,7 +188,7 @@ const AdminEditOptions = ({ course, orgSlug, deleteCourse, t }: {
               <ConfirmationModal
                 confirmationButtonText={t('courses.deleteCourse')}
                 confirmationMessage={t('courses.confirmDeleteCourse')}
-                dialogTitle={t('deleteCourseName', { courseName: course.name })}
+                dialogTitle={t('courses.deleteCourseName', { courseName: course.name })}
                 dialogTrigger={
                   <button className="w-full text-left flex items-center px-2 py-1 rounded-md text-sm bg-rose-500/10 hover:bg-rose-500/20 transition-colors text-red-600">
                     <BookMinus className="mr-4 h-4 w-4" /> {t('courses.deleteCourse')}

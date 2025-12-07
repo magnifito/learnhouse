@@ -22,28 +22,28 @@ import { useTranslations } from 'next-intl'
 const SECTION_TYPES = {
   hero: {
     icon: LayoutTemplate,
-    labelKey: 'heroLabel',
-    descriptionKey: 'heroDescription'
+    labelKey: 'landing.heroLabel',
+    descriptionKey: 'landing.heroDescription'
   },
   'text-and-image': {
     icon: ImageIcon,
-    labelKey: 'textImageLabel',
-    descriptionKey: 'textImageDescription'
+    labelKey: 'landing.textImageLabel',
+    descriptionKey: 'landing.textImageDescription'
   },
   logos: {
     icon: Award,
-    labelKey: 'logosLabel',
-    descriptionKey: 'logosDescription'
+    labelKey: 'landing.logosLabel',
+    descriptionKey: 'landing.logosDescription'
   },
   people: {
     icon: Users,
-    labelKey: 'peopleLabel',
-    descriptionKey: 'peopleDescription'
+    labelKey: 'landing.peopleLabel',
+    descriptionKey: 'landing.peopleDescription'
   },
   'featured-courses': {
     icon: BookOpen,
-    labelKey: 'coursesLabel',
-    descriptionKey: 'coursesDescription'
+    labelKey: 'landing.coursesLabel',
+    descriptionKey: 'landing.coursesDescription'
   }
 } as const
 
@@ -403,13 +403,9 @@ const OrgEditLanding = () => {
                       }
                     }}
                   >
-                    <SelectTrigger className="w-full p-0 border-0 bg-black ">
-                      <div className="w-full">
-                        <Button variant="default" className="w-full bg-black hover:bg-black/90 text-white">
-                          <Plus className="h-4 w-4 mr-2" />
-                          {t('landing.addSection')}
-                        </Button>
-                      </div>
+                    <SelectTrigger className="w-full bg-black hover:bg-black/90 text-white">
+                      <Plus className="h-4 w-4 mr-2" />
+                      {t('landing.addSection')}
                     </SelectTrigger>
                     <SelectContent>
                       {Object.entries(SECTION_TYPES).map(([type, { icon: Icon, labelKey, descriptionKey }]) => (
@@ -477,6 +473,7 @@ const HeroSectionEditor: React.FC<{
   section: LandingHeroSection
   onChange: (section: LandingHeroSection) => void
 }> = ({ section, onChange }) => {
+  const t = useTranslations()
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -1121,6 +1118,7 @@ interface ImageUploaderProps {
 }
 
 const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUploaded, className, buttonText, id }) => {
+  const t = useTranslations()
   const org = useOrg() as any
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token
@@ -1185,6 +1183,7 @@ const TextAndImageSectionEditor: React.FC<{
   section: LandingTextAndImageSection
   onChange: (section: LandingTextAndImageSection) => void
 }> = ({ section, onChange }) => {
+  const t = useTranslations()
 
   return (
     <div className="space-y-6 p-6 bg-white rounded-lg nice-shadow">
@@ -1286,6 +1285,7 @@ const LogosSectionEditor: React.FC<{
   section: LandingLogos
   onChange: (section: LandingLogos) => void
 }> = ({ section, onChange }) => {
+  const t = useTranslations()
 
   return (
     <div className="space-y-6 p-6 bg-white rounded-lg nice-shadow">
@@ -1388,6 +1388,7 @@ const PeopleSectionEditor: React.FC<{
   section: LandingPeople
   onChange: (section: LandingPeople) => void
 }> = ({ section, onChange }) => {
+  const t = useTranslations()
 
   return (
     <div className="space-y-6 p-6 bg-white rounded-lg nice-shadow">
@@ -1530,6 +1531,7 @@ const FeaturedCoursesEditor: React.FC<{
   section: LandingFeaturedCourses
   onChange: (section: LandingFeaturedCourses) => void
 }> = ({ section, onChange }) => {
+  const t = useTranslations()
   const org = useOrg() as any
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token

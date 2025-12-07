@@ -114,6 +114,7 @@ function SignUpClient(props: SignUpClientProps) {
 }
 
 const LoggedInJoinScreen = (props: any) => {
+  const t = useTranslations()
   const session = useLHSession() as any
   const org = useOrg() as any
   const invite_code = props.inviteCode
@@ -157,7 +158,7 @@ const LoggedInJoinScreen = (props: any) => {
             <UserAvatar rounded="rounded-xl" border="border-4" width={35} />
             <span>{session.data.username},</span>
           </span>
-          <span>{t('joinQuestion', { orgName: org?.name })}</span>
+          <span>{t('auth.joinQuestion', { orgName: org?.name })}</span>
         </p>
         <button onClick={() => join()} className="flex w-fit h-[35px] space-x-2 bg-black px-6 py-2 text-md rounded-lg font-semibold h-fit text-white items-center shadow-md">
           {isSumbitting ? <BarLoader
@@ -173,6 +174,7 @@ const LoggedInJoinScreen = (props: any) => {
 }
 
 const NoTokenScreen = (props: any) => {
+  const t = useTranslations()
   const session = useLHSession() as any
   const org = useOrg() as any
   const router = useRouter()
@@ -218,7 +220,7 @@ const NoTokenScreen = (props: any) => {
         <div className="flex space-y-7 flex-col justify-center items-center">
           <p className="flex space-x-2 text-lg font-medium text-red-800 items-center">
             <MailWarning size={18} />
-            <span>{t('inviteCodeRequired', { orgName: org?.name })}</span>
+            <span>{t('auth.inviteCodeRequired', { orgName: org?.name })}</span>
           </p>
           <input
             onChange={handleInviteCodeChange}

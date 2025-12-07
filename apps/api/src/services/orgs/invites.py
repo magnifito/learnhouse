@@ -369,7 +369,7 @@ def send_invite_email(
         invite = json.loads(invite)  # type: ignore
 
         # send email
-        send_email(
+        email_result = send_email(
             to=email,
             subject=f"You have been invited to {org.name}",
             body=f"""
@@ -384,7 +384,8 @@ def send_invite_email(
 """,
         )
 
-        return True
+        # Return True if email was sent successfully, False otherwise
+        return email_result is not None
 
     else:
         return False

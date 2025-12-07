@@ -38,7 +38,7 @@ function LandingCustom({ landing, orgslug }: LandingCustomProps) {
                 ? section.background.color 
                 : section.background.type === 'gradient'
                 ? `linear-gradient(${section.background.direction || '45deg'}, ${section.background.colors?.join(', ')})`
-                : `url(${section.background.image}) center/cover`
+                : section.background.image ? `url(${section.background.image}) center/cover` : 'transparent'
             }}
           >
             <div className={`w-full h-full flex flex-col sm:flex-row ${
@@ -134,17 +134,19 @@ function LandingCustom({ landing, orgslug }: LandingCustomProps) {
                   ))}
                 </div>
               </div>
-              <div className="flex-1 w-full md:w-auto">
-                <div className="relative w-full max-w-[500px] mx-auto px-4 md:px-8">
-                  <div className="relative w-full aspect-4/3">
-                    <img
-                      src={section.image.url}
-                      alt={section.image.alt}
-                      className="object-contain w-full h-full rounded-lg"
-                    />
+              {section.image.url && (
+                <div className="flex-1 w-full md:w-auto">
+                  <div className="relative w-full max-w-[500px] mx-auto px-4 md:px-8">
+                    <div className="relative w-full aspect-4/3">
+                      <img
+                        src={section.image.url}
+                        alt={section.image.alt || ''}
+                        className="object-contain w-full h-full rounded-lg"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         )
@@ -159,15 +161,17 @@ function LandingCustom({ landing, orgslug }: LandingCustomProps) {
             )}
             <div className="flex justify-center w-full">
               <div className="flex flex-wrap justify-center gap-16 max-w-7xl">
-                {section.logos.map((logo, index) => (
-                  <div key={index} className="flex items-center justify-center w-[220px] h-[120px]">
-                    <img
-                      src={logo.url}
-                      alt={logo.alt}
-                      className="max-h-24 max-w-[200px] object-contain hover:opacity-80 transition-opacity"
-                    />
-                  </div>
-                ))}
+                {section.logos.map((logo, index) => 
+                  logo.url ? (
+                    <div key={index} className="flex items-center justify-center w-[220px] h-[120px]">
+                      <img
+                        src={logo.url}
+                        alt={logo.alt || ''}
+                        className="max-h-24 max-w-[200px] object-contain hover:opacity-80 transition-opacity"
+                      />
+                    </div>
+                  ) : null
+                )}
               </div>
             </div>
           </div>
@@ -191,13 +195,13 @@ function LandingCustom({ landing, orgslug }: LandingCustomProps) {
                         border="border-4"
                         showProfilePopup
                       />
-                    ) : (
+                    ) : person.image_url ? (
                       <img
                         src={person.image_url}
                         alt={person.name}
                         className="w-full h-full rounded-full object-cover border-4 border-white nice-shadow"
                       />
-                    )}
+                    ) : null}
                   </div>
                   <h3 className="text-lg font-semibold text-center text-gray-900">{person.name}</h3>
                   <p className="text-sm text-center text-gray-600 mt-1">{person.description}</p>

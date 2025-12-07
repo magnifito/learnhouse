@@ -286,55 +286,91 @@ const WebPreviewComponent: React.FC<WebPreviewProps> = ({ node, updateAttributes
           {/* Only show preview card when not editing */}
           {hasPreview && !editing && (
             <>
-              <a
-                href={previewData.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="no-underline hover:no-underline focus:no-underline active:no-underline"
-                style={{ textDecoration: 'none', borderBottom: 'none' }}
-              >
-                {previewData.og_image && (
-                  <div className="-mt-6 -mx-6 mb-0 rounded-t-xl overflow-hidden">
-                    <img
-                      src={previewData.og_image}
-                      alt="preview"
-                      className="w-full h-40 object-cover block"
-                    />
-                  </div>
-                )}
-                <div className="pt-4 pb-2">
-                  <a
-                    href={previewData.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="no-underline hover:no-underline focus:no-underline active:no-underline"
-                    style={{ textDecoration: 'none', borderBottom: 'none' }}
-                  >
+              {!showButton ? (
+                // If no button, make entire card clickable
+                <a
+                  href={previewData.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="no-underline hover:no-underline focus:no-underline active:no-underline block"
+                  style={{ textDecoration: 'none', borderBottom: 'none' }}
+                >
+                  {previewData.og_image && (
+                    <div className="-mt-6 -mx-6 mb-0 rounded-t-xl overflow-hidden">
+                      <img
+                        src={previewData.og_image}
+                        alt="preview"
+                        className="w-full h-40 object-cover block"
+                      />
+                    </div>
+                  )}
+                  <div className="pt-4 pb-2">
                     <span
-                      className="font-semibold text-lg text-[#232323] mb-1.5 leading-tight no-underline hover:no-underline focus:no-underline active:no-underline"
-                      style={{ textDecoration: 'none', borderBottom: 'none' }}
+                      className="font-semibold text-lg text-[#232323] mb-1.5 leading-tight block"
                     >
                       {previewData.title}
                     </span>
                     <span
-                      className="block text-gray-700 text-sm mb-3 leading-snug no-underline hover:no-underline focus:no-underline active:no-underline"
-                      style={{ textDecoration: 'none', borderBottom: 'none' }}
+                      className="block text-gray-700 text-sm mb-3 leading-snug"
                     >
                       {previewData.description}
                     </span>
-                  </a>
-                </div>
-              </a>
-              <div className="flex items-center mt-0 pt-2 border-t border-gray-100">
-                {previewData.favicon && (
-                  <img
-                    src={previewData.favicon}
-                    alt="favicon"
-                    className="w-[18px] h-[18px] mr-2 rounded bg-gray-100"
-                  />
-                )}
-                <span className="text-gray-500 text-xs truncate">{previewData.url}</span>
-              </div>
+                  </div>
+                  <div className="flex items-center mt-0 pt-2 border-t border-gray-100">
+                    {previewData.favicon && (
+                      <img
+                        src={previewData.favicon}
+                        alt="favicon"
+                        className="w-[18px] h-[18px] mr-2 rounded bg-gray-100"
+                      />
+                    )}
+                    <span className="text-gray-500 text-xs truncate">{previewData.url}</span>
+                  </div>
+                </a>
+              ) : (
+                // If button exists, only title/description are clickable
+                <>
+                  {previewData.og_image && (
+                    <div className="-mt-6 -mx-6 mb-0 rounded-t-xl overflow-hidden">
+                      <img
+                        src={previewData.og_image}
+                        alt="preview"
+                        className="w-full h-40 object-cover block"
+                      />
+                    </div>
+                  )}
+                  <div className="pt-4 pb-2">
+                    <a
+                      href={previewData.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="no-underline hover:no-underline focus:no-underline active:no-underline block"
+                      style={{ textDecoration: 'none', borderBottom: 'none' }}
+                    >
+                      <span
+                        className="font-semibold text-lg text-[#232323] mb-1.5 leading-tight block"
+                      >
+                        {previewData.title}
+                      </span>
+                      <span
+                        className="block text-gray-700 text-sm mb-3 leading-snug"
+                      >
+                        {previewData.description}
+                      </span>
+                    </a>
+                  </div>
+                  <div className="flex items-center mt-0 pt-2 border-t border-gray-100">
+                    {previewData.favicon && (
+                      <img
+                        src={previewData.favicon}
+                        alt="favicon"
+                        className="w-[18px] h-[18px] mr-2 rounded bg-gray-100"
+                      />
+                    )}
+                    <span className="text-gray-500 text-xs truncate">{previewData.url}</span>
+                  </div>
+                </>
+              )}
               {showButton && previewData.url && (
                 openInPopup ? (
                   <button

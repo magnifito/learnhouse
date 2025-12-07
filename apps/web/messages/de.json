@@ -381,6 +381,98 @@
     "desktopOnlyMessage": "Diese Seite ist nur von einem Desktop-Gerät aus zugänglich.",
     "switchToDesktop": "Bitte wechseln Sie zu einem Desktop, um Benutzereinstellungen anzuzeigen und zu verwalten."
   },
+  "signups": {
+    "joinMethod": "Beitrittsmethode",
+    "joinMethodDescription": "Wählen Sie, wie Benutzer Ihrer Organisation beitreten können",
+    "open": {
+      "title": "Offen",
+      "description": "Benutzer können sich frei von der Anmeldeseite aus anmelden",
+      "active": "Aktiv",
+      "changeTo": "Auf offen ändern",
+      "changeConfirm": "Möchten Sie den Anmeldemechanismus wirklich auf offen ändern? Dies ermöglicht es Benutzern, sich frei in Ihrer Organisation anzumelden.",
+      "changeTitle": "Auf offen ändern?"
+    },
+    "closed": {
+      "title": "Geschlossen",
+      "description": "Benutzer können nur per Einladung beitreten",
+      "active": "Aktiv",
+      "changeTo": "Auf geschlossen ändern",
+      "changeConfirm": "Möchten Sie den Anmeldemechanismus wirklich auf geschlossen ändern? Dies ermöglicht es Benutzern, sich nur per Einladung in Ihrer Organisation anzumelden.",
+      "changeTitle": "Auf geschlossen ändern?"
+    },
+    "inviteCodes": {
+      "title": "Einladungscodes",
+      "description": "Einladungscodes können kopiert und zum Beitritt zu Ihrer Organisation verwendet werden",
+      "tableHeaders": {
+        "code": "Code",
+        "signupLink": "Anmeldelink",
+        "type": "Typ",
+        "expirationDate": "Ablaufdatum",
+        "actions": "Aktionen"
+      },
+      "types": {
+        "linkedToUserGroup": "Mit einer Benutzergruppe verknüpft",
+        "normal": "Normal"
+      },
+      "deleteCode": "Code löschen",
+      "deleteConfirm": "Möchten Sie diesen Einladungscode wirklich entfernen?",
+      "deleteTitle": "Code löschen?",
+      "generate": {
+        "title": "Einladungscode erstellen",
+        "description": "Erstellen Sie einen neuen Einladungscode für Ihre Organisation",
+        "button": "Einladungscode erstellen",
+        "linkedToUserGroup": {
+          "title": "Mit einer Benutzergruppe verknüpfter Einladungscode",
+          "description": "Bei der Anmeldung werden Benutzer automatisch mit einer Benutzergruppe Ihrer Wahl verknüpft",
+          "generate": "Erstellen"
+        },
+        "normal": {
+          "title": "Normaler Einladungscode",
+          "description": "Bei der Anmeldung wird der Benutzer nicht mit einer Benutzergruppe verknüpft",
+          "generate": "Erstellen"
+        },
+        "noUserGroups": "Keine Benutzergruppen verfügbar",
+        "createUserGroup": "Benutzergruppe erstellen"
+      }
+    },
+    "toasts": {
+      "deleting": "Wird gelöscht...",
+      "deleted": "Einladungscode gelöscht",
+      "deleteError": "Fehler beim Löschen",
+      "changing": "Beitrittsmethode wird geändert...",
+      "changed": "Beitrittsmethode geändert zu {method}",
+      "changeError": "Fehler beim Ändern der Beitrittsmethode",
+      "generateError": "Fehler {status}: {detail}"
+    }
+  },
+  "inviteMembers": {
+    "title": "Benutzer zu Ihrer Organisation einladen",
+    "description": "Einladung per E-Mail senden, durch Komma getrennt",
+    "emailPlaceholder": "Beispiel: spike.spiegel@bepop.space, michael.scott@dundermifflin.com",
+    "inviteCode": "Einladungscode",
+    "inviteCodeTooltip": "Verwenden Sie einen der Einladungscodes, die Sie von der Anmeldezugriffsseite generiert haben",
+    "sendInvites": "Einladungen per E-Mail senden",
+    "invitedUsers": {
+      "title": "Eingeladene Benutzer",
+      "description": "Benutzer, die eingeladen wurden, Ihrer Organisation beizutreten",
+      "tableHeaders": {
+        "email": "E-Mail",
+        "signupStatus": "Anmeldestatus",
+        "emailSent": "E-Mail gesendet"
+      },
+      "status": {
+        "pending": "Ausstehend",
+        "signed": "Angemeldet",
+        "sent": "Gesendet",
+        "no": "Nein"
+      }
+    },
+    "toasts": {
+      "sending": "Einladung wird gesendet...",
+      "sent": "Einladung gesendet",
+      "error": "Fehler beim Senden der Einladung"
+    }
+  },
   "usergroups": {
     "title": "Benutzergruppen & Benutzer verwalten",
     "description": "UserGroups are a way to group users together to manage their access to the resources (Courses) in your organization.",

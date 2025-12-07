@@ -17,11 +17,43 @@ import { Label } from "@components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@components/ui/select"
 import { Switch } from "@components/ui/switch"
 import { mutate } from 'swr'
-import { getAPIUrl } from '@services/config/config'
+import { getAPIUrl, getConfig } from '@services/config/config'
 import Image from 'next/image'
 import learnhouseIcon from '@public/learnhouse_logo.png'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+
+function useExploreFeatureEnabled(): boolean {
+  const [isEnabled, setIsEnabled] = React.useState(false)
+
+  React.useEffect(() => {
+    // Check environment variable for explore feature
+    function checkExploreEnabled(): boolean {
+      // Check client-side runtime config
+      if (typeof window !== 'undefined') {
+        const runtimeConfig = (window as any).__RUNTIME_CONFIG__
+        const envValue = runtimeConfig?.NEXT_PUBLIC_LEARNHOUSE_EXPLORE_ENABLED
+        
+        if (envValue !== undefined && envValue !== null) {
+          return envValue === 'true' || envValue === '1' || envValue === 'yes'
+        }
+      }
+      
+      // Check process.env (server-side or fallback)
+      const envValue = getConfig('NEXT_PUBLIC_LEARNHOUSE_EXPLORE_ENABLED', '')
+      if (envValue) {
+        return envValue === 'true' || envValue === '1' || envValue === 'yes'
+      }
+      
+      // Default to false if not set
+      return false
+    }
+    
+    setIsEnabled(checkExploreEnabled())
+  }, [])
+
+  return isEnabled
+}
 
 const ORG_LABELS = [
   { value: 'languages', label: '🌐 Languages' },
@@ -84,19 +116,25 @@ const OrgEditGeneral: React.FC = () => {
   const org = useOrg() as any
   const t = useTranslations()
   const validationSchema = createValidationSchema(t)
+  const isExploreEnabled = useExploreFeatureEnabled()
 
   const initialValues: OrganizationValues = {
     name: org?.name,
     description: org?.description || '',
     about: org?.about || '',
     label: org?.label || '',
-    explore: org?.explore ?? false,
+    explore: isExploreEnabled ? (org?.explore ?? false) : false,
   }
 
   const updateOrg = async (values: OrganizationValues) => {
     const loadingToast = toast.loading(t('organization.updatingOrganization'))
     try {
-      await updateOrganization(org.id, values, access_token)
+      // Exclude explore field if feature is disabled
+      const valuesToSend = { ...values }
+      if (!isExploreEnabled) {
+        delete valuesToSend.explore
+      }
+      await updateOrganization(org.id, valuesToSend, access_token)
       await revalidateTags(['organizations'], org.slug)
       mutate(`${getAPIUrl()}orgs/slug/${org.slug}`)
       toast.success(t('organization.organizationUpdated'), { id: loadingToast })
@@ -137,7 +175,7 @@ const OrgEditGeneral: React.FC = () => {
                       <Label htmlFor="name">
                         {t('organization.organizationName')}
                         <span className="text-gray-500 text-sm ml-2">
-                          ({t('charactersLeft', { count: 60 - (values.name?.length || 0) })})
+                          ({t('organization.charactersLeft', { count: 60 - (values.name?.length || 0) })})
                         </span>
                       </Label>
                       <Input
@@ -157,7 +195,7 @@ const OrgEditGeneral: React.FC = () => {
                       <Label htmlFor="description">
                         {t('organization.shortDescription')}
                         <span className="text-gray-500 text-sm ml-2">
-                          ({t('charactersLeft', { count: 100 - (values.description?.length || 0) })})
+                          ({t('organization.charactersLeft', { count: 100 - (values.description?.length || 0) })})
                         </span>
                       </Label>
                       <Input
@@ -199,7 +237,7 @@ const OrgEditGeneral: React.FC = () => {
                       <Label htmlFor="about">
                         {t('organization.aboutOrganization')}
                         <span className="text-gray-500 text-sm ml-2">
-                          ({t('charactersLeft', { count: 400 - (values.about?.length || 0) })})
+                          ({t('organization.charactersLeft', { count: 400 - (values.about?.length || 0) })})
                         </span>
                       </Label>
                       <Textarea
@@ -216,35 +254,35 @@ const OrgEditGeneral: React.FC = () => {
                       )}
                     </div>
 
-                    
-
-                    <div className="flex items-center justify-between space-x-2 mt-6 bg-gray-50/50 p-4 rounded-lg nice-shadow">
-                      <div className="flex items-center space-x-4">
-                        <Link href="https://www.learnhouse.app/explore" target="_blank" className="flex items-center space-x-2">
-                          <Image
-                            quality={100}
-                            width={120}
-                            src={learnhouseIcon}
-                            alt="LearnHouse"
-                            className="rounded-lg"
-                          />
-                          <span className="px-2 py-1 mt-1 bg-black rounded-md text-[10px] font-semibold text-white">
-                            EXPLORE
-                          </span>
-                        </Link>
-                        <div className="space-y-0.5">
-                          <Label className="text-base">{t('organization.showcaseInExplore')}</Label>
-                          <p className="text-sm text-gray-500">
-                            {t('organization.showcaseDescription')}
-                          </p>
+                    {isExploreEnabled && (
+                      <div className="flex items-center justify-between space-x-2 mt-6 bg-gray-50/50 p-4 rounded-lg nice-shadow">
+                        <div className="flex items-center space-x-4">
+                          <Link href="https://www.learnhouse.app/explore" target="_blank" className="flex items-center space-x-2">
+                            <Image
+                              quality={100}
+                              width={120}
+                              src={learnhouseIcon}
+                              alt="LearnHouse"
+                              className="rounded-lg"
+                            />
+                            <span className="px-2 py-1 mt-1 bg-black rounded-md text-[10px] font-semibold text-white">
+                              EXPLORE
+                            </span>
+                          </Link>
+                          <div className="space-y-0.5">
+                            <Label className="text-base">{t('organization.showcaseInExplore')}</Label>
+                            <p className="text-sm text-gray-500">
+                              {t('organization.showcaseDescription')}
+                            </p>
+                          </div>
                         </div>
+                        <Switch
+                          name="explore"
+                          checked={values.explore ?? false}
+                          onCheckedChange={(checked) => setFieldValue('explore', checked)}
+                        />
                       </div>
-                      <Switch
-                        name="explore"
-                        checked={values.explore ?? false}
-                        onCheckedChange={(checked) => setFieldValue('explore', checked)}
-                      />
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>

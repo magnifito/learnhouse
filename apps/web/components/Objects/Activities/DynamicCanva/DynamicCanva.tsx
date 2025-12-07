@@ -24,6 +24,7 @@ import java from 'highlight.js/lib/languages/java'
 import { NoTextInput } from '@components/Objects/Editor/Extensions/NoTextInput/NoTextInput'
 import EditorOptionsProvider from '@components/Contexts/Editor/EditorContext'
 import AICanvaToolkit from './AI/AICanvaToolkit'
+import useGetAIFeatures from '@components/Hooks/useGetAIFeatures'
 import EmbedObjects from '@components/Objects/Editor/Extensions/EmbedObjects/EmbedObjects'
 import Badges from '@components/Objects/Editor/Extensions/Badges/Badges'
 import Buttons from '@components/Objects/Editor/Extensions/Buttons/Buttons'
@@ -155,10 +156,12 @@ function Canva(props: Editor) {
     content: props.content,
   })
 
+  const isAiEnabled = useGetAIFeatures({ feature: 'activity_ask' })
+
   return (
     <EditorOptionsProvider options={{ isEditable: false }}>
       <CanvaWrapper>
-        <AICanvaToolkit activity={props.activity} editor={editor} />
+        {isAiEnabled && <AICanvaToolkit activity={props.activity} editor={editor} />}
         <ContentWrapper>
           <TableOfContents editor={editor} />
           <EditorContent editor={editor} />

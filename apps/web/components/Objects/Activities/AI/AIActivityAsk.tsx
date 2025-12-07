@@ -24,21 +24,18 @@ type AIActivityAskProps = {
 
 function AIActivityAsk(props: AIActivityAskProps) {
   const is_ai_feature_enabled = useGetAIFeatures({ feature: 'activity_ask' })
-  const [isButtonAvailable, setIsButtonAvailable] = React.useState(false)
   const dispatchAIChatBot = useAIChatBotDispatch() as any
 
-  useEffect(() => {
-    if (is_ai_feature_enabled) {
-      setIsButtonAvailable(true)
-    }
-  }, [is_ai_feature_enabled])
+  // Don't render if AI is disabled
+  if (!is_ai_feature_enabled) {
+    return null
+  }
 
   return (
     <>
-      {isButtonAvailable && (
-        <div>
-          <ActivityChatMessageBox activity={props.activity} />
-          <div
+      <div>
+        <ActivityChatMessageBox activity={props.activity} />
+        <div
             onClick={() => dispatchAIChatBot({ type: 'setIsModalOpen' })}
             style={{
               background:
@@ -58,7 +55,6 @@ function AIActivityAsk(props: AIActivityAskProps) {
             <i className="not-italic text-xs font-bold">Ask AI</i>
           </div>
         </div>
-      )}
     </>
   )
 }

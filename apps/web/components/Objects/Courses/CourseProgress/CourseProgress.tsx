@@ -120,7 +120,7 @@ const CourseProgress: React.FC<CourseProgressProps> = ({ course, orgslug, isOpen
       onOpenChange={onClose}
       dialogContent={dialogContent}
       dialogTitle={t('courseActions.courseProgress')}
-      dialogDescription={t('progressSummary', { completed: completedActivities, total: totalActivities })}
+      dialogDescription={t('courseActions.progressSummary', { completed: completedActivities, total: totalActivities })}
       minWidth="md"
     />
   )

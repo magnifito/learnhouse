@@ -28,8 +28,8 @@ function AssignmentSubmissionsSubPage({ assignment_uuid }: { assignment_uuid: st
     const renderSubmissions = (status: string) => {
         return assignmentSubmission
             ?.filter((submission: any) => submission.submission_status === status)
-            .map((submission: any) => (
-                <SubmissionBox key={submission.submission_uuid} submission={submission} assignment_uuid={assignment_uuid} user_id={submission.user_id} />
+            .map((submission: any, index: number) => (
+                <SubmissionBox key={`${status}-${submission.submission_uuid || index}`} submission={submission} assignment_uuid={assignment_uuid} user_id={submission.user_id} />
             ));
     };
 

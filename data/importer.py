@@ -432,6 +432,66 @@ class LearnHouseImporter:
             print(f"❌ Unexpected error during login: {e}", file=sys.stderr)
             return None
     
+    def download_thumbnail_image(self, thumbnail_url: str) -> Optional[Tuple[bytes, str]]:
+        """Download thumbnail image from URL and return (image_bytes, filename)."""
+        if self.dry_run:
+            return (b"", "thumbnail.jpg")
+        
+        try:
+            if self.verbose:
+                print(f"   📥 Downloading thumbnail from {thumbnail_url[:60]}...")
+            
+            img_response = make_request_with_retry(
+                'GET',
+                thumbnail_url,
+                timeout=30,
+                stream=True
+            )
+            
+            if img_response.status_code != 200:
+                print(f"   ⚠️  Failed to download thumbnail: HTTP {img_response.status_code}", file=sys.stderr)
+                return None
+            
+            # Read the image content
+            image_content = img_response.content
+            
+            # Get content type and determine file extension
+            content_type = img_response.headers.get('content-type', '').lower()
+            if 'jpeg' in content_type or 'jpg' in content_type:
+                ext = 'jpg'
+            elif 'png' in content_type:
+                ext = 'png'
+            elif 'webp' in content_type:
+                ext = 'webp'
+            elif 'gif' in content_type:
+                ext = 'gif'
+            else:
+                # Try to get from URL
+                from urllib.parse import urlparse
+                parsed = urlparse(thumbnail_url)
+                path = parsed.path.lower()
+                if '.jpg' in path or '.jpeg' in path:
+                    ext = 'jpg'
+                elif '.png' in path:
+                    ext = 'png'
+                elif '.webp' in path:
+                    ext = 'webp'
+                elif '.gif' in path:
+                    ext = 'gif'
+                else:
+                    ext = 'jpg'  # Default
+            
+            filename = f"thumbnail.{ext}"
+            
+            if self.verbose:
+                print(f"   ✓ Thumbnail downloaded ({len(image_content)} bytes)")
+            
+            return (image_content, filename)
+            
+        except Exception as e:
+            print(f"   ⚠️  Error downloading thumbnail: {e}", file=sys.stderr)
+            return None
+    
     def create_course(self, course_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         """Create a new course."""
         print(f"Creating course '{course_data['name']}'...")
@@ -452,6 +512,7 @@ class LearnHouseImporter:
                 'name': course_data['name']
             }
         
+        # Prepare form data
         data = {
             "name": course_data['name'],
             "description": course_data.get('description', ''),
@@ -462,6 +523,22 @@ class LearnHouseImporter:
             "thumbnail_type": "image"
         }
         
+        # Download and prepare thumbnail if URL is provided
+        files = None
+        thumbnail_url = course_data.get('thumbnail_image_url')
+        if thumbnail_url:
+            thumbnail_result = self.download_thumbnail_image(thumbnail_url)
+            if thumbnail_result:
+                image_bytes, filename = thumbnail_result
+                # Prepare file for upload
+                files = {
+                    'thumbnail': (filename, image_bytes, f'image/{filename.split(".")[-1]}')
+                }
+                if self.verbose:
+                    print(f"   📤 Will upload thumbnail: {filename}")
+            else:
+                print(f"   ⚠️  Failed to download thumbnail, creating course without thumbnail", file=sys.stderr)
+        
         if self.verbose:
             print(f"   📤 POST {self.api_url}/api/v1/courses/?org_id={self.org_id}")
         
@@ -471,6 +548,7 @@ class LearnHouseImporter:
                 f"{self.api_url}/api/v1/courses/?org_id={self.org_id}",
                 headers=self.headers,
                 data=data,
+                files=files,
                 timeout=60
             )
             

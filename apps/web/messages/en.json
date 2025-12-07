@@ -381,6 +381,98 @@
     "desktopOnlyMessage": "This page is only accessible from a desktop device.",
     "switchToDesktop": "Please switch to a desktop to view and manage user settings."
   },
+  "signups": {
+    "joinMethod": "Join method",
+    "joinMethodDescription": "Choose how users can join your organization",
+    "open": {
+      "title": "Open",
+      "description": "Users can join freely from the signup page",
+      "active": "Active",
+      "changeTo": "Change to open",
+      "changeConfirm": "Are you sure you want to change the signup mechanism to open? This will allow users to join your organization freely.",
+      "changeTitle": "Change to open?"
+    },
+    "closed": {
+      "title": "Closed",
+      "description": "Users can join only by invitation",
+      "active": "Active",
+      "changeTo": "Change to closed",
+      "changeConfirm": "Are you sure you want to change the signup mechanism to closed? This will allow users to join your organization only by invitation.",
+      "changeTitle": "Change to closed?"
+    },
+    "inviteCodes": {
+      "title": "Invite codes",
+      "description": "Invite codes can be copied and used to join your organization",
+      "tableHeaders": {
+        "code": "Code",
+        "signupLink": "Signup link",
+        "type": "Type",
+        "expirationDate": "Expiration date",
+        "actions": "Actions"
+      },
+      "types": {
+        "linkedToUserGroup": "Linked to a UserGroup",
+        "normal": "Normal"
+      },
+      "deleteCode": "Delete Code",
+      "deleteConfirm": "Are you sure you want remove this invite code?",
+      "deleteTitle": "Delete code?",
+      "generate": {
+        "title": "Generate Invite Code",
+        "description": "Generate a new invite code for your organization",
+        "button": "Generate invite code",
+        "linkedToUserGroup": {
+          "title": "Invite Code linked to a UserGroup",
+          "description": "On Signup, Users will be automatically linked to a UserGroup of your choice",
+          "generate": "Generate"
+        },
+        "normal": {
+          "title": "Normal Invite Code",
+          "description": "On Signup, User will not be linked to any UserGroup",
+          "generate": "Generate"
+        },
+        "noUserGroups": "No UserGroups available",
+        "createUserGroup": "Create a UserGroup"
+      }
+    },
+    "toasts": {
+      "deleting": "Deleting...",
+      "deleted": "Deleted invite code",
+      "deleteError": "Error deleting",
+      "changing": "Changing join method...",
+      "changed": "Changed join method to {method}",
+      "changeError": "Error changing join method",
+      "generateError": "Error {status}: {detail}"
+    }
+  },
+  "inviteMembers": {
+    "title": "Invite users to your Organization",
+    "description": "Send invite via email, separated by comma",
+    "emailPlaceholder": "Example : spike.spiegel@bepop.space, michael.scott@dundermifflin.com",
+    "inviteCode": "Invite Code",
+    "inviteCodeTooltip": "Use one of the invite codes that you generated from the signup access page",
+    "sendInvites": "Send invites via email",
+    "invitedUsers": {
+      "title": "Invited Users",
+      "description": "Users who have been invited to join your organization",
+      "tableHeaders": {
+        "email": "Email",
+        "signupStatus": "Signup Status",
+        "emailSent": "Email sent"
+      },
+      "status": {
+        "pending": "Pending",
+        "signed": "Signed",
+        "sent": "Sent",
+        "no": "No"
+      }
+    },
+    "toasts": {
+      "sending": "Sending invite...",
+      "sent": "Invite sent",
+      "error": "Error sending invite"
+    }
+  },
   "usergroups": {
     "title": "Manage UserGroups & Users",
     "description": "UserGroups are a way to group users together to manage their access to the resources (Courses) in your organization.",

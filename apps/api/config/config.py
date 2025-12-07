@@ -46,8 +46,15 @@ class HostingConfig(BaseModel):
 
 
 class MailingConfig(BaseModel):
-    resend_api_key: str
-    system_email_address: str
+    email_provider: str = "smtp"  # "resend" or "smtp"
+    resend_api_key: str = ""
+    system_email_address: str = ""
+    # SMTP configuration
+    smtp_host: Optional[str] = None
+    smtp_port: Optional[int] = None
+    smtp_username: Optional[str] = None
+    smtp_password: Optional[str] = None
+    smtp_use_tls: Optional[bool] = True
 
 
 class DatabaseConfig(BaseModel):
@@ -225,14 +232,40 @@ def get_learnhouse_config() -> LearnHouseConfig:
     ).get("redis_connection_string")
 
     # Mailing config
+    env_email_provider = os.environ.get("LEARNHOUSE_EMAIL_PROVIDER", "smtp")
     env_resend_api_key = os.environ.get("LEARNHOUSE_RESEND_API_KEY")
     env_system_email_address = os.environ.get("LEARNHOUSE_SYSTEM_EMAIL_ADDRESS")
+    env_smtp_host = os.environ.get("LEARNHOUSE_SMTP_HOST")
+    env_smtp_port = os.environ.get("LEARNHOUSE_SMTP_PORT")
+    env_smtp_username = os.environ.get("LEARNHOUSE_SMTP_USERNAME")
+    env_smtp_password = os.environ.get("LEARNHOUSE_SMTP_PASSWORD")
+    env_smtp_use_tls_str = os.environ.get("LEARNHOUSE_SMTP_USE_TLS", "true")
+    
+    email_provider = env_email_provider or yaml_config.get("mailing_config", {}).get(
+        "email_provider", "smtp"
+    )
     resend_api_key = env_resend_api_key or yaml_config.get("mailing_config", {}).get(
-        "resend_api_key"
+        "resend_api_key", ""
     )
     system_email_address = env_system_email_address or yaml_config.get(
         "mailing_config", {}
-    ).get("system_email_address")
+    ).get("system_email_address", "")
+    
+    # SMTP config
+    smtp_host = env_smtp_host or yaml_config.get("mailing_config", {}).get(
+        "smtp_host"
+    )
+    smtp_port_str = env_smtp_port or yaml_config.get("mailing_config", {}).get(
+        "smtp_port"
+    )
+    smtp_port = int(smtp_port_str) if smtp_port_str else None
+    smtp_username = env_smtp_username or yaml_config.get("mailing_config", {}).get(
+        "smtp_username"
+    )
+    smtp_password = env_smtp_password or yaml_config.get("mailing_config", {}).get(
+        "smtp_password"
+    )
+    smtp_use_tls = env_smtp_use_tls_str.lower() in ("true", "1", "yes") if env_smtp_use_tls_str else True
 
     # Payments config
     env_stripe_secret_key = os.environ.get("LEARNHOUSE_STRIPE_SECRET_KEY")
@@ -298,7 +331,14 @@ def get_learnhouse_config() -> LearnHouseConfig:
         ai_config=ai_config,
         redis_config=RedisConfig(redis_connection_string=redis_connection_string),
         mailing_config=MailingConfig(
-            resend_api_key=resend_api_key, system_email_address=system_email_address
+            email_provider=email_provider,
+            resend_api_key=resend_api_key,
+            system_email_address=system_email_address,
+            smtp_host=smtp_host,
+            smtp_port=smtp_port,
+            smtp_username=smtp_username,
+            smtp_password=smtp_password,
+            smtp_use_tls=smtp_use_tls
         ),
         payments_config=InternalPaymentsConfig(
             stripe=InternalStripeConfig(

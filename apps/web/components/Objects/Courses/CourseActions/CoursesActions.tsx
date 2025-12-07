@@ -320,7 +320,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
                   <div className="flex-1">
                     <div className="text-sm font-medium text-gray-900">{t('courseActions.readyToBegin')}</div>
                     <div className="text-sm text-gray-500">
-                      {t('startJourney', { count: totalActivities })}
+                      {t('courseActions.startJourney', { count: totalActivities })}
                     </div>
                   </div>
                 </div>
@@ -380,7 +380,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
                 >
                   <div className="text-sm font-medium text-gray-900">{t('courseActions.courseProgress')}</div>
                   <div className="text-sm text-gray-500">
-                    {t('progressSummary', { completed: completedActivities, total: totalActivities })}
+                    {t('courseActions.progressSummary', { completed: completedActivities, total: totalActivities })}
                   </div>
                 </button>
               </div>

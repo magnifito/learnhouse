@@ -17,8 +17,10 @@ import { useRouter } from 'next/navigation'
 import Modal from '@components/Objects/StyledElements/Modal/Modal'
 import OrgInviteCodeGenerate from '@components/Objects/Modals/Dash/OrgAccess/OrgInviteCodeGenerate'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
+import { useTranslations } from 'next-intl'
 
 function OrgAccess() {
+  const t = useTranslations()
   const org = useOrg() as any
   const session = useLHSession() as any
   const access_token = session?.data?.tokens?.access_token;
@@ -42,25 +44,25 @@ function OrgAccess() {
   }
 
   async function deleteInvite(invite: any) {
-    const toastId = toast.loading("Deleting...")
+    const toastId = toast.loading(t('signups.toasts.deleting'))
     let res = await deleteInviteCode(org.id, invite.invite_code_uuid, access_token)
     if (res.status == 200) {
       mutate(`${getAPIUrl()}orgs/${org.id}/invites`)
-      toast.success("Deleted invite code", {id:toastId})
+      toast.success(t('signups.toasts.deleted'), {id:toastId})
     } else {
-      toast.error('Error deleting', {id:toastId})
+      toast.error(t('signups.toasts.deleteError'), {id:toastId})
     }
   }
 
   async function changeJoinMethod(method: 'open' | 'inviteOnly') {
-    const toastId = toast.loading("Changing join method...")
+    const toastId = toast.loading(t('signups.toasts.changing'))
     let res = await changeSignupMechanism(org.id, method, access_token)
     if (res.status == 200) {
       router.refresh()
       mutate(`${getAPIUrl()}orgs/slug/${org?.slug}`)
-      toast.success(`Changed join method to ${method}`, {id:toastId})
+      toast.success(t('signups.toasts.changed', { method: method === 'open' ? t('signups.open.title') : t('signups.closed.title') }), {id:toastId})
     } else {
-      toast.error('Error changing join method', {id:toastId})
+      toast.error(t('signups.toasts.changeError'), {id:toastId})
     }
   }
 
@@ -78,31 +80,30 @@ function OrgAccess() {
           <div className="h-6"></div>
           <div className="ml-10 mr-10 mx-auto bg-white rounded-xl shadow-xs px-4 py-4 anit ">
             <div className="flex flex-col bg-gray-50 -space-y-1  px-5 py-3 rounded-md mb-3 ">
-              <h1 className="font-bold text-xl text-gray-800">Join method</h1>
+              <h1 className="font-bold text-xl text-gray-800">{t('signups.joinMethod')}</h1>
               <h2 className="text-gray-500  text-md">
-                {' '}
-                Choose how users can join your organization{' '}
+                {t('signups.joinMethodDescription')}
               </h2>
             </div>
             <div className="flex space-x-2 mx-auto">
               <ConfirmationModal
-                confirmationButtonText="Change to open "
-                confirmationMessage="Are you sure you want to change the signup mechanism to open ? This will allow users to join your organization freely."
-                dialogTitle={'Change to open ?'}
+                confirmationButtonText={t('signups.open.changeTo')}
+                confirmationMessage={t('signups.open.changeConfirm')}
+                dialogTitle={t('signups.open.changeTitle')}
                 dialogTrigger={
                   <div className="w-full h-[160px] bg-slate-100 rounded-lg cursor-pointer hover:bg-slate-200 ease-linear transition-all">
                     {joinMethod == 'open' ? (
                       <div className="bg-green-200 text-green-600 font-bold w-fit my-3 mx-3 absolute text-sm px-3 py-1 rounded-lg">
-                        Active
+                        {t('signups.open.active')}
                       </div>
                     ) : null}
                     <div className="flex flex-col space-y-1 justify-center items-center h-full">
                       <Globe className="text-slate-400" size={40}></Globe>
                       <div className="text-2xl text-slate-700 font-bold">
-                        Open
+                        {t('signups.open.title')}
                       </div>
                       <div className="text-gray-400 text-center">
-                        Users can join freely from the signup page
+                        {t('signups.open.description')}
                       </div>
                     </div>
                   </div>
@@ -113,23 +114,23 @@ function OrgAccess() {
                 status="info"
               ></ConfirmationModal>
               <ConfirmationModal
-                confirmationButtonText="Change to closed "
-                confirmationMessage="Are you sure you want to change the signup mechanism to closed ? This will allow users to join your organization only by invitation."
-                dialogTitle={'Change to closed ?'}
+                confirmationButtonText={t('signups.closed.changeTo')}
+                confirmationMessage={t('signups.closed.changeConfirm')}
+                dialogTitle={t('signups.closed.changeTitle')}
                 dialogTrigger={
                   <div className="w-full h-[160px] bg-slate-100 rounded-lg cursor-pointer hover:bg-slate-200 ease-linear transition-all">
                     {joinMethod == 'inviteOnly' ? (
                       <div className="bg-green-200 text-green-600 font-bold w-fit my-3 mx-3 absolute text-sm px-3 py-1 rounded-lg">
-                        Active
+                        {t('signups.closed.active')}
                       </div>
                     ) : null}
                     <div className="flex flex-col space-y-1 justify-center items-center h-full">
                       <Ticket className="text-slate-400" size={40}></Ticket>
                       <div className="text-2xl text-slate-700 font-bold">
-                        Closed
+                        {t('signups.closed.title')}
                       </div>
                       <div className="text-gray-400 text-center">
-                        Users can join only by invitation
+                        {t('signups.closed.description')}
                       </div>
                     </div>
                   </div>
@@ -149,20 +150,20 @@ function OrgAccess() {
             >
               <div className="flex flex-col bg-gray-50 -space-y-1  px-5 py-3 rounded-md mt-3 mb-3 ">
                 <h1 className="font-bold text-xl text-gray-800">
-                  Invite codes
+                  {t('signups.inviteCodes.title')}
                 </h1>
                 <h2 className="text-gray-500  text-md">
-                  Invite codes can be copied and used to join your organization{' '}
+                  {t('signups.inviteCodes.description')}
                 </h2>
               </div>
               <table className="table-auto w-full text-left whitespace-nowrap rounded-md overflow-hidden">
                 <thead className="bg-gray-100 text-gray-500 rounded-xl uppercase">
                   <tr className="font-bolder text-sm">
-                    <th className="py-3 px-4">Code</th>
-                    <th className="py-3 px-4">Signup link</th>
-                    <th className="py-3 px-4">Type</th>
-                    <th className="py-3 px-4">Expiration date</th>
-                    <th className="py-3 px-4">Actions</th>
+                    <th className="py-3 px-4">{t('signups.inviteCodes.tableHeaders.code')}</th>
+                    <th className="py-3 px-4">{t('signups.inviteCodes.tableHeaders.signupLink')}</th>
+                    <th className="py-3 px-4">{t('signups.inviteCodes.tableHeaders.type')}</th>
+                    <th className="py-3 px-4">{t('signups.inviteCodes.tableHeaders.expirationDate')}</th>
+                    <th className="py-3 px-4">{t('signups.inviteCodes.tableHeaders.actions')}</th>
                   </tr>
                 </thead>
                 <>
@@ -190,12 +191,12 @@ function OrgAccess() {
                           {invite.usergroup_id ? (
                             <div className="flex space-x-2 items-center">
                               <UserSquare className="w-4 h-4" />
-                              <span>Linked to a UserGroup</span>
+                              <span>{t('signups.inviteCodes.types.linkedToUserGroup')}</span>
                             </div>
                           ) : (
                             <div className="flex space-x-2 items-center">
                               <Users className="w-4 h-4" />
-                              <span>Normal</span>
+                              <span>{t('signups.inviteCodes.types.normal')}</span>
                             </div>
                           )}
                         </td>
@@ -206,13 +207,13 @@ function OrgAccess() {
                         </td>
                         <td className="py-3 px-4">
                           <ConfirmationModal
-                            confirmationButtonText="Delete Code"
-                            confirmationMessage="Are you sure you want remove this invite code ?"
-                            dialogTitle={'Delete code ?'}
+                            confirmationButtonText={t('signups.inviteCodes.deleteCode')}
+                            confirmationMessage={t('signups.inviteCodes.deleteConfirm')}
+                            dialogTitle={t('signups.inviteCodes.deleteTitle')}
                             dialogTrigger={
                               <button className="mr-2 flex space-x-2 hover:cursor-pointer p-1 px-3 bg-rose-700 rounded-md font-bold items-center text-sm text-rose-100">
                                 <X className="w-4 h-4" />
-                                <span> Delete code</span>
+                                <span> {t('signups.inviteCodes.deleteCode')}</span>
                               </button>
                             }
                             functionToExecute={() => {
@@ -241,16 +242,14 @@ function OrgAccess() {
                       setInvitesModal={setInvitesModal}
                     />
                   }
-                  dialogTitle="Generate Invite Code"
-                  dialogDescription={
-                    'Generate a new invite code for your organization'
-                  }
+                  dialogTitle={t('signups.inviteCodes.generate.title')}
+                  dialogDescription={t('signups.inviteCodes.generate.description')}
                   dialogTrigger={
                     <button
                       className=" flex space-x-2 hover:cursor-pointer p-1 px-3 bg-green-700 rounded-md font-bold items-center text-sm text-green-100"
                     >
                       <Ticket className="w-4 h-4" />
-                      <span> Generate invite code</span>
+                      <span> {t('signups.inviteCodes.generate.button')}</span>
                     </button>
                   }
                 />

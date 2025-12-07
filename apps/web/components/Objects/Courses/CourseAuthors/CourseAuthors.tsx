@@ -120,7 +120,7 @@ const MultipleAuthors = ({ authors, isMobile }: { authors: Author[], isMobile: b
               ))}
               {authors.length > 2 && (
                 <span className="text-neutral-500 ml-1">
-                  {t('andMore', { count: authors.length - 2 })}
+                  {t('courseAuthors.andMore', { count: authors.length - 2 })}
                 </span>
               )}
             </>
@@ -146,6 +146,7 @@ const MultipleAuthors = ({ authors, isMobile }: { authors: Author[], isMobile: b
 }
 
 const UpdatesSection = () => {
+  const t = useTranslations()
   const [selectedView, setSelectedView] = React.useState('list')
   const adminStatus = useAdminStatus()
   const course = useCourse() as any
@@ -166,7 +167,7 @@ const UpdatesSection = () => {
           </div>
           {updates && updates.length > 0 && (
             <span className="px-2 py-0.5 text-[11px] font-medium bg-neutral-100 text-neutral-500 rounded-full">
-              {t('updateCount', { count: updates.length })}
+              {t('courseAuthors.updateCount', { count: updates.length })}
             </span>
           )}
         </div>
@@ -207,6 +208,7 @@ const UpdatesSection = () => {
 }
 
 const NewUpdateForm = ({ setSelectedView }: { setSelectedView: (view: string) => void }) => {
+  const t = useTranslations()
   const org = useOrg() as any
   const course = useCourse() as any
   const session = useLHSession() as any
@@ -288,6 +290,7 @@ const NewUpdateForm = ({ setSelectedView }: { setSelectedView: (view: string) =>
 }
 
 const UpdatesListView = () => {
+  const t = useTranslations()
   const course = useCourse() as any
   const adminStatus = useAdminStatus()
   const session = useLHSession() as any
@@ -344,6 +347,7 @@ const UpdatesListView = () => {
 }
 
 const DeleteUpdateButton = ({ update }: any) => {
+  const t = useTranslations()
   const session = useLHSession() as any
   const course = useCourse() as any
 
