@@ -4,10 +4,12 @@
   "about": "# Welcome to ACME Learning Academy\n\nACME Learning Academy is a premier educational platform specializing in marketing and sales training. We provide comprehensive courses designed to help professionals excel in their careers.\n\n## Our Mission\n\nTo empower marketing and sales professionals with the knowledge and skills needed to succeed in today's competitive business landscape.\n\n## What We Offer\n\n- **Marketing Courses**: Learn modern marketing strategies, digital marketing, content creation, and analytics\n- **Sales Training**: Master sales techniques, customer relationship management, and closing strategies\n- **Practical Skills**: Hands-on learning with real-world case studies and projects\n- **Expert Instructors**: Learn from industry veterans with years of experience\n\n## Why Choose ACME?\n\n- Industry-leading curriculum\n- Flexible learning schedules\n- Certificate programs\n- Community support and networking opportunities",
   "slug": "default",
   "email": "contact@acme-learning.com",
-  "label": "Learn. Grow. Succeed.",
+  "label": "education",
   "default_locale": "en",
   "supported_locales": [
-    "en"
+    "en",
+    "es",
+    "fr"
   ],
   "explore": true,
   "logo_image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=400&fit=crop",
@@ -16,7 +18,8 @@
     "twitter": "https://twitter.com/acmelearning",
     "linkedin": "https://linkedin.com/company/acme-learning-academy",
     "youtube": "https://youtube.com/@acmelearning",
-    "facebook": "https://facebook.com/acmelearning"
+    "facebook": "https://facebook.com/acmelearning",
+    "instagram": "https://instagram.com/acmelearning"
   },
   "links": {
     "website": "https://acme-learning.com",
@@ -25,10 +28,39 @@
     "privacy": "https://acme-learning.com/privacy",
     "terms": "https://acme-learning.com/terms"
   },
-  "scripts": {},
+  "scripts": {
+    "scripts": [
+      {
+        "name": "Google Analytics",
+        "content": "<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'UA-XXXXX-Y');\n</script>"
+      },
+      {
+        "name": "Chat Widget",
+        "content": "<script>\n  window.chatConfig = { appId: 'acme-123' };\n</script>"
+      }
+    ]
+  },
   "previews": {
-    "primary": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=1080&fit=crop",
-    "secondary": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&h=1080&fit=crop"
+    "images": [
+      {
+        "filename": "campus_life.jpg",
+        "url": "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&fit=crop",
+        "order": 0
+      },
+      {
+        "filename": "classroom.jpg",
+        "url": "https://images.unsplash.com/photo-1577896332189-8200d7242d29?w=800&fit=crop",
+        "order": 1
+      }
+    ],
+    "videos": [
+      {
+        "id": "dQw4w9WgXcQ",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "type": "youtube",
+        "order": 2
+      }
+    ]
   },
   "config": {
     "config_version": "1.3",
@@ -89,6 +121,129 @@
       "plan": "standard",
       "custom_domain": false
     },
-    "landing": {}
+    "landing": {
+      "enabled": true,
+      "sections": [
+        {
+          "type": "hero",
+          "title": "Main Hero",
+          "background": {
+            "type": "gradient",
+            "colors": [
+              "#1e1b4b",
+              "#4338ca"
+            ],
+            "direction": "45deg"
+          },
+          "heading": {
+            "text": "Master Your Future with ACME",
+            "color": "#ffffff",
+            "size": "large"
+          },
+          "subheading": {
+            "text": "Join thousands of professionals transforming their careers through our expert-led courses.",
+            "color": "#e0e7ff",
+            "size": "medium"
+          },
+          "buttons": [
+            {
+              "text": "Get Started",
+              "link": "/courses",
+              "color": "#ffffff",
+              "background": "#4f46e5"
+            },
+            {
+              "text": "Learn More",
+              "link": "#about",
+              "color": "#ffffff",
+              "background": "transparent"
+            }
+          ],
+          "contentAlign": "center"
+        },
+        {
+          "type": "logos",
+          "title": "Trusted by Industry Leaders",
+          "logos": [
+            {
+              "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png",
+              "alt": "Google"
+            },
+            {
+              "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/2560px-IBM_logo.svg.png",
+              "alt": "IBM"
+            },
+            {
+              "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png",
+              "alt": "Microsoft"
+            },
+            {
+              "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/2560px-Amazon_Web_Services_Logo.svg.png",
+              "alt": "AWS"
+            }
+          ]
+        },
+        {
+          "type": "text-and-image",
+          "title": "Expert-Led Instruction",
+          "text": "## Learn from the Best\n\nOur instructors are industry veterans with years of experience at top companies. They bring real-world knowledge and practical insights to every lesson.\n\n- **Accessible**: Learn at your own pace, anywhere, anytime\n- **Interactive**: Engage with quizzes, assignments, and projects\n- **Certified**: Earn recognized certificates upon completion",
+          "flow": "left",
+          "image": {
+            "url": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&fit=crop",
+            "alt": "Instructor teaching"
+          },
+          "buttons": [
+            {
+              "text": "Meet Our Team",
+              "link": "/instructors",
+              "color": "#ffffff",
+              "background": "#111827"
+            }
+          ]
+        },
+        {
+          "type": "featured-courses",
+          "title": "Popular Courses",
+          "courses": [
+            {
+              "course_uuid": "marketing-101"
+            },
+            {
+              "course_uuid": "sales-mastery"
+            },
+            {
+              "course_uuid": "digital-marketing"
+            }
+          ]
+        },
+        {
+          "type": "people",
+          "title": "Meet Our Mentors",
+          "people": [
+            {
+              "user_uuid": "mentor-1",
+              "name": "Sarah Johnson",
+              "description": "Marketing Director at Tech Corp",
+              "image_url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&fit=crop",
+              "username": "sarahj"
+            },
+            {
+              "user_uuid": "mentor-2",
+              "name": "Michael Chen",
+              "description": "Senior Sales Executive",
+              "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&fit=crop",
+              "username": "michaelc"
+            },
+            {
+              "user_uuid": "mentor-3",
+              "name": "Emily Davis",
+              "description": "Content Strategist",
+              "image_url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&fit=crop",
+              "username": "emilyd"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

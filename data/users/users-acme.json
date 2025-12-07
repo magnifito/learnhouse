@@ -1,0 +1,98 @@
+[
+    {
+        "id": "mentor-1",
+        "username": "sarahj",
+        "email": "sarah.johnson@example.com",
+        "first_name": "Sarah",
+        "last_name": "Johnson",
+        "bio": "Marketing Director at Tech Corp with over 15 years of experience in digital marketing and brand strategy.",
+        "avatar_url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&fit=crop",
+        "password": "Password123!",
+        "details": {
+            "job": {
+                "id": "job",
+                "label": "Title",
+                "icon": "briefcase",
+                "text": "Marketing Director"
+            },
+            "company": {
+                "id": "company",
+                "label": "Company",
+                "icon": "building-2",
+                "text": "Tech Corp"
+            },
+            "location": {
+                "id": "location",
+                "label": "Location",
+                "icon": "map-pin",
+                "text": "San Francisco, CA"
+            },
+            "website": {
+                "id": "website",
+                "label": "Portfolio",
+                "icon": "globe",
+                "text": "sarahjohnson.com"
+            }
+        }
+    },
+    {
+        "id": "mentor-2",
+        "username": "michaelc",
+        "email": "michael.chen@example.com",
+        "first_name": "Michael",
+        "last_name": "Chen",
+        "bio": "Senior Sales Executive specializing in B2B enterprise sales and team leadership.",
+        "avatar_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&fit=crop",
+        "password": "Password123!",
+        "details": {
+            "expertise": {
+                "id": "expertise",
+                "label": "Expertise",
+                "icon": "speciality",
+                "text": "B2B Sales, Negotiation"
+            },
+            "industry": {
+                "id": "industry",
+                "label": "Industry",
+                "icon": "briefcase",
+                "text": "SaaS / Technology"
+            },
+            "linkedin": {
+                "id": "linkedin",
+                "label": "LinkedIn",
+                "icon": "link",
+                "text": "linkedin.com/in/michaelchen"
+            }
+        }
+    },
+    {
+        "id": "mentor-3",
+        "username": "emilyd",
+        "email": "emily.davis@example.com",
+        "first_name": "Emily",
+        "last_name": "Davis",
+        "bio": "Content Strategist helping brands tell their stories through compelling narratives.",
+        "avatar_url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&fit=crop",
+        "password": "Password123!",
+        "details": {
+            "education": {
+                "id": "education",
+                "label": "Education",
+                "icon": "graduation-cap",
+                "text": "MA in Communications"
+            },
+            "university": {
+                "id": "university",
+                "label": "University",
+                "icon": "building-2",
+                "text": "Stanford University"
+            },
+            "years": {
+                "id": "years",
+                "label": "Experience",
+                "icon": "award",
+                "text": "8+ Years"
+            }
+        }
+    }
+]

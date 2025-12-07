@@ -1,0 +1,84 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "required": [
+            "id",
+            "username",
+            "email",
+            "first_name",
+            "last_name"
+        ],
+        "properties": {
+            "id": {
+                "type": "string",
+                "description": "Placeholder ID for linking with organization data (e.g., mentor-1)"
+            },
+            "username": {
+                "type": "string"
+            },
+            "email": {
+                "type": "string",
+                "format": "email"
+            },
+            "first_name": {
+                "type": "string"
+            },
+            "last_name": {
+                "type": "string"
+            },
+            "bio": {
+                "type": "string",
+                "maxLength": 400
+            },
+            "avatar_url": {
+                "type": "string",
+                "format": "uri"
+            },
+            "password": {
+                "type": "string"
+            },
+            "details": {
+                "type": "object",
+                "description": "Additional details for the user profile (General, Academic, Professional)",
+                "additionalProperties": {
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "label",
+                        "icon"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "label": {
+                            "type": "string"
+                        },
+                        "icon": {
+                            "type": "string",
+                            "enum": [
+                                "briefcase",
+                                "graduation-cap",
+                                "map-pin",
+                                "building-2",
+                                "speciality",
+                                "globe",
+                                "laptop-2",
+                                "award",
+                                "book-open",
+                                "link",
+                                "users",
+                                "calendar"
+                            ]
+                        },
+                        "text": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

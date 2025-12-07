@@ -7,7 +7,7 @@ export default Node.create({
   name: 'calloutWarning',
   group: 'block',
   draggable: true,
-  content: 'text*',
+  content: 'block+',
 
   // TODO : multi line support
 

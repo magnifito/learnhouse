@@ -7,7 +7,7 @@ export default Node.create({
   name: 'calloutInfo',
   group: 'block',
   draggable: true,
-  content: 'text*',
+  content: 'block+',
 
   // TODO : multi line support
 

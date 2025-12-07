@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import styled from 'styled-components'
@@ -63,98 +64,99 @@ function Canva(props: Editor) {
   lowlight.register('python', python)
   lowlight.register('java', java)
 
+  const extensions = useMemo(() => [
+    StarterKit.configure({
+      heading: false,
+      bulletList: {
+        HTMLAttributes: {
+          class: 'bullet-list',
+        },
+      },
+      orderedList: {
+        HTMLAttributes: {
+          class: 'ordered-list',
+        },
+      },
+    }),
+    CustomHeading,
+    NoTextInput,
+    // Custom Extensions
+    InfoCallout.configure({
+      editable: isEditable,
+    }),
+    WarningCallout.configure({
+      editable: isEditable,
+    }),
+    ImageBlock.configure({
+      editable: isEditable,
+      activity: props.activity,
+    }),
+    VideoBlock.configure({
+      editable: true,
+      activity: props.activity,
+    }),
+    MathEquationBlock.configure({
+      editable: false,
+      activity: props.activity,
+    }),
+    PDFBlock.configure({
+      editable: true,
+      activity: props.activity,
+    }),
+    QuizBlock.configure({
+      editable: isEditable,
+      activity: props.activity,
+    }),
+    Youtube.configure({
+      controls: true,
+      modestBranding: true,
+    }),
+    CodeBlockLowlight.configure({
+      lowlight,
+    }),
+    EmbedObjects.configure({
+      editable: isEditable,
+      activity: props.activity,
+    }),
+    Badges.configure({
+      editable: isEditable,
+      activity: props.activity,
+    }),
+    Buttons.configure({
+      editable: isEditable,
+      activity: props.activity,
+    }),
+    UserBlock.configure({
+      editable: isEditable,
+      activity: props.activity,
+    }),
+    Table.configure({
+      resizable: true,
+    }),
+    getLinkExtension(),
+    WebPreview.configure({
+      editable: true,
+      activity: props.activity,
+    }),
+    Flipcard.configure({
+      editable: false,
+      activity: props.activity,
+    }),
+    Scenarios.configure({
+      editable: false,
+      activity: props.activity,
+    }),
+    TableRow,
+    TableHeader,
+    TableCell,
+  ], [isEditable, props.activity])
+
   const editor: any = useEditor({
     immediatelyRender: false,
     editable: isEditable,
-    extensions: [
-      StarterKit.configure({
-        heading: false,
-        bulletList: {
-          HTMLAttributes: {
-            class: 'bullet-list',
-          },
-        },
-        orderedList: {
-          HTMLAttributes: {
-            class: 'ordered-list',
-          },
-        },
-      }),
-      CustomHeading,
-      NoTextInput,
-      // Custom Extensions
-      InfoCallout.configure({
-        editable: isEditable,
-      }),
-      WarningCallout.configure({
-        editable: isEditable,
-      }),
-      ImageBlock.configure({
-        editable: isEditable,
-        activity: props.activity,
-      }),
-      VideoBlock.configure({
-        editable: true,
-        activity: props.activity,
-      }),
-      MathEquationBlock.configure({
-        editable: false,
-        activity: props.activity,
-      }),
-      PDFBlock.configure({
-        editable: true,
-        activity: props.activity,
-      }),
-      QuizBlock.configure({
-        editable: isEditable,
-        activity: props.activity,
-      }),
-      Youtube.configure({
-        controls: true,
-        modestBranding: true,
-      }),
-      CodeBlockLowlight.configure({
-        lowlight,
-      }),
-      EmbedObjects.configure({
-        editable: isEditable,
-        activity: props.activity,
-      }),
-      Badges.configure({
-        editable: isEditable,
-        activity: props.activity,
-      }),
-      Buttons.configure({
-        editable: isEditable,
-        activity: props.activity,
-      }),
-      UserBlock.configure({
-        editable: isEditable,
-        activity: props.activity,
-      }),
-      Table.configure({
-        resizable: true,
-      }),
-      getLinkExtension(),
-      WebPreview.configure({
-        editable: true,
-        activity: props.activity,
-      }),
-      Flipcard.configure({
-        editable: false,
-        activity: props.activity,
-      }),
-      Scenarios.configure({
-        editable: false,
-        activity: props.activity,
-      }),
-      TableRow,
-      TableHeader,
-      TableCell,
-    ],
-
+    extensions,
     content: props.content,
-  })
+  }, [extensions, props.content])
 
   const isAiEnabled = useGetAIFeatures({ feature: 'activity_ask' })
 
