@@ -58,5 +58,4 @@ logs/
 data/images/
 codemap.md
 .agent/workflows/ui-ux-pro-max.md
-.gitignore
 .cursor/commands/ui-ux-pro-max.md

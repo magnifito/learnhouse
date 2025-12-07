@@ -763,6 +763,7 @@
     "addVideo": "Добави Видео",
     "addVideoPreview": "Добави Видео Визуализация",
     "dragDropImages": "Плъзнете и пуснете изображения тук",
+    "maxPreviews": "Макс {max} прегледа",
     "pasteYouTubeOrLoom": "Поставете вашия YouTube или Loom видео URL"
   },
   "dashboardHome": {

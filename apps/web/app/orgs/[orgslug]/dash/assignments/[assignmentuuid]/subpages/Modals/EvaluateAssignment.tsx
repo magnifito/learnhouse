@@ -1,7 +1,7 @@
 import { useAssignments } from '@components/Contexts/Assignments/AssignmentContext';
 import { BookOpenCheck, Check, Download, Info, MoveRight, X } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 import TaskQuizObject from '../../_components/TaskEditor/Subs/TaskTypes/TaskQuizObject';
 import TaskFileObject from '../../_components/TaskEditor/Subs/TaskTypes/TaskFileObject';
 import TaskFormObject from '../../_components/TaskEditor/Subs/TaskTypes/TaskFormObject';
@@ -10,11 +10,40 @@ import { getTaskRefFileDir } from '@services/media/media';
 import { deleteUserSubmission, markActivityAsDoneForUser, putFinalGrade } from '@services/courses/assignments';
 import { useLHSession } from '@components/Contexts/LHSessionContext';
 import toast from 'react-hot-toast';
+import MiniInfoTooltip from '@components/Objects/MiniInfoTooltip';
 
 function EvaluateAssignment({ user_id }: any) {
     const assignments = useAssignments() as any;
     const session = useLHSession() as any;
     const org = useOrg() as any;
+    const [showHintTooltip, setShowHintTooltip] = useState<string | null>(null);
+
+    const handleHintClick = (taskUuid: string, hint: string) => {
+        if (showHintTooltip === taskUuid) {
+            setShowHintTooltip(null);
+        } else {
+            setShowHintTooltip(taskUuid);
+        }
+    };
+
+    const handleHintTooltipClose = () => {
+        setShowHintTooltip(null);
+    };
+
+    const infoIcon = (
+        <svg 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+        >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 16v-4" />
+            <path d="M12 8h.01" />
+        </svg>
+    );
 
     async function gradeAssignment() {
         const res = await putFinalGrade(user_id, assignments?.assignment_object.assignment_uuid, session.data?.tokens?.access_token);
@@ -53,11 +82,23 @@ function EvaluateAssignment({ user_id }: any) {
                                 <p className='text-slate-500'>{task.description}</p>
                             </div>
                             <div className='flex space-x-2'>
-                                <div
-                                    onClick={() => alert(task.hint)}
-                                    className='px-3 py-1 flex items-center nice-shadow bg-amber-50/40 text-amber-900 rounded-full space-x-2 cursor-pointer'>
-                                    <Info size={13} />
-                                    <p className='text-xs font-semibold'>Hint</p>
+                                <div className='relative'>
+                                    <div
+                                        onClick={() => handleHintClick(task.assignment_task_uuid, task.hint)}
+                                        className='px-3 py-1 flex items-center nice-shadow bg-amber-50/40 text-amber-900 rounded-full space-x-2 cursor-pointer'>
+                                        <Info size={13} />
+                                        <p className='text-xs font-semibold'>Hint</p>
+                                    </div>
+                                    {showHintTooltip === task.assignment_task_uuid && task.hint && (
+                                        <MiniInfoTooltip
+                                            icon={infoIcon}
+                                            message={task.hint}
+                                            onClose={handleHintTooltipClose}
+                                            iconColor="text-gray-600"
+                                            iconSize={24}
+                                            width="w-64"
+                                        />
+                                    )}
                                 </div>
                                 <Link
                                     href={getTaskRefFileDir(

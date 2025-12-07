@@ -129,7 +129,7 @@
     "noCertificateTitle": "Pas Encore de Certificat",
     "noCertificateMessage": "Vous n'avez pas encore obtenu de certificat pour ce cours.",
     "downloadPdf": "Télécharger le PDF",
-    "idLabel": "ID:",
+    "idLabel": "ID :",
     "certificateLabel": "Certificat de",
     "defaultDescription": "Pour la réussite des exigences du cours.",
     "awardedLabel": "Délivré le",
@@ -763,6 +763,7 @@
     "addVideo": "Ajouter une Vidéo",
     "addVideoPreview": "Ajouter un Aperçu Vidéo",
     "dragDropImages": "Glissez-déposez les images ici",
+    "maxPreviews": "Max {max} aperçus",
     "pasteYouTubeOrLoom": "Collez l'URL de votre vidéo YouTube ou Loom"
   },
   "dashboardHome": {

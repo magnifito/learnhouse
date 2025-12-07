@@ -7,17 +7,46 @@ import TaskQuizObject from 'app/orgs/[orgslug]/dash/assignments/[assignmentuuid]
 import TaskFormObject from 'app/orgs/[orgslug]/dash/assignments/[assignmentuuid]/_components/TaskEditor/Subs/TaskTypes/TaskFormObject'
 import { Backpack, Calendar, Download, EllipsisVertical, Info } from 'lucide-react';
 import Link from 'next/link';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl';
+import MiniInfoTooltip from '@components/Objects/MiniInfoTooltip';
 
 function AssignmentStudentActivity() {
   const t = useTranslations();
   const assignments = useAssignments() as any;
   const course = useCourse() as any;
   const org = useOrg() as any;
+  const [showHintTooltip, setShowHintTooltip] = useState<string | null>(null);
 
   useEffect(() => {
   }, [assignments, org])
+
+  const handleHintClick = (taskUuid: string, hint: string) => {
+    if (showHintTooltip === taskUuid) {
+      setShowHintTooltip(null);
+    } else {
+      setShowHintTooltip(taskUuid);
+    }
+  };
+
+  const handleHintTooltipClose = () => {
+    setShowHintTooltip(null);
+  };
+
+  const infoIcon = (
+    <svg 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 16v-4" />
+      <path d="M12 8h.01" />
+    </svg>
+  );
 
 
   return (
@@ -69,11 +98,23 @@ function AssignmentStudentActivity() {
                 <p className='text-slate-500 break-words'>{task.description}</p>
               </div>
               <div className='flex flex-wrap gap-2'>
-                <div
-                  onClick={() => alert(task.hint)}
-                  className='px-3 py-1 flex items-center nice-shadow bg-amber-50/40 text-amber-900 rounded-full space-x-2 cursor-pointer'>
-                  <Info size={13} />
-                  <p className='text-xs font-semibold'>{t('assignmentStudentView.hint')}</p>
+                <div className='relative'>
+                  <div
+                    onClick={() => handleHintClick(task.assignment_task_uuid, task.hint)}
+                    className='px-3 py-1 flex items-center nice-shadow bg-amber-50/40 text-amber-900 rounded-full space-x-2 cursor-pointer'>
+                    <Info size={13} />
+                    <p className='text-xs font-semibold'>{t('assignmentStudentView.hint')}</p>
+                  </div>
+                  {showHintTooltip === task.assignment_task_uuid && task.hint && (
+                    <MiniInfoTooltip
+                      icon={infoIcon}
+                      message={task.hint}
+                      onClose={handleHintTooltipClose}
+                      iconColor="text-gray-600"
+                      iconSize={24}
+                      width="w-64"
+                    />
+                  )}
                 </div>
                 <Link
                   href={getTaskRefFileDir(

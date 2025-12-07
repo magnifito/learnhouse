@@ -133,7 +133,7 @@
     "certificateLabel": "Certificado de",
     "defaultDescription": "Por completar exitosamente los requisitos del curso.",
     "awardedLabel": "Otorgado el",
-    "instructorLabel": "Instructor",
+    "instructorLabel": "Instructor:",
     "verifiedAt": "Verificado el",
     "downloadInstructions": "Puedes descargar este certificado como PDF o compartir el enlace de verificación.",
     "qrCodeInfo": "Escanea el código QR para verificar la autenticidad de este certificado.",
@@ -475,33 +475,33 @@
   },
   "usergroups": {
     "title": "Administrar Grupos de Usuarios y Usuarios",
-    "description": "UserGroups are a way to group users together to manage their access to the resources (Courses) in your organization.",
+    "description": "Los Grupos de Usuarios son una forma de agrupar usuarios para gestionar su acceso a los recursos (Cursos) en su organización.",
     "table": {
-      "userGroup": "UserGroup",
-      "description": "Description",
-      "manageUsers": "Manage Users",
-      "actions": "Actions"
+      "userGroup": "Grupo de Usuarios",
+      "description": "Descripción",
+      "manageUsers": "Gestionar Usuarios",
+      "actions": "Acciones"
     },
     "buttons": {
-      "manageUsers": "Manage Users",
-      "create": "Create a UserGroup"
+      "manageUsers": "Gestionar Usuarios",
+      "create": "Crear un Grupo de Usuarios"
     },
     "manageUsersModal": {
-      "title": "Manage UserGroup Users",
-      "description": "Manage the users in this UserGroup"
+      "title": "Gestionar Usuarios del Grupo",
+      "description": "Gestionar los usuarios en este Grupo de Usuarios"
     },
     "createModal": {
-      "title": "Create a UserGroup",
-      "description": "Create a new UserGroup to manage users"
+      "title": "Crear un Grupo de Usuarios",
+      "description": "Crear un nuevo Grupo de Usuarios para gestionar usuarios"
     },
     "deleteModal": {
-      "title": "Delete UserGroup?",
-      "message": "Access to all resources will be removed for all users in this UserGroup. Are you sure you want to delete this UserGroup?",
-      "confirmButton": "Delete UserGroup"
+      "title": "¿Eliminar Grupo de Usuarios?",
+      "message": "Se eliminará el acceso a todos los recursos para todos los usuarios en este Grupo. ¿Está seguro de que desea eliminar este Grupo de Usuarios?",
+      "confirmButton": "Eliminar Grupo de Usuarios"
     },
-    "deleting": "Deleting...",
-    "deletedSuccess": "Deleted usergroup",
-    "deleteError": "Error deleting usergroup"
+    "deleting": "Eliminando...",
+    "deletedSuccess": "Grupo de usuarios eliminado",
+    "deleteError": "Error al eliminar el grupo de usuarios"
   },
   "organization": {
     "generalTitle": "General",
@@ -763,6 +763,7 @@
     "addVideo": "Agregar Video",
     "addVideoPreview": "Agregar Vista Previa de Video",
     "dragDropImages": "Arrastra y suelta imágenes aquí",
+    "maxPreviews": "Máx {max} vistas previas",
     "pasteYouTubeOrLoom": "Pega la URL de tu video de YouTube o Loom"
   },
   "dashboardHome": {

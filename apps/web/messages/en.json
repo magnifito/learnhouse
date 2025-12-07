@@ -763,6 +763,7 @@
     "addVideo": "Add Video",
     "addVideoPreview": "Add Video Preview",
     "dragDropImages": "Drag and drop images here",
+    "maxPreviews": "Max {max} previews",
     "pasteYouTubeOrLoom": "Paste your YouTube or Loom video URL"
   },
   "dashboardHome": {

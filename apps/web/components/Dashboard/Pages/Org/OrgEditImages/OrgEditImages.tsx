@@ -722,7 +722,7 @@ export default function OrgEditImages() {
                 
                 <div className="flex items-center space-x-2 bg-gray-50 text-gray-600 px-4 py-2 rounded-full">
                   <Info size={14} />
-                  <p className="text-sm">{t('images.dragDropImages')} • {t('maxPreviews', { max: 4 })}</p>
+                  <p className="text-sm">{t('images.dragDropImages')} • {t('images.maxPreviews', { max: 4 })}</p>
                 </div>
               </div>
             </div>
