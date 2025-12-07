@@ -50,9 +50,8 @@ class PublicUser(UserRead):
 
 
 class UserRoleWithOrg(BaseModel):
-    from src.db.organizations import OrganizationRead
     role: RoleRead
-    org: OrganizationRead
+    org: "OrganizationRead"
 
 
 class UserSession(BaseModel):
@@ -78,3 +77,8 @@ class User(UserBase, table=True):
     email_verified: bool = False
     creation_date: str = ""
     update_date: str = ""
+
+
+# Rebuild models to resolve forward references
+from src.db.organizations import OrganizationRead
+UserRoleWithOrg.model_rebuild()

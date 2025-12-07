@@ -133,7 +133,7 @@ If you get port conflicts:
 lsof -i :5432  # PostgreSQL
 lsof -i :6379  # Redis
 lsof -i :3000  # Frontend
-lsof -i :8000  # Backend
+lsof -i :1338  # Backend
 
 # Kill the process
 kill -9 <PID>

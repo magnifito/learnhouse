@@ -7,7 +7,7 @@ from src.router import v1_router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi_jwt_auth.exceptions import AuthJWTException
+from src.security.auth import security
 from fastapi.middleware.gzip import GZipMiddleware
 
 
@@ -56,12 +56,8 @@ app.add_event_handler("shutdown", shutdown_app(app))
 
 
 # JWT Exception Handler
-@app.exception_handler(AuthJWTException)
-def authjwt_exception_handler(request: Request, exc: AuthJWTException):
-    return JSONResponse(
-        status_code=exc.status_code,  # type: ignore
-        content={"detail": exc.message},  # type: ignore
-    )
+# AuthX Error Handling
+security.handle_errors(app)
 
 
 # Static Files

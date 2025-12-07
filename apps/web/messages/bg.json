@@ -899,8 +899,8 @@
     "removeFromOrg": "Премахни от организацията",
     "updateRoleTitle": "Актуализирай роля",
     "updateRoleDesc": "Актуализиране на ролята на @{username}",
-    "removeUserTitle": "Изтриване на {username} ?",
-    "removeUserMessage": "Сигурни ли сте, че искате да премахнете този потребител от организацията?",
+    "removeUserTitle": "Премахване на потребител?",
+    "removeUserMessage": "Сигурни ли сте, че искате да премахнете {username} от организацията?",
     "removeUserButton": "Премахни потребител",
     "toasts": {
       "removing": "Премахване...",

@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Dict, List, Any, Union
 from pydantic import BaseModel
 from sqlalchemy import JSON, Column
 from sqlmodel import Field, SQLModel
@@ -11,18 +11,18 @@ class OrganizationBase(SQLModel):
     name: str
     description: Optional[str]
     about: Optional[str]
-    socials: Optional[dict] = Field(default={}, sa_column=Column(JSON))
-    links: Optional[dict] = Field(default={}, sa_column=Column(JSON))
-    scripts: Optional[dict] = Field(default={}, sa_column=Column(JSON))
+    socials: Optional[Dict[str, Any]] = Field(default={}, sa_column=Column(JSON))
+    links: Optional[Dict[str, Any]] = Field(default={}, sa_column=Column(JSON))
+    scripts: Optional[Dict[str, Any]] = Field(default={}, sa_column=Column(JSON))
     logo_image: Optional[str]
     thumbnail_image: Optional[str]
-    previews: Optional[dict] = Field(default={}, sa_column=Column(JSON))
+    previews: Optional[Dict[str, Any]] = Field(default={}, sa_column=Column(JSON))
     explore: Optional[bool] = Field(default=False)
     label: Optional[str]
     slug: str
     email: str
     default_locale: Optional[str] = Field(default="en", max_length=5)
-    supported_locales: Optional[list] = Field(default=["en"], sa_column=Column(JSON))
+    supported_locales: Optional[List[Any]] = Field(default=["en"], sa_column=Column(JSON))
 
 
 class Organization(OrganizationBase, table=True):
@@ -40,18 +40,18 @@ class OrganizationUpdate(SQLModel):
     name: Optional[str] = None
     description: Optional[str] = None
     about: Optional[str] = None
-    socials: Optional[dict] = None
-    links: Optional[dict] = None
-    scripts: Optional[dict] = None
+    socials: Optional[Dict[str, Any]] = None
+    links: Optional[Dict[str, Any]] = None
+    scripts: Optional[Dict[str, Any]] = None
     logo_image: Optional[str] = None
     thumbnail_image: Optional[str] = None
-    previews: Optional[dict] = None
+    previews: Optional[Dict[str, Any]] = None
     label: Optional[str] = None
     slug: Optional[str] = None
     email: Optional[str] = None
     explore: Optional[bool] = None
     default_locale: Optional[str] = None
-    supported_locales: Optional[list] = None
+    supported_locales: Optional[List[Any]] = None
 
 class OrganizationCreate(OrganizationBase):
     pass
@@ -60,12 +60,16 @@ class OrganizationCreate(OrganizationBase):
 class OrganizationRead(OrganizationBase):
     id: int
     org_uuid: str
-    config: Optional[OrganizationConfig | dict]
+    config: Optional[Union[OrganizationConfig, Dict[str, Any]]] = None
     creation_date: str
     update_date: str
 
 
 class OrganizationUser(BaseModel):
-    from src.db.users import UserRead
-    user: UserRead
+    user: "UserRead"
     role: RoleRead
+
+
+# Rebuild models to resolve forward references
+from src.db.users import UserRead
+OrganizationUser.model_rebuild()

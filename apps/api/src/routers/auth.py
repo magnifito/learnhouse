@@ -7,7 +7,7 @@ from sqlmodel import Session
 from src.db.users import AnonymousUser, UserRead
 from src.core.events.database import get_db_session
 from config.config import get_learnhouse_config
-from src.security.auth import AuthJWT, authenticate_user, get_current_user
+from src.security.auth import authenticate_user, get_current_user, security
 from src.services.auth.utils import signWithGoogle
 
 
@@ -15,25 +15,19 @@ router = APIRouter()
 
 
 @router.get("/refresh")
-def refresh(response: Response, Authorize: AuthJWT = Depends()):
+def refresh(response: Response, payload: dict = Depends(security.refresh_token_required)):
     """
     The jwt_refresh_token_required() function insures a valid refresh
     token is present in the request before running any code below that function.
     we can use the get_jwt_subject() function to get the subject of the refresh
     token, and use the create_access_token() function again to make a new access token
     """
-    Authorize.jwt_refresh_token_required()
+    current_user = payload.sub
+    new_access_token = security.create_access_token(uid=current_user)
 
-    current_user = Authorize.get_jwt_subject()
-    new_access_token = Authorize.create_access_token(subject=current_user)  # type: ignore
-
-    response.set_cookie(
-        key="access_token_cookie",
-        value=new_access_token,
-        httponly=False,
-        domain=get_learnhouse_config().hosting_config.cookie_config.domain,
-        expires=int(timedelta(hours=8).total_seconds()),
-    )
+    # set cookies using AuthX
+    security.set_access_cookies(new_access_token, response)
+    
     return {"access_token": new_access_token}
 
 
@@ -41,7 +35,6 @@ def refresh(response: Response, Authorize: AuthJWT = Depends()):
 async def login(
     request: Request,
     response: Response,
-    Authorize: AuthJWT = Depends(),
     form_data: OAuth2PasswordRequestForm = Depends(),
     db_session: Session = Depends(get_db_session),
 ):
@@ -55,18 +48,12 @@ async def login(
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    access_token = Authorize.create_access_token(subject=form_data.username)
-    refresh_token = Authorize.create_refresh_token(subject=form_data.username)
-    Authorize.set_refresh_cookies(refresh_token)
-
-    # set cookies using fastapi
-    response.set_cookie(
-        key="access_token_cookie",
-        value=access_token,
-        httponly=False,
-        domain=get_learnhouse_config().hosting_config.cookie_config.domain,
-        expires=int(timedelta(hours=8).total_seconds()),
-    )
+    access_token = security.create_access_token(uid=form_data.username)
+    refresh_token = security.create_refresh_token(uid=form_data.username)
+    
+    # set cookies using AuthX
+    security.set_access_cookies(access_token, response)
+    security.set_refresh_cookies(refresh_token, response)
 
     user = UserRead.model_validate(user)
 
@@ -91,7 +78,6 @@ async def third_party_login(
     org_id: Optional[int] = None,
     current_user: AnonymousUser = Depends(get_current_user),
     db_session: Session = Depends(get_db_session),
-    Authorize: AuthJWT = Depends(),
 ):
     # Google
     if body.provider == "google":
@@ -107,18 +93,11 @@ async def third_party_login(
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    access_token = Authorize.create_access_token(subject=user.email)
-    refresh_token = Authorize.create_refresh_token(subject=user.email)
-    Authorize.set_refresh_cookies(refresh_token)
-
-    # set cookies using fastapi
-    response.set_cookie(
-        key="access_token_cookie",
-        value=access_token,
-        httponly=False,
-        domain=get_learnhouse_config().hosting_config.cookie_config.domain,
-        expires=int(timedelta(hours=8).total_seconds()),
-    )
+    access_token = security.create_access_token(uid=user.email)
+    refresh_token = security.create_refresh_token(uid=user.email)
+    
+    security.set_access_cookies(access_token, response)
+    security.set_refresh_cookies(refresh_token, response)
 
     user = UserRead.model_validate(user)
 
@@ -130,13 +109,12 @@ async def third_party_login(
 
 
 @router.delete("/logout")
-def logout(Authorize: AuthJWT = Depends()):
+def logout(response: Response, dependencies=Depends(security.access_token_required)):
     """
     Because the JWT are stored in an httponly cookie now, we cannot
     log the user out by simply deleting the cookies in the frontend.
     We need the backend to send us a response to delete the cookies.
     """
-    Authorize.jwt_required()
-
-    Authorize.unset_jwt_cookies()
+    security.unset_access_cookies(response)
+    security.unset_refresh_cookies(response)
     return {"msg": "Successfully logout"}

@@ -109,7 +109,7 @@ function OrgUsers() {
                           }
                           dialogTitle={t('orgUsers.updateRoleTitle')}
                           dialogDescription={
-                            t('updateRoleDesc', { username: user.user.username })
+                            t('orgUsers.updateRoleDesc', { username: user.user.username })
                           }
                           dialogTrigger={
                             <button className="flex space-x-2 hover:cursor-pointer p-1 px-3 bg-yellow-700 rounded-md font-bold items-center text-sm text-yellow-100">
@@ -121,8 +121,8 @@ function OrgUsers() {
 
                         <ConfirmationModal
                           confirmationButtonText={t('orgUsers.removeUserButton')}
-                          confirmationMessage={t('orgUsers.removeUserMessage')}
-                          dialogTitle={t('removeUserTitle', { username: user.user.username })}
+                          confirmationMessage={t('orgUsers.removeUserMessage', { username: user.user.username })}
+                          dialogTitle={t('orgUsers.removeUserTitle')}
                           dialogTrigger={
                             <button className="mr-2 flex space-x-2 hover:cursor-pointer p-1 px-3 bg-rose-700 rounded-md font-bold items-center text-sm text-rose-100">
                               <LogOut className="w-4 h-4" />

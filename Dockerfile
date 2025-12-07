@@ -3,14 +3,14 @@ FROM python:3.12.3-slim-bookworm AS base
 
 # Install Nginx, curl, and build-essential
 RUN apt update && apt install -y nginx curl build-essential \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm /etc/nginx/sites-enabled/default
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* \
+  && rm /etc/nginx/sites-enabled/default
 
 # Install Node tools
 RUN curl -fsSL https://deb.nodesource.com/setup_21.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install -g pm2
+  && apt-get install -y nodejs \
+  && npm install -g pm2
 
 # Frontend Build - Using Node.js Alpine for better performance
 FROM node:22-alpine AS frontend-base
@@ -91,8 +91,8 @@ WORKDIR /app/api
 COPY ./apps/api/uv.lock ./
 COPY ./apps/api/pyproject.toml ./
 RUN pip install --upgrade pip \
-    && pip install uv \
-    && uv sync
+  && pip install uv \
+  && uv sync
 COPY ./apps/api ./
 
 # Install curl and netcat for health checks and service waiting
@@ -101,7 +101,7 @@ RUN apt-get update && apt-get install -y curl netcat-openbsd && rm -rf /var/lib/
 # Run the backend
 WORKDIR /app
 COPY ./extra/nginx.conf /etc/nginx/conf.d/default.conf
-ENV PORT=8000 LEARNHOUSE_PORT=9000 HOSTNAME=0.0.0.0
+ENV PORT=1338 LEARNHOUSE_PORT=1338 HOSTNAME=0.0.0.0
 
 # Copy entrypoint scripts
 COPY ./apps/api/docker-entrypoint.sh /app/api/docker-entrypoint.sh

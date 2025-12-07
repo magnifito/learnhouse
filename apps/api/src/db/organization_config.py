@@ -1,4 +1,4 @@
-from typing import Literal, Optional
+from typing import Literal, Optional, Dict, Any
 from pydantic import BaseModel
 from sqlalchemy import JSON, BigInteger, Column, ForeignKey
 from sqlmodel import Field, SQLModel
@@ -95,7 +95,7 @@ class OrganizationConfigBase(BaseModel):
     general: OrgGeneralConfig
     features: OrgFeatureConfig
     cloud: OrgCloudConfig
-    landing: dict = {}
+    landing: Dict[str, Any] = {}
 
 
 class OrganizationConfig(SQLModel, table=True):
@@ -103,6 +103,6 @@ class OrganizationConfig(SQLModel, table=True):
     org_id: int = Field(
         sa_column=Column(BigInteger, ForeignKey("organization.id", ondelete="CASCADE"))
     )
-    config: dict = Field(default={}, sa_column=Column(JSON))
+    config: Dict[str, Any] = Field(default={}, sa_column=Column(JSON))
     creation_date: Optional[str]
     update_date: Optional[str]

@@ -1,4 +1,5 @@
 from typing import Optional
+from pydantic import ConfigDict
 from sqlalchemy import JSON, Column, ForeignKey
 from sqlmodel import Field, SQLModel
 from enum import Enum
@@ -43,4 +44,4 @@ class BlockRead(BlockBase):
     block_uuid: str
     creation_date: str
     update_date: str
-    pass
+    model_config = ConfigDict(from_attributes=True)

@@ -19,6 +19,7 @@ from src.security.rbac.rbac import (
     authorization_verify_if_user_is_anon,
 )
 from src.db.organizations import Organization, OrganizationRead
+from src.db.organization_config import OrganizationConfig
 from src.db.users import (
     AnonymousUser,
     InternalUser,
@@ -90,7 +91,7 @@ async def create_user(
         )
 
     # Exclude unset values
-    user_data = user.dict(exclude_unset=True)
+    user_data = user.model_dump(exclude_unset=True)
     for key, value in user_data.items():
         setattr(user, key, value)
 
@@ -209,7 +210,7 @@ async def create_user_without_org(
         )
 
     # Exclude unset values
-    user_data = user.dict(exclude_unset=True)
+    user_data = user.model_dump(exclude_unset=True)
     for key, value in user_data.items():
         setattr(user, key, value)
 
@@ -276,7 +277,7 @@ async def update_user(
             )
 
     # Update user
-    user_data = user_object.dict(exclude_unset=True)
+    user_data = user_object.model_dump(exclude_unset=True)
     for key, value in user_data.items():
         setattr(user, key, value)
 
@@ -462,6 +463,7 @@ async def get_user_session(
         .join(Organization)
     )
     user_organizations = db_session.exec(statement).all()
+    print(f"DEBUG: Found {len(user_organizations)} user_organizations for user {user.id}")
 
     roles = []
 
@@ -474,10 +476,21 @@ async def get_user_session(
         )
         org = db_session.exec(org_statement).first()
 
+        # Fetch Organization Config
+        config_statement = select(OrganizationConfig).where(
+            OrganizationConfig.org_id == getattr(org, "id")
+        )
+        config_object = db_session.exec(config_statement).first()
+        
+        # Prepare Org Read
+        org_read = OrganizationRead.model_validate(org)
+        if config_object:
+            org_read.config = config_object.config
+
         roles.append(
             UserRoleWithOrg(
                 role=RoleRead.model_validate(role),
-                org=OrganizationRead.model_validate(org),
+                org=org_read,
             )
         )
 

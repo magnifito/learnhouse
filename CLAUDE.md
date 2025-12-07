@@ -25,7 +25,7 @@ LearnHouse is an open-source educational platform (beta) that enables anyone to 
 - FastAPI with async/await
 - SQLModel + SQLAlchemy for PostgreSQL ORM
 - Alembic for migrations
-- Pydantic v1 for validation (note: v1, not v2)
+- Pydantic v2 for validation
 - Redis for caching
 - Uvicorn ASGI server
 - Pytest for testing
@@ -161,7 +161,7 @@ Requires environment variables:
 
 - **Python Version**: Requires Python >=3.12.3, <3.13.0
 - **Package Manager**: Must use pnpm (v9.0.6)
-- **Pydantic Version**: Backend uses Pydantic v1, not v2
+- **Pydantic Version**: Backend uses Pydantic v2
 - **Environment Files**: Required for both apps (refer to docs.learnhouse.app)
 - **Beta Status**: Project is in beta, expect breaking changes
 - **Dev Mode**: Backend development mode enables Swagger docs at `/docs`

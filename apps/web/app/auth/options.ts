@@ -95,52 +95,61 @@ export const nextAuthOptions = {
       if (token?.user?.tokens) {
         const tokenExpiry = token.user.tokens.expiry || 0;
         const oneMinute = 1 * 60 * 1000;
-        
+
         if (Date.now() + oneMinute >= tokenExpiry) {
           const RefreshedToken = await getNewAccessTokenUsingRefreshTokenServer(
             token?.user?.tokens?.refresh_token
           );
-          token = {
-            ...token,
-            user: {
-              ...token.user,
-              tokens: {
-                ...token.user.tokens,
-                access_token: RefreshedToken.access_token,
-                expiry: Date.now() + (60 * 60 * 1000), // 1 hour from now
+
+          if (RefreshedToken && RefreshedToken.access_token) {
+            token = {
+              ...token,
+              user: {
+                ...token.user,
+                tokens: {
+                  ...token.user.tokens,
+                  access_token: RefreshedToken.access_token,
+                  expiry: Date.now() + (60 * 60 * 1000), // 1 hour from now
+                },
               },
-            },
-          };
+            };
+          }
         }
       }
       return token;
     },
     async session({ session, token }: any) {
       // Include user information in the session
-      if (token.user) {
+      if (token.user && token.user.tokens && token.user.tokens.access_token) {
         // Cache the session for 1 minute to refresh every minute
         const cacheKey = `user_session_${token.user.tokens.access_token}`;
         let cachedSession = global.sessionCache?.[cacheKey];
-        
+
         if (cachedSession && Date.now() - cachedSession.timestamp < 1 * 60 * 1000) {
           return cachedSession.data;
         }
 
-        let api_SESSION = await getUserSession(token.user.tokens.access_token);
-        session.user = api_SESSION.user;
-        session.roles = api_SESSION.roles;
-        session.tokens = token.user.tokens;
+        try {
+          let api_SESSION = await getUserSession(token.user.tokens.access_token);
+          if (api_SESSION) {
+            session.user = api_SESSION.user;
+            session.roles = api_SESSION.roles;
+            session.tokens = token.user.tokens;
 
-        // Cache the session
-        if (!global.sessionCache) {
-          global.sessionCache = {};
+            // Cache the session
+            if (!global.sessionCache) {
+              global.sessionCache = {};
+            }
+            global.sessionCache[cacheKey] = {
+              data: session,
+              timestamp: Date.now()
+            };
+          }
+        } catch (error) {
+          console.error("Error fetching user session:", error);
         }
-        global.sessionCache[cacheKey] = {
-          data: session,
-          timestamp: Date.now()
-        };
       }
       return session;
     },
   },
-}
+};

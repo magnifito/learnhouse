@@ -137,7 +137,7 @@ const DetailCard = React.memo(({
 }) => {
   // Add local state for label input
   const [localLabel, setLocalLabel] = useState(detail.label);
-  
+
   // Debounce the label change handler
   const debouncedLabelChange = useDebounce((newLabel: string) => {
     if (newLabel !== detail.label) {
@@ -262,23 +262,23 @@ const UserEditForm = ({
   t: any;
 }) => {
   // Memoize template handlers
-  const templateHandlers = useMemo(() => 
+  const templateHandlers = useMemo(() =>
     Object.entries(DETAIL_TEMPLATES).reduce((acc, [key, template]) => ({
       ...acc,
       [key]: () => {
         const currentIds = new Set(Object.keys(values.details));
         const newDetails = { ...values.details };
-        
+
         template.forEach((item) => {
           if (!currentIds.has(item.id)) {
             newDetails[item.id] = { ...item };
           }
         });
-        
+
         setFieldValue('details', newDetails);
       }
     }), {} as Record<string, () => void>)
-  , [values.details, setFieldValue]);
+    , [values.details, setFieldValue]);
 
   // Memoize detail handlers
   const detailHandlers = useMemo(() => ({
@@ -376,7 +376,7 @@ const UserEditForm = ({
               <Label htmlFor="bio">
                 {t('settings.bio')}
                 <span className="text-gray-500 text-sm ml-2">
-                  ({t('charactersLeft', { count: 400 - (values.bio?.length || 0) })})
+                  ({t('settings.charactersLeft', { count: 400 - (values.bio?.length || 0) })})
                 </span>
               </Label>
               <Textarea
@@ -434,7 +434,7 @@ const UserEditForm = ({
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-wrap gap-2">
                   {Object.entries(DETAIL_TEMPLATES).map(([key, template]) => (
                     <Button
@@ -446,13 +446,13 @@ const UserEditForm = ({
                       onClick={() => {
                         const currentIds = new Set(Object.keys(values.details));
                         const newDetails = { ...values.details };
-                        
+
                         template.forEach((item) => {
                           if (!currentIds.has(item.id)) {
                             newDetails[item.id] = { ...item };
                           }
                         });
-                        
+
                         setFieldValue('details', newDetails);
                       }}
                     >
@@ -618,7 +618,7 @@ function UserEditGeneral() {
     // Show message about logging in with new email
     toast((toastInstance: any) => (
       <div className="flex items-center gap-2">
-        <span>{t('pleaseLoginWithNewEmail', { email: newEmail })}</span>
+        <span>{t('settings.pleaseLoginWithNewEmail', { email: newEmail })}</span>
       </div>
     ), {
       duration: 4000,

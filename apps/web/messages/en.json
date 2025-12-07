@@ -898,13 +898,13 @@
     "editRole": "Edit Role",
     "removeFromOrg": "Remove from organization",
     "updateRoleTitle": "Update Role",
-    "updateRoleDesc": "Update @{username}'s role",
-    "removeUserTitle": "Delete {username} ?",
-    "removeUserMessage": "Are you sure you want remove this user from the organization?",
-    "removeUserButton": "Remove User",
+    "updateRoleDesc": "Update role of {username}",
+    "removeUserTitle": "Remove user?",
+    "removeUserButton": "Remove",
+    "removeUserMessage": "Are you sure you want to remove {username} from the organization?",
     "toasts": {
-      "removing": "Removing...",
-      "removeSuccess": "Removed user from org",
+      "removing": "Removing user...",
+      "removeSuccess": "User removed successfully",
       "removeError": "Error removing user"
     }
   },

@@ -183,7 +183,7 @@ async def create_org(
         cloud=OrgCloudConfig(plan="free", custom_domain=False),
     )
 
-    org_config = json.loads(org_config.json())
+    org_config = org_config.model_dump(mode='json')
 
     # OrgSettings
     org_settings = OrganizationConfig(
@@ -263,7 +263,7 @@ async def create_org_with_config(
 
     org_config = submitted_config
 
-    org_config = json.loads(org_config.json())
+    org_config = org_config.model_dump(mode='json')
 
     # OrgSettings
     org_settings = OrganizationConfig(
@@ -376,7 +376,7 @@ async def update_org_with_config_no_auth(
     updated_config = orgconfig
 
     # Update the database
-    org_config.config = json.loads(updated_config.json())
+    org_config.config = updated_config.model_dump(mode='json')
     org_config.update_date = str(datetime.now())
 
     db_session.add(org_config)
@@ -424,7 +424,7 @@ async def update_org_config(
     # Validate the incoming config by converting to dict
     try:
         # Convert Pydantic model to dict to ensure it's valid
-        updated_config_dict = json.loads(orgconfig.json())
+        updated_config_dict = orgconfig.model_dump(mode='json')
     except Exception as e:
         logging.error(f"Invalid config structure: {e}")
         raise HTTPException(
@@ -692,7 +692,7 @@ async def update_org_signup_mechanism(
     updated_config.features.members.signup_mode = signup_mechanism
 
     # Update the database
-    org_config.config = json.loads(updated_config.json())
+    org_config.config = json.loads(updated_config.model_dump_json())
     org_config.update_date = str(datetime.now())
 
     db_session.add(org_config)
@@ -793,12 +793,12 @@ async def update_org_landing(
 
     # Convert to OrganizationConfigBase model and back to ensure all fields exist
     config_model = OrganizationConfigBase(**org_config.config)
-    
+
     # Update the landing object
     config_model.landing = landing_object
 
     # Convert back to dict and update
-    updated_config = json.loads(config_model.json())
+    updated_config = json.loads(config_model.model_dump_json())
     org_config.config = updated_config
     org_config.update_date = str(datetime.now())
 

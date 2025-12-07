@@ -68,7 +68,7 @@ echo ""
 # Start backend
 echo -e "${BLUE}🐍 Starting backend (FastAPI)...${NC}"
 cd apps/api
-LEARNHOUSE_INITIAL_ADMIN_PASSWORD=admin123 uv run python app.py > ../../logs/backend.log 2>&1 &
+LEARNHOUSE_INITIAL_ADMIN_PASSWORD=admin123 LEARNHOUSE_PORT=1338 uv run python app.py > ../../logs/backend.log 2>&1 &
 BACKEND_PID=$!
 cd ../..
 

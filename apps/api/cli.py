@@ -16,9 +16,7 @@ from src.services.setup.setup import (
 cli = typer.Typer()
 
 @cli.command()
-def install(
-    short: Annotated[bool, typer.Option(help="Install with predefined values")] = False
-):
+def run_install(short: bool = False):
     # Get the database session
     learnhouse_config = get_learnhouse_config()
     engine = create_engine(
@@ -58,12 +56,15 @@ def install(
         if not password:
             print("❌ Error: LEARNHOUSE_INITIAL_ADMIN_PASSWORD environment variable is required")
             print("Please set LEARNHOUSE_INITIAL_ADMIN_PASSWORD environment variable before running installation.")
-            raise typer.Exit(code=1)
+            # Verify if this exit is appropriate when run from auto-install
+            # For now, raising an exception is safer than SystemExit if called programmatically
+            raise Exception("LEARNHOUSE_INITIAL_ADMIN_PASSWORD environment variable is required")
+            
         print("Using password from LEARNHOUSE_INITIAL_ADMIN_PASSWORD environment variable")
         if email != "admin@school.dev":
             print(f"Using email from LEARNHOUSE_INITIAL_ADMIN_EMAIL environment variable: {email}")
         user = UserCreate(
-            username="admin", email=EmailStr(email), password=password
+            username="admin", email=email, password=password
         )
         install_create_organization_user(user, "default", db_session)
         print("Default organization user created ✅")
@@ -106,7 +107,7 @@ def install(
         username = typer.prompt("What's the username for the user?")
         email = typer.prompt("What's the email for the user?")
         password = typer.prompt("What's the password for the user?", hide_input=True)
-        user = UserCreate(username=username, email=EmailStr(email), password=password)
+        user = UserCreate(username=username, email=email, password=password)
         install_create_organization_user(user, slug, db_session)
         print(username + " user created ✅")
 
@@ -116,6 +117,17 @@ def install(
         print("Login with the following credentials:")
         print("email: " + email)
         print("password: The password you entered")
+
+
+@cli.command()
+def install(
+    short: Annotated[bool, typer.Option(help="Install with predefined values")] = False
+):
+    try:
+        run_install(short=short)
+    except Exception as e:
+        print(f"Error: {e}")
+        raise typer.Exit(code=1)
 
 
 

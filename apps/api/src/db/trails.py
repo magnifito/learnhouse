@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from sqlalchemy import Column, ForeignKey, Integer
 from sqlmodel import Field, SQLModel
 from src.db.trail_runs import TrailRunRead
@@ -45,5 +45,4 @@ class TrailRead(BaseModel):
     update_date: Optional[str]
     runs: list[TrailRunRead]
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

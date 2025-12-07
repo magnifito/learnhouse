@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Dict, Any
 from pydantic import BaseModel
 from sqlalchemy import JSON, Column, ForeignKey, Integer
 from sqlmodel import Field, SQLModel
@@ -18,9 +18,9 @@ class StatusEnum(str, Enum):
     STATUS_CANCELLED = "STATUS_CANCELLED"
 
 
-class TrailRun(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    data: dict = Field(default={}, sa_column=Column(JSON))
+
+class TrailRunBase(SQLModel):
+    data: Dict[str, Any] = Field(default={}, sa_column=Column(JSON))
     status: StatusEnum = StatusEnum.STATUS_IN_PROGRESS
     # foreign keys
     trail_id: int = Field(
@@ -40,14 +40,18 @@ class TrailRun(SQLModel, table=True):
     update_date: str
 
 
-class TrailRunCreate(TrailRun):
+class TrailRun(TrailRunBase, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+
+
+class TrailRunCreate(TrailRunBase):
     pass
 
 
 # trick because Lists are not supported in SQLModel (runs: list[TrailStep] )
 class TrailRunRead(BaseModel):
     id: Optional[int] = Field(default=None, primary_key=True)
-    data: dict = Field(default={}, sa_column=Column(JSON))
+    data: Dict[str, Any] = Field(default={}, sa_column=Column(JSON))
     status: StatusEnum = StatusEnum.STATUS_IN_PROGRESS
     # foreign keys
     trail_id: int = Field(default=None, foreign_key="trail.id")
@@ -55,7 +59,7 @@ class TrailRunRead(BaseModel):
     org_id: int = Field(default=None, foreign_key="organization.id")
     user_id: int = Field(default=None, foreign_key="user.id")
     # course object
-    course: Optional[dict]
+    course: Optional[Dict[str, Any]]
     # timestamps
     creation_date: Optional[str]
     update_date: Optional[str]
@@ -63,3 +67,4 @@ class TrailRunRead(BaseModel):
     course_total_steps: int
     steps: list[TrailStep]
     pass
+

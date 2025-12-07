@@ -80,7 +80,7 @@ class Role(RoleBase, table=True):
 
 class RoleRead(RoleBase):
     id: Optional[int] = Field(default=None, primary_key=True)
-    org_id: int = Field(default=None, foreign_key="organization.id")
+    org_id: Optional[int] = Field(default=None, foreign_key="organization.id")
     role_type: RoleTypeEnum = RoleTypeEnum.TYPE_GLOBAL
     role_uuid: str
     creation_date: str

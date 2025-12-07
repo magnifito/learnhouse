@@ -58,14 +58,14 @@ const useNavigationItems = () => {
   ]
 }
 
-const SettingsNavigation = ({ 
-  items, 
-  currentPage, 
-  orgslug 
-}: { 
+const SettingsNavigation = ({
+  items,
+  currentPage,
+  orgslug
+}: {
   items: NavigationItem[]
   currentPage: string
-  orgslug: string 
+  orgslug: string
 }) => (
   <div className="flex space-x-5 font-black text-sm">
     {items.map((item) => (
@@ -74,9 +74,8 @@ const SettingsNavigation = ({
         href={getUriWithOrg(orgslug, `/dash/user-account/settings/${item.id}`)}
       >
         <div
-          className={`py-2 w-fit text-center border-black transition-all ease-linear ${
-            currentPage === item.id ? 'border-b-4' : 'opacity-50'
-          } cursor-pointer`}
+          className={`py-2 w-fit text-center border-black transition-all ease-linear ${currentPage === item.id ? 'border-b-4' : 'opacity-50'
+            } cursor-pointer`}
         >
           <div className="flex items-center space-x-2.5 mx-2">
             <item.icon size={16} />
@@ -92,8 +91,9 @@ function SettingsPage({ params }: { params: Promise<SettingsParams> }) {
   const { subpage, orgslug } = use(params);
   const session = useLHSession() as Session;
   const navigationItems = useNavigationItems()
+  const t = useTranslations()
 
-  useEffect(() => {}, [session])
+  useEffect(() => { }, [session])
 
   const CurrentComponent = navigationItems.find(item => item.id === subpage)?.component;
 
@@ -109,7 +109,7 @@ function SettingsPage({ params }: { params: Promise<SettingsParams> }) {
             <div className="pt-3 flex font-bold text-4xl">{t('settings.accountSettings')}</div>
           </div>
         </div>
-        <SettingsNavigation 
+        <SettingsNavigation
           items={navigationItems}
           currentPage={subpage}
           orgslug={orgslug}

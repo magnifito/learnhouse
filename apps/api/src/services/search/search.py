@@ -2,7 +2,7 @@ from typing import List, TypeVar
 from fastapi import Request
 from sqlmodel import Session, select, or_, text, and_
 from sqlalchemy import true as sa_true
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from src.db.users import PublicUser, AnonymousUser, UserRead, User
 from src.db.courses.courses import Course, CourseRead
 from src.db.collections import Collection, CollectionRead
@@ -18,8 +18,7 @@ class SearchResult(BaseModel):
     collections: List[CollectionRead]
     users: List[UserRead]
 
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 async def search_across_org(
     request: Request,
