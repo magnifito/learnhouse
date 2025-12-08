@@ -72,7 +72,7 @@ const InfoCalloutWrapper = styled.div<{ size?: string }>`
     margin: 5px;
     padding: 0.5rem;
     border: ${(props) =>
-      props.contentEditable ? '2px dashed #1f3a8a12' : 'none'};
+    props.contentEditable ? '2px dashed #1f3a8a12' : 'none'};
     border-radius: 0.5rem;
     
     @media (max-width: 640px) {
@@ -87,18 +87,18 @@ function InfoCalloutComponent(props: any) {
   const editorState = useEditorProvider() as any
   const isEditable = editorState.isEditable
   const [dismissed, setDismissed] = useState(false)
-  
+
   // Extract options from props or use defaults
   const options: CalloutOptions = {
     dismissible: props.node?.attrs?.dismissible || false,
     variant: props.node?.attrs?.variant || 'default',
     size: props.node?.attrs?.size || 'md',
   }
-  
+
   if (dismissed) return null;
-  
+
   const getVariantClasses = () => {
-    switch(options.variant) {
+    switch (options.variant) {
       case 'filled':
         return 'bg-gray-300 text-gray-700';
       case 'outlined':
@@ -107,9 +107,9 @@ function InfoCalloutComponent(props: any) {
         return 'bg-gray-100 text-gray-600';
     }
   }
-  
+
   const getSizeClasses = () => {
-    switch(options.size) {
+    switch (options.size) {
       case 'sm': return 'py-1 px-2 text-sm';
       case 'lg': return 'py-3 px-4 text-lg';
       default: return 'py-2 px-3';

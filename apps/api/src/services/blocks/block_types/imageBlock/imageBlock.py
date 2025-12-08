@@ -10,6 +10,8 @@ from src.services.blocks.utils.upload_files import upload_file_and_return_file_o
 from src.services.users.users import PublicUser
 
 
+from src.db.courses.chapter_activities import ChapterActivity
+
 async def create_image_block(
     request: Request, image_file: UploadFile, activity_uuid: str, db_session: Session
 ):
@@ -36,6 +38,11 @@ async def create_image_block(
             status_code=status.HTTP_404_NOT_FOUND, detail="Course not found"
         )
 
+    # get chapter_id
+    statement = select(ChapterActivity).where(ChapterActivity.activity_id == activity.id)
+    chapter_activity = db_session.exec(statement).first()
+    chapter_id = chapter_activity.chapter_id if chapter_activity else 0
+
     # get block id
     block_uuid = str(f"block_{uuid4()}")
 
@@ -57,6 +64,7 @@ async def create_image_block(
         content=block_data.model_dump(),
         org_id=org.id if org.id else 0,
         course_id=course.id if course.id else 0,
+        chapter_id=chapter_id,
         block_uuid=block_uuid,
         creation_date=str(datetime.now()),
         update_date=str(datetime.now()),

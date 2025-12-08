@@ -13,14 +13,17 @@ export default Node.create({
       emoji: {
         default: '🔗',
       },
+      label: {
+        default: 'Change button text',
+      },
       link: {
         default: '',
       },
       color: {
-        default: 'blue',
+        default: 'greeen',
       },
       alignment: {
-        default: 'left',
+        default: 'center',
       },
     };
   },

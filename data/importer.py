@@ -1059,9 +1059,9 @@ class LearnHouseImporter:
                 tiptap_content.append({
                     "type": "button",
                     "attrs": {
-                        "text": button_content.get('text', ''),
-                        "url": button_content.get('url', ''),
-                        "style": button_content.get('style', 'primary')
+                        "link": button_content.get('url', ''),
+                        "color": button_content.get('style', 'blue'),
+                        "label": button_content.get('text', 'Button')
                     }
                 })
             

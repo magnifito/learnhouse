@@ -72,7 +72,7 @@ const CalloutWrapper = styled.div<{ size?: string }>`
     margin: 5px;
     padding: 0.5rem;
     border: ${(props) =>
-      props.contentEditable ? '2px dashed #713f1117' : 'none'};
+    props.contentEditable ? '2px dashed #713f1117' : 'none'};
     border-radius: 0.5rem;
     
     @media (max-width: 640px) {
@@ -87,18 +87,18 @@ function WarningCalloutComponent(props: any) {
   const editorState = useEditorProvider() as any
   const isEditable = editorState.isEditable
   const [dismissed, setDismissed] = useState(false)
-  
+
   // Extract options from props or use defaults
   const options: CalloutOptions = {
     dismissible: props.node?.attrs?.dismissible || false,
     variant: props.node?.attrs?.variant || 'default',
     size: props.node?.attrs?.size || 'md',
   }
-  
+
   if (dismissed) return null;
-  
+
   const getVariantClasses = () => {
-    switch(options.variant) {
+    switch (options.variant) {
       case 'filled':
         return 'bg-yellow-500 text-white';
       case 'outlined':
@@ -107,9 +107,9 @@ function WarningCalloutComponent(props: any) {
         return 'bg-yellow-200 text-yellow-900';
     }
   }
-  
+
   const getSizeClasses = () => {
-    switch(options.size) {
+    switch (options.size) {
       case 'sm': return 'py-1 px-2 text-sm';
       case 'lg': return 'py-3 px-4 text-lg';
       default: return 'py-2 px-3';
@@ -120,7 +120,6 @@ function WarningCalloutComponent(props: any) {
     <NodeViewWrapper>
       <CalloutWrapper
         className={`flex items-center rounded-lg shadow-inner ${getVariantClasses()} ${getSizeClasses()}`}
-        contentEditable={isEditable}
         size={options.size}
       >
         <IconWrapper size={options.size}>
